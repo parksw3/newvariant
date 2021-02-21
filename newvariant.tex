@@ -1,0 +1,237 @@
+\documentclass[12pt]{article}
+\usepackage[top=1in,left=1in, right = 1in, footskip=1in]{geometry}
+
+\usepackage{graphicx}
+\usepackage{xspace}
+%\usepackage{adjustbox}
+
+\newcommand{\comment}{\showcomment}
+%% \newcommand{\comment}{\nocomment}
+
+\newcommand{\showcomment}[3]{\textcolor{#1}{\textbf{[#2: }\textsl{#3}\textbf{]}}}
+\newcommand{\nocomment}[3]{}
+
+\newcommand{\jd}[1]{\comment{cyan}{JD}{#1}}
+\newcommand{\swp}[1]{\comment{magenta}{SWP}{#1}}
+\newcommand{\bmb}[1]{\comment{blue}{BMB}{#1}}
+\newcommand{\djde}[1]{\comment{red}{DJDE}{#1}}
+
+\newcommand{\eref}[1]{Eq.~\ref{eq:#1}}
+\newcommand{\fref}[1]{Fig.~\ref{fig:#1}}
+\newcommand{\Fref}[1]{Fig.~\ref{fig:#1}}
+\newcommand{\sref}[1]{Sec.~\ref{#1}}
+\newcommand{\frange}[2]{Fig.~\ref{fig:#1}--\ref{fig:#2}}
+\newcommand{\tref}[1]{Table~\ref{tab:#1}}
+\newcommand{\tlab}[1]{\label{tab:#1}}
+\newcommand{\seminar}{SE\mbox{$^m$}I\mbox{$^n$}R}
+
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+
+\usepackage{lineno}
+\linenumbers
+
+\usepackage[pdfencoding=auto, psdextra]{hyperref}
+
+\usepackage{natbib}
+\bibliographystyle{chicago}
+\date{\today}
+
+\usepackage{xspace}
+\newcommand*{\ie}{i.e.\@\xspace}
+
+\usepackage{color}
+
+\newcommand{\Rx}[1]{\ensuremath{{\mathcal R}_{#1}}\xspace} 
+\newcommand{\Ro}{\Rx{0}}
+\newcommand{\Rc}{\Rx{\mathrm{c}}}
+\newcommand{\Ri}{\Rx{\mathrm{i}}}
+\newcommand{\RR}{\ensuremath{{\mathcal R}}\xspace}
+\newcommand{\Rhat}{\ensuremath{{\hat\RR}}}
+\newcommand{\Rnaive}{\ensuremath{{\mathcal R}_{\textrm{\tiny naive}}}\xspace}
+\newcommand{\tsub}[2]{#1_{{\textrm{\tiny #2}}}}
+\newcommand{\dd}[1]{\ensuremath{\, \mathrm{d}#1}}
+\newcommand{\dtau}{\dd{\tau}}
+\newcommand{\dx}{\dd{x}}
+\newcommand{\dsigma}{\dd{\sigma}}
+
+\newcommand{\tstart}{\ensuremath{\tsub{t}{start}}\xspace}
+\newcommand{\tend}{\ensuremath{\tsub{t}{end}}\xspace}
+
+\newcommand{\betaeff}{\ensuremath{\tsub{\beta}{eff}}\xspace}
+\newcommand{\Keff}{\ensuremath{\tsub{K}{eff}}\xspace}
+
+\newcommand{\pt}{p} %% primary time
+\newcommand{\st}{s} %% secondary time
+
+\newcommand{\psize}{{\mathcal P}} %% primary cohort size
+\newcommand{\ssize}{{\mathcal S}} %% secondary cohort size
+
+\newcommand{\gtime}{\sigma} %% generation interval
+\newcommand{\gdist}{g} %% generation-interval distribution
+
+\newcommand{\geff}{g_{\textrm{eff}}} %% generation-interval distribution
+
+\newcommand{\total}{{\mathcal T}} %% total number of serial intervals
+
+\newcommand{\PP}{{\mathcal P}}
+\newcommand{\II}{{\mathcal I}}
+
+\begin{document}
+
+\begin{flushleft}{
+	\Large
+	\textbf\newline{
+		Characterizing epidemic strength and speed of new SARS-CoV-2 variant of concern
+	}
+}
+\end{flushleft}
+
+\section{Introduction}
+
+\begin{itemize}
+  \item People want to estimate strength of new variant from speed
+  \item Typically assume same GI distribution
+  \item Recent evidence that GI of the new variant might be longer
+  \item How does that affect our estimates?
+\end{itemize}
+
+Since the emergence of the new SARS-CoV-2 variant of concern (VoC), estimating its epidemic strength and speed remains one of the key questions in controlling the spread.
+Epidemic strength, characterized by the reproduction number $\RR$, provides information about the final size of the epidemic as well as the amount of intervention required to eliminate the disease.
+Epidemic speed, characterized by the growth rate $r$ provides information about the population-level time scale of the epidemic and, therefore, when the new variant will replace the existing variant.
+These two quantities are linked by generation intervals---defined as time between infection and transmission---which define individual-level time scale of the epidemic.
+
+Some studies have tried to estimate the strength of the novel variant from the observed speed.
+Other studies have relied on assumed values of the strength of the novel variant and tried to predict the spread (therefore, the speed) of the novel variant.
+While both approaches are reasonable, they can lead to different conclusions.
+In many contexts, previous studies have shown that inferences about disease dynamics (e.g., effectiveness of intervention strategy) can changes depending on whether $\RR$ or $r$ is held constant.
+Such inference also depends on assumptions about the underlying generation-interval distribution.
+While many studies assume that the generation-interval distributions do not differ between the existing strain and the variant, recent evidence suggests that the new variant has longer infectious period, leading to longer generation intervals.
+
+Here, we explore how different assumptions about the new variant affects estimates of its strength and speed.
+We ask how the estimates of relative strength (i.e., the ratio between the strength of the existing strain and the variant) and speed (i.e., the difference between the speed of the existing strain and the variant) depend on each other.
+We then show how neglecting differences in the generation-interval distributions can lead to biased estimates.
+
+\section{Renewal equation framework}
+
+We use the renewal equation framework to characterize the spread of two pathogen strains---in this case, a wild type SARS-CoV-2 and the variant of concern.
+Assuming that the effects mutations are negligible, the current incidence of infection $i_x(t)$ from a wild type ($x=w$) and a variant ($x=v$) can be expressed in terms of their previous incidence $i_x(t-\tau)$ and the rate at which secondary cases are generated at time $t$ by individuals infected $\tau$ time units ago $K_x(t, \tau)$:
+\begin{equation}
+i_x = \int_0^\infty i_x(t-\tau) K_x(t, \tau) \dtau.
+\end{equation}
+This framework provides a flexible way of modeling disease dynamics and generalizes compartmental models, such as the SEIR model.
+
+The integral of the kernel $\RR_x(t) = \int K_x(t, \tau) \dtau$---referred to as the instantaneous reproduction number---describes the average infectiousness of previously infected individuals at time $t$.
+The normalized kernel $g_x(t, \tau) = K_x(t, \tau)/\RR_x(t)$---referred to as the instantaneous generation-interval distribution---describes their relative contribution to current incidence.
+Both the reproduction number and the generation-interval distribution can depend on several factors, including intrinsic infectiousness of an infected individual, non-pharmaceutical interventions, awareness-driven behavior, and population-level susceptibility (which can be shared between both the wild type and the variant).
+For simplicity, we do not explicitly model changes in the kernel.
+
+Over a short period of time, we can assume that epidemiological conditions remain roughly constant: $\RR_x(t) \approx \RR_x$ and $g_x(t, \tau) \approx g_x(\tau)$.
+In this case, the incidence of both strains exhibit exponential growth or decay at rate $r_x$, satisfying the Euler-Lotka equation:
+\begin{equation}
+\frac{1}{\RR_x} = \int_0^\infty \exp(- r_x \tau) g_x(\tau) \dtau.
+\end{equation}
+Assuming that the generation-interval distribution follows a gamma distribution, we can write the $r$--$\RR$ relationship in terms of the mean generation interval $\bar{G}_x$ and the effective dispersion $\kappa_x$, which captures the amount of variability in generation intervals:
+\begin{equation}
+\RR_x \approx (1 + \kappa_x r_x \bar{G}_x)^{1/\kappa_x}.
+\end{equation}
+Here, the effective dispersion parameter $\kappa_x$ also corresponds to the squared coefficient of variation of the gamma distribution.
+This gamma approximation framework has been used widely to model epidemic dynamics, including that of SARS-CoV-2.
+We use this framework to understand how the inference of strength and speed of the variant depends on our assumptions about the underlying generation-interval distribution as well as the dynamics of the wild type.
+
+\section{Inferring relative strength from relative speed}
+
+Typically, the speed of an epidemic $r_x$ can be measured directly from case data.
+But when incidence of new variant is low (due to recent introduction) or unreliable (due to limited testing), estimating growth rate can be challenging.
+During the current pandemic, many studies have focused on the characterizing the proportion of the new variant from genetic sequencing data---
+when incidence is changing exponentially, the proportion of the new variant $p(t)$ follows a logistic equation:
+\begin{align}
+p(t) &= \frac{i_v(0) \exp(r_v t)}{i_w(0) \exp(r_w t) + i_v(0) \exp(r_v t)},\\
+&= \frac{1}{1 + \left(i_w(0)/i_v(0)\right) \exp(-\delta t)},
+\end{align}
+where the growth rate of the logistic equation $\delta = r_v - r_w$ corresponds to the relative speed of the epidemic.
+
+\begin{figure}[!th]
+\includegraphics[width=\textwidth]{relstrength.pdf}
+\caption{
+\textbf{Relative strength of the new variant given observed relative speed.}
+}
+(A) True relative strength of the new variant $\theta$ given speed of the wild type $r_w$ and the relative speed $\delta$.
+The dashed contour line corresponds to $\theta = 1$.
+True relative strength of the new variant $\theta$ is calculated using $\bar{G}_w = 5\,\textrm{days}$, $\bar{G}_v = 8\,\textrm{days}$, and $\kappa = 1/5$. 
+(B) Estimated relative strength of the new variant $\hat{\theta}$ given speed of the wild type
+$r_w$ and the relative speed $\delta$ assuming identical generation-interval distributions.
+(C) Biases in the estimates of the relative strength of the new variant $\hat{\theta} - \theta$ given speed of the wild type $r_w$ and the relative speed $\delta$.
+The dashed contour line corresponds to $\hat{\theta} = \theta$.
+\label{fig:relstrength}
+\end{figure}
+
+Given an observed value of the relative speed $\delta$, the true relative strength $\theta = \RR_v/\RR_w$ is given by:
+\begin{equation}
+\theta = \frac{(1 + \kappa_v (r_w + \delta) \bar{G}_v)^{1/\kappa_v}}{(1 + \kappa_w r_w \bar{G}_w)^{1/\kappa_w}}.
+\end{equation}
+Previous studies have assumed that the generation-interval distributions do not differ between the wild type and the variant:$\kappa_v = \kappa_w$ and $\bar{G}_v = \bar{G}_w$.
+In this case, the estimate of the relative strength is given by:
+\begin{equation}
+\hat{\theta} = \left(1 + \frac{\kappa_w \delta \bar{G}_w}{1 + \kappa_w r_w \bar{G}_w}\right)^{1/\kappa_w}.
+\end{equation}
+We assume that the true mean generation interval of the new variant is longer that of the wild type and ask how ignoring differences in generation intervals affect estimates of relative strength.
+
+\fref{relstrength}A illustrates the impact of $r_w$ and $\delta$ on the relative strength $\theta$.
+Given the observed value of relative speed $\delta$,
+the relative strength of the new variant $\theta$ is going to be higher than we thought if the wild type is spreading fast (higher $r_w$).
+However, the variant need not have higher reproduction number in order to spread faster: longer generation interval means that the incidence decays at a slower rate given $\RR$. 
+Therefore, when both $\RR_w < 1$ and $\RR_v < 1$, this allows the variant to persist better than the wild type even if it has lower strength under some conditions.
+
+\fref{relstrength}B shows estimates of the relative strength $\hat{\theta}$ assuming equal generation-interval distributions.
+In this case, the estimate of relative strength $\hat{\theta}$ is relatively insensitive to the underlying speed of the wild type.
+However, when the observed relative speed $\delta$ is high, the estimate of relative strength $\hat{\theta}$ decreases as $r_w$ increases---an opposite pattern from the true relationship.
+These differences typically lead to underestimation of the relative strength $\theta$ (\fref{relstrength}C);
+however, when both the wild type and the variant are exponentially decaying ($r_w < 0$), neglecting differences in the generation-interval distribution leads to overestimation of the relative strength $\theta$.
+
+\section{Inferring relative speed from relative strength}
+
+It is often more common to make assumptions to about the relative strength of the new variant (e.g., assuming that it is more infectious) and try to predict its dynamics.
+Then, given assumptions about relative strength $\theta$, relative speed $\delta$ is given by:
+\begin{equation}
+\delta = \frac{(\theta \RR_w)^{\kappa_v} - 1}{\kappa_v \bar{G}_v} - \frac{\RR_w^{\kappa_w} - 1}{\kappa_w \bar{G}_w}.
+\end{equation}
+Assuming $\kappa_v = \kappa_w$ and $\bar{G}_v = \bar{G}_w$, the estimate of the relative speed is given by:
+\begin{equation}
+\hat{\delta} = \frac{(\theta \RR_w)^{\kappa_w} - \RR_w^{\kappa_w}}{\kappa_w \bar{G}_w}.
+\end{equation}
+
+
+\begin{figure}[!th]
+\includegraphics[width=\textwidth]{relspeed.pdf}
+\caption{
+\textbf{Relative speed of the new variant given assumed relative strength.}
+}
+(A) True relative speed of the new variant $\delta$ given strength of the wild type $\RR_w$ and the relative strength $\theta$.
+The dashed contour line corresponds to $\delta = 0$.
+True relative speed of the new variant $\delta$ is calculated using $\bar{G}_w = 5\,\textrm{days}$, $\bar{G}_v = 8\,\textrm{days}$, and $\kappa = 1/5$. 
+(B) Estimated relative speed of the new variant $\hat{\delta}$ given strength of the wild type $\RR_w$ and the relative strength $\theta$ assuming identical generation-interval distributions.
+(C) Biases in the estimates of the relative speed of the new variant $\hat{\delta} - \delta$ given strength of the wild type $\RR_w$ and the relative strength $\theta$.
+The dashed contour line corresponds to $\hat{\delta} = \delta$.
+\label{fig:relspeed}
+\end{figure}
+
+\fref{relspeed}A shows the impact of $\RR_w$ and $\theta$ on the relative speed $\delta$.
+As $\theta$ increases, $\delta$ also increases.
+However, $\delta$ need not be positive---since longer generation intervals lead to slower speed given epidemic strength, the new variant can spread at a slower rate even if it is more infectious.
+In reality, this is unlikely to be case as we are consistently observing increases in the proportion of new variant across multiple countries, suggesting that the relative strength of the new variant is likely high.
+When differences in the generation-interval distributions are ignored, our conclusions change: for a given value of $\theta$, higher $\RR_w$ leads to higher $\delta$ (\fref{relspeed}B).
+This generally leads to overestimation of $\delta$, except when both $\RR_w < 1$ and $\RR_v < 1$---
+longer generation interval means that the variant is going to decline slower than we thought (i.e., $r_v$ closer to 0), leading to underestimation of $\delta$ (\fref{relspeed}C).
+
+\section{Discussion}
+
+Here, we explored how assumptions the relative strength and speed of the new variant affects conclusions about each other when the new variant has longer generation intervals than the existing strain.
+When relative speed $\delta$ is held constant, faster growth of the existing strain leads to larger relative strength.
+When relative strength $\theta$ is held constant, higher strength of the existing strain leads to smaller relative speed.
+Failing to account for the differences in the generation-interval distributions lead to opposite conclusions, leading to biased estimates of $\delta$ and $\theta$.
+
+
+\end{document}
