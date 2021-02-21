@@ -91,10 +91,10 @@
 
 \section{Introduction}
 
-Since the emergence of the new SARS-CoV-2 variant of concern (VoC), estimating its epidemic strength and speed remains one of the key questions in controlling its spread \citep{davies2021estimated, leung2021early, volz2021transmission}.
-Epidemic strength, characterized by the reproduction number $\RR$, provides information about the final size of the epidemic as well as the amount of intervention required to eliminate the disease.
+Since the emergence of the new SARS-CoV-2 variant of concern (VoC), estimating its epidemic strength and speed remains one of the key questions in controlling its spread \citep{davies2021estimated, leung2021early, volz2021transmission,zhao2021}.
+Epidemic strength, characterized by the reproduction number $\RR$, provides information about the final size of the epidemic as well as the amount of intervention required to eliminate the disease \citep{anderson1991infectious}.
 Epidemic speed, characterized by the growth rate $r$ provides information about the population-level time scale of the epidemic and, therefore, when the new variant will replace the existing variant.
-These two quantities are linked by generation intervals---defined as time between infection and transmission---which define individual-level time scale of the epidemic.
+These two quantities are linked by generation intervals---defined as time between infection and transmission---which define individual-level time scale of the epidemic \citep{roberts2007model,svensson2007note,wallinga2007generation}.
 
 Some studies have tried to estimate the strength of the novel variant from the observed speed.
 Other studies have relied on assumed values of the strength of the novel variant and tried to predict the spread (therefore, the speed) of the novel variant.
@@ -222,9 +222,12 @@ longer generation interval means that the variant is going to decline slower tha
 \section{Discussion}
 
 Here, we explored how assumptions the relative strength and speed of the new variant affects conclusions about each other when the new variant has longer generation intervals than the existing strain.
+We define relative strength as the ratio between reproduction numbers ($\theta=\RR_v/\RR_w$) and relative speed as the difference between growth rates ($\delta=r_v-r_w$).
 When relative speed $\delta$ is held constant, faster growth of the existing strain leads to larger relative strength.
 When relative strength $\theta$ is held constant, higher strength of the existing strain leads to smaller relative speed.
 Failing to account for the differences in the generation-interval distributions lead to opposite conclusions, leading to biased estimates of $\delta$ and $\theta$.
 
+
+\bibliography{newvariant}
 
 \end{document}
