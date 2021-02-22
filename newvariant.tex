@@ -84,10 +84,20 @@
 \begin{flushleft}{
 	\Large
 	\textbf\newline{
-		Characterizing epidemic strength and speed of new SARS-CoV-2 variant of concern
+		Characterizing relative epidemic strength and speed of new SARS-CoV-2 variants
 	}
 }
 \end{flushleft}
+
+\section*{Abstract}
+
+Characterizing epidemic dynamics of new SARS-CoV-2 variants is critical to predicting the future course of the pandemic.
+Here, we explore how assumptions about the relative strength (i.e., ratio of reproduction numbers $\RR$) and relative speed (i.e., differences in growth rates $r$) of the new variant affect conclusions about each other, given the possibility that the new variant has longer generation intervals.
+When relative speed---which corresponds to the growth rate of the logistic curve that models the proportion of the new variant---is held constant, higher growth rate of the original strain leads to higher relative strength.
+When relative strength is held constant, however, higher reproduction number of the original strain leads to smaller relative speed.
+Therefore, intervention strategies that reduce $\RR$ can cause the variant to replace the original strain faster.
+Neglecting differences in generation intervals lead to opposite conclusions about the relationship between relative strength and speed, biasing their estimates.
+We suggest that estimates of increased transmissibility of new variants should be re-assessed in the light of these findings.
 
 \section{Introduction}
 
@@ -96,11 +106,11 @@ Epidemic strength, characterized by the reproduction number $\RR$, provides info
 Epidemic speed, characterized by the growth rate $r$ provides information about the population-level time scale of the epidemic and, therefore, when the new variant will replace the existing variant.
 These two quantities are linked by generation intervals---defined as time between infection and transmission---which define individual-level time scale of the epidemic \citep{roberts2007model,svensson2007note,wallinga2007generation}.
 
-Some studies have tried to estimate the strength of the novel variant from the observed speed.
-Other studies have relied on assumed values of the strength of the novel variant and tried to predict the spread (therefore, the speed) of the novel variant.
+Many studies have tried to estimate the strength of the novel variant from the observed speed \citep{davies2021estimated, leung2021early, volz2021transmission,zhao2021}.
+On the other hand, some studies have assumed a value of the strength of the novel variant and tried to predict future spread (therefore, the speed) of the variant \citep{davies2021estimated}.
 While both approaches are reasonable, they can lead to different conclusions.
-In many contexts, previous studies have shown that inferences about disease dynamics (e.g., effectiveness of intervention strategy) can changes depending on whether $\RR$ or $r$ is held constant.
-Such inference also depends on assumptions about the underlying generation-interval distribution.
+In many contexts, previous studies have shown that inferences about disease dynamics (e.g., effectiveness of intervention strategy) can changes depending on whether $\RR$ or $r$ is held constant \citep{dushoff2020speed}.
+Such inference also depends on assumptions about the underlying generation-interval distribution \citep{roberts2007model,svensson2007note,wallinga2007generation}.
 While many studies assume that the generation-interval distributions do not differ between the existing strain and the variant, recent evidence suggests that the new variant has longer infectious period, leading to longer generation intervals.
 
 Here, we explore how different assumptions about the new variant affects estimates of its strength and speed.
@@ -236,6 +246,7 @@ Our simple framework further reveals counterintuitive, but important, insight.
 In general, one would expect that stronger intervention strategies is required in order to slow down the replacement of the original strain by the new variant.
 However, this is only true if both have the same mean generation intervals (\fref{relspeed}B).
 If the new variant has longer generation intervals than the original strain, imposing strong intervention (therefore reducing both $\RR_w$ and $\RR_v$ by a constant amount) results in a higher relative speed $\delta$, and therefore faster replacement of the original strain (\fref{relspeed}A).
+While it is still necessary to impose stronger intervention to control the epidemic if the new variant has higher $\RR$, it may have unexpected consequences.
 
 Since the beginning of the SARS-CoV-2 pandemic, the importance of understanding the role of generation-interval distributions in its spread has been constantly emphasized.
 Yet, we still feel that generation intervals are under-appreciated, often viewed as a leeway to estimating $\RR$.
