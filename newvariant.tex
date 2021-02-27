@@ -128,33 +128,33 @@ This framework provides a flexible way of modeling disease dynamics and generali
 
 The integral of the kernel $\RR_x(t) = \int K_x(t, \tau) \dtau$---referred to as the instantaneous reproduction number---describes the average infectiousness of previously infected individuals at time $t$.
 The normalized kernel $g_x(t, \tau) = K_x(t, \tau)/\RR_x(t)$---referred to as the instantaneous generation-interval distribution---describes their relative contribution to current incidence.
-Both the reproduction number and the generation-interval distribution can depend on several factors, including intrinsic infectiousness of an infected individual, non-pharmaceutical interventions, awareness-driven behavior, and population-level susceptibility (which can be shared between both the wild type and the variant).
-For simplicity, we do not explicitly model changes in the kernel.
+Both the reproduction number and the generation-interval distribution can depend on several factors, including intrinsic infectiousness of an infected individual, non-pharmaceutical interventions, awareness-driven behavior, and population-level susceptibility. Many of these factors can affect between both the wild type and the variant in similar ways.
 
 Over a short period of time, we can assume that epidemiological conditions remain roughly constant: $\RR_x(t) \approx \RR_x$ and $g_x(t, \tau) \approx g_x(\tau)$.
 In this case, the incidence of both strains exhibit exponential growth or decay at rate $r_x$, satisfying the Euler-Lotka equation:
 \begin{equation}
 \frac{1}{\RR_x} = \int_0^\infty \exp(- r_x \tau) g_x(\tau) \dtau.
 \end{equation}
-Assuming that the generation-interval distribution follows a gamma distribution, we can write the $r$--$\RR$ relationship in terms of the mean generation interval $\bar{G}_x$ and the effective dispersion $\kappa_x$, which captures the amount of variability in generation intervals:
+We can approximate the $r$--$\RR$ relationship by assuming that the generation-interval distribution is approximately gamma-distributed, and summarizing it using the mean generation interval $\bar{G}_x$ and the squared coefficient of variation $\kappa_x$:
 \begin{equation}
 \RR_x \approx (1 + \kappa_x r_x \bar{G}_x)^{1/\kappa_x}.
 \end{equation}
-Here, the effective dispersion parameter $\kappa_x$ also corresponds to the squared coefficient of variation of the gamma distribution.
-This gamma approximation framework has been used widely to model epidemic dynamics, including that of SARS-CoV-2.
-We use this framework to understand how the inference of strength and speed of the variant depends on our assumptions about the underlying generation-interval distribution as well as the dynamics of the wild type.
+The gamma assumption covers models that assume exponentially distributed generation intervals (when $\kappa=1$); various gamma assumptions and approximations are widely used in epidemic modeling, including for modelsthat of SARS-CoV-2.
+We use this framework to investigate how inferences about strength and speed of the variant depend on our assumptions about the underlying generation-interval distributions.
+
+\jd{I like to talk about `effective dispersion' when we're getting into the details of distributions and how good the gamma assumption is. I think at this level we're OK with saying we approximate by a gamma and kappa is the squared CV.}
 
 \section{Inferring relative strength from relative speed}
 
-Typically, the speed of an epidemic $r_x$ can be measured directly from case data.
-But when incidence of new variant is low (due to recent introduction) or unreliable (due to limited testing), estimating growth rate can be challenging.
-During the current pandemic, many studies have focused on the characterizing the proportion of the new variant from genetic sequencing data---
-when incidence is changing exponentially, the proportion of the new variant $p(t)$ follows a logistic equation:
+Epidemic speed $r_x$ is often estimated directly from case data.
+Studies of new SARS-CoV-2 variants, however, have mostly focused on characterizing changes in \emph{proportion} of a new variant.
+This has the advantage of correcting for testing patterns and intensity, and possibly for other transient effects that might affect variants and wildtype viruses similarly.
+When incidence is changing exponentially, the proportion of the new variant $p(t)$ follows a logistic equation:
 \begin{align}
-p(t) &= \frac{i_v(0) \exp(r_v t)}{i_w(0) \exp(r_w t) + i_v(0) \exp(r_v t)},\\
-&= \frac{1}{1 + \left(i_w(0)/i_v(0)\right) \exp(-\delta t)},
+p(t) &= \frac{i_v(0) \exp(r_v t)}{i_w(0) \exp(r_w t) + i_v(0) \exp(r_v t)},
+\\ &= \frac{1}{1 + \left(i_w(0)/i_v(0)\right) \exp(-\delta t)},
 \end{align}
-where the growth rate of the logistic equation $\delta = r_v - r_w$ corresponds to the relative speed of the epidemic.
+where the logistic growth rate $\delta = r_v - r_w$ corresponds to the relative speed of the epidemic. \jd{I now think it's easier to leave the second line in than to explain it in words.}
 
 \begin{figure}[!th]
 \includegraphics[width=\textwidth]{relstrength.pdf}
