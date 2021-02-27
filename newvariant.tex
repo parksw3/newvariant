@@ -142,6 +142,7 @@ We can approximate the $r$--$\RR$ relationship by assuming that the generation-i
 \end{equation}
 The gamma assumption covers models that assume exponentially distributed generation intervals (when $\kappa=1$), corresponding to the SIR model \citep{anderson1991infectious}; various gamma assumptions and approximations are widely used in epidemic modeling, including for models of SARS-CoV-2 \citep{doi:10.1098/rsif.2020.0144}.
 We use this framework to investigate how inferences about strength and speed of the variant depend on our assumptions about the underlying generation-interval distributions.
+For simplicity we neglect differences in the squared coefficient of variation and assume $\kappa_w = \kappa_v = \kappa$; instead, we focus on the effect of potential differences in the mean generation intervals.
 
 \jd{I like to talk about `effective dispersion' when we're getting into the details of distributions and how good the gamma assumption is. I think at this level we're OK with saying we approximate by a gamma and kappa is the squared CV.}
 
@@ -172,11 +173,14 @@ The dashed contour line corresponds to $\hat{\theta} = \theta$.
 \label{fig:relstrength}
 \end{figure}
 
-We ask how the inference of relative strength $\theta = \RR_v/\RR_w$ of the new variant from its relative speed $\delta$ depends on assumptions about the generation-interval distribution.
-As our baseline scenario, we assume $\delta = 0.1/\textrm{days}$ to match the observed relative speed of the new variant in the UK \citep{davies2021estimated}.
+As our baseline scenario, we assume $\delta = 0.1/\textrm{days}$ based on the observed relative speed of the new variant in the UK \citep{davies2021estimated}.
+We then ask how the inference of relative strength $\theta = \RR_v/\RR_w$ of the new variant from its relative speed $\delta$ depends on assumptions about the generation-interval distribution.
+The mean generation interval $\bar{G}_w$ of the wild type is assumed to equal 5 days \citep{ferretti2020quantifying}.
+The squared coefficient of variation $\kappa$ of the generation-interval distribution is assumed to equal 0.2 \citep{ferretti2020quantifying};
+however, we expect there to be greater uncertainty in $\kappa$ than in $\bar{G}$, and so we evaluate the estimates of relative strength $\theta$ across a wide range of $\kappa$, ranging from 0 (delta distribution) to 1 (exponential distribution).
 
-
-If we assume that the both the wild type and the variant have identical generation-interval distributions, the estimate of the relative strength is given by:
+Previous studies have assumed that the generation-interval distributions do not differ between the wild type and the variant: $\bar{G}_v = \bar{G}_w = \bar{G}$.
+In this case, the estimate of the relative strength is given by:
 \begin{equation}
 \hat{\theta} = \left(1 + \frac{\kappa \delta \bar{G}}{1 + \kappa r_w \bar{G}}\right)^{1/\kappa}.
 \end{equation}
