@@ -11,6 +11,8 @@ vim_session:
 
 ######################################################################
 
+Sources += $(wildcard *.tex)
+
 newvariant.pdf: newvariant.tex
 
 Ignore += relstrength.pdf relspeed.pdf
