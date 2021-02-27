@@ -166,7 +166,7 @@ where the logistic growth rate $\delta = r_v - r_w$ corresponds to the relative 
 $r_w$ assuming identical generation-interval distributions.
 (B) True relative strength of the new variant $\theta$ given speed of the wild type $r_w$ accounting for longer generation intervals of the new variant.
 (C) Ratio between the true and the estimated relative strength of the new variant $\theta/\hat{\theta}$.
-True relative strength of the new variant $\theta$ is calculated using $\bar{G}_w = 5\,\textrm{days}$, and $\bar{G}_v = 7\,\textrm{days}$.
+True relative strength of the new variant $\theta$ is calculated using $\delta=0.1\,\textrm{days}$, $\bar{G}_w = 5\,\textrm{days}$, and $\bar{G}_v = 7\,\textrm{days}$.
 }
 \label{fig:relstrength}
 \end{figure}
@@ -214,25 +214,6 @@ Instead, assuming a constant relative strength $\theta$ better matches biologica
 Several studies have tried to predict the future spread of the new variant, including when it will replace the wild type (therefore, its relative speed $\delta$).
 As our baseline scenario we assume $\theta = 1.8$ and ask how assumptions about the generation-interval distribution affect predictions of $\delta$.
 
-Like others, we first ignore possible differences between the generation-interval distributions of the wild type and the new variant and try to estimate $\delta$:
-\begin{equation}
-\hat{\delta} = \frac{(\theta \RR_w)^{\kappa_w} - \RR_w^{\kappa_w}}{\kappa_w \bar{G}_w}.
-\end{equation}
-
-
-Given an assumed value of the relative strength $\theta$,
-
-
-It is often more common to make assumptions to about the relative strength of the new variant (e.g., assuming that it is more infectious) and try to predict its dynamics.
-Then, given assumptions about relative strength $\theta$, relative speed $\delta$ is given by:
-\begin{equation}
-\delta = \frac{(\theta \RR_w)^{\kappa_v} - 1}{\kappa_v \bar{G}_v} - \frac{\RR_w^{\kappa_w} - 1}{\kappa_w \bar{G}_w}.
-\end{equation}
-Assuming $\kappa_v = \kappa_w$ and $\bar{G}_v = \bar{G}_w$, the estimate of the relative speed is given by:
-\begin{equation}
-\hat{\delta} = \frac{(\theta \RR_w)^{\kappa_w} - \RR_w^{\kappa_w}}{\kappa_w \bar{G}_w}.
-\end{equation}
-
 
 \begin{figure}[!th]
 \includegraphics[width=\textwidth]{relspeed.pdf}
@@ -248,18 +229,39 @@ The dashed contour line corresponds to $\hat{\delta} = \delta$.
 \label{fig:relspeed}
 \end{figure}
 
-\fref{relspeed}A shows the impact of $\RR_w$ and $\theta$ on the relative speed $\delta$.
-As $\theta$ increases, $\delta$ also increases.
-However, $\delta$ need not be positive---since longer generation intervals lead to slower speed given epidemic strength, the new variant can spread at a slower rate even if it is more infectious.
-In reality, this is unlikely to be case as we are consistently observing increases in the proportion of new variant across multiple countries, suggesting that the relative strength of the new variant is likely high.
-When differences in the generation-interval distributions are ignored, our conclusions change: for a given value of $\theta$, higher $\RR_w$ leads to higher $\delta$ (\fref{relspeed}B).
-This generally leads to overestimation of $\delta$, except when both $\RR_w < 1$ and $\RR_v < 1$---
-longer generation interval means that the variant is going to decline slower than we thought (i.e., $r_v$ closer to 0), leading to underestimation of $\delta$ (\fref{relspeed}C).
+Like others, we first ignore possible differences between the generation-interval distributions of the wild type and the new variant and try to estimate $\delta$:
+\begin{equation}
+\hat{\delta} = \frac{(\theta \RR_w)^{\kappa_w} - \RR_w^{\kappa_w}}{\kappa_w \bar{G}_w}.
+\end{equation}
+In this case, the estimated $\hat{\delta}$ increases as the underlying strength of the wild type $\RR_w$ increases (\fref{relspeed}A).
+Assuming a narrower distribution causes $\hat{\delta}$ to be less sensitive to $\RR_w$;
+when $\kappa = 0$ (delta-distributed generation intervals), $\hat{\delta}$ remains constant.
+
+When we allow the mean generation interval of the new variant to be long ($\bar{G}_v > \bar{G}_w$), the true $\theta$--$\delta$ relationship is given by:
+\begin{equation}
+\delta = \frac{(\theta \RR_w)^{\kappa} - 1}{\kappa \bar{G}_v} - \frac{\RR_w^{\kappa} - 1}{\kappa \bar{G}_w}.
+\end{equation}
+In this case, the direction of the effect of $\RR_w$ on $\delta$ can change depending on the value of $\kappa$.
+As $\kappa \to 1$, we have
+\begin{equation}
+\delta \to \frac{(\bar{G}_w \theta - \bar{G}_v) \RR_w + \bar{G}_v - \bar{G}_w}{\bar{G}_v \bar{G}_w},
+\end{equation}
+which changes linearly with $\RR_w$ with a slope of $(\bar{G}_w \theta - \bar{G}_v)/\bar{G}_v \bar{G}_w$ (which can be either negative or positive).
+For the values we consider, this increases with $\RR_w$ (\fref{relspeed}B).
+On the other hand, as $\kappa \to 0$, we have
+\begin{equation}
+\delta \to \frac{\log(\theta \RR_w)}{\bar{G}_v} - \frac{\log(\RR_w)}{\bar{G}_w},
+\end{equation}
+which always decreases with $\RR_w$ provided that $\bar{G}_v > \bar{G}_w$ (\fref{relspeed}B).
+Overall, estimates of $\delta$ become less sensitive to values of $\RR_w$ and range between 0.05/day and 0.15/day, which is consistent with the observed values of $\delta$ from data.
+Therefore, assuming equal generation intervals generally leads to over-estimation of $\delta$ (\fref{relspeed}C).
 
 \section{Discussion}
 
-Here, we explored how assumptions the relative strength and speed of the new variant affects conclusions about each other when the new variant has longer generation intervals than the existing strain.
-We define relative strength as the ratio between reproduction numbers ($\theta=\RR_v/\RR_w$) and relative speed as the difference between growth rates ($\delta=r_v-r_w$).
+Here, we explored how the generation-interval distribution shapes the link between relative strength and speed of the new variant.
+We define relative strength as the ratio between reproduction numbers ($\theta=\RR_v/\RR_w$) and relative speed as the difference between growth rates ($\delta=r_v-r_w$) of the variant and the wild type.
+When the generation-interval distributions are asumed to be identical, we find that $\hat{\theta}$ decreases with $$
+
 When relative speed $\delta$ is held constant, faster growth of the existing strain leads to larger relative strength.
 When relative strength $\theta$ is held constant, higher strength of the existing strain leads to smaller relative speed.
 Failing to account for the differences in the generation-interval distributions lead to opposite conclusions, leading to biased estimates of $\delta$ and $\theta$.
