@@ -162,13 +162,11 @@ where the logistic growth rate $\delta = r_v - r_w$ corresponds to the relative 
 \includegraphics[width=\textwidth]{relstrength.pdf}
 \caption{
 \textbf{Relative strength of the new variant given observed relative speed.}
-(A) True relative strength of the new variant $\theta$ given speed of the wild type $r_w$ and the relative speed $\delta$.
-The dashed contour line corresponds to $\theta = 1$.
-True relative strength of the new variant $\theta$ is calculated using $\bar{G}_w = 5\,\textrm{days}$, $\bar{G}_v = 8\,\textrm{days}$, and $\kappa = 1/5$. 
-(B) Estimated relative strength of the new variant $\hat{\theta}$ given speed of the wild type
-$r_w$ and the relative speed $\delta$ assuming identical generation-interval distributions.
-(C) Biases in the estimates of the relative strength of the new variant $\hat{\theta} - \theta$ given speed of the wild type $r_w$ and the relative speed $\delta$.
-The dashed contour line corresponds to $\hat{\theta} = \theta$.
+(A) Estimated relative strength of the new variant $\hat{\theta}$ given speed of the wild type
+$r_w$ assuming identical generation-interval distributions.
+(B) True relative strength of the new variant $\theta$ given speed of the wild type $r_w$ accounting for longer generation intervals of the new variant.
+(C) Ratio between the true and the estimated relative strength of the new variant $\theta/\hat{\theta}$.
+True relative strength of the new variant $\theta$ is calculated using $\bar{G}_w = 5\,\textrm{days}$, and $\bar{G}_v = 7\,\textrm{days}$.
 }
 \label{fig:relstrength}
 \end{figure}
@@ -179,29 +177,21 @@ The mean generation interval $\bar{G}_w$ of the wild type is assumed to equal 5 
 Previous estimates of squared coefficient of variation $\kappa$ in generation intervals are roughly to equal 0.2 \citep{ferretti2020quantifying}.
 However, we expect there to be greater uncertainty in $\kappa$ than in $\bar{G}$, and so we evaluate the estimates of relative strength $\theta$ across a wide range of $\kappa$, ranging from 0 (delta distribution) to 1 (exponential distribution).
 
-
-
 Previous studies have assumed that the generation-interval distributions do not differ between the wild type and the variant: $\bar{G}_v = \bar{G}_w = \bar{G}$.
 In this case, the estimate of the relative strength is given by:
 \begin{equation}
-\theta = \left(1 + \frac{\kappa \delta \bar{G}}{1 + \kappa r_w \bar{G}}\right)^{1/\kappa}.
+\hat{\theta} = \left(1 + \frac{\kappa \delta \bar{G}}{1 + \kappa r_w \bar{G}}\right)^{1/\kappa}.
 \end{equation}
 Therefore, if the wild type is spreading faster than we previously thought (higher $r_w$), we expect our estimate of the relative strength $\theta$ to go down (\fref{relstrength}A).
-The strength 
+The relative strength also depends on the \emph{effective dispersion} in generation intervals (i.e., the amount of variability in generation intervals, as measured by $\kappa$)---using narrower distributions makes $\hat{\theta}$ less sensitive to $r_w$.
 
-
-Given an observed value of the relative speed $\delta$, the true relative strength $\theta = \RR_v/\RR_w$ is given by:
+However, if the mean generation interval of the new variant is different from that of the wild type, the true relative strength $\theta = \RR_v/\RR_w$ is given by:
 \begin{equation}
-\theta = \frac{(1 + \kappa_v (r_w + \delta) \bar{G}_v)^{1/\kappa_v}}{(1 + \kappa_w r_w \bar{G}_w)^{1/\kappa_w}}.
+\theta = \frac{(1 + \kappa (r_w + \delta) \bar{G}_v)^{1/\kappa}}{(1 + \kappa r_w \bar{G}_w)^{1/\kappa}}.
 \end{equation}
-Previous studies have assumed that the generation-interval distributions do not differ between the wild type and the variant: $\kappa_v = \kappa_w = \kappa$ and $\bar{G}_v = \bar{G}_w = \bar{G}$.
-In this case, the estimate of the relative strength is given by:
-\begin{equation}
-\hat{\theta} = \left(1 + \frac{\kappa_w \delta \bar{G}_w}{1 + \kappa_w r_w \bar{G}_w}\right)^{1/\kappa_w}.
-\end{equation}
-We assume that the true mean generation interval of the new variant is longer that of the wild type and ask how ignoring differences in generation intervals affect estimates of relative strength.
+\fref{relstrength}B illustrates the impact of $r_w$ on the ``true'' relative strength $\theta$ given $\bar{G}_v=7\,\textrm{days}$.
 
-\fref{relstrength}A illustrates the impact of $r_w$ and $\delta$ on the relative strength $\theta$.
+
 Given the observed value of relative speed $\delta$,
 the relative strength of the new variant $\theta$ is going to be higher than we thought if the wild type is spreading fast (higher $r_w$).
 However, the variant need not have higher reproduction number in order to spread faster: longer generation interval means that the incidence decays at a slower rate given $\RR$. 

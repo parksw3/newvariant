@@ -20,14 +20,14 @@ thetadata <- apply(pardata, 1, function(x) {
   
   if (kappa==0) {
     
-    thetahat <- exp(Gv * (rw + delta))/exp(Gw * rw)
+    theta <- exp(Gv * (rw + delta))/exp(Gw * rw)
     
-    theta <- exp(Gw * (rw + delta))/exp(Gw * rw)
+    thetahat <- exp(Gw * (rw + delta))/exp(Gw * rw)
   } else {
-    thetahat <- ((1 + kappa * (rw + delta) * Gv)^(1/kappa))/
+    theta <- ((1 + kappa * (rw + delta) * Gv)^(1/kappa))/
       ((1 + kappa * rw * Gw)^(1/kappa))
     
-    theta <- ((1 + kappa * (rw + delta) * Gw)^(1/kappa))/
+    thetahat <- ((1 + kappa * (rw + delta) * Gw)^(1/kappa))/
       ((1 + kappa * rw * Gw)^(1/kappa))
   }
   
@@ -36,16 +36,16 @@ thetadata <- apply(pardata, 1, function(x) {
     rw=rw,
     theta=theta,
     thetahat=thetahat,
-    bias=thetahat/theta,
+    bias=theta/thetahat,
     kappa=kappa
   )
 }) %>%
   bind_rows
 
 g1 <- ggplot(thetadata) +
-  geom_line(aes(rw, theta, lty=as.factor(kappa), col=as.factor(kappa))) +
+  geom_line(aes(rw, thetahat, lty=as.factor(kappa), col=as.factor(kappa))) +
   scale_x_continuous("Relative speed, $r_w$ (1/days)", expand=c(0, 0)) +
-  scale_y_continuous("Relative strength, $\\theta$", limits=c(1, 2.7), expand=c(0, 0)) +
+  scale_y_continuous("Estimated relative strength, $\\hat{\\theta}$", limits=c(1, 2.7), expand=c(0, 0)) +
   scale_color_colorblind("$\\kappa$") +
   scale_linetype_discrete("$\\kappa$") +
   ggtitle("A. Equal generation intervals") +
@@ -55,9 +55,9 @@ g1 <- ggplot(thetadata) +
   )
 
 g2 <- ggplot(thetadata) +
-  geom_line(aes(rw, thetahat, lty=as.factor(kappa), col=as.factor(kappa))) +
+  geom_line(aes(rw, theta, lty=as.factor(kappa), col=as.factor(kappa))) +
   scale_x_continuous("Relative speed, $r_w$ (1/days)", expand=c(0, 0)) +
-  scale_y_continuous("Relative strength, $\\hat{\\theta}$", limits=c(1, 2.7), expand=c(0, 0)) +
+  scale_y_continuous("True relative strength, $\\theta$", limits=c(1, 2.7), expand=c(0, 0)) +
   scale_color_colorblind() +
   ggtitle("B. Longer generation intervals") +
   theme(
@@ -69,7 +69,7 @@ g2 <- ggplot(thetadata) +
 g3 <- ggplot(thetadata) +
   geom_line(aes(rw, bias, lty=as.factor(kappa), col=as.factor(kappa))) +
   scale_x_continuous("Relative speed, $r_w$ (1/days)", expand=c(0, 0)) +
-  scale_y_continuous("Changes in estimates, $\\hat{\\theta}/\\theta$", limits=c(0.9, 1.61), expand=c(0, 0)) +
+  scale_y_continuous("Bias, $\\theta/\\hat{\\theta}$", limits=c(0.9, 1.61), expand=c(0, 0)) +
   scale_color_colorblind() +
   ggtitle("C. Bias") +
   theme(
