@@ -13,6 +13,7 @@ vim_session:
 
 newvariant.pdf: newvariant.tex
 
+Ignore += relstrength.pdf relspeed.pdf
 relspeed.Rout: relspeed.R
 	$(wrapR)
 
