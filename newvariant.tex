@@ -185,23 +185,27 @@ In this case, the estimate of the relative strength is given by:
 Therefore, if the wild type is spreading faster than we previously thought (higher $r_w$), we expect our estimate of the relative strength $\theta$ to go down (\fref{relstrength}A).
 The relative strength also depends on the \emph{effective dispersion} in generation intervals (i.e., the amount of variability in generation intervals, as measured by $\kappa$)---using narrower distributions makes $\hat{\theta}$ less sensitive to $r_w$.
 
-However, if the mean generation interval of the new variant is different from that of the wild type, the true relative strength $\theta = \RR_v/\RR_w$ is given by:
+However, if the mean generation interval of the new variant is longer than that of the wild type ($\bar{G}_v > \bar{G}_w$), the true relative strength $\theta = \RR_v/\RR_w$ is given by:
 \begin{equation}
-\theta = \frac{(1 + \kappa (r_w + \delta) \bar{G}_v)^{1/\kappa}}{(1 + \kappa r_w \bar{G}_w)^{1/\kappa}}.
+\theta = \left(\frac{1 + \kappa (r_w + \delta) \bar{G}_v}{1 + \kappa r_w \bar{G}_w}\right)^{1/\kappa}.
 \end{equation}
-\fref{relstrength}B illustrates the impact of $r_w$ on the ``true'' relative strength $\theta$ given $\bar{G}_v=7\,\textrm{days}$.
+In this case, the effect of the underlying speed $r_w$ on the relative strength $\theta$ can change directions---\fref{relstrength}B illustrates this effect assuming $\bar{G}_v=7\,\textrm{days}$.
+As $\kappa \to 0$, this approaches
+\begin{equation}
+\theta \to \exp(r_w (\bar{G}_v-\bar{G}_w)+\delta G_v), 
+\end{equation}
+meaning that $\theta$ increases with $r_w$ (\fref{relstrength}B).
+On the other hand, as $\kappa \to 1$, we have
+\begin{equation}
+\theta \to \frac{1 + (r_w + \delta) \bar{G}_v}{1 + r_w \bar{G}_w} = \frac{\bar{G}_v}{\bar{G}_w} + \frac{1+ \delta \bar{G}_v  - \bar{G}_v/\bar{G}_w}{1 + r_w \bar{G}_w},
+\end{equation}
+which decreases with $r_w$ (\fref{relstrength}B).
 
-
-Given the observed value of relative speed $\delta$,
-the relative strength of the new variant $\theta$ is going to be higher than we thought if the wild type is spreading fast (higher $r_w$).
-However, the variant need not have higher reproduction number in order to spread faster: longer generation interval means that the incidence decays at a slower rate given $\RR$. 
-Therefore, when both $\RR_w < 1$ and $\RR_v < 1$, this allows the variant to persist better than the wild type even if it has lower strength under some conditions.
-
-\fref{relstrength}B shows estimates of the relative strength $\hat{\theta}$ assuming equal generation-interval distributions.
-In this case, the estimate of relative strength $\hat{\theta}$ is relatively insensitive to the underlying speed of the wild type.
-However, when the observed relative speed $\delta$ is high, the estimate of relative strength $\hat{\theta}$ decreases as $r_w$ increases---an opposite pattern from the true relationship.
-These differences typically lead to underestimation of the relative strength $\theta$ (\fref{relstrength}C);
-however, when both the wild type and the variant are exponentially decaying ($r_w < 0$), neglecting differences in the generation-interval distribution leads to overestimation of the relative strength $\theta$.
+Therefore, neglecting potential differences in generation intervals generally leads to under-estimation of the relative strength (\fref{relstrength}C).
+In some cases, this can lead to over-estimation (see $r_w < -0.1$ in \fref{relstrength}C):
+Longer generation intervals lead to slower exponential decay when $\RR < 1$, meaning that the new variant can still increase in proportion ($\delta > 0$) even when $\RR_v < \RR_w$.
+However, this is unlikely to be the case as the new variant spread quickly under mixed conditions.
+Instead, it seems more plausible that current estimates have under-estimated the true relative strength by 1.1---1.4 fold.
 
 \section{Inferring relative speed from relative strength}
 
