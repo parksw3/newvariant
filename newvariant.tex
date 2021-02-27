@@ -101,7 +101,7 @@ We suggest that estimates of increased transmissibility of new variants should b
 
 \section{Introduction}
 
-Since the emergence of the new SARS-CoV-2 variant of concern (VoC), estimating its epidemic strength and speed remains one of the key questions in controlling its spread \citep{davies2021estimated, leung2021early, volz2021transmission,zhao2021}.
+Since the emergence of the new SARS-CoV-2 variant of concern (VoC), estimating its epidemic strength and speed remains one of the key questions in controlling its spread \citep{switzerland2021variant, davies2021estimated, di2021impact, leung2021early, volz2021transmission,zhao2021}.
 Epidemic strength, characterized by the reproduction number $\RR$, provides information about the final size of the epidemic as well as the amount of intervention required to eliminate the disease \citep{anderson1991infectious}.
 Epidemic speed, characterized by the growth rate $r$ provides information about the population-level time scale of the epidemic and, therefore, when the new variant will replace the existing variant.
 These two quantities are linked by generation intervals---defined as time between infection and transmission---which define individual-level time scale of the epidemic \citep{roberts2007model,svensson2007note,wallinga2007generation}.
@@ -119,42 +119,43 @@ We then show how neglecting differences in the generation-interval distributions
 
 \section{Renewal equation framework}
 
-We use the renewal equation framework to characterize the spread of two pathogen strains---in this case, a wild type SARS-CoV-2 and the variant of concern.
-Assuming that the effects mutations are negligible, the current incidence of infection $i_x(t)$ from a wild type ($x=w$) and a variant ($x=v$) can be expressed in terms of their previous incidence $i_x(t-\tau)$ and the rate at which secondary cases are generated at time $t$ by individuals infected $\tau$ time units ago $K_x(t, \tau)$:
+We use the renewal equation framework to characterize the spread of two pathogen strains---in this case, the wild type SARS-CoV-2 virus and the variant of concern.
+Assuming that the effects mutations are negligible, the current incidence of infection $i_x(t)$ caused by the wild type ($x=w$) and the variant ($x=v$) can be expressed in terms of their previous incidence $i_x(t-\tau)$ and the rate at which secondary cases are generated at time $t$ by individuals infected $\tau$ time units ago $K_x(t, \tau)$:
 \begin{equation}
-i_x = \int_0^\infty i_x(t-\tau) K_x(t, \tau) \dtau.
+i_x(t) = \int_0^\infty i_x(t-\tau) K_x(t, \tau) \dtau.
 \end{equation}
-This framework provides a flexible way of modeling disease dynamics and generalizes compartmental models, such as the SEIR model.
+This framework provides a flexible way of modeling disease dynamics and generalizes compartmental models, such as the SEIR model \citep{heesterbeek1996concept, diekmann2000mathematical, roberts2004modelling, aldis2005integral, roberts2007model, champredon2018equivalence}.
 
-The integral of the kernel $\RR_x(t) = \int K_x(t, \tau) \dtau$---referred to as the instantaneous reproduction number---describes the average infectiousness of previously infected individuals at time $t$.
-The normalized kernel $g_x(t, \tau) = K_x(t, \tau)/\RR_x(t)$---referred to as the instantaneous generation-interval distribution---describes their relative contribution to current incidence.
-Both the reproduction number and the generation-interval distribution can depend on several factors, including intrinsic infectiousness of an infected individual, non-pharmaceutical interventions, awareness-driven behavior, and population-level susceptibility. Many of these factors can affect between both the wild type and the variant in similar ways.
+The integral of the kernel $\RR_x(t) = \int K_x(t, \tau) \dtau$---referred to as the instantaneous reproduction number---describes the average infectiousness of previously infected individuals at time $t$ \citep{fraser2007estimating}.
+The normalized kernel $g_x(t, \tau) = K_x(t, \tau)/\RR_x(t)$---which we refer to as the instantaneous generation-interval distribution---describes their relative contribution to current incidence $i_x(t)$ and provides information about the time scale of disease transmission.
+Both the reproduction number and the generation-interval distribution can depend on several factors, including intrinsic infectiousness of an infected individual, non-pharmaceutical interventions, awareness-driven behavior, and population-level susceptibility.
+Many of these factors can affect between both the wild type and the variant in similar ways.
 
 Over a short period of time, we can assume that epidemiological conditions remain roughly constant: $\RR_x(t) \approx \RR_x$ and $g_x(t, \tau) \approx g_x(\tau)$.
-In this case, the incidence of both strains exhibit exponential growth or decay at rate $r_x$, satisfying the Euler-Lotka equation:
+In this case, the incidence of both strains exhibit exponential growth or decay at rate $r_x$, satisfying the Euler-Lotka equation \citep{wallinga2007generation}:
 \begin{equation}
 \frac{1}{\RR_x} = \int_0^\infty \exp(- r_x \tau) g_x(\tau) \dtau.
 \end{equation}
-We can approximate the $r$--$\RR$ relationship by assuming that the generation-interval distribution is approximately gamma-distributed, and summarizing it using the mean generation interval $\bar{G}_x$ and the squared coefficient of variation $\kappa_x$:
+We can approximate the $r$--$\RR$ relationship by assuming that the generation-interval distribution is approximately gamma-distributed, and summarizing it using the mean generation interval $\bar{G}_x$ and the squared coefficient of variation $\kappa_x$ \citep{park2019practical}:
 \begin{equation}
 \RR_x \approx (1 + \kappa_x r_x \bar{G}_x)^{1/\kappa_x}.
 \end{equation}
-The gamma assumption covers models that assume exponentially distributed generation intervals (when $\kappa=1$); various gamma assumptions and approximations are widely used in epidemic modeling, including for modelsthat of SARS-CoV-2.
+The gamma assumption covers models that assume exponentially distributed generation intervals (when $\kappa=1$), corresponding to the SIR model \citep{anderson1991infectious}; various gamma assumptions and approximations are widely used in epidemic modeling, including for models of SARS-CoV-2 \citep{doi:10.1098/rsif.2020.0144}.
 We use this framework to investigate how inferences about strength and speed of the variant depend on our assumptions about the underlying generation-interval distributions.
 
 \jd{I like to talk about `effective dispersion' when we're getting into the details of distributions and how good the gamma assumption is. I think at this level we're OK with saying we approximate by a gamma and kappa is the squared CV.}
 
 \section{Inferring relative strength from relative speed}
 
-Epidemic speed $r_x$ is often estimated directly from case data.
-Studies of new SARS-CoV-2 variants, however, have mostly focused on characterizing changes in \emph{proportion} of a new variant.
+Epidemic speed $r_x$ is often estimated directly from case data \citep{mills2004transmissibility,nishiura2009transmission,ma2014estimating}.
+Studies of new SARS-CoV-2 variants, however, have mostly focused on characterizing changes in \emph{proportion} of a new variant \citep{switzerland2021variant, davies2021estimated, di2021impact, leung2021early, volz2021transmission,zhao2021}.
 This has the advantage of correcting for testing patterns and intensity, and possibly for other transient effects that might affect variants and wildtype viruses similarly.
 When incidence is changing exponentially, the proportion of the new variant $p(t)$ follows a logistic equation:
 \begin{align}
 p(t) &= \frac{i_v(0) \exp(r_v t)}{i_w(0) \exp(r_w t) + i_v(0) \exp(r_v t)},
 \\ &= \frac{1}{1 + \left(i_w(0)/i_v(0)\right) \exp(-\delta t)},
 \end{align}
-where the logistic growth rate $\delta = r_v - r_w$ corresponds to the relative speed of the epidemic. \jd{I now think it's easier to leave the second line in than to explain it in words.}
+where the logistic growth rate $\delta = r_v - r_w$ corresponds to the relative speed of the epidemic.
 
 \begin{figure}[!th]
 \includegraphics[width=\textwidth]{relstrength.pdf}
@@ -171,11 +172,22 @@ The dashed contour line corresponds to $\hat{\theta} = \theta$.
 \label{fig:relstrength}
 \end{figure}
 
+We ask how the inference of relative strength $\theta = \RR_v/\RR_w$ of the new variant from its relative speed $\delta$ depends on assumptions about the generation-interval distribution.
+As our baseline scenario, we assume $\delta = 0.1/\textrm{days}$ to match the observed relative speed of the new variant in the UK \citep{davies2021estimated}.
+
+
+If we assume that the both the wild type and the variant have identical generation-interval distributions, the estimate of the relative strength is given by:
+\begin{equation}
+\hat{\theta} = \left(1 + \frac{\kappa \delta \bar{G}}{1 + \kappa r_w \bar{G}}\right)^{1/\kappa}.
+\end{equation}
+
+
+
 Given an observed value of the relative speed $\delta$, the true relative strength $\theta = \RR_v/\RR_w$ is given by:
 \begin{equation}
 \theta = \frac{(1 + \kappa_v (r_w + \delta) \bar{G}_v)^{1/\kappa_v}}{(1 + \kappa_w r_w \bar{G}_w)^{1/\kappa_w}}.
 \end{equation}
-Previous studies have assumed that the generation-interval distributions do not differ between the wild type and the variant:$\kappa_v = \kappa_w$ and $\bar{G}_v = \bar{G}_w$.
+Previous studies have assumed that the generation-interval distributions do not differ between the wild type and the variant: $\kappa_v = \kappa_w = \kappa$ and $\bar{G}_v = \bar{G}_w = \bar{G}$.
 In this case, the estimate of the relative strength is given by:
 \begin{equation}
 \hat{\theta} = \left(1 + \frac{\kappa_w \delta \bar{G}_w}{1 + \kappa_w r_w \bar{G}_w}\right)^{1/\kappa_w}.
