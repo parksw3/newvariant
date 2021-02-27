@@ -44,7 +44,7 @@ thetadata <- apply(pardata, 1, function(x) {
 
 g1 <- ggplot(thetadata) +
   geom_line(aes(rw, thetahat, lty=as.factor(kappa), col=as.factor(kappa))) +
-  scale_x_continuous("Relative speed, $r_w$ (1/days)", expand=c(0, 0)) +
+  scale_x_continuous("Wild type speed, $r_w$ (1/days)", expand=c(0, 0)) +
   scale_y_continuous("Estimated relative strength, $\\hat{\\theta}$", limits=c(1, 2.7), expand=c(0, 0)) +
   scale_color_colorblind("$\\kappa$") +
   scale_linetype_discrete("$\\kappa$") +
@@ -56,7 +56,7 @@ g1 <- ggplot(thetadata) +
 
 g2 <- ggplot(thetadata) +
   geom_line(aes(rw, theta, lty=as.factor(kappa), col=as.factor(kappa))) +
-  scale_x_continuous("Relative speed, $r_w$ (1/days)", expand=c(0, 0)) +
+  scale_x_continuous("Wild type speed, $r_w$ (1/days)", expand=c(0, 0)) +
   scale_y_continuous("True relative strength, $\\theta$", limits=c(1, 2.7), expand=c(0, 0)) +
   scale_color_colorblind() +
   ggtitle("B. Longer generation intervals") +
@@ -68,8 +68,8 @@ g2 <- ggplot(thetadata) +
 
 g3 <- ggplot(thetadata) +
   geom_line(aes(rw, bias, lty=as.factor(kappa), col=as.factor(kappa))) +
-  scale_x_continuous("Relative speed, $r_w$ (1/days)", expand=c(0, 0)) +
-  scale_y_continuous("Bias, $\\theta/\\hat{\\theta}$", limits=c(0.9, 1.61), expand=c(0, 0)) +
+  scale_x_continuous("Wild type speed, $r_w$ (1/days)", expand=c(0, 0)) +
+  scale_y_continuous("Changes in estimates, $\\theta/\\hat{\\theta}$", limits=c(0.9, 1.61), expand=c(0, 0)) +
   scale_color_colorblind() +
   ggtitle("C. Bias") +
   theme(

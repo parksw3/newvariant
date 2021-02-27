@@ -209,6 +209,20 @@ Instead, it seems more plausible that current estimates have under-estimated the
 
 \section{Inferring relative speed from relative strength}
 
+While relative speed is easier to measure, we often do not expect $\delta$ to be constant---this can depend on epidemic and demographic factors and can vary across time and space.
+Instead, assuming a constant relative strength $\theta$ better matches biological hypotheses about the new variant (e.g., increased transmission and immune escape).
+Several studies have tried to predict the future spread of the new variant, including when it will replace the wild type (therefore, its relative speed $\delta$).
+As our baseline scenario we assume $\theta = 1.8$ and ask how assumptions about the generation-interval distribution affect predictions of $\delta$.
+
+Like others, we first ignore possible differences between the generation-interval distributions of the wild type and the new variant and try to estimate $\delta$:
+\begin{equation}
+\hat{\delta} = \frac{(\theta \RR_w)^{\kappa_w} - \RR_w^{\kappa_w}}{\kappa_w \bar{G}_w}.
+\end{equation}
+
+
+Given an assumed value of the relative strength $\theta$,
+
+
 It is often more common to make assumptions to about the relative strength of the new variant (e.g., assuming that it is more infectious) and try to predict its dynamics.
 Then, given assumptions about relative strength $\theta$, relative speed $\delta$ is given by:
 \begin{equation}

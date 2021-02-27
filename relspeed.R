@@ -1,64 +1,85 @@
 library(dplyr)
 library(ggplot2); theme_set(theme_bw(base_size=14, base_family = "Times"))
+library(ggthemes)
 library(egg)
 library(tikzDevice)
 
-thetavec <- seq(1, 2, length.out=101)
-Rwvec <- seq(0.5, 1.5, length.out=101)
+theta <- 1.8
 
-pardata <- expand.grid(thetavec, Rwvec)
+Rwvec <- seq(0.3, 1.7, length.out=21)
+kappavec <- c(0, 0.2, 0.5, 1)
+
+pardata <- expand.grid(kappavec, Rwvec)
 
 Gw <- 5
-Gv <- 8
-
-kappa <- 1/5
+Gv <- 7
 
 deltadata <- apply(pardata, 1, function(x) {
-  theta <- x[[1]]
+  kappa <- x[[1]]
   Rw <- x[[2]]
   
-  delta <- ((theta * Rw)^kappa - 1)/(kappa*Gv) -  ((Rw)^kappa - 1)/(kappa*Gw)
-  
-  deltahat <- ((theta * Rw)^kappa - 1)/(kappa*Gw) -  ((Rw)^kappa - 1)/(kappa*Gw)
+  if (kappa == 0) {
+    delta <- log(theta * Rw)/Gv - log(Rw)/Gw
+    
+    deltahat <- log(theta * Rw)/Gw - log(Rw)/Gw
+  } else {
+    delta <- ((theta * Rw)^kappa - 1)/(kappa*Gv) -  ((Rw)^kappa - 1)/(kappa*Gw)
+    
+    deltahat <- ((theta * Rw)^kappa - 1)/(kappa*Gw) -  ((Rw)^kappa - 1)/(kappa*Gw)
+    
+  }
   
   data.frame(
     theta=theta,
     Rw=Rw,
     delta=delta,
     deltahat=deltahat,
-    bias=deltahat-delta
+    bias=delta-deltahat,
+    kappa=kappa
   )
 }) %>%
   bind_rows
 
 g1 <- ggplot(deltadata) +
-  geom_tile(aes(Rw, theta, fill=delta)) +
-  geom_contour(aes(Rw, theta, z=delta), breaks=c(-0.03, 0.03, 0.06, 0.09), col="white", lty=1) +
-  geom_contour(aes(Rw, theta, z=delta), breaks=0, col="white", lty=2) +
-  annotate("text", x=1.25, y=1.25, label=expression(delta==0), col="white") +
-  scale_x_continuous(expression(Strength~of~the~wild~"types,"~R[w]), expand=c(0, 0)) +
-  scale_y_continuous(expression(Relative~"strength,"~theta), expand=c(0, 0)) +
-  scale_fill_viridis_c(expression(delta))
+  geom_line(aes(Rw, deltahat, lty=as.factor(kappa), col=as.factor(kappa))) +
+  scale_x_continuous("Wild type strength, $\\mathcal{R}_w$ (1/days)", expand=c(0, 0)) +
+  scale_y_continuous("Estimated relative speed, $\\hat{\\delta}$ (1/days)", limits=c(0, 0.33), expand=c(0, 0)) +
+  scale_color_colorblind("$\\kappa$") +
+  scale_linetype_discrete("$\\kappa$") +
+  ggtitle("A. Equal generation intervals") +
+  theme(
+    panel.grid = element_blank(),
+    legend.position = c(0.2, 0.75)
+  )
 
 g2 <- ggplot(deltadata) +
-  geom_tile(aes(Rw, theta, fill=deltahat)) +
-  geom_contour(aes(Rw, theta, z=deltahat), breaks=c(0.03, 0.06, 0.09, 0.12, 0.15), col="white", lty=1) +
-  scale_x_continuous(expression(Strength~of~the~wild~"types,"~R[w]), expand=c(0, 0)) +
-  scale_y_continuous(expression(Relative~"strength,"~theta), expand=c(0, 0)) +
-  scale_fill_viridis_c(expression(hat(delta)), option="A")
+  geom_line(aes(Rw, delta, lty=as.factor(kappa), col=as.factor(kappa))) +
+  scale_x_continuous("Wild type strength, $\\mathcal{R}_w$ (1/days)", expand=c(0, 0)) +
+  scale_y_continuous("True relative speed, $\\delta$ (1/days)", limits=c(0, 0.33), expand=c(0, 0)) +
+  scale_color_colorblind("$\\kappa$") +
+  scale_linetype_discrete("$\\kappa$") +
+  ggtitle("B. Longer generation intervals") +
+  theme(
+    panel.grid = element_blank(),
+    legend.position = "none"
+  )
 
 g3 <- ggplot(deltadata) +
-  geom_tile(aes(Rw, theta, fill=bias)) +
-  geom_contour(aes(Rw, theta, z=bias), breaks=c(-0.04, -0.02, 0.02, 0.04, 0.06, 0.08), col="white", lty=1) +
-  geom_contour(aes(Rw, theta, z=bias), breaks=0, col="white", lty=2) +
-  annotate("text", x=0.78, y=1.5, label=expression(hat(delta)==delta), col="white") +
-  scale_x_continuous(expression(Strength~of~the~wild~"types,"~R[w]), expand=c(0, 0)) +
-  scale_y_continuous(expression(Relative~"strength,"~theta), expand=c(0, 0)) +
-  scale_fill_viridis_c(expression(hat(delta)-delta), option="E",
-                       breaks=c(-0.06, -0.03, 0, 0.03, 0.06, 0.09))
+  geom_line(aes(Rw, bias, lty=as.factor(kappa), col=as.factor(kappa))) +
+  scale_x_continuous("Wild type strength, $\\mathcal{R}_w$ (1/days)", expand=c(0, 0)) +
+  scale_y_continuous("Changes in estimates, $\\delta-\\hat{\\delta}$ (1/days)", limits=c(-0.13, 0.05), expand=c(0, 0)) +
+  scale_color_colorblind("$\\kappa$") +
+  scale_linetype_discrete("$\\kappa$") +
+  ggtitle("C. Bias") +
+  theme(
+    panel.grid = element_blank(),
+    legend.title = element_blank(),
+    legend.position = "none"
+  )
 
-gtot <- ggarrange(g1, g2, g3, nrow=1,
-                  labels=c("A", "B", "C"),
-                  draw=FALSE)
+gtot <- ggarrange(g1, g2, g3, nrow=1, draw=FALSE)
 
-ggsave("relspeed.pdf", gtot, width=12, height=3)
+tikz(file = "relspeed.tex", width = 12, height = 4, standAlone = T)
+gtot
+dev.off()
+tools::texi2dvi('relspeed.tex', pdf = T, clean = T)
