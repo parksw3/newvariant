@@ -1,66 +1,86 @@
 library(dplyr)
 library(ggplot2); theme_set(theme_bw(base_size=14, base_family = "Times"))
+library(ggthemes)
 library(egg)
 library(tikzDevice)
 
-deltavec <- seq(0, 0.15, length.out=101)
-rwvec <- seq(-0.1, 0.1, length.out=101)
+delta <- 0.1
 
-pardata <- expand.grid(deltavec, rwvec)
+rwvec <- seq(-0.13, 0.13, length.out=21)
+kappavec <- c(0, 0.2, 0.5, 1)
+
+pardata <- expand.grid(kappavec, rwvec)
 
 Gw <- 5
-Gv <- 8
-
-kappa <- 1/5
+Gv <- 7
 
 thetadata <- apply(pardata, 1, function(x) {
-  delta <- x[[1]]
+  kappa <- x[[1]]
   rw <- x[[2]]
   
-  theta <- ((1 + kappa * (rw + delta) * Gv)^(1/kappa))/
-    ((1 + kappa * rw * Gw)^(1/kappa))
-  
-  thetahat <- ((1 + kappa * (rw + delta) * Gw)^(1/kappa))/
-    ((1 + kappa * rw * Gw)^(1/kappa))
-  
+  if (kappa==0) {
+    
+    thetahat <- exp(Gv * (rw + delta))/exp(Gw * rw)
+    
+    theta <- exp(Gw * (rw + delta))/exp(Gw * rw)
+  } else {
+    thetahat <- ((1 + kappa * (rw + delta) * Gv)^(1/kappa))/
+      ((1 + kappa * rw * Gw)^(1/kappa))
+    
+    theta <- ((1 + kappa * (rw + delta) * Gw)^(1/kappa))/
+      ((1 + kappa * rw * Gw)^(1/kappa))
+  }
   
   data.frame(
     delta=delta,
     rw=rw,
     theta=theta,
     thetahat=thetahat,
-    bias=thetahat-theta
+    bias=thetahat/theta,
+    kappa=kappa
   )
 }) %>%
   bind_rows
 
 g1 <- ggplot(thetadata) +
-  geom_tile(aes(rw, delta, fill=theta)) +
-  geom_contour(aes(rw, delta, z=theta), breaks=c(0.8, 1.2, 1.4, 1.6, 1.8, 2, 2.2, 2.4), col="white", lty=1) +
-  geom_contour(aes(rw, delta, z=theta), breaks=c(1), col="white", lty=2) +
-  annotate("text", x=-0.05, y=0.03, label=expression(theta==1), col="white") +
-  scale_x_continuous(expression(Speed~of~the~wild~"types,"~r[w]), expand=c(0, 0)) +
-  scale_y_continuous(expression(Relative~"speed,"~delta), expand=c(0, 0)) +
-  scale_fill_viridis_c(expression(theta))
+  geom_line(aes(rw, theta, lty=as.factor(kappa), col=as.factor(kappa))) +
+  scale_x_continuous("Relative speed, $r_w$ (1/days)", expand=c(0, 0)) +
+  scale_y_continuous("Relative strength, $\\theta$", limits=c(1, 2.7), expand=c(0, 0)) +
+  scale_color_colorblind("$\\kappa$") +
+  scale_linetype_discrete("$\\kappa$") +
+  ggtitle("A. Equal generation intervals") +
+  theme(
+    panel.grid = element_blank(),
+    legend.position = c(0.8, 0.7)
+  )
 
 g2 <- ggplot(thetadata) +
-  geom_tile(aes(rw, delta, fill=thetahat)) +
-  geom_contour(aes(rw, delta, z=thetahat), col="white", lty=1) +
-  scale_x_continuous(expression(Speed~of~the~wild~"types,"~r[w]), expand=c(0, 0)) +
-  scale_y_continuous(expression(Relative~"speed,"~delta), expand=c(0, 0)) +
-  scale_fill_viridis_c(expression(hat(theta)), option="A")
+  geom_line(aes(rw, thetahat, lty=as.factor(kappa), col=as.factor(kappa))) +
+  scale_x_continuous("Relative speed, $r_w$ (1/days)", expand=c(0, 0)) +
+  scale_y_continuous("Relative strength, $\\hat{\\theta}$", limits=c(1, 2.7), expand=c(0, 0)) +
+  scale_color_colorblind() +
+  ggtitle("B. Longer generation intervals") +
+  theme(
+    panel.grid = element_blank(),
+    legend.title = element_blank(),
+    legend.position = "none"
+  )
 
 g3 <- ggplot(thetadata) +
-  geom_tile(aes(rw, delta, fill=bias)) +
-  geom_contour(aes(rw, delta, z=bias), breaks=c(-0.8, -0.6, -0.4, -0.2, 0.2), col="white", lty=1) +
-  geom_contour(aes(rw, delta, z=bias), breaks=0, col="white", lty=2) +
-  annotate("text", x=-0.05, y=0.075, label=expression(hat(theta)==theta), col="white") +
-  scale_x_continuous(expression(Speed~of~the~wild~"types,"~r[w]), expand=c(0, 0)) +
-  scale_y_continuous(expression(Relative~"speed,"~delta), expand=c(0, 0)) +
-  scale_fill_viridis_c(expression(hat(theta)-theta), option="E")
+  geom_line(aes(rw, bias, lty=as.factor(kappa), col=as.factor(kappa))) +
+  scale_x_continuous("Relative speed, $r_w$ (1/days)", expand=c(0, 0)) +
+  scale_y_continuous("Changes in estimates, $\\hat{\\theta}/\\theta$", limits=c(0.9, 1.61), expand=c(0, 0)) +
+  scale_color_colorblind() +
+  ggtitle("C. Bias") +
+  theme(
+    panel.grid = element_blank(),
+    legend.title = element_blank(),
+    legend.position = "none"
+  )
 
-gtot <- ggarrange(g1, g2, g3, nrow=1,
-          labels=c("A", "B", "C"),
-          draw=FALSE)
+gtot <- ggarrange(g1, g2, g3, nrow=1, draw=FALSE)
 
-ggsave("relstrength.pdf", gtot, width=12, height=3)
+tikz(file = "relstrength.tex", width = 12, height = 4, standAlone = T)
+gtot
+dev.off()
+tools::texi2dvi('relstrength.tex', pdf = T, clean = T)

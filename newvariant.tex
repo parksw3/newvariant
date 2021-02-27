@@ -176,13 +176,16 @@ The dashed contour line corresponds to $\hat{\theta} = \theta$.
 As our baseline scenario, we assume $\delta = 0.1/\textrm{days}$ based on the observed relative speed of the new variant in the UK \citep{davies2021estimated}.
 We then ask how the inference of relative strength $\theta = \RR_v/\RR_w$ of the new variant from its relative speed $\delta$ depends on assumptions about the generation-interval distribution.
 The mean generation interval $\bar{G}_w$ of the wild type is assumed to equal 5 days \citep{ferretti2020quantifying}.
+As we expect there to be greater uncertainty in $\kappa$ than in $\bar{G}$, we evaluate the estimates of relative strength $\theta$ across a wide range of $\kappa$, ranging from 0 (delta distribution) to 1 (exponential distribution);
+estimates of $\kappa$ range 
+
 The squared coefficient of variation $\kappa$ of the generation-interval distribution is assumed to equal 0.2 \citep{ferretti2020quantifying};
-however, we expect there to be greater uncertainty in $\kappa$ than in $\bar{G}$, and so we evaluate the estimates of relative strength $\theta$ across a wide range of $\kappa$, ranging from 0 (delta distribution) to 1 (exponential distribution).
+however, we
 
 Previous studies have assumed that the generation-interval distributions do not differ between the wild type and the variant: $\bar{G}_v = \bar{G}_w = \bar{G}$.
 In this case, the estimate of the relative strength is given by:
 \begin{equation}
-\hat{\theta} = \left(1 + \frac{\kappa \delta \bar{G}}{1 + \kappa r_w \bar{G}}\right)^{1/\kappa}.
+\theta = \left(1 + \frac{\kappa \delta \bar{G}}{1 + \kappa r_w \bar{G}}\right)^{1/\kappa}.
 \end{equation}
 
 
