@@ -51,7 +51,7 @@ g1 <- ggplot(thetadata) +
   ggtitle("A. Equal generation intervals") +
   theme(
     panel.grid = element_blank(),
-    legend.position = c(0.8, 0.7)
+    legend.position = c(0.8, 0.75)
   )
 
 g2 <- ggplot(thetadata) +
