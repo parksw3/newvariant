@@ -146,12 +146,13 @@ We use this framework to investigate how inferences about strength and speed of 
 For simplicity we neglect differences in the squared coefficient of variation and assume $\kappa_w = \kappa_v = \kappa$; instead, we focus on the effect of potential differences in the mean generation intervals.
 
 \jd{I like to talk about `effective dispersion' when we're getting into the details of distributions and how good the gamma assumption is. I think at this level we're OK with saying we approximate by a gamma and kappa is the squared CV.}
+\swp{I tried to talk about it here and there. See what you think.}
 
 \section{Inferring relative strength from relative speed}
 
 Epidemic speed $r_x$ is often estimated directly from case data \citep{mills2004transmissibility,nishiura2009transmission,ma2014estimating}.
 Studies of new SARS-CoV-2 variants, however, have mostly focused on characterizing changes in \emph{proportion} of a new variant \citep{switzerland2021variant, davies2021estimated, di2021impact, leung2021early, volz2021transmission,zhao2021}.
-This has the advantage of correcting for testing patterns and intensity, and possibly for other transient effects that might affect variants and wildtype viruses similarly.
+This has the advantage of correcting for testing patterns and intensity, and possibly for other transient effects that might affect variants and wild type viruses similarly.
 When incidence is changing exponentially, the proportion of the new variant $p(t)$ follows a logistic equation:
 \begin{align}
 p(t) &= \frac{i_v(0) \exp(r_v t)}{i_w(0) \exp(r_w t) + i_v(0) \exp(r_v t)},
@@ -258,7 +259,7 @@ Therefore, assuming equal generation intervals generally leads to over-estimatio
 
 Here, we explored how the generation-interval distribution shapes the link between relative strength and speed of the new variant.
 We define relative strength as the ratio between reproduction numbers ($\theta=\RR_v/\RR_w$) and relative speed as the difference between growth rates ($\delta=r_v-r_w$) of the variant and the wild type.
-When the generation-interval distributions are asumed to be identical, we find that estimates of $\hat{\theta}$ decreases with $r_w$ whereas $\hat{\delta}$ increase with $\RR_w$.
+When the generation-interval distributions are assumed to be identical, we find that estimates of $\hat{\theta}$ decreases with $r_w$ whereas $\hat{\delta}$ increase with $\RR_w$.
 When we account for longer generation intervals of the new variant, these relationships can change directions depending on the effective dispersion in generation intervals, which we characterized in terms of the squared coefficient of variation of the gamma distribution $\kappa$.
 Therefore, even a modest differences in the mean generation intervals (2 days, in this case) can lead to considerable biases in the inference---we find that 1.1--1.4 fold under-estimation in the relative strength of the new variant is plausible.
 
@@ -271,7 +272,7 @@ Our simple framework further reveals counterintuitive, but important, insight.
 In general, one would expect that stronger intervention strategies is required in order to slow down the replacement of the original strain by the new variant.
 However, this is only true if both have the same mean generation intervals (\fref{relspeed}B).
 If the new variant has longer generation intervals than the original strain, imposing strong intervention (therefore reducing both $\RR_w$ and $\RR_v$ by a constant amount) can result in a higher relative speed $\delta$, and therefore faster replacement of the original strain (\fref{relspeed}B).
-This is not necesarily a bad news as the absolute speed ($r_v$) of the new variant still decreases as $\RR_v$ decreases.
+This is not necessarily a bad news as the absolute speed ($r_v$) of the new variant still decreases as $\RR_v$ decreases.
 These effects should be taken into consideration for accurate projection of the spread of the new variant.
 
 Even though SARS-CoV-2 has been spreading for more than a year, there is still large uncertainty in its generation intervals.
