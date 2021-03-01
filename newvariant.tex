@@ -92,10 +92,10 @@
 \section*{Abstract}
 
 Characterizing epidemic dynamics of new SARS-CoV-2 variants is critical to predicting the future course of the pandemic.
-Here, we explore how assumptions about the relative strength (i.e., ratio of reproduction numbers $\RR$) and relative speed (i.e., differences in growth rates $r$) of the new variant affect conclusions about each other.
-We show that failing to account for the possibility that the new variant has longer generation intervals can lead to considerable biases in the inference of the spread of the new variant.
-For example, assuming a mean generation interval of 7 days for the new variant and 5 days for the wild type suggest that 1.1--1.4 fold biases in the degree of increased transmissibility of the new variant is plausible.
-We suggest that estimates of increased transmissibility of new variants should be re-assessed in the light of these findings.
+Here, we explore how assumptions about the relative strength (i.e., ratio of reproduction numbers $\RR$) and relative speed (i.e., differences in growth rates $r$) of the new variant affect conclusions about expected rates of variant takeover and viral spread under various conditions.
+We show that failing to account for the possibility that the new variant has longer generation intervals can lead to considerable biases in the inferences about the relative reproductive number (strength) of the new variant.
+For example, the plausible assumption that the mean generation interval of the new variant is 40\% longer than that of the wild type can lead to biases of up to 40\% in estimates of  the relative transmissibility of the new variant.
+We suggest that better estimates of viral generation intervals could improve forecasts of variant takeover and viral spread. 
 
 \section{Introduction}
 
@@ -107,21 +107,21 @@ These two quantities are linked by generation intervals---defined as time betwee
 Many studies have tried to estimate the strength of the novel variant from the observed speed \citep{davies2021estimated, leung2021early, volz2021transmission,zhao2021}.
 On the other hand, some studies have assumed a value of the strength of the novel variant and tried to predict future spread (therefore, the speed) of the variant \citep{davies2021estimated}.
 While both approaches are reasonable, they can lead to different conclusions.
-In many contexts, previous studies have shown that inferences about disease dynamics (e.g., effectiveness of intervention strategy) can changes depending on whether $\RR$ or $r$ is held constant \citep{dushoff2020speed}.
+In many contexts, previous studies have shown that inferences about disease dynamics (e.g., effectiveness of intervention strategy) can changes depending on whether it is assumed that $\RR$ or $r$ is known \citep{dushoff2020speed}.
 
 Such inference also depends on assumptions about the underlying generation-interval distribution \citep{roberts2007model,svensson2007note,wallinga2007generation}.
 Most studies have assumed that the generation-interval distributions do not differ between the existing strain and the variant, but recent evidence suggests that the new variant may have longer duration of infection: 13.3 days (90\% CI: 10.1--16.5) for the new variant and 8.2 days (90\% CI: 6.5--9.7) for the wild type \citep{kissler2021densely}.
-Longer duration of infection provides opportunity to transmit for a longer period of time, meaning that the generation intervals of the new variant is likely to be longer than that of the wild type.
-However, there is much uncertainty in how much longer generation intervals might be because generation intervals also depend on other factors that affect transmission such as awareness-driven behavior (e.g., faster self-isolation after symptom onset leading to shorter generation intervals).
+Longer duration of infection is likely to provide opportunity to transmit for a longer period of time, meaning that the mean generation interval of the new variant is likely to be longer than that of the wild type.
+More information is needed, however: generation intervals depend on many other biological and behavioral factors, including for example self-isolation after symptom onset leading .
 
-Here, we explore how different assumptions about the new variant affects estimates of its strength and speed given the possibility that it might have longer generation intervals.
+Here, we explore how different assumptions about the new variant affect estimates of its strength and speed given the possibility that it might have longer generation intervals.
 We ask how the estimates of relative strength (i.e., the ratio between the strength of the existing strain and the variant) and speed (i.e., the difference between the speed of the existing strain and the variant) depend on each other.
 We then show how neglecting differences in the generation-interval distributions can lead to biased estimates.
 
 \section{Renewal equation framework}
 
 We use the renewal equation framework to characterize the spread of two pathogen strains---in this case, the wild type SARS-CoV-2 virus and the variant of concern.
-Assuming that the effects mutations are negligible, the current incidence of infection $i_x(t)$ caused by the wild type ($x=w$) and the variant ($x=v$) can be expressed in terms of their previous incidence $i_x(t-\tau)$ and the rate at which secondary cases are generated at time $t$ by individuals infected $\tau$ time units ago $K_x(t, \tau)$:
+Neglecting the (relatively slow) rate of new mutations, the current incidence of infection $i_x(t)$ caused by the wild type ($x=w$) and the variant ($x=v$) can be expressed in terms of their previous incidence $i_x(t-\tau)$ and the rate at which secondary cases are generated at time $t$ by individuals infected $\tau$ time units ago $K_x(t, \tau)$:
 \begin{equation}
 i_x(t) = \int_0^\infty i_x(t-\tau) K_x(t, \tau) \dtau.
 \end{equation}
@@ -144,9 +144,6 @@ We can approximate the $r$--$\RR$ relationship by assuming that the generation-i
 The gamma assumption covers models that assume exponentially distributed generation intervals (when $\kappa=1$), corresponding to the SIR model \citep{anderson1991infectious}; various gamma assumptions and approximations are widely used in epidemic modeling, including for models of SARS-CoV-2 \citep{doi:10.1098/rsif.2020.0144}.
 We use this framework to investigate how inferences about strength and speed of the variant depend on our assumptions about the underlying generation-interval distributions.
 For simplicity we neglect differences in the squared coefficient of variation and assume $\kappa_w = \kappa_v = \kappa$; instead, we focus on the effect of potential differences in the mean generation intervals.
-
-\jd{I like to talk about `effective dispersion' when we're getting into the details of distributions and how good the gamma assumption is. I think at this level we're OK with saying we approximate by a gamma and kappa is the squared CV.}
-\swp{I tried to talk about it here and there. See what you think.}
 
 \section{Inferring relative strength from relative speed}
 
