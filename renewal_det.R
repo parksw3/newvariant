@@ -1,9 +1,10 @@
 renewal_det <- function(Rfun=function(t) 2.5,
-                        theta=1.8,
+                        theta=1.5,
                         N=40000,
                         dt=0.025,
                         genfun1=function(x) dgamma(x, 5, 1),
-                        genfun2=function(x) dgamma(x, 5, 5/7),
+                        genfun2=function(x) dgamma(x, 5, 1),
+                        genfun3=function(x) dgamma(x, 5, 1),
                         I01=0.1,
                         I02=0.001,
                         tmax=100,
@@ -12,6 +13,8 @@ renewal_det <- function(Rfun=function(t) 2.5,
   gen1 <- gen1/sum(gen1)
   gen2 <- genfun2(0:genmax*dt+dt)
   gen2 <- gen2/sum(gen2)
+  gen3 <- genfun3(0:genmax*dt+dt)
+  gen3 <- gen3/sum(gen3)
   tvec <- seq(0, tmax, by=dt)
   Ivec1 <- rep(0, tmax/dt)
   Ivec2 <- rep(0, tmax/dt)
@@ -30,8 +33,8 @@ renewal_det <- function(Rfun=function(t) 2.5,
   Rt1 <- tail(sapply(tvec, Rfun), -1) * head(Svec, -1)/N
   Rt2 <- tail(sapply(tvec, Rfun), -1) * head(Svec, -1)/N * theta
   
-  Rtest1 <- tail(Ivec1, -1)/sapply(2:(length(Ivec1)), function(x) sum(Ivec1[max(1, x-genmax):(x-1)] * gen1[min(x, genmax+1):2]))
-  Rtest2 <- tail(Ivec2, -1)/sapply(2:(length(Ivec2)), function(x) sum(Ivec2[max(1, x-genmax):(x-1)] * gen1[min(x, genmax+1):2]))
+  Rtest1 <- tail(Ivec1, -1)/sapply(2:(length(Ivec1)), function(x) sum(Ivec1[max(1, x-genmax):(x-1)] * gen3[min(x, genmax+1):2]))
+  Rtest2 <- tail(Ivec2, -1)/sapply(2:(length(Ivec2)), function(x) sum(Ivec2[max(1, x-genmax):(x-1)] * gen3[min(x, genmax+1):2]))
   
   data.frame(
     tvec=tvec[-1],
