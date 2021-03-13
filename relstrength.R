@@ -77,7 +77,7 @@ g2 <- ggplot(thetadata2) +
   geom_vline(xintercept=1, lty=2, col="white") +
   geom_hline(yintercept=-delta, lty=1, col="white") +
   annotate("text", x=1.04, y=0, label=c("$\\bar{G}_v=\\bar{G}_w$"), col="white", angle=-90) +
-  annotate("text", x=0.8, y=-delta+0.01, label=c("$r_v=1$"), col="white") +
+  annotate("text", x=0.8, y=-delta+0.01, label=c("$r_v=0$"), col="white") +
   scale_x_continuous("Generation interval ratio, $\\bar{G}_v/\\bar{G}_w$", expand=c(0, 0)) +
   scale_y_continuous("Wild type speed, $r_w$ (1/days)", expand=c(0, 0)) +
   scale_fill_viridis_c("$\\theta$") +
@@ -91,7 +91,7 @@ g3 <- ggplot(thetadata2) +
   geom_vline(xintercept=1, lty=2, col="white") +
   geom_hline(yintercept=-delta, lty=1, col="white") +
   annotate("text", x=1.04, y=0, label=c("$\\bar{G}_v=\\bar{G}_w$"), col="white", angle=-90) +
-  annotate("text", x=0.8, y=-delta+0.01, label=c("$r_v=1$"), col="white") +
+  annotate("text", x=0.8, y=-delta+0.01, label=c("$r_v=0$"), col="white") +
   scale_x_continuous("Generation interval ratio, $\\bar{G}_v/\\bar{G}_w$", expand=c(0, 0)) +
   scale_y_continuous("Wild type speed, $r_w$ (1/days)", expand=c(0, 0)) +
   scale_fill_viridis_c("$\\theta/\\hat{\\theta}$", option="A") +

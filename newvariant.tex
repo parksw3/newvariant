@@ -191,30 +191,20 @@ However, if the true mean generation interval of the new variant is different fr
 \begin{equation}
 \theta = \left(\frac{1 + \kappa (r_w + \delta) \bar{G}_v}{1 + \kappa r_w \bar{G}_w}\right)^{1/\kappa}.
 \end{equation}
-In this case, 
+In this case, longer (or shorter) mean generation interval of the new variant generally translates to higher (or lower) values of $\theta$---\fref{relstrength}B illustrates this effect assuming $\kappa = 1/5$.
+However, this direction can change when both the new variant and the wild type are decaying exponentially (see area below $r_v = 0$ line in \fref{relstrength}B)---when disease incidence is decaying exponentially, longer generation intervals lead to a \emph{lower} value of strength (and therefore lower relative strength $\theta$).
 
-
-In this case, the effect of the underlying speed $r_w$ on the relative strength $\theta$ can change directions---\fref{relstrength}B illustrates this effect assuming $\bar{G}_v=7\,\textrm{days}$.
-As $\kappa \to 0$, this approaches
-\begin{equation}
-\theta \to \exp(r_w (\bar{G}_v-\bar{G}_w)+\delta G_v), 
-\end{equation}
-meaning that $\theta$ increases with $r_w$ (\fref{relstrength}B).
-On the other hand, as $\kappa \to 1$, we have
-\begin{equation}
-\theta \to \frac{1 + (r_w + \delta) \bar{G}_v}{1 + r_w \bar{G}_w} = \frac{\bar{G}_v}{\bar{G}_w} + \frac{1+ \delta \bar{G}_v  - \bar{G}_v/\bar{G}_w}{1 + r_w \bar{G}_w},
-\end{equation}
-which decreases with $r_w$ (\fref{relstrength}B).
-
-Therefore, neglecting potential differences in generation intervals generally leads to under-estimation of the relative strength (\fref{relstrength}C).
-In some cases, this can lead to over-estimation (see $r_w < -0.1$ in \fref{relstrength}C):
-Longer generation intervals lead to slower exponential decay when $\RR < 1$, meaning that the new variant can still increase in proportion ($\delta > 0$) even when $\RR_v < \RR_w$.
-However, this is unlikely to be the case as the new variant spread quickly under mixed conditions.
-Instead, it seems more plausible that current estimates have under-estimated the true relative strength by 1.1---1.4 fold.
+Therefore, neglecting potential differences in generation intervals can lead to both under- and over-estimation of the relative strength.
+In \fref{relstrength}C, we quantify the degrees of bias using the ratio between the true value $\theta$, which accounts for differences in generation-interval distributions, and the estimated value $\hat{\theta}$, which assumes equal generation-interval distributions.
+Across the ranges of parameters that we consider, we find that up to 1.4 fold (either upward or downward) adjustments to current estimates may be required.
 
 \section{Inferring relative speed from relative strength}
 
 While relative speed is easier to measure, we often do not expect $\delta$ to be constant---this can depend on epidemic and demographic factors and can vary across time and space.
+Instead, biological mechanisms that cause new variant to have higher strength better translate to assuming a constant value of relative strength.
+For example, if the new variant has higher transmission rate, 
+
+
 Instead, assuming a constant relative strength $\theta$ better matches biological hypotheses about the new variant (e.g., increased transmission and immune escape).
 Several studies have tried to predict the future spread of the new variant, including when it will replace the wild type (therefore, its relative speed $\delta$).
 As our baseline scenario we assume $\theta = 1.8$ and ask how assumptions about the generation-interval distribution affect predictions of $\delta$---while this is considerably higher than most previous estimates of around 1.5 \citep{switzerland2021variant, davies2021estimated, di2021impact, leung2021early, volz2021transmission,zhao2021}, we chose this value as it better reflects the possibility that the new variant may have longer generation intervals (\fref{relstrength}).
