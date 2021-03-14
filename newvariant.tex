@@ -36,7 +36,7 @@
 \usepackage[pdfencoding=auto, psdextra]{hyperref}
 
 \usepackage{natbib}
-\bibliographystyle{chicago}
+\bibliographystyle{unsrt}
 \date{\today}
 
 \usepackage{xspace}
@@ -289,30 +289,29 @@ Seb Funk's analysis here.
 Here, we explored how the generation-interval distribution shapes the link between relative strength and speed of the new variant.
 We define relative strength as the ratio between reproduction numbers ($\theta=\RR_v/\RR_w$) and relative speed as the difference between growth rates ($\delta=r_v-r_w$) of the variant and the wild type.
 When the generation-interval distributions are assumed to be identical, we find that estimates of $\hat{\theta}$ decreases with $r_w$ whereas $\hat{\delta}$ increase with $\RR_w$.
-When we account for longer generation intervals of the new variant, these relationships can change directions depending on the effective dispersion in generation intervals, which we characterized in terms of the squared coefficient of variation of the gamma distribution $\kappa$.
-Therefore, even a modest differences in the mean generation intervals (2 days, in this case) can lead to considerable biases in the inference---we find that 1.1--1.4 fold under-estimation in the relative strength of the new variant is plausible.
+When we account for possible differences in generation-interval distributions, these relationships can change directions and further lead to biases in these estimates.
 
 We argue that both perspectives (i.e., whether we hold relative strength or speed constant) are useful in understanding the dynamics of the new variant.
 Early in the spread, we typically want to fix the relative speed because we can directly observe it.
 As more information about the transmission and immunity profiles of the new variant becomes available, it is better to fix the relative strength as it better matches biological mechanisms of its spread.
 We suggest researchers to be mindful about which quantity they hold constant and how their assumptions lead to their conclusions.
 
-Our simple framework further reveals counterintuitive, but important, insight.
-In general, one would expect that stronger intervention strategies is required in order to slow down the replacement of the original strain by the new variant.
+Our simple framework further reveals counterintuitive, but important, insights on how to control the spread of both wild type and variants.
+In general, one would expect that stronger intervention strategies are required in order to slow down the replacement of the original strain by the new variant.
 However, this is only true if both have the same mean generation intervals (\fref{relspeed}B).
 If the new variant has longer generation intervals than the original strain, imposing strong intervention (therefore reducing both $\RR_w$ and $\RR_v$ by a constant amount) can result in a higher relative speed $\delta$, and therefore faster replacement of the original strain (\fref{relspeed}B).
-This is not necessarily a bad news as the absolute speed ($r_v$) of the new variant still decreases as $\RR_v$ decreases.
+This is not necessarily a bad outcome as the absolute speed ($r_v$) of the new variant still decreases as $\RR_v$ decreases.
 These effects should be taken into consideration for accurate projection of the spread of the new variant.
 
-Even though SARS-CoV-2 has been spreading for more than a year, there is still large uncertainty in its generation intervals.
+Even though SARS-CoV-2 has been spreading for more than a year, there is still considerable uncertainty in its generation intervals.
 Observational studies typically focus on serial intervals (i.e., time between symptom onset of the infector and the infectee; \cite{svensson2007note}) because they are easier to measure \citep{griffin2020rapid}, but they are subject to dynamical biases that can be difficult to tease apart \citep{park2021forward}.
 A few studies have tried to estimate the generation-interval distribution from serial intervals with means ranging between 3--6 days and squared coefficient of variations ranging between 0.1--0.6 \citep{ferretti2020quantifying,Ferretti2020timing,ganyani2020estimating,knight2020estimating}; 
 however, most estimates neglect dynamical biases in serial intervals.
 In addition, serial intervals do not account for asymptomatic transmission, adding further uncertainty to inferences of speed and strength \citep{park2020time}.
 
-Since the beginning of the SARS-CoV-2 pandemic, the importance of understanding the role of generation-interval distributions in its spread has been constantly emphasized \citep{doi:10.1098/rsif.2020.0144}.
-Yet, we still feel that generation intervals are under-appreciated, often viewed as a leeway to estimating $\RR$.
-Future studies should consider the possibility that the new variant might have longer generation intervals and evaluate how assumptions about generation intervals affect their conclusions.
+Since the beginning of the SARS-CoV-2 pandemic, a few studies have emphasized  the relevance of leveraging generation interval distributions to improve estimates of strength (e.g., \cite{doi:10.1098/rsif.2020.0144}) and the relative importance of modes of transmission (e.g., asymptomatic vs. symptomatic, \cite{park2020time}).
+These same lessons have relevance for assessing the spread of variants in a partially susceptible population and improving efforts to control spread.
+Future studies should prioritize detailded assessment of the relative generation intervals of SARS-CoV-2 and widespread variants, as well as evaluate how uncertainty in assumptions about generational intervals might bias conclusions.
 
 \bibliography{newvariant}
 
