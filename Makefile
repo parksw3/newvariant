@@ -25,6 +25,7 @@ relspeed.Rout: relspeed.R
 relstrength.Rout: relstrength.R
 	$(wrapR)
 
+Ignore += Rtbias.tex rel*.png
 Rtbias.pdf Rtbias.tex: Rtbias.Rout ;
 Rtbias.Rout: Rtbias.R
 
