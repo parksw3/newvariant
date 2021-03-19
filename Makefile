@@ -11,9 +11,12 @@ vim_session:
 
 ######################################################################
 
-Sources += $(wildcard *.tex)
-
+Sources += newvariant.tex
 newvariant.pdf: newvariant.tex
+
+######################################################################
+
+# tikz figures; come up with a pipeline
 
 Ignore += relstrength.pdf relspeed.pdf
 relspeed.Rout: relspeed.R
@@ -21,6 +24,9 @@ relspeed.Rout: relspeed.R
 
 relstrength.Rout: relstrength.R
 	$(wrapR)
+
+Rtbias.pdf Rtbias.tex: Rtbias.Rout ;
+Rtbias.Rout: Rtbias.R
 
 %.pdf: %.Rout ;
 
