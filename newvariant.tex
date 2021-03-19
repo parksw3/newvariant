@@ -44,7 +44,11 @@
 
 \usepackage{color}
 
+\newcommand{\rx}[1]{\ensuremath{{r}_{#1}}\xspace} 
+\newcommand{\ly}[1]{\lx{\mathrm{#1}}}
+
 \newcommand{\Rx}[1]{\ensuremath{{\mathcal R}_{#1}}\xspace} 
+\newcommand{\Ry}[1]{\Rx{\mathrm{#1}}}
 \newcommand{\Ro}{\Rx{0}}
 \newcommand{\Rc}{\Rx{\mathrm{c}}}
 \newcommand{\Ri}{\Rx{\mathrm{i}}}
@@ -106,19 +110,20 @@ For example, when we assume a fixed value of epidemic strength, longer generatio
 When we assume a fixed value of epidemic speed, longer generation intervals lead to stronger epidemic (higher $\RR$), making the epidemic seem more difficult to control.
 
 In addition, most studies have assumed that the generation-interval distributions do not differ between the existing strain and the variant, but recent evidence suggests that the new variant may have a longer duration of infection: 13.3 days (90\% CI: 10.1--16.5) for the new variant and 8.2 days (90\% CI: 6.5--9.7) for the wild type \citep{kissler2021densely}.
-Longer duration of infection could lead to longer periods of transmission, meaning that the mean generation interval of the new variant is likely to be longer than that of the wild type.
-Other studies have also considered the possibility that the new variant may have shorter generation intervals to account for faster growth rate \citep{davies2021estimated}.
-More information is needed, however: generation intervals depend on many other biological and behavioral factors, including for example self-isolation after symptom onset leading to shorter generation intervals.
-Nonetheless, if the generation-interval distribution of the new variant is different from the generation-interval distribution of the wild type, current estimates of the strength of the new variants may be biased.
+This implies that the mean generation interval of the new variant is likely to be longer than that of the wild type.
+Other studies have considered the possibility that the faster growth rate of the new variant may be driven by \emph{shorter} generation intervals \citep{davies2021estimated}.
+If the generation-interval distribution of the new variant is different from the generation-interval distribution of the wild type, current estimates of the strength of the new variants may be biased.
+More information is clearly needed, however. And the story may be complicated: generation intervals depend on many other biological and behavioral factors, including for example self-isolation after symptom onset leading to shorter generation intervals.
 
-Here, we explore how different assumptions about the new variant affect estimates of its strength and speed given the possibility that it might have different generation intervals.
-We examine how the estimates of relative strength (i.e., the ratio between the strength of the existing strain and the variant) and speed (i.e., the difference between the speed of the existing strain and the variant) depend on each other.
-We then show how neglecting differences in the generation-interval distributions can lead to biased estimates, which, in turn, infleunce mitigation priorities.
+Here, we explore how different assumptions about the relative generation time of the new variant affect estimates of its strength and speed.
+We do this by exploring the relationship between relative strength (the ratio $\Ry{var}/\Ry{wt}$) and relative speed (the difference $\ry{var}-\ry{wt}$).
+We find that neglecting differences in the generation-interval distributions can lead to biased estimates, which, in turn, influence mitigation priorities.
+\jd{Just thoughts. I know we haven't introduced this terminology yet, and I know that you're going to use different terminology below. The point is that the old version was clunky and I'm trying to sharpen it. We can keep working.}
 
 \section{Renewal equation framework}
 
 We use the renewal equation framework to characterize the spread of two pathogen strains---in this case, the wild type SARS-CoV-2 virus and a focal variant of concern (e.g., B.1.1.7).
-Neglecting the (relatively slow) rate of new mutations, the current incidence of infection $i_x(t)$ caused by the wild type ($x=w$) and the variant ($x=v$) can be expressed in terms of their previous incidence $i_x(t-\tau)$ and the rate at which secondary cases are generated at time $t$ by individuals infected $\tau$ time units ago $K_x(t, \tau)$:
+Neglecting the (relatively slow) rate of new mutations, the current incidence of infection $i_x(t)$ caused by the wild type $w$ and the variant $v$) can be expressed in terms of their previous incidence $i_x(t-\tau)$ and the rate at which secondary cases are generated at time $t$ by individuals infected $\tau$ time units ago $K_x(t, \tau)$:
 \begin{equation}
 i_x(t) = \int_0^\infty i_x(t-\tau) K_x(t, \tau) \dtau.
 \end{equation}
