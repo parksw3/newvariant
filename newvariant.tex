@@ -131,11 +131,12 @@ i_x(t) = \int_0^\infty i_x(t-\tau) K_x(t, \tau) \dtau.
 This framework provides a flexible way of modeling disease dynamics and generalizes compartmental models, such as the SEIR model \citep{heesterbeek1996concept, diekmann2000mathematical, roberts2004modelling, aldis2005integral, roberts2007model, champredon2018equivalence}.
 
 The integral of the kernel $\RR_x(t) = \int K_x(t, \tau) \dtau$---referred to as the instantaneous reproduction number---describes the average infectiousness of previously infected individuals at time $t$ \citep{fraser2007estimating}.
+\jd{This is a particular kind of weighted average – in particular, it's not weighted by the actual number of infected individuals present. I kind of want to say GI-weighted average, but then we would have to introduce GI as an abbrv.}
 The normalized kernel $g_x(t, \tau) = K_x(t, \tau)/\RR_x(t)$---which we refer to as the instantaneous generation-interval distribution---describes their relative contribution to current incidence $i_x(t)$ and provides information about the time scale of disease transmission.
 Both the reproduction number and the generation-interval distribution can depend on several factors, including intrinsic infectiousness of an infected individual, non-pharmaceutical interventions, awareness-driven behavior, and population-level susceptibility \citep{fraser2007estimating}.
 
 Over a short period of time, we can assume that epidemiological conditions remain roughly constant: $\RR_x(t) \approx \RR_x$ and $g_x(t, \tau) \approx g_x(\tau)$.
-In this case, the incidence of either strains can exhibit exponential growth or decay at rate $r_x$, satisfying the Euler-Lotka equation \citep{wallinga2007generation}:
+In this case, the incidence of each strain will exhibit exponential growth (or decay) at rate $r_x$, satisfying the Euler-Lotka equation \citep{wallinga2007generation}:
 \begin{equation}
 \frac{1}{\RR_x} = \int_0^\infty \exp(- r_x \tau) g_x(\tau) \dtau.
 \end{equation}
@@ -151,6 +152,7 @@ For simplicity we neglect differences in the squared coefficient of variation an
 
 Epidemic speed $r_x$ is often estimated directly from case data \citep{mills2004transmissibility,nishiura2009transmission,ma2014estimating}.
 Studies of new SARS-CoV-2 variants, however, have mostly focused on characterizing changes in \emph{proportion} of a new variant \citep{switzerland2021variant, davies2021estimated, di2021impact, leung2021early, volz2021transmission,zhao2021}.
+\jd{I probably added patterns below, but now I want to drop it. Sometimes the testing pattern is: we just noticed the new variant and so let's go and test intensively in the communities where we think it is.}
 This has the advantage of correcting for testing patterns and intensity, and possibly for other transient effects that might affect variants and wild type viruses similarly.
 When incidence is changing exponentially ($i_x(t) = i_x(t_0) \exp(r_x t)$), the proportion of the new variant $p(t)$ follows a logistic equation:
 \begin{align}
@@ -173,7 +175,7 @@ True relative strength of the new variant $\theta$ is calculated using $\delta=0
 \end{figure}
 
 As our baseline scenario, we assume $\delta = 0.1/\textrm{days}$ based on the observed relative speed of the new variant in the UK \citep{davies2021estimated}.
-This speed can be then used to estimate the relative strength $\theta = \RR_v/\RR_w$ of the new variant with a caveat; such inferece depends on assumptions about the generation-interval distribution.
+This speed can be then used to estimate the relative strength $\theta = \RR_v/\RR_w$ of the new variant with a caveat; such inference depends on assumptions about the generation-interval distribution.
 The mean generation interval $\bar{G}_w$ of the wild type is assumed to equal 5 days \citep{ferretti2020quantifying}.
 The squared coefficient of variation $\kappa$ in generation intervals os assumed to equal 0.2 \citep{ferretti2020quantifying}---for simplicity, we assume that both the variant and the wild type have equal $\kappa$ and only consider differences in the mean.
 As we expect there to be greater uncertainty in $\kappa$ than in $\bar{G}$, we evaluate the estimates of relative strength $\theta$ across a wide range of $\kappa$, ranging from 0 (delta distribution) to 1 (exponential distribution).
