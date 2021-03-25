@@ -61,6 +61,12 @@
 \newcommand{\dx}{\dd{x}}
 \newcommand{\dsigma}{\dd{\sigma}}
 
+\newcommand{\ix}[1]{\ensuremath{{i}_{#1}}\xspace} 
+\newcommand{\iy}[1]{\ix{\mathrm{#1}}}
+
+\newcommand{\Gx}[1]{\ensuremath{{\bar G}_{#1}}\xspace} 
+\newcommand{\Gy}[1]{\Gx{\mathrm{#1}}}
+
 \newcommand{\tstart}{\ensuremath{\tsub{t}{start}}\xspace}
 \newcommand{\tend}{\ensuremath{\tsub{t}{end}}\xspace}
 
@@ -146,20 +152,20 @@ We can approximate the $r$--$\RR$ relationship by assuming that the generation-i
 \end{equation}
 The gamma assumption covers models that assume exponentially distributed generation intervals (when $\kappa=1$), corresponding to the SIR model \citep{anderson1991infectious}; various gamma assumptions and approximations are widely used in epidemic modeling, including for models of SARS-CoV-2 \citep{doi:10.1098/rsif.2020.0144}.
 We use this framework to investigate how inferences about strength and speed of the variant depend on our assumptions about the underlying generation-interval distributions.
-For simplicity we neglect differences in the squared coefficient of variation and assume $\kappa_w = \kappa_v = \kappa$; instead, we focus on the effect of potential differences in the mean generation intervals.
+For simplicity we neglect differences in the squared coefficient of variation and assume $\kappa_{\mathrm{wt}} = \kappa_{\mathrm{var}} = \kappa$; instead, we focus on the effect of potential differences in the mean generation intervals.
 
 \section{Inferring relative strength from relative speed}
 
-Epidemic speed $r_x$ is often estimated directly from case data \citep{mills2004transmissibility,nishiura2009transmission,ma2014estimating}.
-Studies of new SARS-CoV-2 variants, however, have mostly focused on characterizing changes in \emph{proportion} of a new variant \citep{switzerland2021variant, davies2021estimated, di2021impact, leung2021early, volz2021transmission,zhao2021}.
-\jd{I probably added patterns below, but now I want to drop it. Sometimes the testing pattern is: we just noticed the new variant and so let's go and test intensively in the communities where we think it is.}
-This has the advantage of correcting for testing patterns and intensity, and possibly for other transient effects that might affect variants and wild type viruses similarly.
+Epidemic speed $r_x$ can be often estimated directly from case data \citep{mills2004transmissibility,nishiura2009transmission,ma2014estimating}.
+However, estimating epidemic speed from case data can be challenging when case counts are low (e.g., in the beginning of the spread of the new variant) and is sensitive to temporal changes in testing patterns and intensity.
+On the other hand, studies of new SARS-CoV-2 variants have mostly focused on characterizing changes in \emph{proportion} of a new variant \citep{switzerland2021variant, davies2021estimated, di2021impact, leung2021early, volz2021transmission,zhao2021}.
+This has the advantage of being less sensitive to such changes in testing, and possibly for other transient effects that might affect variants and wild type viruses similarly.
 When incidence is changing exponentially ($i_x(t) = i_x(t_0) \exp(r_x t)$), the proportion of the new variant $p(t)$ follows a logistic equation:
 \begin{align}
-p(t) &= \frac{i_v(t_0) \exp(r_v t)}{i_w(t_0) \exp(r_w t) + i_v(t_0) \exp(r_v t)},
-\\ &= \frac{1}{1 + \left(i_w(t_0)/i_v(t_0)\right) \exp(-\delta t)},
+p(t) &= \frac{\iy{var}(t_0) \exp(\ry{var} t)}{\iy{wt}(t_0) \exp(\ry{wt} t) + \iy{var}(t_0) \exp(\ry{var} t)},
+\\ &= \frac{1}{1 + \left(\iy{wt}(t_0)/\iy{var}(t_0)\right) \exp(-\delta t)},
 \end{align}
-where the logistic growth rate $\delta = r_v - r_w$ corresponds to the relative speed of the epidemic.
+where the logistic growth rate $\delta = \ry{var} - \ry{wt}$ corresponds to the relative speed of the epidemic.
 
 \begin{figure}[!th]
 \includegraphics[width=\textwidth]{relstrength.pdf}
@@ -175,19 +181,19 @@ True relative strength of the new variant $\theta$ is calculated using $\delta=0
 \end{figure}
 
 As our baseline scenario, we assume $\delta = 0.1/\textrm{days}$ based on the observed relative speed of the new variant in the UK \citep{davies2021estimated}.
-This speed can be then used to estimate the relative strength $\theta = \RR_v/\RR_w$ of the new variant with a caveat; such inference depends on assumptions about the generation-interval distribution.
+This speed can be then used to estimate the relative strength $\theta = \Ry{var}/\Ry{wt}$ of the new variant with a caveat; such inference depends on assumptions about the generation-interval distribution.
 The mean generation interval $\bar{G}_w$ of the wild type is assumed to equal 5 days \citep{ferretti2020quantifying}.
 The squared coefficient of variation $\kappa$ in generation intervals os assumed to equal 0.2 \citep{ferretti2020quantifying}---for simplicity, we assume that both the variant and the wild type have equal $\kappa$ and only consider differences in the mean.
 As we expect there to be greater uncertainty in $\kappa$ than in $\bar{G}$, we evaluate the estimates of relative strength $\theta$ across a wide range of $\kappa$, ranging from 0 (delta distribution) to 1 (exponential distribution).
 
-Previous studies have assumed that the generation-interval distributions do not differ between the wild type and the variant: $\bar{G}_v = \bar{G}_w = \bar{G}$.
+Previous studies have assumed that the generation-interval distributions do not differ between the wild type and the variant: $\Gy{var} = \Gy{wt} = \bar{G}$.
 In this case, the estimate of the relative strength is given by \citep{park2019practical}:
 \begin{equation}
-\hat{\theta} = \left(1 + \frac{\kappa \delta \bar{G}}{1 + \kappa r_w \bar{G}}\right)^{1/\kappa}.
+\hat{\theta} = \left(1 + \frac{\kappa \delta \bar{G}}{1 + \kappa \ry{wt} \bar{G}}\right)^{1/\kappa}.
 \end{equation}
 Therefore, estimates of relative strength $\theta$ depends not only on the relative speed $\delta$ but also on how fast the wild type is spreading in the population $r_w$---a few analyses have implicitly or explicitly neglected this factor by either assuming $r_w = 0$ \citep{switzerland2021variant} or $\kappa = 0$ \citep{davies2021estimated}, in which case we get $\hat{\theta} = \exp(\delta \bar{G})$.
 Instead, if the wild type was spreading faster than previously assumed (higher $r_w$), the estimates of the relative strength $\theta$ will be go down (\fref{relstrength}A).
-The relative strength also depends on the \emph{effective dispersion} in generation intervals (i.e., the amount of variability in generation intervals, as measured by $\kappa$)---using narrower distributions makes $\hat{\theta}$ less sensitive to $r_w$.
+The relative strength also depends on the \emph{effective dispersion} in generation intervals (i.e., the amount of variability in generation intervals, as measured by $\kappa$)---using narrower distributions makes $\hat{\theta}$ less sensitive to $\ry{wt}$.
 
 However, if the true mean generation interval of the new variant is different from that of the wild type ($\bar{G}_v \neq \bar{G}_w$), the true relative strength $\theta = \RR_v/\RR_w$ is given by:
 \begin{equation}

@@ -62,7 +62,7 @@ thetadata2 <- apply(pardata2, 1, function(x) {
 
 g1 <- ggplot(thetadata) +
   geom_line(aes(rw, thetahat, lty=as.factor(kappa), col=as.factor(kappa))) +
-  scale_x_continuous("Wild type speed, $r_w$ (1/days)", expand=c(0, 0)) +
+  scale_x_continuous("Wild type speed, $r_{\\mathrm{wt}}$ (1/days)", expand=c(0, 0)) +
   scale_y_continuous("Estimated relative strength, $\\hat{\\theta}$", limits=c(1, 2.7), expand=c(0, 0)) +
   scale_color_colorblind("$\\kappa$") +
   scale_linetype_discrete("$\\kappa$") +
@@ -76,10 +76,10 @@ g2 <- ggplot(thetadata2) +
   geom_tile(aes(Gratio, rw, fill=theta)) +
   geom_vline(xintercept=1, lty=2, col="white") +
   geom_hline(yintercept=-delta, lty=1, col="white") +
-  annotate("text", x=1.04, y=0, label=c("$\\bar{G}_v=\\bar{G}_w$"), col="white", angle=-90) +
-  annotate("text", x=0.8, y=-delta+0.01, label=c("$r_v=0$"), col="white") +
-  scale_x_continuous("Generation interval ratio, $\\bar{G}_v/\\bar{G}_w$", expand=c(0, 0)) +
-  scale_y_continuous("Wild type speed, $r_w$ (1/days)", expand=c(0, 0)) +
+  annotate("text", x=1.04, y=0, label=c("$\\bar{G}_{\\mathrm{var}}=\\bar{G}_{\\mathrm{wt}}$"), col="white", angle=-90) +
+  annotate("text", x=0.8, y=-delta+0.01, label=c("$r_{\\mathrm{var}}=0$"), col="white") +
+  scale_x_continuous("Generation interval ratio, $\\bar{G}_{\\mathrm{var}}/\\bar{G}_{\\mathrm{wt}}$", expand=c(0, 0)) +
+  scale_y_continuous("Wild type speed, $r_{\\mathrm{wt}}$ (1/days)", expand=c(0, 0)) +
   scale_fill_viridis_c("$\\theta$") +
   ggtitle("B. Different generation intervals") +
   theme(
@@ -90,10 +90,10 @@ g3 <- ggplot(thetadata2) +
   geom_tile(aes(Gratio, rw, fill=bias)) +
   geom_vline(xintercept=1, lty=2, col="white") +
   geom_hline(yintercept=-delta, lty=1, col="white") +
-  annotate("text", x=1.04, y=0, label=c("$\\bar{G}_v=\\bar{G}_w$"), col="white", angle=-90) +
-  annotate("text", x=0.8, y=-delta+0.01, label=c("$r_v=0$"), col="white") +
-  scale_x_continuous("Generation interval ratio, $\\bar{G}_v/\\bar{G}_w$", expand=c(0, 0)) +
-  scale_y_continuous("Wild type speed, $r_w$ (1/days)", expand=c(0, 0)) +
+  annotate("text", x=1.04, y=0, label=c("$\\bar{G}_{\\mathrm{var}}=\\bar{G}_{\\mathrm{wt}}$"), col="white", angle=-90) +
+  annotate("text", x=0.8, y=-delta+0.01, label=c("$r_{\\mathrm{var}}=0$"), col="white") +
+  scale_x_continuous("Generation interval ratio, $\\bar{G}_{\\mathrm{var}}/\\bar{G}_{\\mathrm{wt}}$", expand=c(0, 0)) +
+  scale_y_continuous("Wild type speed, $r_{\\mathrm{wt}}$ (1/days)", expand=c(0, 0)) +
   scale_fill_viridis_c("$\\theta/\\hat{\\theta}$", option="A") +
   ggtitle("C. Bias") +
   theme(
