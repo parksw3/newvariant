@@ -130,8 +130,8 @@ i_x(t) = \int_0^\infty i_x(t-\tau) K_x(t, \tau) \dtau.
 \end{equation}
 This framework provides a flexible way of modeling disease dynamics and generalizes compartmental models, such as the SEIR model \citep{heesterbeek1996concept, diekmann2000mathematical, roberts2004modelling, aldis2005integral, roberts2007model, champredon2018equivalence}.
 
-The integral of the kernel $\RR_x(t) = \int K_x(t, \tau) \dtau$---referred to as the instantaneous reproduction number---describes the average infectiousness of previously infected individuals at time $t$ \citep{fraser2007estimating}.
-\jd{This is a particular kind of weighted average – in particular, it's not weighted by the actual number of infected individuals present. I kind of want to say GI-weighted average, but then we would have to introduce GI as an abbrv.}
+The integral of the kernel $\RR_x(t) = \int K_x(t, \tau) \dtau$ is referred to as the instantaneous reproduction number \citep{fraser2007estimating}.
+This is a particular kind of weighted average which describes the average infectiousness of previously infected individuals at time $t$---in particular, it is not weighted by the actual number of infected individuals present, but rather by their relative infectiousness at time $t$.
 The normalized kernel $g_x(t, \tau) = K_x(t, \tau)/\RR_x(t)$---which we refer to as the instantaneous generation-interval distribution---describes their relative contribution to current incidence $i_x(t)$ and provides information about the time scale of disease transmission.
 Both the reproduction number and the generation-interval distribution can depend on several factors, including intrinsic infectiousness of an infected individual, non-pharmaceutical interventions, awareness-driven behavior, and population-level susceptibility \citep{fraser2007estimating}.
 
