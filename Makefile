@@ -14,6 +14,8 @@ vim_session:
 Sources += newvariant.tex
 newvariant.pdf: newvariant.tex
 
+Sources += notes.md
+
 ######################################################################
 
 # tikz figures; come up with a pipeline
