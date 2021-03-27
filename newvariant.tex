@@ -213,7 +213,7 @@ Instead, biological mechanisms that cause new variant to have higher strength be
 For example, if the new variant has a higher transmission rate, the ratio between the strength of the new variant and that of the wild type will remain constant ($=\rho$) under strength-like interventions that reduces the strength of both strains by a constant amount.
 However, this is not necessarily true under speed-like interventions (e.g., contact tracing and self-isolation), which depends on time since infection: if the generation-interval distributions are different, the effectiveness of interventions will also differ.
 For now, we consider consequences of assuming a constant relative strength $\rho$ and predicting the relative speed $\delta$---an assumption often made (either implicitly or explicitly) in studies that have tried to predict the future spread of the new variant, including when it will replace the wild type.
-As our baseline scenario we assume $\rho = 1.5$.
+As our baseline scenario we assume $\rho = 1.61$, which is the value we obtain for $\delta=0.1\,\textrm{days}$, $\bar{G}_w = \bar{G}_v = 5\,\textrm{days}$, and $\kappa = 1/5$.
 
 \begin{figure}[!th]
 \includegraphics[width=\textwidth]{relspeed.pdf}
@@ -222,7 +222,7 @@ As our baseline scenario we assume $\rho = 1.5$.
 (A) Estimated relative speed of the new variant $\hat{\delta}$ given strength of the wild type $\RR_w$ assuming identical generation-interval distributions.
 (B) True relative strength of the new variant $\delta$ given strength of the wild type $\RR_w$ and ratio between the mean generation interval of the new variant $\bar{G}_v$ and that of the wild type $\bar{G}_w$..
 (C) Difference between the true and the estimated relative speed of the new variant $\delta - \hat{\delta}$.
-True relative speed of the new variant $\delta$ is calculated using $\rho=1.5$, $\bar{G}_w = 5\,\textrm{days}$, and $\kappa=1/5$.
+True relative speed of the new variant $\delta$ is calculated using $\rho=1.61$, $\bar{G}_w = 5\,\textrm{days}$, and $\kappa=1/5$.
 }
 \label{fig:relspeed}
 \end{figure}
@@ -253,46 +253,44 @@ Assuming that the generation-interval distribution does not change over time, th
 \begin{equation}
 \RR_x(t) = \frac{i_x(t)}{\int_0^\infty i_x(t-\tau) g_x(\tau) \dtau}.
 \end{equation}
-Under strength-like intervention measures that reduce transmission rates by a constant amount, we expect ratios between true reproduction numbers to remain constant and correspond to the true relative strength: $\RR_v(t)/\RR_w(t) = \rho$.
-However, if the assumed generation-interval distribution $\hat{g}(\tau)$ is different from the true distribution, then the ratio between the estimated reproduction numbers $\hat{\rho}(t) = \hat{\RR}_v(t)/\hat{\RR}_w(t)$ need not be constant, where
+Under strength-like intervention measures that reduce transmission rates by a constant amount, we expect ratios between true reproduction numbers to remain constant and correspond to the true relative strength: $\Ry{var}(t)/\Ry{wt}(t) = \rho$.
+However, if the assumed generation-interval distribution $\hat{g}(\tau)$ is different from the true distribution, then the ratio between the estimated reproduction numbers $\hat{\rho}(t) = \hat{\RR}_{\textrm{var}}(t)/\hat{\RR}_{\textrm{wt}}(t)$ need not be constant, where
 \begin{equation}
 \hat{\RR}_x(t) = \frac{i_x(t)}{\int_0^\infty i_x(t-\tau) \hat{g}(\tau) \dtau}.
 \end{equation}
 
 Here, we simulate three different scenarios using a two strain renewal equation that assumes perfect cross-immunity (\fref{Rtbias}): 
-(1) the wild type and the variant have the same generation-interval distributions, which match the assumed distribution (\fref{Rtbias}A--D);
-(2) the assumed distribution matches the generation-interval distribution of the wild type but has a longer mean than the mean generation interval of the variant (\fref{Rtbias}E--H); and
-(3) the assumed distribution matches the generation-interval distribution of the wild type but has a shorter mean than the mean generation interval of the variant (\fref{Rtbias}I--L).
-Then, we compare the estimated ratio $\hat{\rho}(t) = \hat{\RR}_v(t)/\hat{\RR}_w(t)$ with the true ratio $\rho = \RR_v(t)/\RR_w(t)$.
-For simplicity, we did not model non-pharmaceutical interventions;
-instead, we let epidemic dynamics to be determined by susceptible depletion alone.
+(1) the wild type and the variant have the same generation-interval distributions, which match the assumed distribution (\fref{Rtbias}A--C);
+(2) the assumed distribution matches the generation-interval distribution of the wild type but has a longer mean than the mean generation interval of the variant (\fref{Rtbias}D--F); and
+(3) the assumed distribution matches the generation-interval distribution of the wild type but has a shorter mean than the mean generation interval of the variant (\fref{Rtbias}G--I).
+Then, we compare the estimated ratio $\hat{\rho}(t) = \hat{\RR}_{\textrm{var}}(t)/\hat{\RR}_{\textrm{wt}}(t)$ with the true ratio $\rho = \Ry{var}(t)/\Ry{wt}(t)$.
+In order to reflect smooth changes in $\RR$ driven by non-pharmaceutical interventions, we model $\Ry{wt}(t)$ phenomenologically and let $\Ry{var}(t) = \rho \Ry{wt}(t)$.
 
 \begin{figure}[!th]
 \includegraphics[width=\textwidth]{Rtbias.pdf}
 \caption{
 \textbf{Estimates of relative strength over time under different scenarios.}
-(A, E, I) Daily incidence of infection caused by the new variant and the wild type.
-(B, F, J) True (solid lines) and estimated (dashed lines) reproduction numbers of the new variant and the wild type over time.
-(C, G, K) True (purple) and estimated (orange) ratios between reproduction numbers of the new variant and the wild type over time.
-(D, H, L) Relationship between estimated reproduction numbers on a log-log sacle.
-The dashed lines represent the one-to-one line. 
-The dotted lines represent the $\RR_v=\rho \RR_w$ line. 
+(A, D, G) True (solid lines) and estimated (dashed lines) reproduction numbers of the new variant and the wild type over time.
+(B, E, H) True (purple, solid) and estimated (orange, dashed) ratios between reproduction numbers of the new variant and the wild type over time.
+(C, F, I) True (purple, solid) and estimated (orange, dashed) relationships between estimated reproduction numbers on a log-log sacle.
 Top row: the assumed mean generation-interval (5 days) is equal to the mean generation-interval of the wild type and the variant.
-Middle row: the assumed mean generation-interval (5 days) is equal to the mean generation-interval of the wild type but is longer than that of the varant (3.5 days).
-Bottom row: the assumed mean generation-interval (5 days) is equal to the mean generation-interval of the wild type but is longer than that of the varant (6.5 days).
+Middle row: the assumed mean generation-interval (5 days) is equal to the mean generation-interval of the wild type but is longer than that of the varant (4 days).
+Bottom row: the assumed mean generation-interval (5 days) is equal to the mean generation-interval of the wild type but is longer than that of the varant (6 days).
 For all simulations, squared coefficient of variation in generation intervals is assumed to equal $\kappa = 1/5$.
+We assume $\Ry{wt}(t)=2.5$ before $t=15\,\textrm{days}$ to reflect unmitigated spread and let $\Ry{wt}(t)=2.5 (1+0.7\cos((t-15)/10))/1.7$ after to model smooth introduction and lifting of non-pharmaceutical interventions.
 }
 \label{fig:Rtbias}
 \end{figure}
 
-When the assumed distribution matches the true distributions, the estimated ratio remains constant (\fref{Rtbias}C).
-However, if the generation-interval distribution of the variant is different from the assumed distribution, the ratio changes over time (\fref{Rtbias}G,K).
-In particular, if the true generation intervals have a shorter (or longer) mean than the assumed distribution, we over-estimate (or under-estimate) $\RR_v(t)$ during the growth phase and under-estimate (or over-estimate) $\RR_v(t)$ during the decay phase (\fref{Rtbias}F,J), which further translates to biases in the estimated relative strength (\fref{Rtbias}G,K).
+When the assumed distribution matches the true distributions, the estimated reproduction numbers match the true values (\fref{Rtbias}A), and therefore the ratio remains constant (\fref{Rtbias}B).
+However, if the generation-interval distribution of the variant is different from the assumed distribution, the ratio changes over time (\fref{Rtbias}F,I).
+In particular, if the true generation intervals have a shorter (or longer) mean than the assumed distribution, we over-estimate (or under-estimate) $\Ry{var}(t)$ during the growth phase and under-estimate (or over-estimate) $ $ during the decay phase (\fref{Rtbias}D,G), which further translates to biases in the estimated relative strength (\fref{Rtbias}F,I).
 
-We can also assess these biases by plotting the estimated strength of the variant $\hat{\RR}_v(t)$ against the estimated strength of the wild type $\hat{\RR}_w(t)$ on a log-log scale (\fref{Rtbias}D,H,L).
-When generation-interval distributions are correctly specified, we obtain a straight line parallel to the one-to-one line. 
-In this case, the slope corresponds to the logarithm of the relative strength $\log(\rho)$ (\fref{Rtbias}D).
+We can assess these biases by plotting the estimated strength of the variant $\hat{\RR}_{\textrm{var}}(t)$ against the estimated strength of the wild type $\hat{\RR}_{\textrm{wt}}(t)$ on a log-log scale (\fref{Rtbias}C,F,I).
+When generation-interval distributions are correctly specified, we obtain a straight line with a slope of 1. 
+In this case, the intercept corresponds to the logarithm of the relative strength $\log(\rho)$ (\fref{Rtbias}C).
 When the assumed mean generation interval is longer (or shorter) than the that of the variant, we over-estimate (or under-estimate) the slope (\fref{Rtbias}H,L) on a log-log plot.
+Smooth changes in $\RR$ further generate circular patterns but biases in slopes are clear.
 
 \section{Inferring relative strength from case data, in practice}
 
