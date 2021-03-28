@@ -292,13 +292,25 @@ In this case, the intercept corresponds to the logarithm of the relative strengt
 When the assumed mean generation interval is longer (or shorter) than the that of the variant, we over-estimate (or under-estimate) the slope (\fref{Rtbias}H,L) on a log-log plot.
 Smooth changes in $\RR$ further generate circular patterns but biases in slopes are clear.
 
-\section{Inferring relative strength from case data, in practice}
+\section{Implications for intervention strategies}
 
-Seb Funk's analysis here.
+While the relative speed need not stay constant over the course of an epidemic, at any given point in epidemic, we can measure the speed of the new variant and the wild type and ask how much more intervention is required to control the spread of both strains (relative to measured conditions).
+As a baseline scenario, we assume $\ry{wt}=0\,\textrm{/days}$ and $\delta=0.1\,\textrm{/days}$ (and therfore $\ry{var}=0\,\textrm{/days}$).
+In this case, the wild type is already under control, whereas the variant requires additional intervention measures to stop growing.
 
-\section{Intervention}
+Here, we consider two types of interventions:
+a strength-like intervention which affects the kernel by a constant amount $\theta$ regardless of when they were infected ($K_{\mathrm{post}}(\tau) = K_{\mathrm{pre}}(\tau)/\theta$) and a speed-like intervention which affect the kernel at a constant rate $\phi$ ($K_{\mathrm{post}}(\tau) = K_{\mathrm{pre}}(\tau) \exp(-\phi \tau)$).
+In this case, it is clear that we can control the spread of the variant when either $\theta > \Ry{var}$ or $\phi > \ry{var}$---these two quantities ($\theta$ and $\phi$) are also referred to as strength and speed of intervention, respectively.
+In general, we can calculate the strength ($\theta = \Ry{pre}/\Ry{post}$) and speed ($\phi = \ry{pre} - \ry{post}$) of intervention, both providing equivalent measures for effectiveness of intervention, for any intervention by comparing epidemiological conditions before and after the intervention.
+We compare how potential differences in generation-inteval distributions affect the control of the spread of the new variant using this strength-and-speed framework.
+\swp{missing citation.}
 
-If $K(\tau)/L(\tau)$.
+\begin{figure}
+\includegraphics[width=\textwidth]{control.pdf}
+\caption{
+\textbf{caption.}
+}
+\end{figure}
 
 \section{Discussion}
 
