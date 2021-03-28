@@ -15,7 +15,7 @@ pardata <- expand.grid(kappavec, rwvec)
 
 Gw <- 5
 
-Gratio <- seq(0.6, 1.4, length.out=31)
+Gratio <- exp(seq(log(1/1.5), log(1.5), length.out=31))
 
 pardata2 <- expand.grid(rwvec, Gratio)
 
@@ -79,7 +79,8 @@ g2 <- ggplot(rhodata2) +
   geom_hline(yintercept=-delta, lty=1, col="white") +
   annotate("text", x=1.04, y=0, label=c("$\\bar{G}_{\\mathrm{var}}=\\bar{G}_{\\mathrm{wt}}$"), col="white", angle=-90) +
   annotate("text", x=0.8, y=-delta+0.01, label=c("$r_{\\mathrm{var}}=0$"), col="white") +
-  scale_x_continuous("Generation interval ratio, $\\bar{G}_{\\mathrm{var}}/\\bar{G}_{\\mathrm{wt}}$", expand=c(0, 0)) +
+  scale_x_log10("Generation interval ratio, $\\bar{G}_{\\mathrm{var}}/\\bar{G}_{\\mathrm{wt}}$", expand=c(0, 0),
+                breaks=c(0.67, 1, 1.5)) +
   scale_y_continuous("Wild type speed, $r_{\\mathrm{wt}}$ (1/days)", expand=c(0, 0)) +
   scale_fill_viridis_c("$\\rho$") +
   ggtitle("B. Different generation intervals") +
@@ -93,7 +94,8 @@ g3 <- ggplot(rhodata2) +
   geom_hline(yintercept=-delta, lty=1, col="white") +
   annotate("text", x=1.04, y=0, label=c("$\\bar{G}_{\\mathrm{var}}=\\bar{G}_{\\mathrm{wt}}$"), col="white", angle=-90) +
   annotate("text", x=0.8, y=-delta+0.01, label=c("$r_{\\mathrm{var}}=0$"), col="white") +
-  scale_x_continuous("Generation interval ratio, $\\bar{G}_{\\mathrm{var}}/\\bar{G}_{\\mathrm{wt}}$", expand=c(0, 0)) +
+  scale_x_log10("Generation interval ratio, $\\bar{G}_{\\mathrm{var}}/\\bar{G}_{\\mathrm{wt}}$", expand=c(0, 0),
+                breaks=c(0.67, 1, 1.5)) +
   scale_y_continuous("Wild type speed, $r_{\\mathrm{wt}}$ (1/days)", expand=c(0, 0)) +
   scale_fill_viridis_c("$\\rho/\\hat{\\rho}$", option="A") +
   ggtitle("C. Bias") +

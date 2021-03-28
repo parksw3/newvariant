@@ -12,7 +12,7 @@ kappa <- 0.2
 
 Gw <- 5
 
-Gratio <- seq(0.6, 1.4, length.out=31)
+Gratio <- exp(seq(log(1/1.5), log(1.5), length.out=31))
 
 Rv_base <- ((1 + kappa * (rw + delta) * Gw)^(1/kappa))
 target <- 0.9
@@ -21,7 +21,7 @@ constant_strength <- Rv_base/target
 
 constant_speed <- optim(0.1,
                         function(r) {
-                          (integrate(function(y) Rv_base * dgamma(y, shape=1/kappa, rate=1/kappa/Gv) * exp(-r * y),
+                          (integrate(function(y) Rv_base * dgamma(y, shape=1/kappa, rate=1/kappa/Gw) * exp(-r * y),
                                      0,
                                      Inf)[[1]] - target)^2
                         },
@@ -65,7 +65,8 @@ g1 <- ggplot(intervention) +
   geom_line(aes(Gratio, Rv, col="Epidemic", lty="Epidemic"), lwd=1) +
   geom_line(aes(Gratio, strength_strength, col="Constant strength intervention", lty="Constant strength intervention"), lwd=1) +
   geom_line(aes(Gratio, speed_strength, col="Constant speed intervention", lty="Constant speed intervention"), lwd=1) +
-  scale_x_continuous("Generation interval ratio, $\\bar{G}_{\\mathrm{var}}/\\bar{G}_{\\mathrm{wt}}$") +
+  scale_x_log10("Generation interval ratio, $\\bar{G}_{\\mathrm{var}}/\\bar{G}_{\\mathrm{wt}}$",
+                breaks=c(0.67, 1, 1.5)) +
   scale_y_log10("Strength") +
   scale_linetype_manual("", values=3:1) +
   scale_color_manual("", values=rev(colorblind_pal()(3))) +
@@ -80,7 +81,8 @@ g2 <- ggplot(intervention) +
   geom_line(aes(Gratio, rv, col="Epidemic", lty="Epidemic"), lwd=1) +
   geom_line(aes(Gratio, strength_speed, col="Constant strength intervention", lty="Constant strength intervention"), lwd=1) +
   geom_line(aes(Gratio, speed_speed, col="Constant speed intervention", lty="Constant speed intervention"), lwd=1) +
-  scale_x_continuous("Generation interval ratio, $\\bar{G}_{\\mathrm{var}}/\\bar{G}_{\\mathrm{wt}}$") +
+  scale_x_log10("Generation interval ratio, $\\bar{G}_{\\mathrm{var}}/\\bar{G}_{\\mathrm{wt}}$",
+                breaks=c(0.67, 1, 1.5)) +
   scale_y_continuous("Speed (1/days)") +
   scale_linetype_manual("", values=3:1) +
   scale_color_manual("", values=rev(colorblind_pal()(3))) +
