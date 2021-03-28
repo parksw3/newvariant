@@ -183,7 +183,7 @@ True relative strength of the new variant $\rho$ is calculated using $\delta=0.1
 As our baseline scenario, we assume $\delta = 0.1/\textrm{days}$ based on the observed relative speed of the new variant in the UK \citep{davies2021estimated}.
 This speed can be then used to estimate the relative strength $\rho = \Ry{var}/\Ry{wt}$ of the new variant with a caveat; such inference depends on assumptions about the generation-interval distribution.
 The mean generation interval $\bar{G}_w$ of the wild type is assumed to equal 5 days \citep{ferretti2020quantifying}.
-The squared coefficient of variation $\kappa$ in generation intervals os assumed to equal 0.2 \citep{ferretti2020quantifying}---for simplicity, we assume that both the variant and the wild type have equal $\kappa$ and only consider differences in the mean.
+The squared coefficient of variation $\kappa$ in generation intervals is assumed to equal 0.2 \citep{ferretti2020quantifying}---for simplicity, we assume that both the variant and the wild type have equal $\kappa$ and only consider differences in the mean.
 As we expect there to be greater uncertainty in $\kappa$ than in $\bar{G}$, we evaluate the estimates of relative strength $\rho$ across a wide range of $\kappa$, ranging from 0 (delta distribution) to 1 (exponential distribution).
 
 Previous studies have assumed that the generation-interval distributions do not differ between the wild type and the variant: $\Gy{var} = \Gy{wt} = \bar{G}$.
@@ -272,10 +272,10 @@ In order to reflect smooth changes in $\RR$ driven by non-pharmaceutical interve
 \textbf{Estimates of relative strength over time under different scenarios.}
 (A, D, G) True (solid lines) and estimated (dashed lines) reproduction numbers of the new variant and the wild type over time.
 (B, E, H) True (purple, solid) and estimated (orange, dashed) ratios between reproduction numbers of the new variant and the wild type over time.
-(C, F, I) True (purple, solid) and estimated (orange, dashed) relationships between estimated reproduction numbers on a log-log sacle.
+(C, F, I) True (purple, solid) and estimated (orange, dashed) relationships between estimated reproduction numbers on a log-log scale.
 Top row: the assumed mean generation-interval (5 days) is equal to the mean generation-interval of the wild type and the variant.
-Middle row: the assumed mean generation-interval (5 days) is equal to the mean generation-interval of the wild type but is longer than that of the varant (4 days).
-Bottom row: the assumed mean generation-interval (5 days) is equal to the mean generation-interval of the wild type but is longer than that of the varant (6 days).
+Middle row: the assumed mean generation-interval (5 days) is equal to the mean generation-interval of the wild type but is longer than that of the variant (4 days).
+Bottom row: the assumed mean generation-interval (5 days) is equal to the mean generation-interval of the wild type but is longer than that of the variant (6 days).
 For all simulations, squared coefficient of variation in generation intervals is assumed to equal $\kappa = 1/5$.
 We assume $\Ry{wt}(t)=2.5$ before $t=15\,\textrm{days}$ to reflect unmitigated spread and let $\Ry{wt}(t)=2.5 (1+0.7\cos((t-15)/10))/1.7$ after to model smooth introduction and lifting of non-pharmaceutical interventions.
 }
@@ -295,14 +295,14 @@ Smooth changes in $\RR$ further generate circular patterns but biases in slopes 
 \section{Implications for intervention strategies}
 
 While the relative speed need not stay constant over the course of an epidemic, at any given point in epidemic, we can measure the speed of the new variant and the wild type and ask how much more intervention is required to control the spread of both strains (relative to measured conditions).
-As a baseline scenario, we assume $\ry{wt}=0\,\textrm{/days}$ and $\delta=0.1\,\textrm{/days}$ (and therfore $\ry{var}=0\,\textrm{/days}$).
+As a baseline scenario, we assume $\ry{wt}=0\,\textrm{/days}$ and $\delta=0.1\,\textrm{/days}$ (and therefore $\ry{var}=0\,\textrm{/days}$).
 In this case, the wild type is already under control, whereas the variant requires additional intervention measures to stop growing.
 
 Here, we consider two types of interventions:
 a strength-like intervention which affects the kernel by a constant amount $\theta$ regardless of when they were infected ($K_{\mathrm{post}}(\tau) = K_{\mathrm{pre}}(\tau)/\theta$) and a speed-like intervention which affect the kernel at a constant rate $\phi$ ($K_{\mathrm{post}}(\tau) = K_{\mathrm{pre}}(\tau) \exp(-\phi \tau)$).
 In this case, it is clear that we can control the spread of the variant when either $\theta > \Ry{var}$ or $\phi > \ry{var}$---these two quantities ($\theta$ and $\phi$) are also referred to as strength and speed of intervention, respectively.
 In general, we can calculate the strength ($\theta = \Ry{pre}/\Ry{post}$) and speed ($\phi = \ry{pre} - \ry{post}$) of intervention, both providing equivalent measures for effectiveness of intervention, for any intervention by comparing epidemiological conditions before and after the intervention \citep{doi:10.1098/rspb.2020.1556}---these quantities, by definition, must be greater than pre-intervention strength and speed of the epidemic to control the spread.
-We compare how potential differences in generation-inteval distributions affect the control of the spread of the new variant using this strength-and-speed framework.
+We compare how potential differences in generation-interval distributions affect the control of the spread of the new variant using this strength-and-speed framework.
 
 \begin{figure}[!th]
 \includegraphics[width=\textwidth]{control.pdf}
@@ -357,7 +357,7 @@ In addition, serial intervals do not account for asymptomatic transmission, addi
 
 Since the beginning of the SARS-CoV-2 pandemic, a few studies have emphasized  the relevance of leveraging generation interval distributions to improve estimates of strength (e.g., \cite{doi:10.1098/rsif.2020.0144}) and the relative importance of modes of transmission (e.g., asymptomatic vs. symptomatic, \cite{park2020time}).
 These same lessons have relevance for assessing the spread of variants in a partially susceptible population and improving efforts to control spread.
-Future studies should prioritize detailded assessment of the relative generation intervals of SARS-CoV-2 and widespread variants, as well as evaluate how uncertainty in assumptions about generational intervals might bias conclusions.
+Future studies should prioritize detailed assessment of the relative generation intervals of SARS-CoV-2 and widespread variants, as well as evaluate how uncertainty in assumptions about generational intervals might bias conclusions.
 
 \bibliography{newvariant}
 
