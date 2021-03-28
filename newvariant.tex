@@ -301,27 +301,45 @@ In this case, the wild type is already under control, whereas the variant requir
 Here, we consider two types of interventions:
 a strength-like intervention which affects the kernel by a constant amount $\theta$ regardless of when they were infected ($K_{\mathrm{post}}(\tau) = K_{\mathrm{pre}}(\tau)/\theta$) and a speed-like intervention which affect the kernel at a constant rate $\phi$ ($K_{\mathrm{post}}(\tau) = K_{\mathrm{pre}}(\tau) \exp(-\phi \tau)$).
 In this case, it is clear that we can control the spread of the variant when either $\theta > \Ry{var}$ or $\phi > \ry{var}$---these two quantities ($\theta$ and $\phi$) are also referred to as strength and speed of intervention, respectively.
-In general, we can calculate the strength ($\theta = \Ry{pre}/\Ry{post}$) and speed ($\phi = \ry{pre} - \ry{post}$) of intervention, both providing equivalent measures for effectiveness of intervention, for any intervention by comparing epidemiological conditions before and after the intervention.
+In general, we can calculate the strength ($\theta = \Ry{pre}/\Ry{post}$) and speed ($\phi = \ry{pre} - \ry{post}$) of intervention, both providing equivalent measures for effectiveness of intervention, for any intervention by comparing epidemiological conditions before and after the intervention \citep{doi:10.1098/rspb.2020.1556}---these quantities, by definition, must be greater than pre-intervention strength and speed of the epidemic to control the spread.
 We compare how potential differences in generation-inteval distributions affect the control of the spread of the new variant using this strength-and-speed framework.
-\swp{missing citation.}
 
-\begin{figure}
+\begin{figure}[!th]
 \includegraphics[width=\textwidth]{control.pdf}
 \caption{
-\textbf{caption.}
+\textbf{Strength and speed of intervention against the new variant.}
+(A) Strength of epidemic (black, solid), constant strength intervention (orange, dashed), and constant speed intervention (blue, dotted).
+(B) Speed of epidemic (black, solid), constant strength intervention (orange, dashed), and constant speed intervention (blue, dotted).
+Strength and speed are calculated assuming $\ry{wt}=0\,\textrm{/days}$, $\delta=0.1\,\textrm{/days}$, $\ry{var}=0\,\textrm{/days}$, $\Gy{wt}=5\,\textrm{days}$, and $\kappa=1/5$.
+Constant strength and speed interventions are modeled such that post intervention strength of the new variant, assuming equal mean generation intervals at 5 days, corresponds to 0.9.
 }
+\label{fig:strengthspeed}
 \end{figure}
+
+\fref{strengthspeed} compares the effectiveness of strength-based and speed-based interventions across a wide range of assumptions about generation-interval distributions.
+We begin by assuming that the variant and the wild type have equal mean generation intervals and model interventions such that they both reduce $\Ry{var}$ to 0.9 after intervention (\fref{strengthspeed}A).
+If the mean generation interval of the variant is longer than that of the wild type, then the strength of the variant will be higher;
+since the strength of the strength-like intervention is insensitive to the underlying generation-interval distribution, we may fail to control the spread of the new variant.
+The strength of the speed-like intervention, however, depends on the new variant:
+since speed-like interventions, such as contact tracing, have disproportionate effects on preventing later transmission, they are more effective (therefore stronger) when the mean generation interval of the new variant is longer.
+
+The speed-based paradigm gives same results about the control but provides important insights (\fref{strengthspeed}B).
+The observed speed of the variant at any given moment does not depend on our estimates of its mean generation interval.
+Therefore, if we can prevent infections at a faster rate than the observed speed of spread (i.e., if the speed of intervention is faster than the epidemic speed), we can control the epidemic---this explains why a constant-speed intervention can prevent the spread of the variant regardless of its mean generation interval.
+On the other hand, differences in mean generation intervals between the variant and the wild type imply different post-intervention epidemic speed (therefore, intervention speed) under a constant-strength intervention, explaining why it might not be effective if the variant has longer generation intervals.
 
 \section{Discussion}
 
 Here, we explored how the generation-interval distribution shapes the link between relative strength and speed of the new variant.
-We define relative strength as the ratio between reproduction numbers ($\rho=\RR_v/\RR_w$) and relative speed as the difference between growth rates ($\delta=r_v-r_w$) of the variant and the wild type.
+We define relative strength as the ratio between reproduction numbers ($\rho=\Ry{var}/\Ry{wt}$) and relative speed as the difference between growth rates ($\delta=\ry{var}-\ry{wt}$) of the variant and the wild type.
 When the generation-interval distributions are assumed to be identical, we find that estimates of $\hat{\rho}$ decreases with $r_w$ whereas $\hat{\delta}$ increase with $\RR_w$.
 When we account for possible differences in generation-interval distributions, these relationships can change directions and further lead to biases in these estimates.
+We also show that differences in generation intervals lead to different conclusions about the effectiveness of interventions:
+if the variant has longer or shorter generation intervals than the wild type, we should prioritize speed- or strength-like interventions, respectively.
 
 We argue that both perspectives (i.e., whether we hold relative strength or speed constant) are useful in understanding the dynamics of the new variant.
 Early in the spread, we typically want to fix the relative speed because we can directly observe it.
-As more information about the transmission and immunity profiles of the new variant becomes available, it is better to fix the relative strength as it better matches biological mechanisms of its spread.
+As more information about the transmission and immunity profiles of the new variant becomes available, it is better to fix the relative strength as it better matches biological mechanisms for its higher strength.
 We suggest researchers to be mindful about which quantity they hold constant and how their assumptions lead to their conclusions.
 
 Our simple framework further reveals counterintuitive, but important, insights on how to control the spread of both wild type and variants.
