@@ -32,10 +32,17 @@ relstrength.Rout: relstrength.R
 Ignore += Rtbias.tex rel*.png rel*.tex
 Rtbias.pdf Rtbias.tex: Rtbias.Rout ;
 
+Rtbias.R: renewal_det.R; $(touch)
 Rtbias.Rout: Rtbias.R
 	$(wrapR)
 
+control.tex: control.Rout ;
+control.Rout: control.R
+	$(wrapR)
+
 %.pdf: %.Rout ;
+
+## dotdir.vdtest:
 
 ######################################################################
 
