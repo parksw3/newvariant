@@ -14,7 +14,7 @@ pardata <- expand.grid(kappavec, Rwvec)
 
 Gw <- 5
 
-Gratio <- seq(0.6, 1.4, length.out=31)
+Gratio <- exp(seq(log(1/1.5), log(1.5), length.out=31))
 
 pardata2 <- expand.grid(Rwvec, Gratio)
 
@@ -75,7 +75,8 @@ g2 <- ggplot(deltadata2) +
   geom_hline(yintercept=1/rho, lty=1, col="white") +
   annotate("text", x=1.04, y=1.1, label=c("$\\bar{G}_v=\\bar{G}_w$"), col="white", angle=-90) +
   annotate("text", x=0.8, y=1/rho+0.05, label=c("$\\mathcal{R}_v=1$"), col="white") +
-  scale_x_continuous("Generation interval ratio, $\\bar{G}_v/\\bar{G}_w$", expand=c(0, 0)) +
+  scale_x_log10("Generation interval ratio, $\\bar{G}_{\\mathrm{var}}/\\bar{G}_{\\mathrm{wt}}$", expand=c(0, 0),
+                breaks=c(0.67, 1, 1.5)) +
   scale_y_continuous("Wild type strength, $\\mathcal{R}_w$", expand=c(0, 0)) +
   scale_fill_viridis_c("$\\delta$") +
   ggtitle("B. Different generation intervals") +
@@ -89,7 +90,8 @@ g3 <- ggplot(deltadata2) +
   geom_hline(yintercept=1/rho, lty=1, col="white") +
   annotate("text", x=1.04, y=1.1, label=c("$\\bar{G}_v=\\bar{G}_w$"), col="white", angle=-90) +
   annotate("text", x=0.8, y=1/rho+0.05, label=c("$\\mathcal{R}_v=1$"), col="white") +
-  scale_x_continuous("Generation interval ratio, $\\bar{G}_v/\\bar{G}_w$", expand=c(0, 0)) +
+  scale_x_log10("Generation interval ratio, $\\bar{G}_{\\mathrm{var}}/\\bar{G}_{\\mathrm{wt}}$", expand=c(0, 0),
+                breaks=c(0.67, 1, 1.5)) +
   scale_y_continuous("Wild type strength, $\\mathcal{R}_w$", expand=c(0, 0)) +
   scale_fill_viridis_c("$\\delta-\\hat{\\delta}$", option="A") +
   ggtitle("C. Bias") +

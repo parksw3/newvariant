@@ -1,8 +1,9 @@
 library(dplyr)
-library(ggplot2); theme_set(theme_bw())
+library(ggplot2); theme_set(theme_bw(base_size = 12))
 library(egg)
 library(ggpubr)
 library(gridExtra)
+library(tikzDevice)
 source("renewal_det.R")
 
 ## fix theta = 1.5
@@ -10,14 +11,14 @@ source("renewal_det.R")
 ## fix assumed GI
 ## assume wild type = var but not necessarily the one we're assuming
 
-theta <- 1.5
+theta <- 1.61
 genfun_assumed <- function(x) dgamma(x, 5, 5/5)
-genfun_short <- function(x) dgamma(x, 5, 5/3.5)
-genfun_long <- function(x) dgamma(x, 5, 5/6.5)
+genfun_short <- function(x) dgamma(x, 5, 5/4)
+genfun_long <- function(x) dgamma(x, 5, 5/6)
 
-svec <- c("Wild type GI = Variant GI = Assumed GI",
+svec <- c("Variant GI = Wild type GI = Assumed GI",
           "Variant GI $<$ Wild type GI = Assumed GI",
-          "Wild type GI = Assumed GI $<$ Variant GI")
+          "Variant GI $>$ Wild type GI = Assumed GI")
 
 slist <- list(
   list(genfun1=genfun_assumed,
@@ -37,21 +38,31 @@ for (i in 1:length(svec)) {
   print(i)
   
   tmparg <- c(theta=theta,
-    tmax=150, slist[[i]])
+    tmax=150, slist[[i]],
+    Rfun=function(t) {
+      if (t < 15) {
+        return(2.5)
+      } else {
+        return(2.5 * (1 + 0.7 * cos((t-15)/10))/1.7)
+      }
+    })
   
   rr <- do.call(renewal_det, tmparg) %>%
-    filter(tvec > 15, tvec < 95)
+    filter(tvec > 15, tvec < 70)
   
   g1 <- ggplot(rr) +
-    geom_line(aes(tvec, Ivec1, color="Wild type")) +
-    geom_line(aes(tvec, Ivec2, color="Variant")) +
-    scale_x_continuous("Time (days)", expand=c(0, 0), limits=c(15, 95)) +
-    scale_y_log10("Incidence (1/days)") +
+    geom_line(aes(tvec, Rt1, color="Wild type", lty="True"), lwd=1) +
+    geom_line(aes(tvec, Rt2, color="Variant", lty="True"), lwd=1) +
+    geom_line(aes(tvec, Rtest1, color="Wild type", lty="Estimated"), lwd=1) +
+    geom_line(aes(tvec, Rtest2, color="Variant", lty="Estimated"), lwd=1) +
+    scale_x_continuous("Time (days)", expand=c(0, 0), limits=c(15, 70)) +
+    scale_y_log10("Reproduction number, $\\mathcal{R}(t)$", limits=c(0.25, 7)) +
     scale_color_manual(values=c("red", "black")) +
-    ggtitle(LETTERS[(i-1)*4+1]) +
+    scale_linetype_manual(values=c(2, 1), guide=FALSE) +
+    ggtitle(LETTERS[(i-1)*3+1]) +
     theme(
       panel.grid = element_blank(),
-      legend.position = c(0.35, 0.25),
+      legend.position = c(0.6, 0.81),
       legend.title = element_blank()
     )
   
@@ -59,57 +70,61 @@ for (i in 1:length(svec)) {
     g1 <- g1 + theme(legend.position="none")
   }
   
-  g2 <- ggplot(rr) +
-    geom_line(aes(tvec, Rt1, color="Wild type")) +
-    geom_line(aes(tvec, Rt2, color="Variant")) +
-    geom_line(aes(tvec, Rtest1, color="Wild type"), lty=2) +
-    geom_line(aes(tvec, Rtest2, color="Variant"), lty=2) +
-    scale_x_continuous("Time (days)", expand=c(0, 0), limits=c(15, 95)) +
-    scale_y_continuous("Reproduction number, $\\mathcal{R}(t)$") +
-    scale_color_manual(values=c("red", "black")) +
-    ggtitle(LETTERS[(i-1)*4+2]) +
-    theme(
-      panel.grid = element_blank(),
-      legend.position = "none"
-    )
+  if (i==2) {
+    g1 <- ggplot(rr) +
+      geom_line(aes(tvec, Rt1, lty="True"), color="black", lwd=1) +
+      geom_line(aes(tvec, Rt2, col="True", lty="True"), lwd=1) +
+      geom_line(aes(tvec, Rtest1, lty="Estimated"), col="black", lwd=1) +
+      geom_line(aes(tvec, Rtest2, col="Estimated", lty="Estimated"), lwd=1) +
+      scale_x_continuous("Time (days)", expand=c(0, 0), limits=c(15, 70)) +
+      scale_y_log10("Reproduction number, $\\mathcal{R}(t)$", limits=c(0.25, 7)) +
+      scale_color_manual("a", values=c("red", "red")) +
+      scale_linetype_manual("a", values=c(2, 1)) +
+      ggtitle(LETTERS[(i-1)*3+1]) +
+      theme(
+        panel.grid = element_blank(),
+        legend.position = c(0.6, 0.81),
+        legend.title = element_blank()
+      )
+  }
   
-  g3 <- ggplot(rr) +
-    geom_line(aes(tvec, Rt2/Rt1, color="True ratio")) +
-    geom_line(aes(tvec, Rtest2/Rtest1, color="Estimated ratio")) +
-    scale_x_continuous("Time (days)", expand=c(0, 0), limits=c(15, 95)) +
-    scale_y_continuous("Relative strength, $\\theta(t)$") +
-    scale_color_manual(values=c("orange", "purple")) +
-    ggtitle(LETTERS[(i-1)*4+3]) +
+  g2 <- ggplot(rr) +
+    geom_line(aes(tvec, Rt2/Rt1, col="True", lty="True"), lwd=1) +
+    geom_line(aes(tvec, Rtest2/Rtest1, col="Estimated", lty="Estimated"), lwd=1) +
+    scale_x_continuous("Time (days)", expand=c(0, 0), limits=c(15, 70)) +
+    scale_y_log10("Relative strength, $\\rho(t)$", limits=c(1, 2.5)) +
+    scale_color_manual("a", values=c("orange", "purple")) +
+    scale_linetype_manual("a", values=c(2, 1)) +
+    ggtitle(LETTERS[(i-1)*3+2]) +
     theme(
       panel.grid = element_blank(),
-      legend.position = c(0.7, 0.25),
+      legend.position = c(0.2, 0.27),
       legend.title = element_blank()
     )
   
   if (i != 1) {
-    g3 <- g3 + theme(legend.position="none")
+    g2 <- g2 + theme(legend.position="none")
   }
   
-  g4 <- ggplot(rr) +
-    geom_abline(intercept=0, slope=1, lty=2) +
-    geom_abline(intercept=log10(theta), slope=1, lty=3) +
-    geom_path(aes(Rtest1, Rtest2), col="orange") +
-    scale_x_log10("Estimated wild type strength, $\\hat{\\mathcal{R}}_w(t)$", limits=c(0.01, 4), expand=c(0, 0)) +
-    scale_y_log10("Estimated variant strength, $\\hat{\\mathcal{R}}_v(t)$", limits=c(0.01, 4*theta), expand=c(0, 0)) +
+  g3 <- ggplot(rr) +
+    geom_abline(intercept=log10(theta), col="purple", slope=1, lty=1, lwd=1) +
+    geom_path(aes(Rtest1, Rtest2), col="orange", lwd=1, lty=2) +
+    scale_x_log10("Wild type strength, $\\mathcal{R}_{\\textrm{wt}}(t)$", limits=c(0.2, 3), expand=c(0, 0)) +
+    scale_y_log10("Variant strength, $\\mathcal{R}_{\\textrm{var}}(t)$", limits=c(0.2, 3*theta), expand=c(0, 0)) +
     scale_color_manual(values=c("orange", "purple")) +
-    ggtitle(LETTERS[(i-1)*4+4]) +
+    ggtitle(LETTERS[(i-1)*3+3]) +
     theme(
       panel.grid = element_blank(),
       legend.position = c(0.7, 0.2),
       legend.title = element_blank()
     )
   
-  gtot <- egg::ggarrange(g1, g2, g3, g4, nrow=1, draw=FALSE)
+  gtot <- egg::ggarrange(g1, g2, g3, nrow=1, draw=FALSE)
   
-  glist[[i]] <- annotate_figure(gtot, top=svec[i])
+  glist[[i]] <- annotate_figure(gtot, top=text_grob(svec[i], size=14))
 }
 
-tikz(file = "Rtbias.tex", width = 12, height = 8, standAlone = T)
+tikz(file = "Rtbias.tex", width = 12, height = 10, standAlone = T)
 do.call(grid.arrange, c(glist, ncol=1))
 dev.off()
 tools::texi2dvi('Rtbias.tex', pdf = T, clean = T)
