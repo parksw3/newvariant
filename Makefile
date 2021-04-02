@@ -36,6 +36,7 @@ Rtbias.R: renewal_det.R; $(touch)
 Rtbias.Rout: Rtbias.R
 	$(wrapR)
 
+Ignore += control.tex
 control.tex: control.Rout ;
 control.Rout: control.R
 	$(wrapR)
