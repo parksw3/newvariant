@@ -53,19 +53,9 @@ msrepo = https://github.com/dushoff
 ## Compress this ¶ to choose default makestuff route
 Makefile: makestuff/Makefile
 makestuff/Makefile:
-clonestuff:
-	git clone $(msrepo)/makestuff
-localstuff: 
-	cd .. && $(MAKE) makestuff
-	ln -s ../makestuff .
-checkstuff:
-	ls makestuff/Makefile
-
-
-## not tested
-flexstuff:
 	((cd .. && $(MAKE) makestuff) && ln -s ../makestuff .) \
 	|| git clone $(msrepo)/makestuff
+	ls makestuff/Makefile
 
 -include makestuff/os.mk
 
