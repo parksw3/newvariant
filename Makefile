@@ -42,7 +42,7 @@ control.Rout: control.R
 
 %.pdf: %.Rout ;
 
-## dotdir.vdtest:
+## pmake dotdir.vdtest
 
 ######################################################################
 
