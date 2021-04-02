@@ -29,7 +29,9 @@ relstrength.Rout: relstrength.R
 
 Ignore += Rtbias.tex rel*.png
 Rtbias.pdf Rtbias.tex: Rtbias.Rout ;
+
 Rtbias.Rout: Rtbias.R
+	$(wrapR)
 
 %.pdf: %.Rout ;
 
