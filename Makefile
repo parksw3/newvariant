@@ -33,6 +33,8 @@ Rtbias.Rout: Rtbias.R
 
 %.pdf: %.Rout ;
 
+## git checkout master -- relspeed.tex relstrength.tex ##
+
 ######################################################################
 
 ### Makestuff
