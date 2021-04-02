@@ -46,6 +46,7 @@
 
 \newcommand{\rx}[1]{\ensuremath{{r}_{#1}}\xspace} 
 \newcommand{\ry}[1]{\rx{\mathrm{#1}}}
+\newcommand{\rw}{\ry{wt}}
 
 \newcommand{\Rx}[1]{\ensuremath{{\mathcal R}_{#1}}\xspace} 
 \newcommand{\Ry}[1]{\Rx{\mathrm{#1}}}
@@ -56,6 +57,8 @@
 \newcommand{\Rhat}{\ensuremath{{\hat\RR}}}
 \newcommand{\Rnaive}{\ensuremath{{\mathcal R}_{\textrm{\tiny naive}}}\xspace}
 \newcommand{\tsub}[2]{#1_{{\textrm{\tiny #2}}}}
+\newcommand{\days}{\ensuremath{\, \textrm{day}}}
+\newcommand{\pday}{\ensuremath{/\textrm{day}}}
 \newcommand{\dd}[1]{\ensuremath{\, \mathrm{d}#1}}
 \newcommand{\dtau}{\dd{\tau}}
 \newcommand{\dx}{\dd{x}}
@@ -156,10 +159,10 @@ For simplicity we neglect differences in the squared coefficient of variation an
 
 \section{Inferring relative strength from relative speed}
 
-Epidemic speed $r_x$ can be often estimated directly from case data \citep{mills2004transmissibility,nishiura2009transmission,ma2014estimating}.
-However, estimating epidemic speed from case data can be challenging when case counts are low (e.g., in the beginning of the spread of the new variant) and is sensitive to temporal changes in testing patterns and intensity.
-On the other hand, studies of new SARS-CoV-2 variants have mostly focused on characterizing changes in \emph{proportion} of a new variant \citep{switzerland2021variant, davies2021estimated, di2021impact, leung2021early, volz2021transmission,zhao2021}.
-This has the advantage of being less sensitive to such changes in testing, and possibly for other transient effects that might affect variants and wild type viruses similarly.
+Epidemic speed $r_x$ can be often estimated directly from case data \citep{mills2004transmissibility,nishiura2009transmission,ma2014estimating};
+this can be challenging when case counts are low (as when a new variant begins to spread) and is sensitive to temporal changes in testing patterns and intensity.
+Studies of new SARS-CoV-2 variants have mostly focused on characterizing changes in \emph{proportion} of a new variant \citep{switzerland2021variant, davies2021estimated, di2021impact, leung2021early, volz2021transmission,zhao2021}.
+This has the advantage of being less sensitive to changes in testing and to other transient effects that might affect variants and wild type viruses similarly.
 When incidence is changing exponentially ($i_x(t) = i_x(t_0) \exp(r_x t)$), the proportion of the new variant $p(t)$ follows a logistic equation:
 \begin{align}
 p(t) &= \frac{\iy{var}(t_0) \exp(\ry{var} t)}{\iy{wt}(t_0) \exp(\ry{wt} t) + \iy{var}(t_0) \exp(\ry{var} t)},
@@ -172,44 +175,50 @@ where the logistic growth rate $\delta = \ry{var} - \ry{wt}$ corresponds to the 
 \caption{
 \textbf{Relative strength of the new variant given observed relative speed.}
 (A) Estimated relative strength of the new variant $\hat{\rho}$ given speed of the wild type
-$r_w$ assuming identical generation-interval distributions.
-(B) True relative strength of the new variant $\rho$ given speed of the wild type $r_w$ and ratio between the mean generation interval of the new variant $\bar{G}_v$ and that of the wild type $\bar{G}_w$.
+$\ry{wt}$ assuming identical generation-interval distributions.
+(B) True relative strength of the new variant $\rho$ given speed of the wild type $\ry{wt}$ and ratio between the mean generation interval of the new variant $\bar{G}_v$ and that of the wild type $\bar{G}_w$.
 (C) Ratio between the true and the estimated relative strength of the new variant $\rho/\hat{\rho}$.
-True relative strength of the new variant $\rho$ is calculated using $\delta=0.1\,\textrm{days}$, $\bar{G}_w = 5\,\textrm{days}$, and $\kappa = 1/5$.
+True relative strength of the new variant $\rho$ is calculated using $\delta=0.1\pday$, $\bar{G}_w = 5\days$, and $\kappa = 1/5$.
 }
 \label{fig:relstrength}
 \end{figure}
 
-As our baseline scenario, we assume $\delta = 0.1/\textrm{days}$ based on the observed relative speed of the new variant in the UK \citep{davies2021estimated}.
-This speed can be then used to estimate the relative strength $\rho = \Ry{var}/\Ry{wt}$ of the new variant with a caveat; such inference depends on assumptions about the generation-interval distribution.
-The mean generation interval $\bar{G}_w$ of the wild type is assumed to equal 5 days \citep{ferretti2020quantifying}.
-The squared coefficient of variation $\kappa$ in generation intervals os assumed to equal 0.2 \citep{ferretti2020quantifying}---for simplicity, we assume that both the variant and the wild type have equal $\kappa$ and only consider differences in the mean.
-As we expect there to be greater uncertainty in $\kappa$ than in $\bar{G}$, we evaluate the estimates of relative strength $\rho$ across a wide range of $\kappa$, ranging from 0 (delta distribution) to 1 (exponential distribution).
+We thus ask: what factors affect the relative strength $\rho = \Ry{var}/\Ry{wt}$ of a new variant, given an observed relative speed $\delta$?
+This inference will depend in general on assumptions about the growth rate of the wild type and on the generation-interval distributions of both variants.
+These have generally been assumed to be the same, but we will also consider the possibility that they are different.
 
-Previous studies have assumed that the generation-interval distributions do not differ between the wild type and the variant: $\Gy{var} = \Gy{wt} = \bar{G}$.
-In this case, the estimate of the relative strength is given by \citep{park2019practical}:
+As our baseline scenario, we take the relative speed of the variant to be $\delta = 0.1/\textrm{day}$ \citep{davies2021estimated}; the mean generation interval of the wild type to be $\bar{G}_w = 5\days$ \citep{ferretti2020quantifying}; and the squared coefficient of variation of generation intervals to be $\kappa=0.2$ \citep{ferretti2020quantifying}.
+For simplicity, we assume that the variant and the wild type have equal $\kappa$ throughout, and only consider differences in the mean.
+\jd{This is awkward; let's skip for now:} As we expect there to be greater uncertainty in $\kappa$ than in $\bar{G}$, we evaluate the estimates of relative strength $\rho$ across a wide range of $\kappa$, ranging from 0 (delta distribution) to 1 (exponential distribution).
+
+When the variant and wild type have the same generation-interval distributions, $\Gy{var} = \Gy{wt} = \bar{G}$, 
+the estimate of the relative strength is given by \citep{park2019practical}:
 \begin{equation}
 \hat{\rho} = \left(1 + \frac{\kappa \delta \bar{G}}{1 + \kappa \ry{wt} \bar{G}}\right)^{1/\kappa}.
+\label{eq:rhoGbar}
 \end{equation}
-Therefore, estimates of relative strength $\rho$ depends not only on the relative speed $\delta$ but also on how fast the wild type is spreading in the population $r_w$---a few analyses have implicitly or explicitly neglected this factor by either assuming $r_w = 0$ \citep{switzerland2021variant} or $\kappa = 0$ \citep{davies2021estimated}, in which case we get $\hat{\rho} = \exp(\delta \bar{G})$.
-Instead, if the wild type was spreading faster than previously assumed (higher $r_w$), the estimates of the relative strength $\rho$ will be go down (\fref{relstrength}A).
+Therefore, estimates of relative strength $\rho$ depend not only on the relative speed $\delta$ but also on how fast the wild type is spreading in the population \rw---a few analyses have implicitly or explicitly neglected this factor by either assuming $\rw = 0$ \citep{switzerland2021variant} or $\kappa = 0$ \citep{davies2021estimated} (in the latter case $\hat{\rho} = \exp(\delta \bar{G})$).
+
+\eref{rhoGbar} shows that, for realistic (non-zero) values of $\kappa$, estimates of the strength $\rho$ go down as estimates of the growth rate $\rw$ go up. 
+\jd{I like effective dispersion, but it does no good to just mention it once. Leave it out for now?}
 The relative strength also depends on the \emph{effective dispersion} in generation intervals (i.e., the amount of variability in generation intervals, as measured by $\kappa$)---using narrower distributions makes $\hat{\rho}$ less sensitive to $\ry{wt}$.
+These effects are illustrated in \fref{relstrength}A.
 
 However, if the true mean generation interval of the new variant is different from that of the wild type ($\bar{G}_v \neq \bar{G}_w$), the true relative strength $\rho = \RR_v/\RR_w$ is given by:
 \begin{equation}
-\rho = \left(\frac{1 + \kappa (r_w + \delta) \bar{G}_v}{1 + \kappa r_w \bar{G}_w}\right)^{1/\kappa}.
+\rho = \left(\frac{1 + \kappa (\rw + \delta) \bar{G}_v}{1 + \kappa \rw \bar{G}_w}\right)^{1/\kappa}.
 \end{equation}
-In this case, longer (or shorter) mean generation interval of the new variant generally translates to higher (or lower) values of $\rho$---\fref{relstrength}B illustrates this effect assuming $\kappa = 1/5$.
-However, this direction can change when both the new variant and the wild type are decaying exponentially (see area below $r_v = 0$ line in \fref{relstrength}B)---when disease incidence is decaying exponentially, longer generation intervals lead to a \emph{lower} value of strength (and therefore lower relative strength $\rho$).
+In this case, longer (or shorter) mean generation interval of the new variant generally translates to higher (or lower) values of $\rho$---\fref{relstrength}B illustrates this effect.
+However, this direction can change when both the new variant and the wild type are decaying exponentially (see area below $r_v = 0$ line in \fref{relstrength}B)---for a given rate of decline, longer generation intervals lead to a \emph{lower} value of strength (and therefore lower relative strength $\rho$).
 
-Therefore, neglecting potential differences in generation intervals can lead to both under- and over-estimation of the relative strength.
-In \fref{relstrength}C, we quantify the degrees of bias using the ratio between the true value $\rho$, which accounts for differences in generation-interval distributions, and the estimated value $\hat{\rho}$, which assumes equal generation-interval distributions.
+Therefore, neglecting potential differences in generation intervals can lead to mis-estimation of the relative strength and the variant, with implications for forecasting and planning.
+In \fref{relstrength}C, we quantify the bias that arises by incorrectly assuming generation intervals are the same using the ratio between the true value $\rho$ and the estimated value $\hat{\rho}$, which assumes equal generation-interval distributions.
 Across the ranges of parameters that we consider, we find that up to 1.4 fold (either upward or downward) adjustments to current estimates may be required.
 
 \section{Inferring relative speed from relative strength}
 
-While relative speed is easier to measure, we often do not expect $\delta$ to be constant---this can depend on epidemic and demographic factors and can vary across time and space.
-Instead, biological mechanisms that cause new variant to have higher strength better translate to assuming a constant value of relative strength $\rho$.
+While relative speed is easier to measure, we do not generally expect $\delta$ to be constant if other factors governing epidemic spread are changing.
+Instead, many biological mechanisms better translate to assuming a constant value of relative strength $\rho$ over changing conditions.
 For example, if the new variant has a higher transmission rate, the ratio between the strength of the new variant and that of the wild type will remain constant ($=\rho$) under strength-like interventions that reduces the strength of both strains by a constant amount.
 However, this is not necessarily true under speed-like interventions (e.g., contact tracing and self-isolation), which depends on time since infection: if the generation-interval distributions are different, the effectiveness of interventions will also differ.
 For now, we consider consequences of assuming a constant relative strength $\rho$ and predicting the relative speed $\delta$---an assumption often made (either implicitly or explicitly) in studies that have tried to predict the future spread of the new variant, including when it will replace the wild type.
@@ -305,8 +314,8 @@ If $K(\tau)/L(\tau)$.
 \section{Discussion}
 
 Here, we explored how the generation-interval distribution shapes the link between relative strength and speed of the new variant.
-We define relative strength as the ratio between reproduction numbers ($\rho=\RR_v/\RR_w$) and relative speed as the difference between growth rates ($\delta=r_v-r_w$) of the variant and the wild type.
-When the generation-interval distributions are assumed to be identical, we find that estimates of $\hat{\rho}$ decreases with $r_w$ whereas $\hat{\delta}$ increase with $\RR_w$.
+We define relative strength as the ratio between reproduction numbers ($\rho=\RR_v/\RR_w$) and relative speed as the difference between growth rates ($\delta=r_v-\rw$) of the variant and the wild type.
+When the generation-interval distributions are assumed to be identical, we find that estimates of $\hat{\rho}$ decreases with $\rw$ whereas $\hat{\delta}$ increase with $\RR_w$.
 When we account for possible differences in generation-interval distributions, these relationships can change directions and further lead to biases in these estimates.
 
 We argue that both perspectives (i.e., whether we hold relative strength or speed constant) are useful in understanding the dynamics of the new variant.
