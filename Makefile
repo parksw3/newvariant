@@ -21,13 +21,15 @@ Sources += notes.md
 # tikz figures; come up with a pipeline
 
 Ignore += relstrength.pdf relspeed.pdf
+relspeed.tex: relspeed.Rout ;
 relspeed.Rout: relspeed.R
 	$(wrapR)
 
+relstrength.tex: relstrength.Rout ;
 relstrength.Rout: relstrength.R
 	$(wrapR)
 
-Ignore += Rtbias.tex rel*.png
+Ignore += Rtbias.tex rel*.png rel*.tex
 Rtbias.pdf Rtbias.tex: Rtbias.Rout ;
 
 Rtbias.Rout: Rtbias.R
