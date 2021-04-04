@@ -56,7 +56,7 @@ for (i in 1:length(svec)) {
     geom_line(aes(tvec, Rtest1, color="Wild type", lty="Estimated"), lwd=1) +
     geom_line(aes(tvec, Rtest2, color="Variant", lty="Estimated"), lwd=1) +
     scale_x_continuous("Time (days)", expand=c(0, 0), limits=c(15, 70)) +
-    scale_y_log10("Reproduction number, $\\mathcal{R}(t)$", limits=c(0.25, 7)) +
+    scale_y_continuous("Reproduction number, $\\mathcal{R}(t)$", limits=c(0.25, 7)) +
     scale_color_manual(values=c("red", "black")) +
     scale_linetype_manual(values=c(2, 1), guide=FALSE) +
     ggtitle(LETTERS[(i-1)*3+1]) +
@@ -77,7 +77,7 @@ for (i in 1:length(svec)) {
       geom_line(aes(tvec, Rtest1, lty="Estimated"), col="black", lwd=1) +
       geom_line(aes(tvec, Rtest2, col="Estimated", lty="Estimated"), lwd=1) +
       scale_x_continuous("Time (days)", expand=c(0, 0), limits=c(15, 70)) +
-      scale_y_log10("Reproduction number, $\\mathcal{R}(t)$", limits=c(0.25, 7)) +
+      scale_y_continuous("Reproduction number, $\\mathcal{R}(t)$", limits=c(0.25, 7)) +
       scale_color_manual("a", values=c("red", "red")) +
       scale_linetype_manual("a", values=c(2, 1)) +
       ggtitle(LETTERS[(i-1)*3+1]) +
@@ -92,13 +92,13 @@ for (i in 1:length(svec)) {
     geom_line(aes(tvec, Rt2/Rt1, col="True", lty="True"), lwd=1) +
     geom_line(aes(tvec, Rtest2/Rtest1, col="Estimated", lty="Estimated"), lwd=1) +
     scale_x_continuous("Time (days)", expand=c(0, 0), limits=c(15, 70)) +
-    scale_y_log10("Relative strength, $\\rho(t)$", limits=c(1, 2.5)) +
+    scale_y_continuous("Relative strength, $\\rho(t)$", limits=c(1, 2.5)) +
     scale_color_manual("a", values=c("orange", "purple")) +
     scale_linetype_manual("a", values=c(2, 1)) +
     ggtitle(LETTERS[(i-1)*3+2]) +
     theme(
       panel.grid = element_blank(),
-      legend.position = c(0.2, 0.27),
+      legend.position = c(0.2, 0.81),
       legend.title = element_blank()
     )
   
@@ -107,10 +107,10 @@ for (i in 1:length(svec)) {
   }
   
   g3 <- ggplot(rr) +
-    geom_abline(intercept=log10(theta), col="purple", slope=1, lty=1, lwd=1) +
+    geom_abline(intercept=0, col="purple", slope=theta, lty=1, lwd=1) +
     geom_path(aes(Rtest1, Rtest2), col="orange", lwd=1, lty=2) +
-    scale_x_log10("Wild type strength, $\\mathcal{R}_{\\textrm{wt}}(t)$", limits=c(0.2, 3), expand=c(0, 0)) +
-    scale_y_log10("Variant strength, $\\mathcal{R}_{\\textrm{var}}(t)$", limits=c(0.2, 3*theta), expand=c(0, 0)) +
+    scale_x_continuous("Wild type strength, $\\mathcal{R}_{\\textrm{wt}}(t)$", limits=c(0, 3), expand=c(0, 0)) +
+    scale_y_continuous("Variant strength, $\\mathcal{R}_{\\textrm{var}}(t)$", limits=c(0, 3*theta), expand=c(0, 0)) +
     scale_color_manual(values=c("orange", "purple")) +
     ggtitle(LETTERS[(i-1)*3+3]) +
     theme(

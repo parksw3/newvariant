@@ -55,7 +55,7 @@ g1 <- ggplot(deltadata) +
   geom_line(aes(Gratio, delta, lty=kappa, col=kappa)) +
   scale_x_log10("Relative mean generation interval, $\\bar{G}_{\\mathrm{var}}/\\bar{G}_{\\mathrm{wt}}$",
                 breaks=c(0.67, 1, 1.5)) +
-  scale_y_continuous("Relative speed, $\\delta$") +
+  scale_y_continuous("Relative speed, $\\delta$ (1/day)") +
   facet_wrap(~Rw) +
   scale_color_colorblind("$\\kappa$") +
   scale_linetype_discrete("$\\kappa$") +
