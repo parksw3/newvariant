@@ -48,6 +48,9 @@ deltadata <- apply(pardata, 1, function(x) {
                        "$1 < \\mathcal{R}_{\\textrm{wt}} < \\mathcal{R}_{\\textrm{var}}$"))
   )
 
+deltadata %>%
+  filter(Gratio==1, kappa==0.5)
+
 g1 <- ggplot(deltadata) +
   geom_line(aes(Gratio, delta, lty=kappa, col=kappa)) +
   scale_x_log10("Relative mean generation interval, $\\bar{G}_{\\mathrm{var}}/\\bar{G}_{\\mathrm{wt}}$",
