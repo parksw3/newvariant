@@ -290,10 +290,11 @@ When the assumed distribution matches the true distributions, the estimated repr
 However, if the generation-interval distribution of the variant is different from the assumed distribution, the ratio changes over time (\fref{Rtbias}F,I).
 In particular, if the true generation intervals have a shorter (or longer) mean than the assumed distribution, we over-estimate (or under-estimate) $\Rv(t)$ during the growth phase and under-estimate (or over-estimate) $ $ during the decay phase (\fref{Rtbias}D,G), which further translates to biases in the estimated relative strength (\fref{Rtbias}F,I).
 
-We can assess these biases by plotting the estimated strength of the variant $\hat{\RR}_{\textrm{var}}(t)$ against the estimated strength of the wild type $\hat{\RR}_{\textrm{wt}}(t)$ (\fref{Rtbias}C,F,I).
+We can also assess these biases by plotting the estimated strength of the variant $\hat{\RR}_{\textrm{var}}(t)$ against the estimated strength of the wild type $\hat{\RR}_{\textrm{wt}}(t)$ (\fref{Rtbias}C,F,I).
 When generation-interval distributions are correctly specified, we obtain a straight line with a slope of $\rho$ and intercept at zero (\fref{Rtbias}C).
 When the assumed mean generation interval is longer (or shorter) than the that of the variant, we over-estimate (or under-estimate) the slope (\fref{Rtbias}H,L).
-Smooth changes in $\RR$ generate circular patterns but biases in slopes are clear.
+In addition, the intercept (if we were to perform regression) need not be at zero due to biases in the slope.
+Smooth changes in $\RR$ further generate circular patterns but biases in slopes are clear.
 
 \section{Implications for intervention strategies}
 
