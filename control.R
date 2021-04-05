@@ -67,7 +67,7 @@ g1 <- ggplot(intervention) +
   geom_line(aes(Gratio, speed_strength, col="Constant speed intervention", lty="Constant speed intervention"), lwd=1) +
   scale_x_log10("Generation interval ratio, $\\bar{G}_{\\mathrm{var}}/\\bar{G}_{\\mathrm{wt}}$",
                 breaks=c(0.67, 1, 1.5)) +
-  scale_y_log10("Strength") +
+  scale_y_log10("Strength", breaks=c(1, 2, 4), limits=c(1, 4)) +
   scale_linetype_manual("", values=3:1) +
   scale_color_manual("", values=rev(colorblind_pal()(3))) +
   ggtitle("A") +

@@ -52,6 +52,7 @@ deltadata %>%
   filter(Gratio==1, kappa==0.5)
 
 g1 <- ggplot(deltadata) +
+  geom_hline(data=deltadata2, aes(yintercept=delta)) +
   geom_line(aes(Gratio, delta, lty=kappa, col=kappa)) +
   scale_x_log10("Relative mean generation interval, $\\bar{G}_{\\mathrm{var}}/\\bar{G}_{\\mathrm{wt}}$",
                 breaks=c(0.67, 1, 1.5)) +
@@ -62,6 +63,8 @@ g1 <- ggplot(deltadata) +
   theme(
     panel.grid = element_blank()
   )
+
+
 
 tikz(file = "relspeed.tex", width = 6*1.2, height = 4*1.2, standAlone = T)
 g1

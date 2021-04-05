@@ -52,7 +52,7 @@ g1 <- ggplot(rhodata) +
   geom_line(aes(Gratio, rho, lty=kappa, col=kappa)) +
   scale_x_log10("Relative mean generation interval, $\\bar{G}_{\\mathrm{var}}/\\bar{G}_{\\mathrm{wt}}$",
                 breaks=c(0.67, 1, 1.5)) +
-  scale_y_continuous("Relative strength, $\\rho$") +
+  scale_y_log10("Relative strength, $\\rho$", breaks=c(1, 2, 4), limits=c(1, 4)) +
   facet_wrap(~rw) +
   scale_color_colorblind("$\\kappa$") +
   scale_linetype_discrete("$\\kappa$") +
