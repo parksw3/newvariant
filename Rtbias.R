@@ -56,7 +56,8 @@ for (i in 1:length(svec)) {
     geom_line(aes(tvec, Rtest1, color="Wild type", lty="Estimated"), lwd=1) +
     geom_line(aes(tvec, Rtest2, color="Variant", lty="Estimated"), lwd=1) +
     scale_x_continuous("Time (days)", expand=c(0, 0), limits=c(15, 70)) +
-    scale_y_continuous("Reproduction number, $\\mathcal{R}(t)$", limits=c(0.25, 7)) +
+    scale_y_log10("Reproduction number, $\\mathcal{R}(t)$", limits=c(0.25, 8),
+                  breaks=c(0.25, 0.5, 1, 2, 4, 8)) +
     scale_color_manual(values=c("red", "black")) +
     scale_linetype_manual(values=c(2, 1), guide=FALSE) +
     ggtitle(LETTERS[(i-1)*3+1]) +
@@ -77,7 +78,8 @@ for (i in 1:length(svec)) {
       geom_line(aes(tvec, Rtest1, lty="Estimated"), col="black", lwd=1) +
       geom_line(aes(tvec, Rtest2, col="Estimated", lty="Estimated"), lwd=1) +
       scale_x_continuous("Time (days)", expand=c(0, 0), limits=c(15, 70)) +
-      scale_y_continuous("Reproduction number, $\\mathcal{R}(t)$", limits=c(0.25, 7)) +
+      scale_y_log10("Reproduction number, $\\mathcal{R}(t)$", limits=c(0.25, 8),
+                    breaks=c(0.25, 0.5, 1, 2, 4, 8)) +
       scale_color_manual("a", values=c("red", "red")) +
       scale_linetype_manual("a", values=c(2, 1)) +
       ggtitle(LETTERS[(i-1)*3+1]) +
@@ -92,7 +94,7 @@ for (i in 1:length(svec)) {
     geom_line(aes(tvec, Rt2/Rt1, col="True", lty="True"), lwd=1) +
     geom_line(aes(tvec, Rtest2/Rtest1, col="Estimated", lty="Estimated"), lwd=1) +
     scale_x_continuous("Time (days)", expand=c(0, 0), limits=c(15, 70)) +
-    scale_y_continuous("Relative strength, $\\rho(t)$", limits=c(1, 2.5)) +
+    scale_y_log10("Relative strength, $\\rho(t)$", limits=c(1, 2.5)) +
     scale_color_manual("a", values=c("orange", "purple")) +
     scale_linetype_manual("a", values=c(2, 1)) +
     ggtitle(LETTERS[(i-1)*3+2]) +
