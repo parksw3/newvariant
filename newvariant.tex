@@ -112,6 +112,13 @@
 
 \section*{Abstract}
 
+Inferring relative strength (i.e., ratio between reproduction numbers, $\Rv/\Rw$) and relative speed (i.e., difference between growth rate, $\rv-\rw$) of new SARS-CoV-2 variants compared to their wild type is critical to predicting the course of the current pandemic and controlling it.
+Many studies have already estimated the relative strength of new variants from their relative speed, but they typically neglect the possibility that the new variants may have different generation intervals (i.e., time between infection and transmission), which determines the relationship between relative strength and speed.
+However, a recent study suggests that B.1.1.7 strain may have longer infectious period, meaning that some variants, including B.1.1.7, may be able to transmit for a longer period of time and have different generation intervals from the wild type.
+Here, we explore how differences in generation intervals between a new variant and the wild type affects the relationship between relative strength and speed.
+We use simulations to show how neglecting their differences can lead to biases and illustrate how such biases can be assessed in practice.
+Finally, we discuss implications for control: if new variants have longer generation intervals, speed-like interventions (e.g., contact tracing) will be more relatively effective than strength-like interventions (e.g., social distancing), and therefore should be prioritized (and vice versa).
+
 \section{Introduction}
 
 Since the emergence of SARS-CoV-2 variants of concern (VoCs), estimating variant epidemic strength and speed remains one of the key questions in controlling its spread \citep{switzerland2021variant, davies2021estimated, di2021impact, leung2021early, volz2021transmission,zhao2021}.
@@ -198,7 +205,7 @@ Then, given the mean generation interval of the variant $\Gv$ and the wild type 
 \end{equation}
 Therefore, the relative strength $\rho$ depend not only on the relative speed $\delta$ and the generation-interval distributions but also on how fast the wild type is spreading in the population \rw---a few analyses have implicitly or explicitly neglected this factor by either assuming $\rw = 0$ \citep{switzerland2021variant} or $\kappa = 0$ \citep{davies2021estimated} (in the latter case $\hat{\rho} = \exp(\delta \bar{G})$).
 
-As our baseline scenario, we take the relative speed of the variant to be $\delta = 0.1/\textrm{day}$ based on the observed relaitve growth rate of B.1.1.7 \citep{davies2021estimated}; the mean generation interval of the wild type to be $\bar{G}_w = 5\days$ \citep{ferretti2020quantifying}; and the squared coefficient of variation of generation intervals to be $\kappa=0.2$ \citep{ferretti2020quantifying}.
+As our baseline scenario, we take the relative speed of the variant to be $\delta = 0.1/\textrm{day}$ based on the observed relative growth rate of B.1.1.7 \citep{davies2021estimated}; the mean generation interval of the wild type to be $\bar{G}_w = 5\days$ \citep{ferretti2020quantifying}; and the squared coefficient of variation of generation intervals to be $\kappa=0.2$ \citep{ferretti2020quantifying}.
 We use relative speed of B.1.1.7 as an example but note that the qualitative conclusions should hold for other variants as well.
 For simplicity, we assume that the variant and the wild type have equal $\kappa$ throughout, and only consider differences in the mean.
 We evaluate the estimates of relative strength $\rho$ across a wide range of $\kappa$, ranging from 0 (delta distribution) to 1 (exponential distribution).
@@ -338,7 +345,7 @@ Therefore, if we can reduce infectiousness at a faster rate than the observed sp
 Here, we explored how the generation-interval distribution shapes the link between relative strength and speed of the new variant.
 We define relative strength as the ratio between reproduction numbers ($\rho=\Rv/\Rw$) and relative speed as the difference between growth rates ($\delta=\rv-\rw$) of the variant and the wild type.
 We show that longer generation intervals generally lead to higher relative strength for a given relative speed (and conversely, lower relative speed for a given relative strength); these can be reversed when incidence is decreasing.e., $\Rv > 1$ and $\rv > 0$).
-We also that uncertainty about the relative mean generation interval of the variant has important implications for estimates of relative strength of the variantj.
+We also that uncertainty about the relative mean generation interval of the variant has important implications for estimates of relative strength of the variant.
 We illustrate how these biases might be assessed and discuss how differences in generation intervals might lead to different conclusions about the effectiveness of interventions:
 if the variant has longer (respectively, shorter) generation intervals than the wild type, speed-like (strength-like) interventions, will be more relatively more effective than naive estimates would suggest. 
 
