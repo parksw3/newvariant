@@ -208,7 +208,7 @@ Given the mean generation interval of the variant $\Gv$ and the wild type $\Gw$,
 \end{equation}
 Therefore, the relative strength $\rho$ depend not only on the relative speed $\delta$ and the generation-interval distributions but also on how fast the wild type is spreading in the population \rw---a few analyses have implicitly or explicitly neglected this factor by either assuming $\rw = 0$ \citep{switzerland2021variant} or $\kappa = 0$ \citep{davies2021estimated} (in the latter case $\hat{\rho} = \exp(\delta \bar{G})$).
 
-As our baseline scenario, we take the relative speed of the variant to be $\delta = 0.1/\textrm{day}$ based on the observed relative growth rate of B.1.1.7 \citep{davies2021estimated}; the mean generation interval of the wild type to be $\bar{G}_w = 5\days$ \citep{ferretti2020quantifying}; and the squared coefficient of variation of generation intervals to be $\kappa=0.2$ \citep{ferretti2020quantifying}.
+As our baseline scenario, we take the relative speed of the variant to be $\delta = 0.1/\textrm{day}$ based on the observed relative growth rate of B.1.1.7 \citep{davies2021estimated}; the mean generation interval of the wild type to be $\Gw = 5\days$ \citep{ferretti2020quantifying}; and the squared coefficient of variation of generation intervals to be $\kappa=0.2$ \citep{ferretti2020quantifying}.
 We use relative speed of B.1.1.7 as an example but note that the qualitative conclusions should hold for other variants as well.
 As noted above, we assume that the variant and the wild type have equal $\kappa$ throughout, and only consider differences in the mean.
 We evaluate the estimates of relative strength $\rho$ across a wide range of $\kappa$ from 0 (delta distribution) to 1 (exponential distribution).
@@ -246,7 +246,7 @@ We also evaluate $\delta$ across four different epidemiological conditions as be
 \caption{
 \textbf{Relative speed of the new variant given assumed relative strength under four epidemiological conditions.}
 The relative speed of the new variant $\delta$ given strength of the wild type $\Rw$, ratio between the mean generation interval of the new variant $\Gv$ and that of the wild type $\Gw$, and squared coefficient of variation in generation intervals $\kappa$.
-Relative speed of the new variant $\delta$ is calculated using $\rho=1.61$, $\bar{G}_w = 5\days$, and $\kappa = 1/5$.
+Relative speed of the new variant $\delta$ is calculated using $\rho=1.61$, $\Gw = 5\days$, and $\kappa = 1/5$.
 Four epidemiological conditions assume $\Rw=0.5/\rho$ ($\Rw < \Rv < 1$), $\Rw=1/\rho$ ($\Rw < \Rv = 1$), $\Rw=1$ ($1 = \Rw < \Rv$), and $\Rw=\rho$ ($0 < \Rw < \Rv$).
 }
 \label{fig:relspeed}
