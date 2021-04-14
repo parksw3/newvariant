@@ -298,13 +298,15 @@ For all simulations, squared coefficient of variation in generation intervals is
 
 When the assumed distribution matches the true distribution, the estimated reproduction numbers match the true values (\fref{Rtbias}A), and therefore the ratio remains constant (\fref{Rtbias}B).
 However, if the generation-interval distribution of the variant differs from the assumed distribution, the ratio changes over time (\fref{Rtbias}E,H).
-In particular, if the true generation intervals have a shorter mean than the assumed distribution, we over-estimate $\Rv(t)$ during the growth phase and under-estimate during the decay phase (and vice versa, \fref{Rtbias}D,G), which further translates to biases in the estimated relative strength (\fref{Rtbias}F,I).
+In particular, if the true generation intervals have a shorter mean than the assumed distribution, we over-estimate $\Rv(t)$ during the growth phase and under-estimate during the decay phase (and vice versa, \fref{Rtbias}D,G), which further translates to biases in the estimated relative strength (\fref{Rtbias}E,H).
+Therefore, biases in the estimated relative strength will correlate with the strength of the variant, (i.e., whether $\Rv(t)$ is below or above 1).
 
-We can also assess these biases by plotting the estimated strength of the variant $\hat{\RR}_{\textrm{var}}(t)$ against the estimated strength of the wild type $\hat{\RR}_{\textrm{wt}}(t)$ (\fref{Rtbias}C,F,I).
+In practice, estimates of instantaneous reproduction numbers $\RR(t)$ (and therefore, their ratios) can be noisy due to limited data availability or model assumptions;
+instead, we might want to estimate a single value of relative strength $\rho$.
+For example, we can estimate $\rho$ by plotting the estimated strength of the variant $\hat{\RR}_{\textrm{var}}(t)$ against the estimated strength of the wild type $\hat{\RR}_{\textrm{wt}}(t)$---as presented in Figure 2 of \cite{volz2021transmission}---and performing a linear regression (\fref{Rtbias}C,F,I).
 When generation-interval distributions are correctly specified, we obtain a straight line with a slope of $\rho$ and intercept at zero (\fref{Rtbias}C).
-When the assumed mean generation interval is longer than the that of the variant, we over-estimate the slope (and vice versa, \fref{Rtbias}F,I).
-In addition, the intercept (if we were to perform regression) need not be at zero due to biases in the slope.
-Smooth changes in $\RR$ further generate circular patterns but biases in slopes are clear.
+However, when the assumed mean generation interval is longer than the that of the variant, we over-estimate the slope (and vice versa, \fref{Rtbias}F,I).
+In theory, we expect the regression line to go through the origin, but when the assumed generation-interval distribution differs from the true distribution, this is not necessarily the case: biases in slopes due to mis-specified generation-interval distributions also lead to biases in intercepts.
 
 \section{Implications for intervention strategies}
 
@@ -315,8 +317,10 @@ As a baseline scenario, we assume $\rw=0$ and $\delta=0.1\pday$ (and therefore $
 We consider two types of intervention:
 an intervention of constant strength, which reduces transmission by a constant factor $\theta$ regardless of age of infection ($K_{\mathrm{post}}(\tau) = K_{\mathrm{pre}}(\tau)/\theta$); and an intervention of constant speed, which reduces transmission after infection by a constant rate $\phi$ ($K_{\mathrm{post}}(\tau) = K_{\mathrm{pre}}(\tau) \exp(-\phi \tau)$).
 In this case, we can control the spread of the variant when $\theta > \Rv$ or $\phi > \rv$, respectively.
-In general, we can calculate the strength ($\theta = \Ry{pre}/\Ry{post}$) and speed ($\phi = \ry{pre} - \ry{post}$) for any intervention by comparing epidemiological conditions before and after the intervention \citep{doi:10.1098/rspb.2020.1556}---these quantities, by definition, must be greater than the pre-intervention strength or speed of the epidemic in order to control the epidemic.
-Here, we use the strength-and-speed framework to compare how differences in generation-interval distributions would affect the control of the spread of a new variant.
+As a baseline scenario, we consider constant-strength and speed interventions that reduce $\Rv$ to 0.9 when both the variant and the wild type have equal mean generation intervals (\fref{strengthspeed}A--B).
+While both interventions are equally effective on strength-scale (that is, $\Ry{post}=\int  K_{\mathrm{post}}(\tau) \dtau = 0.9$), they have different dynamical implications.
+The constant-strength intervention affects transmission equally throughout the course of infection, whereas the constant-speed intervention has greater impact of transmission that occur later;
+as a result, the constant-speed intervention reduces the post-intervention mean generation interval (\fref{strengthspeed}B) and leads to (slightly) faster exponential decay (therefore, lower $\ry{post}$).
 
 \begin{figure}[!th]
 \includegraphics[width=\textwidth]{control.pdf}
@@ -330,16 +334,26 @@ Constant strength and speed interventions are modeled such that post interventio
 \label{fig:strengthspeed}
 \end{figure}
 
-\fref{strengthspeed} compares the effectiveness of strength-based and speed-based interventions across a wide range of assumptions about generation-interval distributions.
-We begin by assuming that the variant and the wild type have equal mean generation intervals and model interventions such that they both reduce $\Rv$ to 0.9 after intervention (\fref{strengthspeed}A).
-If the mean generation interval of the variant is longer than that of the wild type, then the strength of the variant will be higher;
-since the strength of the strength-like intervention is insensitive to the underlying generation-interval distribution, we may fail to control the spread of the new variant.
-With speed-like interventions, however, there is a countervailing effect:
-since speed-like interventions like contact tracing have disproportionate effects on preventing later transmission, they are more effective (therefore stronger) when the mean generation interval of the new variant is longer. 
+However, if the variant has longer generation intervals than the wild type (\fref{strengthspeed}C--D),  then the strength of the variant will be higher conditional on the observed speed (\fref{strengthspeed}E).
+In this case, the same constant-strength intervention can fail to control the epidemic (i.e., $\Ry{post} > 1$; \fref{strengthspeed}E) because this intervention reduces the transmission by a constant amount regardless of age of infection (\fref{strengthspeed}C).
+On the other hand, the same constant-speed intervention will prevent a larger proportion of transmission, leading to lower $\Ry{post}$ (\fref{strengthspeed}E), because it is more effective against late-stage transmission (\fref{strengthspeed}D).
+The constant-speed intervention also has a greater impact on reducing the mean generation interval (\fref{strengthspeed}D).
 
-The speed-based paradigm gives the same results about the control but provides important insights (\fref{strengthspeed}B).
-The observed speed of the variant at any given moment is independent of our estimates of its mean generation interval.
-Therefore, if we can reduce infectiousness at a faster rate than the observed speed of spread (i.e., if the speed of intervention is faster than the epidemic speed), we can control the epidemic---this explains why a constant-speed intervention can prevent the spread of the variant regardless of its mean generation interval.
+The speed-based paradigm gives the same results about the control but provides important insights (\fref{strengthspeed}F).
+The observed speed of the variant $\rv$ at a given moment is independent of our estimates of its mean generation interval.
+Likewise, the post-intervention speed of the variant under the constant-speed intevention is also independent of the mean generation interval;
+therefore, the constant-speed intevention will be always equally effective (on the speed scale) in preventing the spread.
+
+The constant post-intervention speed can be understood by considering a speed-based decomposition of the kernel: $K_{\mathrm{pre}}(\tau) = \exp(\rv) b(\tau)$, where $b(\tau)$ is the initial backward generation-interval distribution and therefore integrates to 1 \citep{doi:10.1098/rspb.2020.1556}.
+This decomposition allows us to re-write the post-intervention kernel (under the constant-speed intervention) as follows:
+\begin{equation}
+K_{\mathrm{post}}(\tau) = \exp(\rv-\phi) b(\tau).
+\end{equation}
+Since the post-intervention speed $\ry{post}$ is determined by the following implicit equation,
+\begin{equation}
+1 = \int_0^\infty \exp(-\ry{post} \tau) K_{\mathrm{post}}(\tau) \dtau = \int_0^\infty \exp(\rv-\phi-\ry{post}) b(\tau)  \dtau,
+\end{equation}
+we have $\ry{post} = \phi - \rv$. Therefore, if we can reduce infectiousness at a faster rate than the observed speed of spread (i.e., if the speed of intervention is faster than the epidemic speed, $\phi > \rv$), we can control the epidemic regardless of the underlying generation-interval distribution.
 
 \section{Discussion}
 
