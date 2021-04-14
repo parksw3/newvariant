@@ -1,5 +1,5 @@
 library(dplyr)
-library(ggplot2); theme_set(theme_bw(base_size = 12))
+library(ggplot2); theme_set(theme_bw(base_size = 14))
 library(egg)
 library(ggpubr)
 library(gridExtra)
@@ -40,10 +40,12 @@ for (i in 1:length(svec)) {
   tmparg <- c(theta=theta,
     tmax=150, slist[[i]],
     Rfun=function(t) {
-      if (t < 15) {
-        return(2.5)
+      if (t < 30) {
+        return(2)
+      } else if (t < 60) {
+        return(0.5)
       } else {
-        return(2.5 * (1 + 0.7 * cos((t-15)/10))/1.7)
+        return(1.2)
       }
     })
   
@@ -51,10 +53,10 @@ for (i in 1:length(svec)) {
     filter(tvec > 15, tvec < 70)
   
   g1 <- ggplot(rr) +
-    geom_line(aes(tvec, Rt1, color="Wild type", lty="True"), lwd=1) +
-    geom_line(aes(tvec, Rt2, color="Variant", lty="True"), lwd=1) +
-    geom_line(aes(tvec, Rtest1, color="Wild type", lty="Estimated"), lwd=1) +
-    geom_line(aes(tvec, Rtest2, color="Variant", lty="Estimated"), lwd=1) +
+    geom_line(aes(tvec, Rt1, color="Wild type", lty="True"), lwd=2) +
+    geom_line(aes(tvec, Rt2, color="Variant", lty="True"), lwd=2) +
+    geom_line(aes(tvec, Rtest1, color="Wild type", lty="Estimated"), lwd=2) +
+    geom_line(aes(tvec, Rtest2, color="Variant", lty="Estimated"), lwd=2) +
     scale_x_continuous("Time (days)", expand=c(0, 0), limits=c(15, 70)) +
     scale_y_log10("Reproduction number, $\\mathcal{R}(t)$", limits=c(0.25, 8),
                   breaks=c(0.25, 0.5, 1, 2, 4, 8)) +
@@ -73,10 +75,10 @@ for (i in 1:length(svec)) {
   
   if (i==2) {
     g1 <- ggplot(rr) +
-      geom_line(aes(tvec, Rt1, lty="True"), color="black", lwd=1) +
-      geom_line(aes(tvec, Rt2, col="True", lty="True"), lwd=1) +
-      geom_line(aes(tvec, Rtest1, lty="Estimated"), col="black", lwd=1) +
-      geom_line(aes(tvec, Rtest2, col="Estimated", lty="Estimated"), lwd=1) +
+      geom_line(aes(tvec, Rt1, lty="True"), color="black", lwd=2) +
+      geom_line(aes(tvec, Rt2, col="True", lty="True"), lwd=2) +
+      geom_line(aes(tvec, Rtest1, lty="Estimated"), col="black", lwd=2) +
+      geom_line(aes(tvec, Rtest2, col="Estimated", lty="Estimated"), lwd=2) +
       scale_x_continuous("Time (days)", expand=c(0, 0), limits=c(15, 70)) +
       scale_y_log10("Reproduction number, $\\mathcal{R}(t)$", limits=c(0.25, 8),
                     breaks=c(0.25, 0.5, 1, 2, 4, 8)) +
@@ -91,8 +93,8 @@ for (i in 1:length(svec)) {
   }
   
   g2 <- ggplot(rr) +
-    geom_line(aes(tvec, Rt2/Rt1, col="True", lty="True"), lwd=1) +
-    geom_line(aes(tvec, Rtest2/Rtest1, col="Estimated", lty="Estimated"), lwd=1) +
+    geom_line(aes(tvec, Rt2/Rt1, col="True", lty="True"), lwd=2) +
+    geom_line(aes(tvec, Rtest2/Rtest1, col="Estimated", lty="Estimated"), lwd=2) +
     scale_x_continuous("Time (days)", expand=c(0, 0), limits=c(15, 70)) +
     scale_y_log10("Relative strength, $\\rho(t)$", limits=c(1, 2.5)) +
     scale_color_manual("a", values=c("orange", "purple")) +
@@ -109,17 +111,34 @@ for (i in 1:length(svec)) {
   }
   
   g3 <- ggplot(rr) +
-    geom_abline(intercept=0, col="purple", slope=theta, lty=1, lwd=1) +
-    geom_path(aes(Rtest1, Rtest2), col="orange", lwd=1, lty=2) +
-    scale_x_continuous("Wild type strength, $\\mathcal{R}_{\\textrm{wt}}(t)$", limits=c(0, 3), expand=c(0, 0)) +
+    geom_abline(intercept=0, col="purple", slope=theta, lty=1, lwd=2) +
+    geom_path(aes(Rtest1, Rtest2), col="orange", lty=2, lwd=2) +
+    geom_abline(intercept=0, col="gray", slope=1, lty=1, lwd=1) +
+    scale_x_continuous("Wild type strength, $\\mathcal{R}_{\\textrm{wt}}(t)$", limits=c(0, 3*theta), expand=c(0, 0)) +
     scale_y_continuous("Variant strength, $\\mathcal{R}_{\\textrm{var}}(t)$", limits=c(0, 3*theta), expand=c(0, 0)) +
-    scale_color_manual(values=c("orange", "purple")) +
     ggtitle(LETTERS[(i-1)*3+3]) +
     theme(
       panel.grid = element_blank(),
       legend.position = c(0.7, 0.2),
       legend.title = element_blank()
     )
+  
+  if (i==1) {
+    g3 <- g3 +
+      annotate("text", x=3.7, y=2.5, label="$\\mathcal{R}_{\\textrm{var}}(t)=\\mathcal{R}_{\\textrm{wt}}(t)$")
+  }
+  
+  if (i != 1) {
+    g3 <- g3 +
+      geom_smooth(aes(Rtest1, Rtest2, col="Regression", lty="Regression"), method="lm", fullrange=TRUE, se=FALSE, lwd=2) +
+      scale_color_manual("reg", values='blue') +
+      scale_linetype_manual("reg", values=3)
+    
+    if (i==3) {
+      g3 <- g3 + theme(legend.position = "none")
+    }
+      
+  }
   
   gtot <- egg::ggarrange(g1, g2, g3, nrow=1, draw=FALSE)
   
