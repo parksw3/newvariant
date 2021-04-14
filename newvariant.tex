@@ -121,7 +121,7 @@ Finally, we discuss implications for control: if new variants have longer genera
 
 \section{Introduction}
 
-Estimating variant epidemic strength and speed remains one of the key questions in controlling the spread of SARS-CoV-2 variants of concern (VoCs) \citep{switzerland2021variant, davies2021estimated, di2021impact, leung2021early, volz2021transmission,zhao2021}.
+Estimating variant epidemic strength and speed remains one of the key questions in controlling the spread and understanding the threat of SARS-CoV-2 variants of concern (VoCs) \citep{switzerland2021variant, davies2021estimated, di2021impact, leung2021early, volz2021transmission,zhao2021}.
 Epidemic strength is characterized by the reproduction number $\RR$, which determines the average number of new infections per infection as well as the strength of intervention required to eliminate the disease \citep{anderson1991infectious}.
 It also provides information about the final size of an epidemic in a homogeneous population \citep{anderson1991infectious}.
 Epidemic speed is characterized by the growth rate $r$, which describes how fast a disease spreads at the population-level.
@@ -130,7 +130,7 @@ Strength and speed are linked by generation intervals---defined as time between 
 
 Analyses of new variants have typically characterized \emph{relative} strength (ratios between reproduction numbers $\Rv/\Rw$) and speed (differences between growth rates $\rv-\rw$) of the variants.
 Many studies have tried to estimate the relative strength of the novel variant from the observed relative speed \citep{davies2021estimated, leung2021early, volz2021transmission,zhao2021}.
-In contrast, some studies have assumed a value of the relative strength of the novel variant and tried to predict its relative speed to determine when a new variant will become the dominant strain. \citep{davies2021estimated}.
+Some studies have instead assumed a value of the relative strength of the novel variant and tried to predict its relative speed to determine when a new variant will become the dominant strain. \citep{davies2021estimated,di2021impact}.
 While both approaches are reasonable in principle, holding different quantities constant (i.e., strength or speed) can lead to different conclusions about the spread of the disease and its control \citep{doi:10.1098/rspb.2020.1556}:
 estimation of speed from strength or strength from speed depends on assumptions about the generation-interval distribution \citep{roberts2007model,svensson2007note,wallinga2007generation}.
 For example, when we assume a fixed value of epidemic strength, longer generation intervals lead to a slower epidemic (lower $r$), making the epidemic seem easier to control.
@@ -151,7 +151,7 @@ We also discuss how such biases might be assessed in practice and how informatio
 \section{Renewal equation framework}
 
 We use the renewal equation framework to characterize the spread of two pathogen strains---in this case, the wild type SARS-CoV-2 virus and a focal variant of concern, such as B.1.1.7.
-Neglecting the (relatively slow) rate of new mutations, the current incidence of infection $i_x(t)$ caused by the wild type (``wt'') and the variant (``var'') can be expressed in terms of their previous incidence $i_x(t-\tau)$ and the rate at which secondary cases are generated at time $t$ by individuals infected $\tau$ time units ago $K_x(t, \tau)$:
+Neglecting the (relatively slow) rate of new mutations, the current incidence of infection $i_x(t)$ caused by strain $x$---wild type (``wt'') and the variant (``var'')---can be expressed in terms of their previous incidence $i_x(t-\tau)$ and the rate at which secondary cases are generated at time $t$ by individuals infected $\tau$ time units ago $K_x(t, \tau)$:
 \begin{equation}
 i_x(t) = \int_0^\infty i_x(t-\tau) K_x(t, \tau) \dtau.
 \end{equation}
@@ -177,8 +177,8 @@ For simplicity we neglect differences in the squared coefficient of variation an
 
 \section{Inferring relative strength from relative speed}
 
-Epidemic speed $r_x$ can often be estimated directly from case data \citep{mills2004transmissibility,nishiura2009transmission,ma2014estimating};
-however, the estimating $r_x$ can be challenging when case counts are low (as when a new variant begins to spread) and is sensitive to temporal changes in testing patterns and intensity.
+Epidemic speed $r_x$ can often be estimated directly from case data during the exponential growth period \citep{mills2004transmissibility,nishiura2009transmission,ma2014estimating}---in theory both $r$ and $\RR$ relate to latent infections and therefore using case data can lead to biases due to delays in reporting \citep{goldstein2009reconstructing,gostic2020practical}.
+However, estimating $r_x$ can be challenging when case counts are low (as when a new variant begins to spread) and is sensitive to temporal changes in testing patterns and intensity.
 Studies of new SARS-CoV-2 variants have mostly focused on characterizing changes in the \emph{proportion} of a new variant \citep{switzerland2021variant, davies2021estimated, di2021impact, leung2021early, volz2021transmission,zhao2021}.
 Assessing frequency dynamics has the advantage of being less sensitive to changes in testing and to other transient effects that would affect variants and wild type viruses similarly.
 When incidence is changing exponentially ($i_x(t) = i_x(t_0) \exp(r_x t)$), the proportion of the new variant $p(t)$ follows a logistic growth curve:
@@ -211,7 +211,7 @@ some analyses have implicitly or explicitly neglected this factor by either assu
 Based on the observed relative growth rate of B.1.1.7 in the UK, we start by  taking the relative speed of the variant to be $\delta = 0.1/\textrm{day}$  \citep{davies2021estimated}; the mean generation interval of the wild type to be $\Gw = 5\days$ \citep{ferretti2020quantifying}; and the squared coefficient of variation of generation intervals to be $\kappa=0.2$ \citep{ferretti2020quantifying}.
 We consider the spread of B.1.1.7 as an example but out qualitative conclusions should hold for other VoCs.
 As noted above, we assume that the variant and the wild type have equal $\kappa$ throughout, and only consider differences in the mean.
-We evaluate the estimates of relative strength $\rho$ across a wide range of $\kappa$ from 0 (delta distribution) to 1 (exponential distribution).
+We evaluate the estimates of relative strength $\rho$ across a wide range of $\kappa$ from 0 (fixed generation interval; delta distribution) to 1 (exponential distribution).
 To further explore how inference depends on underlying epidemiological conditions (i.e., whether the incidence of the variant and the wild type are growing or shrinking), we consider four epidemiological conditions: (1) $\rw < \rv < 0$, (2) $\rw < \rv = 0$, (3) $0 = \rw < \rv$, and (4) $0 < \rw < \rv$.
 
 \fref{relstrength} illustrates how the relative strength depends on the shape of the generation-interval distributions and on underlying epidemiological conditions.
@@ -221,7 +221,7 @@ When $\rv < 0$ (and therefore $\rw < 0$), we see that longer generation interval
 Assuming a narrower distribution (lower $\kappa$) has qualitatively similar effects as assuming longer generation intervals because both reduce the amount of early transmission; 
 therefore, narrower distributions lead to higher values of $\rho$ when $\rv > 0$ and lower values of $\rho$ when $\rv \leq 0$.
 
-Consistent with earlier studies, we find that the new variant has higher strength than the wild type across a wide range of epidemiological conditions \citep{switzerland2021variant, davies2021estimated, di2021impact, leung2021early, volz2021transmission,zhao2021}.
+We find that an increased speed of $\delta=0.1\pday$ for the variant is consistent with higher strength than the wild type across a wide range of epidemiological conditions \citep{switzerland2021variant, davies2021estimated, di2021impact, leung2021early, volz2021transmission,zhao2021}.
 However, the magnitude of relative strength $\rho$ is sensitive to assumptions about generation intervals.
 For realistic values of $\kappa$ (excluding 0 and 1), we find that the inferred relative strength $\rho$ ranges between 1.1--2.3.
 Even if we restrict the mean generation interval of the variant to differ by 20\% and only consider the scenario under which variant is growing (bottom two panels of \fref{relstrength}), we find that $\rho$ ranges between 1.3--1.8, providing narrower but still large uncertainty.
@@ -308,7 +308,7 @@ Smooth changes in $\RR$ further generate circular patterns but biases in slopes 
 
 \section{Implications for intervention strategies}
 
-While relative speed $\delta$ and strength $\rho$ are useful for characterizing the spread of the variant in an epidemiological context with a previously dominant wild type, \emph{absolute} speed $\rv$ and strength $\Rv$ of the variant are the main variables that determine the spread and control of the variant over the long term.
+While relative speed $\delta$ and strength $\rho$ are useful for characterizing the spread of the variant in an epidemiological context with a previously dominant wild type, \emph{absolute} speed $\rv$ and strength $\Rv$ of the variant are the main variables that determine the spread and conditions for control of the variant over the long term.
 In particular, at any given point in epidemic, we can measure the speed of the variant $\rv$ (or infer $\rv$ from $\rw$ and $\delta$) and ask how much more intervention is required to control the spread of both strains (since $\Rv < 1$ implies $\Rw < 1$).
 As a baseline scenario, we assume $\rw=0$ and $\delta=0.1\pday$ (and therefore $\rv=0.1\pday$), in which case additional intervention is required to reduce $\rv$ below 0 (or, equivalently, $\Rv$ below 1).
 
@@ -351,7 +351,7 @@ We illustrated how these biases might be assessed and discussed how differences 
 if the variant has longer (respectively, shorter) generation intervals than the wild type, speed-like (strength-like) interventions, will be more relatively more effective than naive estimates would suggest. 
 
 As the new variants, in particular the B.1.1.7 variant, of SARS-CoV-2 are spreading and becoming dominant in many countries, it is clear that the variants are more transmissible (have higher strength) than the wild type \citep{switzerland2021variant, davies2021estimated, di2021impact, leung2021early, volz2021transmission,zhao2021}.
-Our analysis supports estimates of a higher strength of the new variant across a wide range of epidemiological conditions and assumptions about generation-interval distributions.
+Our analysis supports estimates of a higher strength of the new variant bounding on a wide range of parameter ranges about epidemiological conditions and generation-interval distributions.
 However, our analysis also shows thatuncertainty in generation-interval distributions must be taken into account to obtain accurate estimates of the relative strength of variants.
 If the variant has a longer infectious period \citep{kissler2021densely}, and therefore extended generation-interval distributions, current estimates may be underestimating the true relative strength.
 While previous analyses have typically focused on estimating the relative strength and speed, absolute strength and speed are needed to properly evaluate its spread and control.
