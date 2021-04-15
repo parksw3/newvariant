@@ -269,6 +269,7 @@ such methods have been used in previous analyses of the B.1.1.7 strain by \cite{
 Assuming that the generation-interval distribution remains constant, the instantaneous reproduction numbers of the new variant and of the wild type can be estimated from their corresponding incidence curves---an approach popularized by \cite{cori2013new}:
 \begin{equation}
 \RR_x(t) = \frac{i_x(t)}{\int_0^\infty i_x(t-\tau) g_x(\tau) \dtau}.
+\label{eq:rt}
 \end{equation}
 Under strength-like intervention measures that reduce transmission rates by a constant amount, we expect ratios between reproduction numbers to remain constant and correspond to the true relative strength: $\Rv(t)/\Rw(t) = \rho$.
 However, if the assumed generation-interval distribution $\hat{g}(\tau)$ is different from the true distribution, then the ratio between the estimated reproduction numbers $\hat{\rho}(t) = \hat{\RR}_{\textrm{var}}(t)/\hat{\RR}_{\textrm{wt}}(t)$ may change, even if the true ratio does not.
@@ -387,6 +388,7 @@ first, this estimate actually corresponds to the observed mean serial intervals 
 Instead, if we replace the assumed generation-interval distributions for \cite{volz2021transmission} with shorter generation interval estimates from Tianjin, China ($\Gw=2.57\days$ and $\kappa=1$; \cite{ganyani2020estimating}), we obtain $\rho=1.27$, which is consistent with the attack rate analysis \citep{ukinvest}.
 We do not claim that these estimates of $\rho$ or $\Gw$ are more accurate;
 instead, this back-of-the-envelope calculation highlights the importance of propagating uncertainty in the generation-interval distribution in assessing the relative strength and speed of SARS-CoV-2 variants.
+Obtaining an accurate and precise estimate of $\rho$ will need to take into account changes in $\rho$ as well as underlying $\rw$.
 
 We further used simulations to show how mis-specification of generation-interval distributions can bias the inference of relative strength from incidence data:
 when the assumed generation-interval distribution does not match the true generation-interval distribution of the variant, estimates of absolute strength $\Rv(t)$ will be biased, causing the estimated relative strength to change over time.
@@ -445,6 +447,8 @@ where $S$ represents the proportion of susceptible individuals.
 We discretize the model at the time scale of 0.025 days as described in \citep{park2021forward} and simulated the model with $\iv(0) = 0.001$ and $\iw(0) = 0.1$.
 We assume that $\Rw(t)$ remains at 2 for 30 days, immediately decreases and stays at 0.5 until day 60, and immediately increases back to 1.2.
 Finally, we assume $\Rv(t) = \rho \Rw(t)$.
+From simulated incidence curves between day 15 and 70, we estimate the instaneous reproduction number using \eref{rt}.
+We ignore incidence before day 15 to remove any potential transient effects.
 
 \bibliography{newvariant.bib}
 
