@@ -281,7 +281,7 @@ We use a two-strain renewal equation that assumes perfect cross-immunity to simu
 Then, we compare the estimated ratio $\hat{\rho}(t) = \hat{\RR}_{\textrm{var}}(t)/\hat{\RR}_{\textrm{wt}}(t)$ with the true ratio $\rho = \Rv(t)/\Rw(t)$.
 In order to allow for changes in $\RR$ driven by the introduction and lifting of non-pharmaceutical interventions \citep{flaxman2020Rt}, we model $\Rw(t)$ using a step function (\fref{Rtbias}) and let $\Rv(t) = \rho \Rw(t)$.
 
-\begin{figure}[!th]
+\begin{figure}[!pht]
 \includegraphics[width=\textwidth]{Rtbias.pdf}
 \caption{
 \textbf{Estimates of relative strength over time under different scenarios.}
@@ -289,6 +289,7 @@ In order to allow for changes in $\RR$ driven by the introduction and lifting of
 (B, E, H) True (purple, solid) and estimated (orange, dashed) ratios between reproduction numbers of the new variant and the wild type over time.
 (C, F, I) True (purple, solid) and estimated (orange, dashed) relationships between estimated reproduction numbers.
 Blue dotted lines represent the regression lines of the estimated variant reproduction numbers against the estimated wild type reproduction numbers.
+Gray lines represent the one-to-one line.
 Top row: the assumed mean generation-interval (5 days) is equal to the mean generation-interval of the wild type and the variant.
 Middle row: the assumed mean generation-interval (5 days) is equal to the mean generation-interval of the wild type but is longer than that of the variant (4 days).
 Bottom row: the assumed mean generation-interval (5 days) is equal to the mean generation-interval of the wild type but is longer than that of the variant (6 days).
@@ -404,7 +405,7 @@ Early in the spread of an emerging variant, it is likely more convenient to fix 
 As more information about the transmission and immunity profiles of the new variant becomes available, we advise fixing the relative strength and inferring the speed as this assumption better matches biological mechanisms for its higher strength.
 Researchers should be mindful about which quantity they hold constant and how their assumptions lead to their conclusions \citep{doi:10.1098/rspb.2020.1556}.
 
-Here, we lay out a few practical advices in analyzing the epidemiological dynamics of new variants for future studies.
+Here, we lay out a few practical advice in analyzing the epidemiological dynamics of new variants for future studies.
 First, models that assume a constant relative speed, such as standard logistic growth model, should be avoided for characterizing the growth of new variants---the relative speed changes over time depending on epidemiological conditions.
 Second, the absolute strength and speed should not be neglected over their relative values, and both relative and absolute values should be reported together.
 While the relative strength and speed are useful for describing the spread of new variants, the absolute values determine their spread and control.
@@ -425,15 +426,15 @@ Future studies should prioritize detailed assessment of the generation intervals
 
 The spread of new SARS-CoV-2 variants and the replacement of previously dominant lineages represent ongoing challenges for controlling the SARS-CoV-2 pandemic.  
 By explicitly considering epidemiological context and generation interval differences together, we have shown that improving estimates of the the relative duration of infectiousness at the individual scale may represent a pathway towards more effective interventions. 
-Specifically, we have shown that speed-like interventions, such as contact tracing, will be more effective if variants have longer genenration intervals.
-Most intervention strategies throughout the current pandemic have focused on strength-like interventions \citep{flaxman2020Rt}, such as lockdowns, partly because pre-symptomatic transmission of SARS-CoV2 have limited the effectiveness of contact tracing efforts \citep{hellewell2020feasibility}.
+Specifically, we have shown that speed-like interventions, such as contact tracing, will be more effective if variants have longer generation intervals.
+Most intervention strategies throughout the current pandemic have focused on strength-like interventions \citep{flaxman2020Rt}, such as lock-downs, partly because pre-symptomatic transmission of SARS-CoV2 have limited the effectiveness of contact tracing efforts \citep{hellewell2020feasibility}.
 However, given the possibility that new variants can have different infection characteristics, future studies should consider whether their transmission dynamics also differ (e.g., the amount of pre-symptomatic transmission) and evaluate intervention strategies accordingly.
 
 \section{Methods}
 
 \subsection{Two-strain renewal equation}
 
-We use a two-strain renewal equation to simultaneously model the spread of the variant and the wild type.
+We use a two-strain renewal equation to simulate the spread of the variant and the wild type.
 Ignoring birth and death, the incidence of infection caused by the variant $\iv$ and the wild type $\iw$ assuming perfect cross immunity is given by:
 \begin{align}
 \frac{dS}{dt} &= - \iv(t) - \iw(t)\\
