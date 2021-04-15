@@ -90,14 +90,14 @@ Gpost_long <- integrate(function(x) x*Rv_base*dgamma(x, shape=1/kappa, rate=1/ka
                         Inf)[[1]]/filter(intervention, Gratio==tail(Gratio,1))$speed_post_strength
 
 g1 <- ggplot(gendata_base) +
-  geom_line(aes(tvec, density, col="Epidemic", lty="Epidemic"), lwd=2) +
+  geom_line(aes(tvec, density, col="Pre-intervention", lty="Pre-intervention"), lwd=2) +
   geom_line(aes(tvec, strength, col="Post-intervention (constant-strength)", lty="Post-intervention (constant-strength)"), lwd=2) +
   geom_vline(xintercept = Gw, lwd=2) +
   geom_vline(xintercept = Gw, lwd=2, col=colorblind_pal()(3)[3], lty=3) +
   scale_x_continuous("Generation intervals (days)") +
   scale_y_continuous("Kernel density", limits=c(0, 0.4)) +
-  scale_color_manual("", values=(colorblind_pal()(3)[c(1, 3)])) +
-  scale_linetype_manual("", values=c(1, 3)) +
+  scale_color_manual("", values=(colorblind_pal()(3)[c(3, 1)])) +
+  scale_linetype_manual("", values=c(3, 1)) +
   ggtitle("A. Equal generation intervals") +
   theme(
     panel.grid = element_blank(),
@@ -106,14 +106,14 @@ g1 <- ggplot(gendata_base) +
   )
 
 g2 <- ggplot(gendata_base) +
-  geom_line(aes(tvec, density, col="Epidemic", lty="Epidemic"), lwd=2) +
+  geom_line(aes(tvec, density, col="Pre-intervention", lty="Pre-intervention"), lwd=2) +
   geom_line(aes(tvec, speed, col="Post-intervention (constant-strength)", lty="Post-intervention (constant-strength)"), lwd=2) +
   geom_vline(xintercept = Gw, lwd=2) +
   geom_vline(xintercept = Gpost_base, col=colorblind_pal()(3)[2], lwd=2, lty=2) +
   scale_x_continuous("Generation intervals (days)") +
   scale_y_continuous("Kernel density", limits=c(0, 0.4)) +
-  scale_color_manual("", values=(colorblind_pal()(3)[c(1, 2)])) +
-  scale_linetype_manual("", values=c(1, 2)) +
+  scale_color_manual("", values=(colorblind_pal()(3)[c(2, 1)])) +
+  scale_linetype_manual("", values=c(2, 1)) +
   ggtitle("B. Equal generation intervals") +
   theme(
     panel.grid = element_blank(),
@@ -148,15 +148,15 @@ g4 <- ggplot(gendata_long) +
 
 g5 <- ggplot(intervention) +
   geom_hline(yintercept=1, col="gray") +
-  geom_line(aes(Gratio, Rv, col="Epidemic", lty="Epidemic"), lwd=2) +
+  geom_line(aes(Gratio, Rv, col="Pre-intervention", lty="Pre-intervention"), lwd=2) +
   geom_line(aes(Gratio, strength_post_strength, col="Post-intervention (constant-strength)", lty="Post-intervention (constant-strength)"), lwd=2) +
   geom_line(aes(Gratio, speed_post_strength, col="Post-intervention (constant-speed)", lty="Post-intervention (constant-speed)"), lwd=2) +
   scale_x_log10("Generation interval ratio, $\\bar{G}_{\\mathrm{var}}/\\bar{G}_{\\mathrm{wt}}$",
                 breaks=c(2/3, 1, 3/2),
                 labels=c("2/3", 1, "3/2")) +
   scale_y_log10("Strength", breaks=c(0.5, 1, 2, 4), limits=c(0.5, 4)) +
-  scale_linetype_manual("", values=1:3) +
-  scale_color_manual("", values=(colorblind_pal()(3))) +
+  scale_linetype_manual("", values=c(2, 3, 1)) +
+  scale_color_manual("", values=(colorblind_pal()(3)[c(2, 3, 1)])) +
   ggtitle("E") +
   theme(
     panel.grid = element_blank(),
