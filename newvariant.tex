@@ -108,7 +108,43 @@
 		Roles of generation-interval distributions in characterizing relative epidemic strength and speed of new SARS-CoV-2 variants and their control
 	}
 }
+\\
+Sang Woo Park\textsuperscript{1,*}
+Benjamin M.\ Bolker\textsuperscript{2,3,4}
+Sebastian Funk\textsuperscript{5,6}
+C.\ Jessica E.\ Metcalf\textsuperscript{1,7}
+Joshua S.\ Weitz\textsuperscript{8,9}
+Bryan T.\ Grenfell\textsuperscript{1,7,10}
+Jonathan Dushoff\textsuperscript{2,3,4}
+\\
+\bigskip
+\textbf{1} Department of Ecology and Evolutionary Biology, Princeton University, Princeton, NJ, USA
+\\
+\textbf{2} Department of Biology, McMaster University, Hamilton, ON, Canada
+\\
+\textbf{3} Department of Mathematics and Statistics, McMaster University, Hamilton, ON, Canada
+\\
+\textbf{4} M.\,G.\,DeGroote Institute for Infectious Disease Research, McMaster University, Hamilton, ON, Canada
+\\
+\textbf{5} Department for Infectious Disease Epidemiology, London School of Hygiene and Tropical Medicine, London, UK
+\\
+\textbf{6} Centre for Mathematical Modelling of Infectious Diseases, London School of Hygiene and Tropical Medicine, London, UK
+\\
+\textbf{7} Princeton School of Public and International Affairs, Princeton University, Princeton, NJ, USA
+\\
+\textbf{8} School of Biological Sciences, Georgia Institute of Technology, Atlanta, GA, USA
+\\
+\textbf{9} School of Physics, Georgia Institute of Technology, Atlanta, GA, USA
+\\
+\textbf{10} Fogarty International Center, National Institutes of Health, Bethesda, MD, USA
+\\
+\bigskip
+
+*Corresponding author: swp2@princeton.edu
+\bigskip
+
 \end{flushleft}
+
 
 \section*{Abstract}
 
@@ -338,7 +374,7 @@ as a result, the constant-speed intervention reduces the post-intervention mean 
 (E) Pre-intervention (black) and post-intervention strength conditional on the mean generation interval of the variant (colored).
 (F) Pre-intervention (black) and post-intervention speed conditional on the mean generation interval of the variant (colored).
 Strength and speed are calculated assuming $\rw=0\pday$, $\delta=0.1\pday$, $\rv=0.1\pday$, $\Gy{wt}=5\,\textrm{days}$, and $\kappa=1/5$ for pre-intervention conditions.
-Intervention strength and speed are chosen so that post intervention strength of the new variant is 0.9 when its mean generation interval is 5 days.9.
+Intervention strength and speed are chosen so that post intervention strength of the new variant is 0.9 when its mean generation interval is 5 days.
 }
 \label{fig:strengthspeed}
 \end{figure}
@@ -362,7 +398,7 @@ Since the post-intervention speed $\ry{post}$ is determined by the following imp
 \begin{equation}
 1 = \int_0^\infty \exp(-\ry{post} \tau) K_{\mathrm{post}}(\tau) \dtau = \int_0^\infty \exp(\rv-\phi-\ry{post}) b(\tau)  \dtau,
 \end{equation}
-we have $\ry{post} = \phi - \rv$. In particular, if speed of intervention is faster than the observed speed of spread (i.e., if $\phi > \rv$), we can control the epidemic regardless of the underlying generation-interval distribution.
+we have $\ry{post} = \phi - \rv$. In particular, if speed of intervention is faster than the observed speed of spread (i.e., if $\phi > \rv$), we can control the epidemic (i.e., $\ry{post} < 0$) regardless of the underlying generation-interval distribution.
 
 \section{Discussion}
 
@@ -425,7 +461,7 @@ as we have shown, this uncertainty alone can generate large uncertainty in the i
 Furthermore, most estimates neglect dynamical biases in serial intervals caused by underlying epidemiological dynamics in their estimates of generation intervals.
 Serial intervals also do not account for asymptomatic transmission, adding further uncertainty to inferences of speed and strength \citep{park2020time}.
 
-\jd{If this \P\ is going to be mostly about us, we should say so more clearly.} Since the beginning of the SARS-CoV-2 pandemic, a few studies have emphasized the relevance of leveraging generation interval distributions to improve estimates of strength (e.g., \cite{doi:10.1098/rsif.2020.0144,ali2020serial,gostic2020practical,park2021forward}) and the relative importance of modes of transmission (e.g., asymptomatic vs. symptomatic, \cite{park2020time}).
+Since the beginning of the SARS-CoV-2 pandemic, a few studies have emphasized the relevance of leveraging generation interval distributions to improve estimates of strength \citep{doi:10.1098/rsif.2020.0144,ali2020serial,gostic2020practical,park2021forward} and the relative importance of modes of transmission (e.g., asymptomatic vs. symptomatic, \cite{park2020time}).
 These same lessons should be considered when assessing the spread of variants in a partially susceptible population and improving efforts to control spread.
 Future studies should prioritize detailed assessment of the generation intervals of SARS-CoV-2 and widespread variants, as well as consider how uncertainty in generational intervals might bias conclusions.
 
