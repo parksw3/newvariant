@@ -90,8 +90,8 @@ Gpost_long <- integrate(function(x) x*Rv_base*dgamma(x, shape=1/kappa, rate=1/ka
                         Inf)[[1]]/filter(intervention, Gratio==tail(Gratio,1))$speed_post_strength
 
 g1 <- ggplot(gendata_base) +
-  geom_line(aes(tvec, density, col="Pre-intervention", lty="Pre-intervention"), lwd=2) +
-  geom_line(aes(tvec, strength, col="Post-intervention (constant-strength)", lty="Post-intervention (constant-strength)"), lwd=2) +
+  geom_line(aes(tvec, density, col="Pre-intervention", lty="Pre-intervention"), lwd=3) +
+  geom_line(aes(tvec, strength, col="Post-intervention (constant-strength)", lty="Post-intervention (constant-strength)"), lwd=3) +
   geom_vline(xintercept = Gw, lwd=2) +
   geom_vline(xintercept = Gw, lwd=2, col=colorblind_pal()(3)[3], lty=3) +
   scale_x_continuous("Generation intervals (days)") +
@@ -106,8 +106,8 @@ g1 <- ggplot(gendata_base) +
   )
 
 g2 <- ggplot(gendata_base) +
-  geom_line(aes(tvec, density, col="Pre-intervention", lty="Pre-intervention"), lwd=2) +
-  geom_line(aes(tvec, speed, col="Post-intervention (constant-strength)", lty="Post-intervention (constant-strength)"), lwd=2) +
+  geom_line(aes(tvec, density, col="Pre-intervention", lty="Pre-intervention"), lwd=3) +
+  geom_line(aes(tvec, speed, col="Post-intervention (constant-speed)", lty="Post-intervention (constant-speed)"), lwd=3) +
   geom_vline(xintercept = Gw, lwd=2) +
   geom_vline(xintercept = Gpost_base, col=colorblind_pal()(3)[2], lwd=2, lty=2) +
   scale_x_continuous("Generation intervals (days)") +
@@ -122,8 +122,8 @@ g2 <- ggplot(gendata_base) +
   )
 
 g3 <- ggplot(gendata_long) +
-  geom_line(aes(tvec, density), lwd=2, col=colorblind_pal()(3)[1]) +
-  geom_line(aes(tvec, strength), lwd=2, col=colorblind_pal()(3)[3], lty=3) +
+  geom_line(aes(tvec, density), lwd=3, col=colorblind_pal()(3)[1]) +
+  geom_line(aes(tvec, strength), lwd=3, col=colorblind_pal()(3)[3], lty=3) +
   geom_vline(xintercept = (Gw*tail(Gratio,1)), lwd=2) +
   geom_vline(xintercept = (Gw*tail(Gratio,1)), lwd=2, col=colorblind_pal()(3)[3], lty=3) +
   scale_x_continuous("Generation intervals (days)") +
@@ -134,8 +134,8 @@ g3 <- ggplot(gendata_long) +
   )
 
 g4 <- ggplot(gendata_long) +
-  geom_line(aes(tvec, density), lwd=2, col=colorblind_pal()(3)[1]) +
-  geom_line(aes(tvec, speed), lwd=2, col=colorblind_pal()(3)[2], lty=2) +
+  geom_line(aes(tvec, density), lwd=3, col=colorblind_pal()(3)[1]) +
+  geom_line(aes(tvec, speed), lwd=3, col=colorblind_pal()(3)[2], lty=2) +
   geom_vline(xintercept = (Gw*tail(Gratio,1)), lwd=2) +
   geom_vline(xintercept = Gpost_long, lwd=2, col=colorblind_pal()(3)[2], lty=2) +
   scale_x_continuous("Generation intervals (days)") +
@@ -148,9 +148,9 @@ g4 <- ggplot(gendata_long) +
 
 g5 <- ggplot(intervention) +
   geom_hline(yintercept=1, col="gray") +
-  geom_line(aes(Gratio, Rv, col="Pre-intervention", lty="Pre-intervention"), lwd=2) +
-  geom_line(aes(Gratio, strength_post_strength, col="Post-intervention (constant-strength)", lty="Post-intervention (constant-strength)"), lwd=2) +
-  geom_line(aes(Gratio, speed_post_strength, col="Post-intervention (constant-speed)", lty="Post-intervention (constant-speed)"), lwd=2) +
+  geom_line(aes(Gratio, Rv, col="Pre-intervention", lty="Pre-intervention"), lwd=3) +
+  geom_line(aes(Gratio, strength_post_strength, col="Post-intervention (constant-strength)", lty="Post-intervention (constant-strength)"), lwd=3) +
+  geom_line(aes(Gratio, speed_post_strength, col="Post-intervention (constant-speed)", lty="Post-intervention (constant-speed)"), lwd=3) +
   scale_x_log10("Generation interval ratio, $\\bar{G}_{\\mathrm{var}}/\\bar{G}_{\\mathrm{wt}}$",
                 breaks=c(2/3, 1, 3/2),
                 labels=c("2/3", 1, "3/2")) +
@@ -167,9 +167,9 @@ g5 <- ggplot(intervention) +
 
 g6 <- ggplot(intervention) +
   geom_hline(yintercept=0, col="gray") +
-  geom_line(aes(Gratio, rv, col="Epidemic", lty="Epidemic"), lwd=2) +
-  geom_line(aes(Gratio, strength_post_speed, col="Post-intervention (constant-strength)", lty="Post-intervention (constant-strength)"), lwd=2) +
-  geom_line(aes(Gratio, speed_post_speed, col="Post-intervention (constant-speed)", lty="Post-intervention (constant-speed)"), lwd=2) +
+  geom_line(aes(Gratio, rv, col="Epidemic", lty="Epidemic"), lwd=3) +
+  geom_line(aes(Gratio, strength_post_speed, col="Post-intervention (constant-strength)", lty="Post-intervention (constant-strength)"), lwd=3) +
+  geom_line(aes(Gratio, speed_post_speed, col="Post-intervention (constant-speed)", lty="Post-intervention (constant-speed)"), lwd=3) +
   scale_x_log10("Generation interval ratio, $\\bar{G}_{\\mathrm{var}}/\\bar{G}_{\\mathrm{wt}}$",
                 breaks=c(2/3, 1, 3/2),
                 labels=c("2/3", 1, "3/2")) +

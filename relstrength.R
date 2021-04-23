@@ -50,6 +50,24 @@ rhodata <- apply(pardata, 1, function(x) {
 
 range(filter(rhodata, !kappa %in% c(0, 1))$rho)
 
+textdata <- data.frame(
+  rw=c("$r_{\\textrm{wt}} < 0 < r_{\\textrm{var}}$",
+                     "$0 = r_{\\textrm{wt}} < r_{\\textrm{var}}$",
+                     "$0 < r_{\\textrm{wt}} < r_{\\textrm{var}}$",
+                     "$r_{\\textrm{wt}} < r_{\\textrm{var}} < 0$",
+                     "$r_{\\textrm{wt}} < r_{\\textrm{var}} = 0$"),
+  label_rw=c("$r_{\\textrm{wt}}=-0.05/\\textrm{day}$",
+             "$r_{\\textrm{wt}}=0/\\textrm{day}$",
+             "$r_{\\textrm{wt}}=0.05/\\textrm{day}$",
+             "$r_{\\textrm{wt}}=-0.15/\\textrm{day}$",
+             "$r_{\\textrm{wt}}=-0.1/\\textrm{day}$"),
+  label_rv=c("$r_{\\textrm{var}}=0.05/\\textrm{day}$",
+             "$r_{\\textrm{var}}=0.1/\\textrm{day}$",
+             "$r_{\\textrm{var}}=0.15/\\textrm{day}$",
+             "$r_{\\textrm{var}}=-0.05/\\textrm{day}$",
+             "$r_{\\textrm{var}}=0/\\textrm{day}$")
+)
+
 kappa_title1 <- data.frame(
   x=c(1.3, 1.3),
   y=c(1.5, 2.2),
@@ -68,6 +86,8 @@ g1 <- ggplot(rhodata) +
   geom_line(aes(Gratio, rho, lty=kappa, col=kappa), lwd=2) +
   geom_text(data=kappa_title1, aes(x, y, label=labels), col=(colorblind_pal()(4))[c(1, 4)], size=5) +
   geom_text(data=kappa_title2, aes(x, y, label=labels), col=(colorblind_pal()(4))[c(4, 1)], size=5) +
+  geom_text(data=textdata, aes(x=3/2, y=3.9, label=label_rw), hjust=1, vjust=1) +
+  geom_text(data=textdata, aes(x=3/2, y=3.5, label=label_rv), hjust=1, vjust=1) +
   scale_x_log10("Relative mean generation interval, $\\bar{G}_{\\mathrm{var}}/\\bar{G}_{\\mathrm{wt}}$",
                 breaks=c(2/3, 1, 3/2),
                 labels=c("2/3", 1, "3/2"),

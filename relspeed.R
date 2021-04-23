@@ -49,6 +49,30 @@ deltadata <- apply(pardata, 1, function(x) {
                        "$\\mathcal{R}_{\\textrm{wt}} < \\mathcal{R}_{\\textrm{var}} = 1$"))
   )
 
+
+textdata <- data.frame(
+  Rw=c("$\\mathcal{R}_{\\textrm{wt}} < \\mathcal{R}_{\\textrm{var}} < 1$",
+       "$\\mathcal{R}_{\\textrm{wt}} < \\mathcal{R}_{\\textrm{var}} = 1$",
+       "$\\mathcal{R}_{\\textrm{wt}} < 1 < \\mathcal{R}_{\\textrm{var}}$",
+       "$1 = \\mathcal{R}_{\\textrm{wt}} < \\mathcal{R}_{\\textrm{var}}$",
+       "$1 < \\mathcal{R}_{\\textrm{wt}} < \\mathcal{R}_{\\textrm{var}}$"),
+  label_Rw=c("$\\mathcal{R}_{\\textrm{wt}}=\\rho^{-3/2}$",
+             "$\\mathcal{R}_{\\textrm{wt}}=\\rho^{-1}$",
+             "$\\mathcal{R}_{\\textrm{wt}}=\\rho^{-1/2}$",
+             "$\\mathcal{R}_{\\textrm{wt}}=1$",
+             "$\\mathcal{R}_{\\textrm{wt}}=\\rho^{1/2}$"),
+  label_Rv=c("$\\mathcal{R}_{\\textrm{var}}=\\rho^{-1/2}$",
+             "$\\mathcal{R}_{\\textrm{var}}=1$",
+             "$\\mathcal{R}_{\\textrm{var}}=\\rho^{1/2}$",
+             "$\\mathcal{R}_{\\textrm{var}}=\\rho$",
+             "$\\mathcal{R}_{\\textrm{var}}=\\rho^{3/2}$")
+)
+
+textdata2 <- data.frame(
+  Rw=c("$\\mathcal{R}_{\\textrm{wt}} < \\mathcal{R}_{\\textrm{var}} < 1$"),
+  label=c("$\\rho=1.61$")
+)
+
 deltadata %>%
   filter(Gratio==1, kappa==0.5)
 
@@ -70,6 +94,9 @@ g1 <- ggplot(deltadata) +
   geom_line(aes(Gratio, delta, lty=kappa, col=kappa), lwd=2) +
   geom_text(data=kappa_title1, aes(x, y, label=labels), col=(colorblind_pal()(4))[c(4, 1)], size=5) +
   geom_text(data=kappa_title2, aes(x, y, label=labels), col=(colorblind_pal()(4))[c(1, 4)], size=5) +
+  geom_text(data=textdata, aes(x=3/2, y=0.29, label=label_Rw), hjust=1, vjust=1) +
+  geom_text(data=textdata, aes(x=3/2, y=0.26, label=label_Rv), hjust=1, vjust=1) +
+  geom_text(data=textdata2, aes(x=3/2, y=0.23, label=label), hjust=1, vjust=1) +
   scale_x_log10("Relative mean generation interval, $\\bar{G}_{\\mathrm{var}}/\\bar{G}_{\\mathrm{wt}}$",
                 breaks=c(2/3, 1, 3/2),
                 labels=c("2/3", 1, "3/2"),
