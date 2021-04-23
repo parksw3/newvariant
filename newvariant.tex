@@ -323,7 +323,7 @@ As a baseline scenario, we assume $\rw=0$ and $\delta=0.1\pday$ (and therefore $
 
 We consider two types of intervention:
 an intervention of constant strength, which reduces transmission by a constant factor $\theta$ regardless of age of infection ($K_{\mathrm{post}}(\tau) = K_{\mathrm{pre}}(\tau)/\theta$); and an intervention of constant speed, which reduces transmission after infection by a constant rate $\phi$ ($K_{\mathrm{post}}(\tau) = K_{\mathrm{pre}}(\tau) \exp(-\phi \tau)$).
-In this case, we can control the spread of the variant when $\theta > \Rv$ or $\phi > \rv$, respectively. [[Cite speedstrength]]
+In this case, we can control the spread of the variant when $\theta > \Rv$ or $\phi > \rv$, respectively \citep{doi:10.1098/rspb.2020.1556}.
 We consider constant-strength and speed interventions that reduce $\Rv$ to 0.9 when both the variant and the wild type have equal mean generation intervals (\fref{strengthspeed}A--B).
 While both interventions are equally effective on the strength scale (that is, $\Ry{post}=\int  K_{\mathrm{post}}(\tau) \dtau = 0.9$), they have different dynamical implications.
 The constant-strength intervention affects transmission equally throughout the course of infection, whereas the constant-speed intervention has greater impact on transmission that occurs later in infection;
@@ -366,7 +366,7 @@ we have $\ry{post} = \phi - \rv$. In particular, if speed of intervention is fas
 
 \section{Discussion}
 
-We explored how the generation-interval distribution shapes the link between relative strength and speed of an invadiang disease variant.
+We explored how the generation-interval distribution shapes the link between relative strength and speed of an invading disease variant.
 Longer generation intervals generally lead to higher relative strength for a given relative speed (and conversely, lower relative speed for a given relative strength); these can be reversed when incidence is decreasing.
 Neglecting potential differences in the mean generation intervals between the variant and the wild type can bias estimates of the relative strength from incidence data;
 these biases may be assessed by considering whether relative strength appears to vary systematically with underlying epidemiological dynamics.
@@ -384,9 +384,7 @@ We can ask whether different estimates can be reconciled by generation intervals
 
 For example, \cite{davies2021estimated} estimated $\rho=1.77$ assuming a fixed generation generation interval at 5.5 days from $\delta=0.104\pday$ in their regression analysis;
 similarly, \cite{volz2021transmission} estimated $\rho=1.79$ by directly comparing the ratio between $\Rv$ and $\Rw$ assuming a mean generation interval of 6.5 days and a squared coefficient of variation of 0.38.
-In this case, the former study's longer mean generation interval (which typically increases $\rho$) is counter-balanced by the effects of their wider distribution.
-\jd{Not clear how to interpret this. Can we match both results under a gamma assumption changing only kappa and Gbar?}
-In fact, we obtain $\rho=1.81$ from $\delta=0.104\pday$, $\rw=0$, $\Gv=\Gw=6.4\days$, and $\kappa=0.38$ under the gamma assumption, explaining the lack of differences in the estimates of $\rho$ despite the differences in the assumed generation-interval distributions.
+In this case, the latter study's longer mean generation interval (which typically increases $\rho$) is counter-balanced by the effects of their wider distribution, explaining the lack of differences in the estimates of $\rho$ despite the differences in the assumed generation-interval distributions.
 
 However, the fixed generation generation interval assumed by \cite{davies2021estimated} is too narrow.
 The mean generation interval of 6.5 days assumed by \cite{volz2021transmission} is also likely too long:
