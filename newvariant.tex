@@ -413,16 +413,17 @@ As the new variants, in particular the B.1.1.7 variant, of SARS-CoV-2 are spread
 Our analysis supports estimates of a higher strength of the new variant across a wide range of assumptions about epidemiological conditions and generation-interval distributions.
 However, our analysis also shows that uncertainty in generation-interval distributions must be taken into account to obtain accurate estimates of the relative strength of variants.
 If the variant has a longer infectious period \citep{kissler2021densely}, and therefore extended generation-interval distributions, current estimates may be underestimating the true relative strength.
+If new variants escape vaccinal or natural immunity to some extent \citep{shaman2020will}, their relative strength may increase further.
 
 There is currently a (minor) discrepancy in the estimates of relative strength of new variants, particularly for B.1.1.7.
 Mathematical analyses have typically reported greater than a 1.4 fold increase in reproduction number for the B.1.1.7 variant ($\rho > 1.4$) whereas an independent analysis of secondary attack rates from contact tracing data suggests 1.25--1.4 fold increase \citep{ukinvest}.
 As shown in \cite{davies2021estimated} and \cite{volz2021transmission}, propagating uncertainty in generation interval estimates (and, in particular, assuming shorter generation intervals) can help explain these differences to some extent.
 
-Using the gamma-approximation framework \citep{doi:10.1098/rsif.2020.0144} can help us reconcile different estimates more clearly.
+Using the Gamma-approximation framework \citep{doi:10.1098/rsif.2020.0144} can help us reconcile different estimates more clearly.
 For example, \cite{davies2021estimated} estimated a relative strength of $\rho=1.77$ assuming a fixed generation generation interval at 5.5 days from $\delta=0.104\pday$ in one of their regression analysis.
 Similarly, \cite{volz2021transmission} estimated $\rho=1.79$ by directly comparing the ratio between $\Rv$ and $\Rw$ assuming a mean generation interval of 6.5 days and a squared coefficient of variation of 0.38.
-In this case, the latter study's longer mean generation interval (which increases $\rho$) is counter-balanced by the effects of their wider distribution (which decreases $\rho$); calculations using our approximation framework produce qualitatively similar results.
-Instead, if we consider short and wide generation interval estimates from Tianjin, China ($\Gw=\Gv=2.57\days$ and $\kappa=1$; \cite{ganyani2020estimating}), we obtain $\rho=1.27$ (from $\delta=0.104\pday$ and $\rw = 0\pday$; \cite{davies2021estimated}).
+In this case, the latter study's longer mean generation interval (which increases $\rho$) is counter-balanced by the effects of their wider distribution (which decreases $\rho$); calculations using our approximation framework produce qualitatively similar results ($\rho=1.81$ from $\Gw=\Gv=6.4\days$, $\kappa=0.38$, $\delta=0.104\pday$, and $\rw=0\pday$).
+If we consider short and wide generation interval estimates from Tianjin, China ($\Gw=\Gv=2.57\days$ and $\kappa=1$; \cite{ganyani2020estimating}), we obtain $\rho=1.27$ (from $\delta=0.104\pday$ and $\rw = 0\pday$).
 Although these estimates are more consistent with the attack rate analysis \citep{ukinvest},
 we do not claim that these estimates of $\rho$ are more accurate.
 This illustrative calculation highlights the importance of propagating uncertainty in generation-interval distributions in assessing the relative strength and speed of SARS-CoV-2 variants.
@@ -462,8 +463,6 @@ Serial intervals also do not account for asymptomatic transmission, adding furth
 Since the beginning of the SARS-CoV-2 pandemic, a few studies have emphasized the relevance of leveraging generation interval distributions to improve estimates of strength \citep{doi:10.1098/rsif.2020.0144,ali2020serial,gostic2020practical,park2021forward} and the relative importance of modes of transmission (e.g., asymptomatic vs. symptomatic, \cite{park2020time}).
 These same lessons should be considered when assessing the spread of variants in a partially susceptible population and improving efforts to control spread.
 Future studies should prioritize detailed assessment of the generation intervals of SARS-CoV-2 and widespread variants, as well as consider how uncertainty in generational intervals might bias conclusions.
-
-\swp{perhaps comment that, if new variants escape vaccinal or natural immunity to some extent (ref), this will alter the calculation: eg increase strength?}
 
 The spread of new SARS-CoV-2 variants and the replacement of previously dominant lineages represent ongoing challenges for controlling the SARS-CoV-2 pandemic.  
 By explicitly considering epidemiological context and generation interval differences together, we have shown that improving estimates of the the relative duration of infectiousness at the individual scale may represent a pathway towards more effective interventions. 
