@@ -416,23 +416,16 @@ If the variant has a longer infectious period \citep{kissler2021densely}, and th
 
 There is currently a (minor) discrepancy in the estimates of relative strength of new variants, particularly for B.1.1.7.
 Mathematical analyses have typically reported greater than a 1.4 fold increase in reproduction number for the B.1.1.7 variant ($\rho > 1.4$) whereas an independent analysis of secondary attack rates from contact tracing data suggests 1.25--1.4 fold increase \citep{ukinvest}.
-We can ask whether different estimates can be reconciled by generation intervals alone.
+As shown in \cite{davies2021estimated} and \cite{volz2021transmission}, propagating uncertainty in generation interval estimates (and, in particular, assuming shorter generation intervals) can help explain these differences to some extent.
 
-\cite{davies2021estimated} estimated a relative strength of $\rho=1.77$ assuming a fixed generation generation interval at 5.5 days from $\delta=0.104\pday$ in their regression analysis.
+Using the Gamma framework \citep{doi:10.1098/rsif.2020.0144} can help us evaluate these differences more clearly.
+For example, \cite{davies2021estimated} estimated a relative strength of $\rho=1.77$ assuming a fixed generation generation interval at 5.5 days from $\delta=0.104\pday$ in one of their regression analysis.
 Similarly, \cite{volz2021transmission} estimated $\rho=1.79$ by directly comparing the ratio between $\Rv$ and $\Rw$ assuming a mean generation interval of 6.5 days and a squared coefficient of variation of 0.38.
 In this case, the latter study's longer mean generation interval (which increases $\rho$) is counter-balanced by the effects of their wider distribution (which decreases $\rho$).
-We note that both studies performed several analyses to estimate $\rho$ and propagated uncertainty in the assumed generation-interval distributions; these examples were chosen for illustrative purposes rather than to question the validity of their estimates.
-
-The fixed generation generation interval assumed by \cite{davies2021estimated} is, however, too narrow.
-The mean generation interval of 6.5 days assumed by \cite{volz2021transmission} is also likely too long: 
-first, this estimate actually corresponds to the observed mean serial intervals from China in between January and February, 2020 \citep{bi2020epidemiology}, during which they were more likely to observe longer serial intervals due to initial epidemic growth \citep{park2021forward, ali2020serial}; and second, recently infected individuals may be less likely to transmit after symptom onset due to increased awareness of the pandemic, leading to shorter generation intervals.
-For example, \cite{davies2021estimated} showed that using shorter generation interval estimates from \cite{ganyani2020estimating} ($\Gw=\Gv=3.6\days$ and $\kappa=0\ \textrm{or}\ 0.7$) can lead to considerable reduction in the estimates of $\rho$ (see Supplementary Table S1 in the original text)---in the case of their regression analysis, $\rho$ decreased from 1.77 to 1.46 (assuming $\kappa = 0$).
-Similarly, \cite{volz2021transmission} considered the possibility that the variant may have shorter generation intervals ($\Gv=0.75\Gw$), decreasing $\rho$ from 1.79 to 1.60.
-If we consider even shorter generation interval estimates from Tianjin, China ($\Gw=\Gv=2.57\days$ and $\kappa=1$; \cite{ganyani2020estimating}), we obtain $\rho=1.27$ (from $\delta=0.104\pday$ and $\rw = 0\pday$; \cite{davies2021estimated}).
+Instead, if we consider short and wide generation interval estimates from Tianjin, China ($\Gw=\Gv=2.57\days$ and $\kappa=1$; \cite{ganyani2020estimating}), we obtain $\rho=1.27$ (from $\delta=0.104\pday$ and $\rw = 0\pday$; \cite{davies2021estimated}).
 Although these estimates are more consistent with the attack rate analysis \citep{ukinvest},
 we do not claim that these estimates of $\rho$ are more accurate.
 Instead, this illustrative calculation highlights the importance of propagating uncertainty in generation-interval distributions in assessing the relative strength and speed of SARS-CoV-2 variants.
-\swp{Let's talk.}
 
 We further used simulations to show how mis-specification of generation-interval distributions can bias the inference of relative strength from incidence data:
 when the assumed generation-interval distribution does not match the true generation-interval distribution of the variant, estimates of absolute strength $\Rv(t)$ will be biased, causing the estimated relative strength to change over time.
