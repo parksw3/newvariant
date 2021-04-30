@@ -101,7 +101,7 @@ g1 <- ggplot(deltadata) +
                 breaks=c(2/3, 1, 3/2),
                 labels=c("2/3", 1, "3/2"),
                 expand=c(0, 0.03)) +
-  scale_y_continuous("Relative speed, $\\delta$ (1/day)", limits=c(0, 0.3), expand=c(0, 0),
+  scale_y_continuous("Relative speed, $\\delta$ (1/days)", limits=c(0, 0.3), expand=c(0, 0),
                      breaks=c(0, 0.1, 0.2, 0.3),
                      labels=c(0, 0.1, 0.2, 0.3)) +
   facet_wrap(~Rw, as.table=F) +
