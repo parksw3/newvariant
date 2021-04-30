@@ -354,7 +354,7 @@ Biases in slopes further translate to biases in intercepts; in theory, we would 
 \section{Implications for intervention strategies}
 
 While relative speed $\delta$ and strength $\rho$ are useful for characterizing the spread of the variant in an epidemiological context with a previously dominant wild type, \emph{absolute} speed $\rv$ and strength $\Rv$ of the variant are the main variables that determine the spread and conditions for control of the variant over the long term.
-In particular, at any given point in epidemic, we can measure the speed of the variant $\rv$ (or infer $\rv$ from $\rw$ and $\delta$) and ask how much more intervention is required to control the spread of both strains (since $\Rv < 1$ implies $\Rw < 1$).
+In particular, at any given point in the epidemic, we can measure the speed of the variant $\rv$ (or infer $\rv$ from $\rw$ and $\delta$) and ask how much more intervention is required to control the spread of both strains (since $\Rv < 1$ implies $\Rw < 1$).
 As a baseline scenario, we assume $\rw=0$ and $\delta=0.1\pday$ (and therefore $\rv=0.1\pday$), in which case additional intervention is required to reduce $\rv$ below 0 (or, equivalently, $\Rv$ below 1).
 
 We consider two types of intervention:
@@ -415,7 +415,7 @@ However, our analysis also shows that uncertainty in generation-interval distrib
 If the variant has a longer infectious period \citep{kissler2021densely}, and therefore extended generation-interval distributions, current estimates may be underestimating the true relative strength.
 
 There is currently a (minor) discrepancy in the estimates of relative strength of new variants, particularly for B.1.1.7.
-Mathematical analyses have typically reported greater than 1.4 fold increase in reproduction number for the B.1.1.7 variant ($\rho > 1.4$) whereas an independent analysis of secondary attack rates from contact tracing data suggests 1.25--1.4 fold increase \citep{ukinvest}.
+Mathematical analyses have typically reported greater than a 1.4 fold increase in reproduction number for the B.1.1.7 variant ($\rho > 1.4$) whereas an independent analysis of secondary attack rates from contact tracing data suggests 1.25--1.4 fold increase \citep{ukinvest}.
 We can ask whether different estimates can be reconciled by generation intervals alone.
 
 \cite{davies2021estimated} estimated $\rho=1.77$ assuming a fixed generation generation interval at 5.5 days from $\delta=0.104\pday$ in their regression analysis.
@@ -451,7 +451,7 @@ As more information about the transmission and immunity profiles of the new vari
 Researchers should be mindful about which quantity they hold constant and how their conclusions follow from their assumptions \citep{doi:10.1098/rspb.2020.1556}.
 
 This study has some practical implications for analyzing the epidemiological dynamics of new variants.
-First, models that assume a constant relative speed, such as standard logistic growth model, should be used with care---it is important to remember that the relative speed is expected to change with epidemiological conditions.
+First, models that assume a constant relative speed, such as the standard logistic growth model, should be used with care---it is important to remember that the relative speed is expected to change with epidemiological conditions.
 In some cases, such as early in the spread of new variants, assuming a constant relative speed may not be a bad idea if epidemiological conditions do not change much. Such simplifying assumption can also help obtain crude estimates of relative speed. However, epidemiological conditions will change over time in response to spreading new variants, causing relative speed to change and invalidating this assumption.
 Second, the absolute strength and speed should not be neglected in favor or relative values, and both relative and absolute values should be discussed together.
 While the relative strength and speed are useful for describing the spread of new variants, the absolute values determine their spread and control.
