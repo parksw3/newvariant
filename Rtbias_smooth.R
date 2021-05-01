@@ -40,13 +40,8 @@ for (i in 1:length(svec)) {
   tmparg <- c(theta=theta,
     tmax=150, slist[[i]],
     Rfun=function(t) {
-      if (t < 30) {
-        return(2)
-      } else if (t < 60) {
-        return(0.4)
-      } else {
-        return(1)
-      }
+      2 * (1 - 0.8 * (1/2 + 1/pi*atan((t-30)))) *
+        (1 + 1.5 * (1/2 + 1/pi*atan((t-60))))
     })
   
   rr <- do.call(renewal_det, tmparg) %>%
@@ -58,7 +53,7 @@ for (i in 1:length(svec)) {
     geom_line(aes(tvec, Rtest1, color="Wild type", lty="Estimated"), lwd=2) +
     geom_line(aes(tvec, Rtest2, color="Variant", lty="Estimated"), lwd=2) +
     scale_x_continuous("Time (days)", expand=c(0, 0), limits=c(15, 70)) +
-    scale_y_log10("Reproduction number, $\\mathcal{R}(t)$", limits=c(0.39, 8),
+    scale_y_log10("Reproduction number, $\\mathcal{R}(t)$", limits=c(0.4, 8),
                   breaks=c(0.25, 0.5, 1, 2, 4, 8)) +
     scale_color_manual(values=c("red", "black")) +
     scale_linetype_manual(values=c(2, 1), guide=FALSE) +
@@ -81,7 +76,7 @@ for (i in 1:length(svec)) {
       geom_line(aes(tvec, Rtest1, lty="Estimated"), col="black", lwd=2) +
       geom_line(aes(tvec, Rtest2, col="Estimated", lty="Estimated"), lwd=2) +
       scale_x_continuous("Time (days)", expand=c(0, 0), limits=c(15, 70)) +
-      scale_y_log10("Reproduction number, $\\mathcal{R}(t)$", limits=c(0.39, 8),
+      scale_y_log10("Reproduction number, $\\mathcal{R}(t)$", limits=c(0.4, 8),
                     breaks=c(0.25, 0.5, 1, 2, 4, 8)) +
       scale_color_manual("a", values=c("red", "red", "black")) +
       scale_linetype_manual("a", values=c(2, 1, 1)) +
@@ -148,7 +143,7 @@ for (i in 1:length(svec)) {
   if (i != 1) {
     g3 <- g3 +
       geom_smooth(aes(Rtest1, Rtest2, col="Regression", lty="Regression"), method="lm", fullrange=TRUE, se=FALSE, lwd=2)
-    
+      
   }
   
   gtot <- egg::ggarrange(g1, g2, g3, nrow=1, draw=FALSE)
@@ -156,7 +151,7 @@ for (i in 1:length(svec)) {
   glist[[i]] <- annotate_figure(gtot, top=text_grob(svec[i], size=14))
 }
 
-tikz(file = "Rtbias.tex", width = 9.5, height = 10, standAlone = T)
+tikz(file = "Rtbias_smooth.tex", width = 9.5, height = 10, standAlone = T)
 do.call(grid.arrange, c(glist, ncol=1))
 dev.off()
-tools::texi2dvi('Rtbias.tex', pdf = T, clean = T)
+tools::texi2dvi('Rtbias_smooth.tex', pdf = T, clean = T)
