@@ -39,7 +39,7 @@ rhodata <- apply(pardata, 1, function(x) {
 }) %>%
   bind_rows %>%
   mutate(
-    kappa=factor(kappa, levels=c(0, 0.2, 0.5, 1)),
+    kappa=factor(kappa, levels=rev(c(0, 0.2, 0.5, 1))),
     rw=factor(rw, levels=c(rwvec[3:5], rwvec[1:2]),
               labels=c("$r_{\\textrm{wt}} < 0 < r_{\\textrm{var}}$",
                        "$0 = r_{\\textrm{wt}} < r_{\\textrm{var}}$",
@@ -94,8 +94,8 @@ g1 <- ggplot(rhodata) +
                 expand=c(0, 0.03)) +
   scale_y_log10("Relative strength, $\\rho$", breaks=c(1, 2, 4), limits=c(1, 4), expand=c(0, 0)) +
   facet_wrap(~rw, as.table=F) +
-  scale_color_colorblind("$\\kappa$") +
-  scale_linetype_discrete("$\\kappa$") +
+  scale_color_manual("$\\kappa$", values=rev(colorblind_pal()(4))) +
+  scale_linetype_manual("$\\kappa$", values=rev(c("solid", "22", "42", "44"))) +
   theme(
     panel.grid = element_blank(),
     panel.spacing = unit(0, "cm"),

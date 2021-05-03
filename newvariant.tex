@@ -170,8 +170,8 @@ Many studies have tried to estimate the relative strength of the novel variant f
 Some studies have instead assumed a value of the relative strength of the novel variant and tried to predict its relative speed to determine when a new variant will become the dominant strain \citep{davies2021estimated,di2021impact}.
 While both approaches are reasonable, holding different quantities constant (i.e., strength or speed) can lead to different conclusions about the spread of the disease and its control \citep{doi:10.1098/rspb.2020.1556}:
 estimation of speed from strength or strength from speed depends on assumptions about the generation-interval distribution \citep{roberts2007model,svensson2007note,wallinga2007generation}.
-For example, when we assume a fixed value of epidemic strength, longer generation intervals lead to a slower epidemic (lower $r$), making the epidemic easier to control.
-When we assume a fixed value of epidemic speed, longer generation intervals lead to a stronger epidemic (higher $\RR$), making the epidemic more difficult to control.
+For example, when epidemic strength is fixed, assuming longer generation intervals lead to a slower epidemic (lower $r$), making the epidemic look easier to control with speed-like interventions such as contact tracing.
+When epidemic speed is fixed, assuming longer generation intervals lead to a stronger epidemic (higher $\RR$), making the epidemic look harder to control with strength-like interventions such as social distancing.
 
 In practice, most studies have assumed that the previous dominant strain (wild type) and variants have identical generation intervals, but recent evidence suggests that the B.1.1.7 variant may have a longer duration of infection: 13.3 days (90\% CI: 10.1--16.5) for the new variant and 8.2 days (90\% CI: 6.5--9.7) for the wild type \citep{kissler2021densely}.
 Longer duration of infection suggests that the mean generation interval of B.1.1.7 is likely to be longer than that of the wild type.
@@ -497,6 +497,21 @@ In this case, $\Rw(t)$ remains around 2 and slowly decreases to $0.4 = 2 \times 
 Finally, we assume $\Rv(t) = \rho \Rw(t)$.
 From simulated incidence curves between day 15 and 70, we estimate the instantaneous reproduction number using \eref{rt}.
 We ignore incidence before day 15 to remove any potential transient effects.
+
+\section*{Data availability}
+
+All data and code are stored in a publicly available GitHub repository (\url{https://github.com/parksw3/newvariant}).
+
+\section*{Competing interests}
+
+We declare no competing interests.
+
+\section*{Funding}
+
+BMB was supported by Natural Sciences and Engineering Research Council (NSERC). 
+% J.D. was supported by Canadian Institutes of Health Research (CIHR). 
+% J.S.W. was supported by Army Research Office (W911NF1910384).
+The funders had no role in study design, data collection and analysis, decision to publish, or preparation of the manuscript.
 
 \pagebreak
 
