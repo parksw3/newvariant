@@ -96,8 +96,10 @@ g1 <- ggplot(gendata_base) +
   geom_vline(xintercept = Gw, lwd=2, col=colorblind_pal()(3)[3], lty=3) +
   scale_x_continuous("Generation intervals (days)") +
   scale_y_continuous("Kernel density", limits=c(0, 0.4)) +
-  scale_color_manual("", values=(colorblind_pal()(3)[c(3, 1)])) +
-  scale_linetype_manual("", values=c(3, 1)) +
+  scale_color_manual("", values=(colorblind_pal()(3)[c(1, 3)]),
+                     breaks=c("Pre-intervention", "Post-intervention (constant-strength)")) +
+  scale_linetype_manual("", values=c(1, 3),
+                        breaks=c("Pre-intervention", "Post-intervention (constant-strength)")) +
   ggtitle("A. Equal generation intervals") +
   theme(
     panel.grid = element_blank(),
@@ -112,8 +114,10 @@ g2 <- ggplot(gendata_base) +
   geom_vline(xintercept = Gpost_base, col=colorblind_pal()(3)[2], lwd=2, lty=2) +
   scale_x_continuous("Generation intervals (days)") +
   scale_y_continuous("Kernel density", limits=c(0, 0.4)) +
-  scale_color_manual("", values=(colorblind_pal()(3)[c(2, 1)])) +
-  scale_linetype_manual("", values=c(2, 1)) +
+  scale_color_manual("", values=(colorblind_pal()(3)[c(1, 2)]),
+                     breaks=c("Pre-intervention", "Post-intervention (constant-speed)")) +
+  scale_linetype_manual("", values=c(1, 2),
+                        breaks=c("Pre-intervention", "Post-intervention (constant-speed)")) +
   ggtitle("B. Equal generation intervals") +
   theme(
     panel.grid = element_blank(),
@@ -155,8 +159,10 @@ g5 <- ggplot(intervention) +
                 breaks=c(2/3, 1, 3/2),
                 labels=c("2/3", 1, "3/2")) +
   scale_y_log10("Strength", breaks=c(0.5, 1, 2, 4), limits=c(0.5, 4)) +
-  scale_linetype_manual("", values=c(2, 3, 1)) +
-  scale_color_manual("", values=(colorblind_pal()(3)[c(2, 3, 1)])) +
+  scale_linetype_manual("", values=c(1, 2, 3),
+                        breaks=c("Pre-intervention",  "Post-intervention (constant-speed)", "Post-intervention (constant-strength)")) +
+  scale_color_manual("", values=(colorblind_pal()(3)),
+                     breaks=c("Pre-intervention",  "Post-intervention (constant-speed)", "Post-intervention (constant-strength)")) +
   ggtitle("E") +
   theme(
     panel.grid = element_blank(),
