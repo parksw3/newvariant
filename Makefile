@@ -14,8 +14,6 @@ vim_session:
 Sources += newvariant.tex
 newvariant.pdf: newvariant.tex
 
-Sources += notes.md
-
 ######################################################################
 
 # tikz figures; come up with a pipeline
@@ -27,6 +25,13 @@ relspeed.Rout: relspeed.R
 
 relstrength.tex: relstrength.Rout ;
 relstrength.Rout: relstrength.R
+	$(wrapR)
+
+Ignore += Rtbias_smooth.tex
+Rtbias_smooth.pdf Rtbias_smooth.tex: Rtbias_smooth.Rout ;
+
+Rtbias_smooth.R: renewal_det.R; $(touch)
+Rtbias_smooth.Rout: Rtbias_smooth.R
 	$(wrapR)
 
 Ignore += Rtbias.tex rel*.png rel*.tex
