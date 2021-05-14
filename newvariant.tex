@@ -36,7 +36,9 @@
 \usepackage[pdfencoding=auto, psdextra]{hyperref}
 
 \usepackage{natbib}
-\bibliographystyle{apalike}
+\setcitestyle{numbers} 
+\setcitestyle{square}
+\bibliographystyle{prsb}
 \date{\today}
 
 \usepackage{xspace}
@@ -144,6 +146,8 @@ Jonathan Dushoff\textsuperscript{2,3,4}
 
 \end{flushleft}
 
+%% 6635 words
+%% 6040 words
 
 \section*{Abstract}
 
@@ -261,7 +265,7 @@ Assuming a narrower distribution (lower $\kappa$) has qualitatively similar effe
 therefore, narrower distributions lead to higher values of $\rho$ when $\rv > 0$ and lower values of $\rho$ when $\rv \leq 0$.
 When $\rw < 0 < \rv$, inference of $\rho$ is relatively insensitive to values of $\kappa$.
 
-Unsurprisingly, we find that an increased speed of $\delta=0.1\pday$ for the variant is consistent with higher strength than the wild type across the range of epidemiological conditions considered \citep{switzerland2021variant, davies2021estimated, di2021impact, ,graham2021changes, leung2021early, volz2021transmission,zhao2021}.
+Unsurprisingly, we find that an increased speed of $\delta=0.1\pday$ for the variant is consistent with higher strength than the wild type across the range of epidemiological conditions considered \citep{switzerland2021variant, davies2021estimated, di2021impact, graham2021changes, leung2021early, volz2021transmission,zhao2021}.
 However, the magnitude of relative strength $\rho$ is sensitive to assumptions about generation intervals.
 For realistic values of $\kappa$ (excluding 0 and 1), we find that the inferred relative strength $\rho$ ranges between 1.1--2.3.
 Even if we restrict the difference in generation interval to less than 20\% and only consider scenarios with $\rv>0$ (bottom panels of \fref{relstrength}), we find that $\rho$ ranges between 1.4--1.8.
@@ -314,13 +318,13 @@ Under strength-like intervention measures that reduce transmission rates by a co
 However, if the assumed generation-interval distribution $\hat{g}(\tau)$ is different from the true distribution, then the ratio between the estimated reproduction numbers $\hat{\rho}(t) = \hat{\RR}_{\textrm{var}}(t)/\hat{\RR}_{\textrm{wt}}(t)$ may change, even if the true ratio does not.
 
 Here, we investigate how misspecification of the generation-interval distribution of the variant affects our inference of relative strength from inference data under the assumption that the true generation-interval distribution of the wild type is known.
-We use a two-strain renewal equation that assumes perfect cross-immunity to simulate three different scenarios (see Methods):  
+We use a two-strain renewal equation that assumes perfect cross-immunity to simulate three different scenarios (see Supplementary Text):  
 (1) the wild type and the variant have the same generation-interval distributions (which match the known distribution, shown in \fref{Rtbias}A--C);
 (2) the variant has a shorter mean generation interval (\fref{Rtbias}D--F); and
 (3) the variant has a longer mean generation interval (\fref{Rtbias}G--I).
 Then, we compare the estimated ratio $\hat{\rho}(t) = \hat{\RR}_{\textrm{var}}(t)/\hat{\RR}_{\textrm{wt}}(t)$ with the true ratio $\rho = \Rv(t)/\Rw(t)$.
 In order to allow for changes in $\RR$ driven by the introduction and lifting of non-pharmaceutical interventions, we let $\Rw(t)$ decrease from 2 to 0.4 around day 30 and increase back up to 1 around day 60 and assume $\Rv(t) = \rho \Rw(t)$.
-Although previous studies have modeled the impact of non-pharmaceutical interventions as a step function \citep{flaxman2020Rt}, we choose to use a smooth function to model $\Rw(t)$ (\fref{Rtbias}; see Methods) given the possibility that behavioral changes may affect transmission before and after interventions take place.
+Although previous studies have modeled the impact of non-pharmaceutical interventions as a step function \citep{flaxman2020Rt}, we choose to use a smooth function to model $\Rw(t)$ (\fref{Rtbias}; see Supplementary Text) given the possibility that behavioral changes may affect transmission before and after interventions take place.
 We reach similar conclusions if we use a step function instead (Supplementary Figure S1).
 
 \begin{figure}[!pht]
@@ -476,28 +480,6 @@ Specifically, speed-like interventions, such as contact tracing, will be relativ
 Most intervention strategies throughout the current pandemic have focused on strength-like interventions \citep{flaxman2020Rt}, such as lock-downs, partly because pre-symptomatic transmission of SARS-CoV-2 has limited the effectiveness of contact tracing efforts \citep{hellewell2020feasibility}.
 However, given the possibility that new variants can have different infection characteristics \citep{kissler2021densely}, future studies should consider whether their transmission dynamics also differ (e.g., the amount of pre-symptomatic transmission) and evaluate intervention strategies accordingly.
 
-\section{Methods}
-
-\subsection{Two-strain renewal equation}
-
-We use a two-strain renewal equation to simulate the spread of the variant and the wild type.
-Ignoring birth and death, the incidence of infection caused by the variant $\iv$ and the wild type $\iw$ assuming perfect cross immunity is given by:
-\begin{align}
-\frac{dS}{dt} &= - \iv(t) - \iw(t)\\
-\iv(t) &= \Rv(t) \int_{0}^\infty \iv(t-\tau) g_{\mathrm{var}}(\tau) \dtau\\
-\iw(t) &= \Rw(t) \int_{0}^\infty \iw(t-\tau) g_{\mathrm{wt}}(\tau) \dtau
-\end{align}
-where $S$ represents the proportion of susceptible individuals.
-We discretize the model at the time scale of 0.025 days as described in \cite{park2021forward} and simulated the model with $\iv(0) = 0.001$ and $\iw(0) = 0.1$.
-To allow for smooth changes in $\Rw(t)$ around day 30 and 60, we let:
-\begin{equation}
-\Rw(t) = 2 \times \left[1 - 0.8 \left(\frac{1}{2} + \frac{\arctan(t-30)}{\pi} \right) \right] \times \left[1 + 1.5 \left(\frac{1}{2} + \frac{\arctan(t-60)}{\pi} \right) \right].
-\end{equation}
-In this case, $\Rw(t)$ remains around 2 and slowly decreases to $0.4 = 2 \times (1-0.8)$ around day 30, and slowly increases back up to $1 = 0.4 \times (1 + 1.5)$ around day 60.
-Finally, we assume $\Rv(t) = \rho \Rw(t)$.
-From simulated incidence curves between day 15 and 70, we estimate the instantaneous reproduction number using \eref{rt}.
-We ignore incidence before day 15 to remove any potential transient effects.
-
 \section*{Data availability}
 
 All data and code are stored in a publicly available GitHub repository (\url{https://github.com/parksw3/newvariant}).
@@ -518,24 +500,6 @@ The funders had no role in study design, data collection and analysis, decision 
 
 \pagebreak
 
-\section*{Supplementary Figure}
-
-\setcounter{figure}{0}    
-\renewcommand\thefigure{S\arabic{figure}}    
-
-\begin{figure}[!pht]
-\begin{center}
-\includegraphics[width=0.9\textwidth]{Rtbias.pdf}
-\caption{
-\textbf{Estimates of relative strength over time under different scenarios assuming step changes in reproduction number.}
-See Figure 3 of the original text for figure caption.
-}
-\end{center}
-\end{figure}
-
-
-\pagebreak
-
-\bibliography{newvariant.bib}
+\bibliography{newvariant_abbv.bib}
 
 \end{document}

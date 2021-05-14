@@ -1,0 +1,195 @@
+\documentclass[12pt]{article}
+\usepackage[top=1in,left=1in, right = 1in, footskip=1in]{geometry}
+
+\usepackage{graphicx}
+\usepackage{xspace}
+%\usepackage{adjustbox}
+
+\newcommand{\comment}{\showcomment}
+%% \newcommand{\comment}{\nocomment}
+
+\newcommand{\showcomment}[3]{\textcolor{#1}{\textbf{[#2: }\textsl{#3}\textbf{]}}}
+\newcommand{\nocomment}[3]{}
+
+\newcommand{\jd}[1]{\comment{cyan}{JD}{#1}}
+\newcommand{\swp}[1]{\comment{magenta}{SWP}{#1}}
+\newcommand{\bmb}[1]{\comment{blue}{BMB}{#1}}
+\newcommand{\djde}[1]{\comment{red}{DJDE}{#1}}
+
+\newcommand{\eref}[1]{Eq.~\ref{eq:#1}}
+\newcommand{\fref}[1]{Fig.~\ref{fig:#1}}
+\newcommand{\Fref}[1]{Fig.~\ref{fig:#1}}
+\newcommand{\sref}[1]{Sec.~\ref{#1}}
+\newcommand{\frange}[2]{Fig.~\ref{fig:#1}--\ref{fig:#2}}
+\newcommand{\tref}[1]{Table~\ref{tab:#1}}
+\newcommand{\tlab}[1]{\label{tab:#1}}
+\newcommand{\seminar}{SE\mbox{$^m$}I\mbox{$^n$}R}
+
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+
+\usepackage{lineno}
+\linenumbers
+
+\usepackage[pdfencoding=auto, psdextra]{hyperref}
+
+\usepackage{natbib}
+\setcitestyle{numbers} 
+\setcitestyle{square}
+\bibliographystyle{prsb}
+\date{\today}
+
+\usepackage{xspace}
+\newcommand*{\ie}{i.e.\@\xspace}
+
+\usepackage{color}
+
+%% Consistent, changeable style for subscripts
+\newcommand{\vvvar}{\mathrm{var}}
+\newcommand{\wwwt}{\mathrm{wt}}
+
+\newcommand{\rx}[1]{\ensuremath{{r}_{#1}}\xspace} 
+\newcommand{\ry}[1]{\rx{\mathrm{#1}}} 
+\newcommand{\rw}{\rx{\wwwt}}
+\newcommand{\rv}{\rx{\vvvar}}
+
+\newcommand{\Rx}[1]{\ensuremath{{\mathcal R}_{#1}}\xspace} 
+\newcommand{\Ry}[1]{\Rx{\mathrm{#1}}}
+\newcommand{\Ro}{\Rx{0}}
+\newcommand{\RR}{\ensuremath{{\mathcal R}}\xspace}
+\newcommand{\Rw}{\Rx{\wwwt}}
+\newcommand{\Rv}{\Rx{\vvvar}}
+
+\newcommand{\days}{\ensuremath{\, \textrm{days}}}
+\newcommand{\pday}{\ensuremath{/\textrm{day}}}
+\newcommand{\dd}[1]{\ensuremath{\, \mathrm{d}#1}}
+\newcommand{\dtau}{\dd{\tau}}
+\newcommand{\dx}{\dd{x}}
+\newcommand{\dsigma}{\dd{\sigma}}
+
+\newcommand{\ix}[1]{\ensuremath{{i}_{#1}}\xspace} 
+\newcommand{\iy}[1]{\ix{\mathrm{#1}}}
+\newcommand{\iw}{\ix{\wwwt}}
+\newcommand{\iv}{\ix{\vvvar}}
+
+\newcommand{\Gx}[1]{\ensuremath{{\bar G}_{#1}}\xspace} 
+\newcommand{\Gy}[1]{\Gx{\mathrm{#1}}}
+\newcommand{\Gw}{\Gx{\wwwt}}
+\newcommand{\Gv}{\Gx{\vvvar}}
+
+\newcommand{\tsub}[2]{#1_{{\textrm{\tiny #2}}}}
+\newcommand{\tstart}{\ensuremath{\tsub{t}{start}}\xspace}
+\newcommand{\tend}{\ensuremath{\tsub{t}{end}}\xspace}
+
+\newcommand{\betaeff}{\ensuremath{\tsub{\beta}{eff}}\xspace}
+\newcommand{\Keff}{\ensuremath{\tsub{K}{eff}}\xspace}
+
+\newcommand{\pt}{p} %% primary time
+\newcommand{\st}{s} %% secondary time
+
+\newcommand{\psize}{{\mathcal P}} %% primary cohort size
+\newcommand{\ssize}{{\mathcal S}} %% secondary cohort size
+
+\newcommand{\gtime}{\sigma} %% generation interval
+\newcommand{\gdist}{g} %% generation-interval distribution
+
+\newcommand{\geff}{g_{\textrm{eff}}} %% generation-interval distribution
+
+\newcommand{\total}{{\mathcal T}} %% total number of serial intervals
+
+\newcommand{\PP}{{\mathcal P}}
+\newcommand{\II}{{\mathcal I}}
+
+\begin{document}
+
+\begin{flushleft}{
+	\Large
+	\textbf\newline{
+		Roles of generation-interval distributions in shaping relative epidemic strength, speed, and control of new SARS-CoV-2 variants---Supplementary Materials
+	}
+}
+\newline
+\\
+Sang Woo Park\textsuperscript{1,*}
+Benjamin M.\ Bolker\textsuperscript{2,3,4}
+Sebastian Funk\textsuperscript{5,6}
+C.\ Jessica E.\ Metcalf\textsuperscript{1,7}
+Joshua S.\ Weitz\textsuperscript{8,9}
+Bryan T.\ Grenfell\textsuperscript{1,7,10}
+Jonathan Dushoff\textsuperscript{2,3,4}
+\\
+\bigskip
+\textbf{1} Department of Ecology and Evolutionary Biology, Princeton University, Princeton, NJ, USA
+\\
+\textbf{2} Department of Biology, McMaster University, Hamilton, ON, Canada
+\\
+\textbf{3} Department of Mathematics and Statistics, McMaster University, Hamilton, ON, Canada
+\\
+\textbf{4} M.\,G.\,DeGroote Institute for Infectious Disease Research, McMaster University, Hamilton, ON, Canada
+\\
+\textbf{5} Department for Infectious Disease Epidemiology, London School of Hygiene and Tropical Medicine, London, UK
+\\
+\textbf{6} Centre for Mathematical Modelling of Infectious Diseases, London School of Hygiene and Tropical Medicine, London, UK
+\\
+\textbf{7} Princeton School of Public and International Affairs, Princeton University, Princeton, NJ, USA
+\\
+\textbf{8} School of Biological Sciences, Georgia Institute of Technology, Atlanta, GA, USA
+\\
+\textbf{9} School of Physics, Georgia Institute of Technology, Atlanta, GA, USA
+\\
+\bigskip
+
+*Corresponding author: swp2@princeton.edu
+\bigskip
+
+\end{flushleft}
+
+%% 6635 words
+
+\section{Supplementary Text}
+
+\subsection{Two-strain renewal equation}
+
+We use a two-strain renewal equation to simulate the spread of the variant and the wild type.
+Ignoring birth and death, the incidence of infection caused by the variant $\iv$ and the wild type $\iw$ assuming perfect cross immunity is given by:
+\begin{align}
+\frac{dS}{dt} &= - \iv(t) - \iw(t)\\
+\iv(t) &= \Rv(t) \int_{0}^\infty \iv(t-\tau) g_{\mathrm{var}}(\tau) \dtau\\
+\iw(t) &= \Rw(t) \int_{0}^\infty \iw(t-\tau) g_{\mathrm{wt}}(\tau) \dtau
+\end{align}
+where $S$ represents the proportion of susceptible individuals.
+We discretize the model at the time scale of 0.025 days as described in \cite{park2021forward} and simulated the model with $\iv(0) = 0.001$ and $\iw(0) = 0.1$.
+To allow for smooth changes in $\Rw(t)$ around day 30 and 60, we let:
+\begin{equation}
+\Rw(t) = 2 \times \left[1 - 0.8 \left(\frac{1}{2} + \frac{\arctan(t-30)}{\pi} \right) \right] \times \left[1 + 1.5 \left(\frac{1}{2} + \frac{\arctan(t-60)}{\pi} \right) \right].
+\end{equation}
+In this case, $\Rw(t)$ remains around 2 and slowly decreases to $0.4 = 2 \times (1-0.8)$ around day 30, and slowly increases back up to $1 = 0.4 \times (1 + 1.5)$ around day 60.
+Finally, we assume $\Rv(t) = \rho \Rw(t)$.
+From simulated incidence curves between day 15 and 70, we estimate the instantaneous reproduction number using \eref{rt}.
+We ignore incidence before day 15 to remove any potential transient effects.
+
+\pagebreak
+
+\section*{Supplementary Figure}
+
+\setcounter{figure}{0}    
+\renewcommand\thefigure{S\arabic{figure}}    
+
+\begin{figure}[!pht]
+\begin{center}
+\includegraphics[width=0.9\textwidth]{Rtbias.pdf}
+\caption{
+\textbf{Estimates of relative strength over time under different scenarios assuming step changes in reproduction number.}
+See Figure 3 of the original text for figure caption.
+}
+\end{center}
+\end{figure}
+
+
+\pagebreak
+
+\bibliography{newvariant_abbv.bib}
+
+\end{document}
