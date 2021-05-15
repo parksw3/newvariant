@@ -147,7 +147,7 @@ Jonathan Dushoff\textsuperscript{2,3,4}
 \end{flushleft}
 
 %% 6635 words
-%% 5762 words
+%% 5299 words
 
 \section*{Abstract}
 
@@ -161,18 +161,17 @@ Finally, we discuss implications for control: if new variants have longer genera
 \section{Introduction}
 
 Estimating variant epidemic strength and speed remains a key question in understanding the threat of SARS-CoV-2 variants of concern (VoCs) \citep{switzerland2021variant, davies2021estimated, di2021impact,graham2021changes, leung2021early, volz2021transmission,zhao2021}.
-Epidemic ``strength'' is measured by the reproduction number $\RR$ -- the average number of new infections caused by a typical infection. 
+Epidemic ``strength'' is measured by the reproduction number $\RR$---the average number of new infections caused by a typical infection. 
 Disease can spread in a population if $\RR>1$ \citep{diekmann1990definition}.
 The epidemic strength also determines the final size of an epidemic in a homogeneous population \citep{anderson1991infectious}.
 Epidemic ``speed'' is characterized by the growth rate $r$, which describes how fast a disease spreads at the population level.
 Like epidemic strength, epidemic speed also determines conditions for disease elimination: $r=0$ is a threshold equivalent to $\RR=1$.
-Strength and speed are linked by generation intervals---defined as the time between infection and transmission \citep{roberts2007model,svensson2007note,wallinga2007generation}.
+Strength and speed are linked by generation intervals---defined as the time between infection and transmission \citep{svensson2007note,wallinga2007generation}.
 
 Analyses of new variants have typically characterized \emph{relative} strength (i.e., the ratio of reproduction numbers $\Rv/\Rw$) and speed (i.e., the difference between growth rates $\rv-\rw$) of the variants.
 Many studies have tried to estimate the relative strength of variants from the observed relative speed \citep{davies2021estimated, leung2021early, volz2021transmission,zhao2021}.
 Some studies have instead assumed a value of the relative strength and tried to predict its relative speed \citep{davies2021estimated,di2021impact}.
-While both approaches are reasonable, holding different quantities constant (i.e., strength or speed) can lead to different conclusions about the spread of the disease and its control \citep{doi:10.1098/rspb.2020.1556}:
-estimation of speed from strength or strength from speed depends on assumptions about the generation-interval distribution \citep{roberts2007model,svensson2007note,wallinga2007generation}.
+While both approaches are reasonable, holding different quantities constant (i.e., strength or speed) can lead to different conclusions about the spread of the disease and its control \citep{doi:10.1098/rspb.2020.1556}.
 For example, when epidemic strength is fixed, assuming longer generation intervals lead to a slower epidemic (lower $r$), making the epidemic look easier to control with speed-like interventions such as contact tracing.
 When epidemic speed is fixed, assuming longer generation intervals lead to a stronger epidemic (higher $\RR$), making the epidemic look harder to control with strength-like interventions such as social distancing.
 
@@ -198,7 +197,7 @@ Neglecting the (relatively slow) rate of new mutations, the current incidence of
 \begin{equation}
 i_x(t) = \int_0^\infty i_x(t-\tau) K_x(t, \tau) \dtau.
 \end{equation}
-This framework provides a flexible way of modeling disease dynamics and generalizes compartmental model, such as the SEIR model \citep{heesterbeek1996concept, diekmann2000mathematical, roberts2004modelling, aldis2005integral, roberts2007model, champredon2018equivalence}.
+This framework provides a flexible way of modeling disease dynamics and generalizes compartmental model, such as the SEIR model \citep{heesterbeek1996concept, diekmann2000mathematical, roberts2004modelling, aldis2005integral, champredon2018equivalence}.
 
 The integral of the kernel $\RR_x(t) = \int K_x(t, \tau) \dtau$ is referred to as the instantaneous reproduction number \citep{fraser2007estimating}.
 The instantaneous reproduction number is a particular kind of weighted average of infectiousness of previously infected individuals at time $t$---in particular, it is weighted by the total relative infectiousness at time $t$, rather than by the actual number of infected individuals present.
@@ -206,7 +205,7 @@ The normalized kernel $g_x(t, \tau) = K_x(t, \tau)/\RR_x(t)$---which we refer to
 Both the reproduction number and the generation-interval distribution depend on many factors, including intrinsic infectiousness of an infected individual, non-pharmaceutical interventions, awareness-driven behavior, and population-level susceptibility \citep{fraser2007estimating}.
 
 Over a short period of time, we can assume that epidemiological conditions remain roughly constant: $\RR_x(t) \approx \RR_x$ and $g_x(t, \tau) \approx g_x(\tau)$.
-In this case, the incidence of each strain will exponentially grow (or decay) at rate $r_x$, satisfying the Euler-Lotka equation \citep{wallinga2007generation}:
+Then, the incidence of each strain grows (or decays) exponentially at rate $r_x$, satisfying the Euler-Lotka equation \citep{wallinga2007generation}:
 \begin{equation}
 \frac{1}{\RR_x} = \int_0^\infty \exp(- r_x \tau) g_x(\tau) \dtau.
 \end{equation}
@@ -221,9 +220,8 @@ For simplicity we neglect differences in the squared coefficient of variation an
 
 \section{Inferring relative strength from relative speed}
 
-Epidemic speed $r_x$ can often be estimated directly from incidence of infection during the exponential growth period \citep{mills2004transmissibility,nishiura2009transmission,ma2014estimating}.
-However, estimating $r_x$ can be challenging when case counts are low (as when a new variant begins to spread) and is sensitive to temporal changes in the distribution of testing effort in the population and the overall testing intensity.
-Studies of new SARS-CoV-2 variants have mostly focused on characterizing changes in the \emph{proportion} of a new variant \citep{switzerland2021variant, davies2021estimated, di2021impact, graham2021changes, leung2021early, volz2021transmission,zhao2021}.
+While epidemic speed $r_x$ can often be estimated directly from incidence of infection during the exponential growth period \citep{mills2004transmissibility,nishiura2009transmission,ma2014estimating},
+studies of new SARS-CoV-2 variants have mostly focused on characterizing changes in the \emph{proportion} of a new variant \citep{switzerland2021variant, davies2021estimated, di2021impact, graham2021changes, leung2021early, volz2021transmission,zhao2021}.
 Focusing on proportions has the advantage, because changes in proportions are less sensitive to changes in testing and to other transient effects that would affect variants and wild type viruses similarly.
 When incidence is changing exponentially ($i_x(t) = i_x(t_0) \exp(r_x t)$), the proportion of the new variant $p(t)$ follows a logistic growth curve:
 \begin{align}
@@ -252,24 +250,24 @@ Given the mean generation interval of the variant $\Gv$ and the wild type $\Gw$,
 Therefore, the relative strength $\rho$ depends not only on the relative speed $\delta$ and the generation-interval distributions but also on how fast the wild type is spreading in the population (\rw)---
 some analyses have implicitly or explicitly neglected this factor by either assuming $\rw = 0$ \citep{switzerland2021variant} or $\kappa = 0$ \citep{davies2021estimated} (in the latter case, $\rho = \exp(\delta \Gw)$ when $\Gv=\Gw$).
 
-Based on the observed relative growth rate of B.1.1.7 in the UK, we start by  taking the relative speed of the variant to be $\delta = 0.1\pday$  \citep{davies2021estimated}; the mean generation interval of the wild type to be $\Gw = 5\days$ \citep{ferretti2020quantifying}; and the squared coefficient of variation of generation intervals to be $\kappa=0.2$ \citep{ferretti2020quantifying} for both the variant and the wild type.
+Based on the observed relative growth rate of B.1.1.7 in the UK, we start by taking the relative speed of the variant to be $\delta = 0.1\pday$  \citep{davies2021estimated}; the mean generation interval of the wild type to be $\Gw = 5\days$ \citep{ferretti2020quantifying}; and the squared coefficient of variation of generation intervals to be $\kappa=0.2$ \citep{ferretti2020quantifying} for both the variant and the wild type.
 % As noted above, we assume that the variant and the wild type have equal $\kappa$ throughout, and only consider differences in the mean.
 We evaluate the estimates of relative strength $\rho$ across a wide range of $\kappa$ from 0 (fixed-length generation intervals) to 1 (exponential distribution).
 To further explore how inference depends on underlying epidemiological conditions, we consider five scenarios: (1) $\rw < \rv < 0$, (2) $\rw < \rv = 0$, (3) $\rw < 0 < \rv$, (4) $0 = \rw < \rv$, and (5) $0 < \rw < \rv$.
 We consider the spread of B.1.1.7 as an example but our qualitative conclusions should hold for other VoCs.
 
-\fref{relstrength} illustrates how the relative strength depends on the shape of the generation-interval distributions and on underlying epidemiological conditions.
+Unsurprisingly, we find that an increased speed of $\delta=0.1\pday$ for the variant is consistent with higher strength than the wild type across the range of epidemiological conditions considered (\fref{relstrength}).
+However, the magnitude of relative strength $\rho$ is sensitive to assumptions about generation intervals:
+For realistic values of $\kappa$ (excluding 0 and 1), the inferred relative strength $\rho$ ranges between 1.1--2.3 when $\Gv$ is allowed to vary between $2\Gw/3$ and $3\Gw/2$.
+
 In general, longer mean generation intervals of the new variant translate to higher values of $\rho$ (and vice versa), except when $\rv \leq 0$ (recall, we always assume $\rw<\rv$).
 When $\rv = 0$, we always have $\Rv = 1$ and so $\rho$ is independent of the generation-interval distribution of the new variant.
 When $\rv < 0$, we see that longer generation intervals decrease $\rho$ because longer generation intervals actually lead to slower decay (higher $r$).
-Assuming a narrower distribution (lower $\kappa$) has qualitatively similar effects as assuming longer generation intervals because both reduce the amount of early transmission; 
-therefore, narrower distributions lead to higher values of $\rho$ when $\rv > 0$ (and vice versa).
+Assuming a narrower distribution (lower $\kappa$) has qualitatively similar effects as assuming longer generation intervals (leading to higher values of $\rho$ when $\rv > 0$) because both reduce the amount of early transmission.
 When $\rw < 0 < \rv$, inference of $\rho$ is relatively insensitive to values of $\kappa$.
 
-Unsurprisingly, we find that an increased speed of $\delta=0.1\pday$ for the variant is consistent with higher strength than the wild type across the range of epidemiological conditions considered \citep{switzerland2021variant, davies2021estimated, di2021impact, graham2021changes, leung2021early, volz2021transmission,zhao2021}.
-However, the magnitude of relative strength $\rho$ is sensitive to assumptions about generation intervals.
-% For realistic values of $\kappa$ (excluding 0 and 1), we find that the inferred relative strength $\rho$ ranges between 1.1--2.3.
-Even when we restrict the difference in generation interval to be less than 20\% and only consider scenarios with $\rv>0$ (bottom panels of \fref{relstrength}), $\rho$ ranges between 1.4--1.8.
+% 
+% Even when we restrict the difference in generation interval to be less than 20\% and only consider scenarios with $\rv>0$ (bottom panels of \fref{relstrength}), $\rho$ ranges between 1.4--1.8.
 
 \section{Inferring relative speed from relative strength}
 
@@ -338,10 +336,8 @@ We reach similar conclusions if we use a step function instead (Supplementary Fi
 (C, F, I) Phase planes (time is implicit) showing true (purple, solid) and estimated (orange, dashed) relationships between estimated reproduction numbers.
 Blue dotted lines represent the regression lines of the estimated variant reproduction numbers against the estimated wild type reproduction numbers.
 Gray lines represent the one-to-one line.
-Top row: the assumed mean generation-interval (5 days) is equal to the mean generation-interval of the wild type and the variant.
-Middle row: the assumed mean generation-interval (5 days) is equal to the mean generation-interval of the wild type but is longer than that of the variant (4 days).
-Bottom row: the assumed mean generation-interval (5 days) is equal to the mean generation-interval of the wild type but is longer than that of the variant (6 days).
-For all simulations, squared coefficient of variation in generation intervals is assumed to equal $\kappa = 1/5$.
+For all simulations, the assumed mean generation interval is equal to the mean generation interval of the wild type (5 days), and the squared coefficient of variation in generation intervals is equal to $\kappa = 1/5$.
+The mean generation interval of the variant is equal to 5 days (top row), 4 days (middle row), and 6 days (bottom row).
 }
 \end{center}
 \label{fig:Rtbias}
@@ -393,20 +389,8 @@ The constant-speed intervention also reduces the mean generation interval by a l
 
 The speed-based paradigm gives the same results regarding control but provides important insights (\fref{strengthspeed}F).
 The observed speed of the variant $\rv$ at a given moment is independent of our estimates of its mean generation interval.
-Likewise, the post-intervention speed of the variant under the constant-speed intervention is also independent of the mean generation interval;
-therefore, the constant-speed intervention will always be equally effective (on the speed scale) in preventing the spread.
-
-The constant post-intervention speed can be understood by considering a speed-based decomposition of the kernel: $K_{\mathrm{pre}}(\tau) = \exp(\rv) b(\tau)$, where $b(\tau)$ is the initial backward generation-interval distribution and therefore integrates to 1 \citep{doi:10.1098/rspb.2020.1556}.
-This decomposition allows us to re-write the post-intervention kernel (under the constant-speed intervention) as follows:
-\begin{equation}
-K_{\mathrm{post}}(\tau) = \exp(\rv-\phi) b(\tau).
-\end{equation}
-Since the post-intervention speed $\ry{post}$ is determined by the following implicit equation,
-\begin{equation}
-1 = \int_0^\infty \exp(-\ry{post} \tau) K_{\mathrm{post}}(\tau) \dtau = \int_0^\infty \exp(\rv-\phi-\ry{post}) b(\tau)  \dtau,
-\end{equation}
-we have $\ry{post} = \phi - \rv$. 
-In particular, if speed of intervention is faster than the observed speed of spread (i.e., if $\phi > \rv$), we can control the epidemic (i.e., $\ry{post} < 0$) regardless of the underlying generation-interval distribution.
+Likewise, the post-intervention speed of the variant under the constant-speed intervention is also independent of the mean generation interval.
+Therefore, if speed of intervention is faster than the observed speed of spread (i.e., if $\phi > \rv$), we can control the epidemic (i.e., $\ry{post} < 0$) regardless of the underlying generation-interval distribution (see \cite{doi:10.1098/rspb.2020.1556} for mathematical details).
 
 \section{Discussion}
 
@@ -417,31 +401,36 @@ these biases may be assessed by considering whether relative strength appears to
 Finally, differences in generation intervals can also lead to different conclusions about the effectiveness of interventions.
 % if the variant has longer generation intervals than the wild type, speed-like interventions, will be relatively more effective than naive estimates would suggest (and conversely, strength-like intervention will be relatively more effective if the variant has shorter generation intervals).
 
-As new variants, in particular the B.1.1.7 variant, of SARS-CoV-2 are spreading and becoming dominant in many countries, it is clear that the variants are more transmissible (have higher strength) than the wild type \citep{switzerland2021variant, davies2021estimated, di2021impact, graham2021changes, leung2021early, volz2021transmission,zhao2021}.
+As new variants of SARS-CoV-2, such as B.1.1.7, are spreading and becoming dominant in many countries, it is clear that the variants are more transmissible (have higher strength) than the wild type \citep{switzerland2021variant, davies2021estimated, di2021impact, graham2021changes, leung2021early, volz2021transmission,zhao2021}.
 While our analysis supports estimates of a higher strength of the new variant across a wide range of assumptions, it also shows that uncertainty in generation-interval distributions must be taken into account to obtain accurate estimates of the relative strength of variants.
 If new variants has a longer infectious period \citep{kissler2021densely}, and therefore extended generation-interval distributions, current estimates may underestimate the true relative strength.
-If new variants escape vaccinal or natural immunity to some extent \citep{Kupferschmidt329}, their relative strength may increase further.
+% If new variants escape vaccinal or natural immunity to some extent \citep{Kupferschmidt329}, their relative strength may increase further.
 
 There is currently a (minor) discrepancy in the estimates of relative strength of new variants, particularly for B.1.1.7.
 Mathematical analyses have typically reported greater than a 1.4 fold increase in reproduction number for the B.1.1.7 variant ($\rho > 1.4$) whereas an independent analysis of secondary attack rates from contact tracing data suggests a 1.25--1.4 fold increase \citep{ukinvest}.
-As shown in \cite{davies2021estimated} and \cite{volz2021transmission}, propagating uncertainty in generation interval estimates (and, in particular, assuming shorter generation intervals) can partially explain these differences.
-
-Using the Gamma-approximation framework \citep{doi:10.1098/rsif.2020.0144} can help us reconcile different estimates more clearly.
-For example, \cite{davies2021estimated} estimated a relative strength of $\rho=1.77$ assuming a fixed generation generation interval at 5.5 days from $\delta=0.104\pday$ in one of their regression analysis.
-Similarly, \cite{volz2021transmission} estimated $\rho=1.79$ by directly comparing the ratio between $\Rv$ and $\Rw$ assuming a mean generation interval of 6.5 days and a squared coefficient of variation of 0.38.
-In this case, the latter study's longer mean generation interval (which increases $\rho$) is counter-balanced by the effects of their wider distribution (which decreases $\rho$); calculations using our approximation framework produce qualitatively similar results ($\rho=1.81$ from $\Gw=\Gv=6.4\days$, $\kappa=0.38$, $\delta=0.104\pday$, and $\rw=0\pday$).
-If we consider short and wide generation interval estimates from Tianjin, China ($\Gw=\Gv=2.57\days$ and $\kappa=1$; \cite{ganyani2020estimating}), we obtain $\rho=1.27$ (from $\delta=0.104\pday$ and $\rw = 0\pday$).
+As shown in \cite{davies2021estimated} and \cite{volz2021transmission}, propagating uncertainty in generation interval estimates (and, in particular, assuming shorter generation intervals) can partially explain these differences:
+For example, if we consider short and wide generation interval estimates from Tianjin, China ($\Gw=\Gv=2.57\days$ and $\kappa=1$; \cite{ganyani2020estimating}), we obtain $\rho=1.26$ (from $\delta=0.1\pday$ and $\rw = 0\pday$).
 Although these estimates are more consistent with the attack rate analysis \citep{ukinvest},
 we do not claim that they are more accurate---
 in particular, contact tracing data can be biased towards particular types of contacts that are easily identified such as household contacts, which could also affect the estimate of $\rho$.
 Instead, this calculation simply highlights the importance of propagating uncertainty in generation-interval distributions in assessing the relative strength and speed of SARS-CoV-2 variants.
 
+%Using the Gamma-approximation framework \citep{doi:10.1098/rsif.2020.0144} can help us reconcile different estimates more clearly.
+%For example, \cite{davies2021estimated} estimated a relative strength of $\rho=1.77$ assuming a fixed generation generation interval at 5.5 days from $\delta=0.104\pday$ in one of their regression analysis.
+%Similarly, \cite{volz2021transmission} estimated $\rho=1.79$ by directly comparing the ratio between $\Rv$ and $\Rw$ assuming a mean generation interval of 6.5 days and a squared coefficient of variation of 0.38.
+%In this case, the latter study's longer mean generation interval (which increases $\rho$) is counter-balanced by the effects of their wider distribution (which decreases $\rho$); calculations using our approximation framework produce qualitatively similar results ($\rho=1.81$ from $\Gw=\Gv=6.4\days$, $\kappa=0.38$, $\delta=0.104\pday$, and $\rw=0\pday$).
+%If we consider short and wide generation interval estimates from Tianjin, China ($\Gw=\Gv=2.57\days$ and $\kappa=1$; \cite{ganyani2020estimating}), we obtain $\rho=1.27$ (from $\delta=0.104\pday$ and $\rw = 0\pday$).
+%Although these estimates are more consistent with the attack rate analysis \citep{ukinvest},
+%we do not claim that they are more accurate---
+%in particular, contact tracing data can be biased towards particular types of contacts that are easily identified such as household contacts, which could also affect the estimate of $\rho$.
+%Instead, this calculation simply highlights the importance of propagating uncertainty in generation-interval distributions in assessing the relative strength and speed of SARS-CoV-2 variants.
+
 We further used simulations to show how mis-specification of generation-interval distributions can bias the inference of relative strength from incidence data:
 when the assumed generation-interval distribution does not match the true generation-interval distribution of the variant, estimates of absolute strength $\Rv(t)$ will be biased, causing the estimated relative strength to change over time.
 In our simulations, we assumed that the intervention would reduce transmission caused by the variant and the wild type by equal amounts, thereby preserving the relative strength over time;
 however, this assumption only holds under strength-like interventions, which are insensitive to time since infection, but not under speed-like interventions. 
-As we demonstrated, the effectiveness of speed-like interventions depends on the shape of the generation-interval distribution;
-therefore, if the variant and the wild type have different generation intervals, speed-like interventions such as contact tracing can affect them differently.
+As we demonstrated, the effectiveness of speed-like interventions depends on the shape of the generation-interval distribution.
+Therefore, if the variant and the wild type have different generation intervals, speed-like interventions such as contact tracing can affect them differently.
 
 We also assumed that the incidence of infection caused by the variant and the wild type is known.
 However, estimating $\RR(t)$ from real data, such as case incidence, is often associated with a variety of practical challenges, including delays between infection and reporting and changes in testing patterns \citep{gostic2020practical}.
@@ -463,16 +452,9 @@ While the relative strength and speed are useful for describing the spread of ne
 Finally, uncertainty in generation intervals should be carefully considered.
 
 Even though SARS-CoV-2 has been spreading for more than a year, there is still considerable uncertainty about its generation intervals.
-Observational studies typically focus on serial intervals (i.e., time between symptom onset of the infector and the infectee; \cite{svensson2007note}) because they are easier to measure \citep{griffin2020rapid}.
-However, realized serial intervals are subject to dynamical biases that can be difficult to tease apart \citep{park2021forward}.
-A few studies have tried to estimate the generation-interval distribution from serial intervals, with means ranging between 3--6 days and squared coefficients of variation ranging between 0.1--1 \citep{ferretti2020quantifying,Ferretti2020timing,ganyani2020estimating,knight2020estimating}; 
-as we have shown, this uncertainty in the generation-interval distribution alone can generate large uncertainty in the inference of relative strength.
-Furthermore, most estimates neglect dynamical biases in serial intervals caused by underlying epidemiological dynamics in their estimates of generation intervals \citep{park2021forward}.
-Serial intervals also fail to account for asymptomatic transmission, adding further uncertainty to inferences of speed and strength \citep{park2020time}.
-
-Since the beginning of the SARS-CoV-2 pandemic, a few studies have emphasized the relevance of leveraging generation interval distributions to improve estimates of strength \citep{doi:10.1098/rsif.2020.0144,ali2020serial,gostic2020practical,park2021forward} and the relative importance of modes of transmission (e.g., asymptomatic vs. symptomatic, \cite{park2020time}).
-These same lessons should be considered when assessing the spread of variants in a partially susceptible population and improving efforts to control spread.
-Future studies should prioritize detailed assessment of the generation intervals of SARS-CoV-2 and widespread variants, as well as consider how uncertainty in generational intervals might bias conclusions.
+A few studies have tried to estimate the generation-interval distribution, with means ranging between 3--6 days and squared coefficients of variation ranging between 0.1--1 \citep{ferretti2020quantifying,Ferretti2020timing,ganyani2020estimating,knight2020estimating}.
+However, these estimates are derived from serial intervals (i.e., time between symptom onset of the infector and the infectee; \cite{svensson2007note}), which are subject to dynamical biases \citep{park2021forward} and fail to account for asymptomatic transmission, adding further uncertainty to inferences of speed and strength \citep{park2020time}.
+Future studies should prioritize detailed assessment of the generation intervals of SARS-CoV-2 and widespread variants, as well as consider how uncertainty in generational intervals might bias conclusions \citep{doi:10.1098/rsif.2020.0144,ali2020serial,gostic2020practical}.
 
 The spread of new SARS-CoV-2 variants and the replacement of previously dominant lineages represent ongoing challenges for controlling the SARS-CoV-2 pandemic \citep{abdool2021new,fontanet2021sars,walensky2021sars}.  
 By explicitly considering epidemiological context and generation interval differences together, we have shown that improving estimates of the the relative duration of infectiousness at the individual scale may represent a pathway towards more effective interventions. 
