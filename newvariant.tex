@@ -415,39 +415,27 @@ we do not claim that they are more accurate---
 in particular, contact tracing data can be biased towards particular types of contacts that are easily identified such as household contacts, which could also affect the estimate of $\rho$.
 Instead, this calculation simply highlights the importance of propagating uncertainty in generation-interval distributions in assessing the relative strength and speed of SARS-CoV-2 variants.
 
-%Using the Gamma-approximation framework \citep{doi:10.1098/rsif.2020.0144} can help us reconcile different estimates more clearly.
-%For example, \cite{davies2021estimated} estimated a relative strength of $\rho=1.77$ assuming a fixed generation generation interval at 5.5 days from $\delta=0.104\pday$ in one of their regression analysis.
-%Similarly, \cite{volz2021transmission} estimated $\rho=1.79$ by directly comparing the ratio between $\Rv$ and $\Rw$ assuming a mean generation interval of 6.5 days and a squared coefficient of variation of 0.38.
-%In this case, the latter study's longer mean generation interval (which increases $\rho$) is counter-balanced by the effects of their wider distribution (which decreases $\rho$); calculations using our approximation framework produce qualitatively similar results ($\rho=1.81$ from $\Gw=\Gv=6.4\days$, $\kappa=0.38$, $\delta=0.104\pday$, and $\rw=0\pday$).
-%If we consider short and wide generation interval estimates from Tianjin, China ($\Gw=\Gv=2.57\days$ and $\kappa=1$; \cite{ganyani2020estimating}), we obtain $\rho=1.27$ (from $\delta=0.104\pday$ and $\rw = 0\pday$).
-%Although these estimates are more consistent with the attack rate analysis \citep{ukinvest},
-%we do not claim that they are more accurate---
-%in particular, contact tracing data can be biased towards particular types of contacts that are easily identified such as household contacts, which could also affect the estimate of $\rho$.
-%Instead, this calculation simply highlights the importance of propagating uncertainty in generation-interval distributions in assessing the relative strength and speed of SARS-CoV-2 variants.
-
-We further used simulations to show how mis-specification of generation-interval distributions can bias the inference of relative strength from incidence data:
-when the assumed generation-interval distribution does not match the true generation-interval distribution of the variant, estimates of absolute strength $\Rv(t)$ will be biased, causing the estimated relative strength to change over time.
-In our simulations, we assumed that the intervention would reduce transmission caused by the variant and the wild type by equal amounts, thereby preserving the relative strength over time;
+We further used simulations to show how mis-specification of generation-interval distributions can bias the inference of relative strength from incidence data.
+In doing so, we assumed that the intervention would reduce transmission caused by the variant and the wild type by equal amounts, thereby preserving the relative strength over time;
 however, this assumption only holds under strength-like interventions, which are insensitive to time since infection, but not under speed-like interventions. 
-As we demonstrated, the effectiveness of speed-like interventions depends on the shape of the generation-interval distribution.
-Therefore, if the variant and the wild type have different generation intervals, speed-like interventions such as contact tracing can affect them differently.
+As we demonstrated, if the variant and the wild type have different generation intervals, speed-like interventions such as contact tracing can affect them differently, causing the relative strength to change over time.
 
 We also assumed that the incidence of infection caused by the variant and the wild type is known.
-However, estimating $\RR(t)$ from real data, such as case incidence, is often associated with a variety of practical challenges, including delays between infection and reporting and changes in testing patterns \citep{gostic2020practical}.
+However, estimating $\RR(t)$ from real data is often associated with a variety of practical challenges, including delays between infection and reporting and changes in testing patterns \citep{gostic2020practical}.
 We have chosen to focus here on the underlying dynamical mechanisms that may affect inference.
 Future studies may consider the development of methods based on mechanism outlined here to assess potential biases in their estimates of relative strength. 
 
-In moving from mechanism to improved estimates, we argue that both perspectives (i.e., whether we hold relative strength or speed constant) are useful in understanding the dynamics of the new variant.
-Early in the spread of an emerging variant, it is likely more convenient to fix the relative speed, given that speed can be directly observed.
-As more information about the transmission and immunity profiles of the new variant becomes available, we advise instead fixing the relative strength and inferring the speed, as this assumption better matches biological mechanisms for the variants' higher strength (e.g., higher rates of transmission and immune evasion).
-Researchers should be mindful about which quantity they hold constant and how their conclusions follow from their assumptions \citep{doi:10.1098/rspb.2020.1556}.
+% In moving from mechanism to improved estimates, we argue that both perspectives (i.e., whether we hold relative strength or speed constant) are useful in understanding the dynamics of the new variant.
+% Early in the spread of an emerging variant, it is likely more convenient to fix the relative speed, given that speed can be directly observed.
+% As more information about the transmission and immunity profiles of the new variant becomes available, we advise instead fixing the relative strength and inferring the speed, as this assumption better matches biological mechanisms for the variants' higher strength (e.g., higher rates of transmission and immune evasion).
+% Researchers should be mindful about which quantity they hold constant and how their conclusions follow from their assumptions \citep{doi:10.1098/rspb.2020.1556}.
 
 This study has practical implications for analyzing the epidemiological dynamics of new variants.
 First, models that assume a constant relative speed, such as the standard logistic growth model, should be used with care---it is important to remember that the relative speed is expected to change with epidemiological conditions.
-In some cases, such as early in the spread of new variants, assuming a constant relative speed may be justified if epidemiological conditions remain relatively constant. 
-Such simplifying assumption can also help obtain crude estimates of relative speed. 
+Early in the spread of an emerging variant, it is likely more convenient to fix the relative speed, given that speed can be directly observed.
 However, epidemiological conditions \textit{will} change over time in response to spreading new variants, causing relative speed to change and invalidating this assumption.
-Second, the absolute strength and speed should not be neglected in favor of relative values; relative and absolute values should be given roughly equal weight when presenting conclusions.
+As more information about the transmission and immunity profiles of the new variant becomes available, we advise instead fixing the relative strength and inferring the speed, as this assumption better matches biological mechanisms for the variants' higher strength (e.g., higher rates of transmission and immune evasion).
+Second, the absolute strength and speed should not be neglected in favor of relative values.
 While the relative strength and speed are useful for describing the spread of new variants, the absolute values determine their spread and control.
 Finally, uncertainty in generation intervals should be carefully considered.
 
