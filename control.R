@@ -158,7 +158,7 @@ g5 <- ggplot(intervention) +
   scale_x_log10("Generation interval ratio, $\\bar{G}_{\\mathrm{var}}/\\bar{G}_{\\mathrm{wt}}$",
                 breaks=c(2/3, 1, 3/2),
                 labels=c("2/3", 1, "3/2")) +
-  scale_y_log10("Strength", breaks=c(0.5, 1, 2, 4), limits=c(0.5, 4)) +
+  scale_y_log10("Epidemic strength, $\\mathcal{R}_{\\mathrm{var}}$", breaks=c(0.5, 1, 2, 4), limits=c(0.5, 4)) +
   scale_linetype_manual("", values=c(1, 2, 3),
                         breaks=c("Pre-intervention",  "Post-intervention (constant-speed)", "Post-intervention (constant-strength)")) +
   scale_color_manual("", values=(colorblind_pal()(3)),
@@ -179,7 +179,7 @@ g6 <- ggplot(intervention) +
   scale_x_log10("Generation interval ratio, $\\bar{G}_{\\mathrm{var}}/\\bar{G}_{\\mathrm{wt}}$",
                 breaks=c(2/3, 1, 3/2),
                 labels=c("2/3", 1, "3/2")) +
-  scale_y_continuous("Speed (1/days)") +
+  scale_y_continuous("Epidemic speed, $r_{\\mathrm{var}} (1/days)") +
   scale_linetype_manual("", values=1:3) +
   scale_color_manual("", values=(colorblind_pal()(3))) +
   ggtitle("F") +
@@ -190,7 +190,7 @@ g6 <- ggplot(intervention) +
   )
 
 
-gtot <- ggarrange(g1, g2, g3, g4, g5, g6, nrow=3, ncol=2)
+gtot <- ggarrange(g1, g2, g3, g4, g5, g6, nrow=3, ncol=2, draw=FALSE)
 
 tikz(file = "control.tex", width = 12, height = 10, standAlone = T)
 gtot

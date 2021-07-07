@@ -16,16 +16,16 @@ genfun_assumed <- function(x) dgamma(x, 5, 5/5)
 genfun_short <- function(x) dgamma(x, 5, 5/4)
 genfun_long <- function(x) dgamma(x, 5, 5/6)
 
-svec <- c("Variant GI = Wild type GI = Assumed GI",
-          "Variant GI $<$ Wild type GI = Assumed GI",
+svec <- c("Variant GI $<$ Wild type GI = Assumed GI",
+          "Variant GI = Wild type GI = Assumed GI",
           "Variant GI $>$ Wild type GI = Assumed GI")
 
 slist <- list(
   list(genfun1=genfun_assumed,
-       genfun2=genfun_assumed,
+       genfun2=genfun_short,
        genfun3=genfun_assumed),
   list(genfun1=genfun_assumed,
-       genfun2=genfun_short,
+       genfun2=genfun_assumed,
        genfun3=genfun_assumed),
   list(genfun1=genfun_assumed,
        genfun2=genfun_long,
@@ -70,11 +70,11 @@ for (i in 1:length(svec)) {
       legend.title = element_blank()
     )
   
-  if (i != 1) {
+  if (i != 2) {
     g1 <- g1 + theme(legend.position="none")
   }
   
-  if (i!=1) {
+  if (i!=2) {
     g1 <- ggplot(rr) +
       geom_line(aes(tvec, Rt1, col="Wild Type", lty="Wild Type"), lwd=2) +
       geom_line(aes(tvec, Rt2, col="Variant", lty="Variant"), lwd=2) +
@@ -106,7 +106,7 @@ for (i in 1:length(svec)) {
     coord_fixed() +
     theme(
       panel.grid = element_blank(),
-      legend.position = c(0.3, 0.81),
+      legend.position = c(0.7, 0.81),
       legend.title = element_blank()
     )
   
@@ -145,7 +145,7 @@ for (i in 1:length(svec)) {
                angle=atan(theta)/pi*180, col="purple")
   }
   
-  if (i != 1) {
+  if (i != 2) {
     g3 <- g3 +
       geom_smooth(aes(Rtest1, Rtest2, col="Regression", lty="Regression"), method="lm", fullrange=TRUE, se=FALSE, lwd=2)
     

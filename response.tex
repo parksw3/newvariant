@@ -1,0 +1,226 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage{color}
+
+\usepackage{xspace}
+
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+
+\usepackage[pdfencoding=auto, psdextra]{hyperref}
+
+\usepackage{natbib}
+\bibliographystyle{chicago}
+
+\newcommand{\eref}[1]{Eq.~(\ref{eq:#1})}
+\newcommand{\fref}[1]{Fig.~\ref{fig:#1}}
+
+\newcommand{\rR}{\mbox{$r$--$\cal R$}}
+\newcommand{\RR}{\ensuremath{{\cal R}}}
+\newcommand{\RRhat}{\ensuremath{{\hat \cal R}}}
+\newcommand{\Rx}[1]{\ensuremath{{\cal R}_{#1}}} 
+\newcommand{\Ro}{\ensuremath{{\mathcal R}_{0}}\xspace}
+\newcommand{\Rs}{\Rx{\mathrm{s}}}
+\newcommand{\Rpool}{\ensuremath{{\mathcal R}_{\textrm{\tiny{pool}}}}\xspace}
+\newcommand{\Reff}{\Rx{\mathit{eff}}}
+\newcommand{\Tc}{\ensuremath{C}}
+
+\newcommand{\dd}[1]{\ensuremath{\, \mathrm{d}#1}}
+\newcommand{\dtau}{\dd{\tau}}
+\newcommand{\dx}{\dd{x}}
+\newcommand{\dsigma}{\dd{\sigma}}
+
+\newcommand{\rev}{\subsection*}
+\newcommand{\revtext}{\textsf}
+\setlength{\parskip}{\baselineskip}
+\setlength{\parindent}{0em}
+
+\newcommand{\comment}[3]{\textcolor{#1}{\textbf{[#2: }\textsl{#3}\textbf{]}}}
+\newcommand{\jd}[1]{\comment{cyan}{JD}{#1}}
+\newcommand{\swp}[1]{\comment{magenta}{SWP}{#1}}
+\newcommand{\dc}[1]{\comment{blue}{DC}{#1}}
+\newcommand{\jsw}[1]{\comment{green}{JSW}{#1}}
+\newcommand{\hotcomment}[1]{\comment{red}{HOT}{#1}}
+
+\newcommand{\psymp}{\ensuremath{p}} %% primary symptom time
+\newcommand{\ssymp}{\ensuremath{s}} %% secondary symptom time
+\newcommand{\pinf}{\ensuremath{\alpha_1}} %% primary infection time
+\newcommand{\sinf}{\ensuremath{\alpha_2}} %% secondary infection time
+
+\newcommand{\psize}{{\mathcal P}} %% primary cohort size
+\newcommand{\ssize}{{\mathcal S}} %% secondary cohort size
+
+\newcommand{\gtime}{\tau_{\rm g}} %% generation interval
+\newcommand{\gdist}{g} %% generation-interval distribution
+\newcommand{\idist}{\ell} %% incubation period distribution
+
+\newcommand{\total}{{\mathcal T}} %% total number of serial intervals
+
+
+\begin{document}
+
+\noindent Dear Editor:
+
+Thank you for the chance to revise and resubmit our manuscript. 
+We have made major revisions to our manuscript to address the reviewers' comments.
+
+\rev{Reviewer \#1}
+
+\revtext{This is a review of ``Roles of generation-interval distributions in shaping relative epidemic strength, speed, and control of new SARS-CoV-2 variants'' by Park and others for Royal Society Interface.  This is the latest in an ongoing series of papers (Champredon 2015, Champredon 2018, Park 2019, Dushoff 2021, ...) in which the last author has considered aspects of incubation, growth, and reproduction in SIR epidemic theory.  In this manuscript, the authors use theory to anticipate the effects of COVID-19 variants where the distribution of infectivity evolves.}
+
+\revtext{The manuscript is excellently written. The figures are clear.  All the mathematics seems satisfactory.  Unfortunately, the manuscript does not make its case for novel results.}
+
+Thank you.
+
+\revtext{The title is overly-broad as it suggests consideration of general forms of generation interval distributions (along the lines of Miller 2010 10.1016/j.jtbi.2009.08.007), when infect the authors study variation around the time of peak infectivity using a (very standard) $\gamma$-chain trick.  The study of generation time and $\gamma$ chains has a long history from the cited-but-unreviewed Svensson 2007, Wallinga 2007, to uncited Kenah 2008, A.  Lloyd 2001, D. Anderson 1980, Bailey 1964 (see Park 2019 and Champredon 2015).  In light of these and other works, the title and abstract fail to identify novel contributions to our understanding of epidemic theory.}
+
+Thank you for the suggestions.
+
+\revtext{Although the authors are aware of the history of research on this topic, they do little to review the relevant material, leaving this manuscript feeling like a superficial re-hashing of obvious material.  The introduction doesn't provide any serious review of the theory}
+
+Done. We do not review gamma chain trick in depth because we're not doing it.
+
+\revtext{Section 4 doesn't give references to prior work, and section 5 ignores almost all of the literature on the topic of estimating R from incidence data.}
+
+Section 4 done. Section 5 done.
+
+\revtext{Other comments:}
+
+\revtext{Topic on which there is a considerable confusion in terminology in the literature.  In addition to "generation interval", terms "generation time", "transmission interval", "serial interval", and others have been used in the literature, all with related by different definitions.  This manuscripts definition "time between infection and transmission" implies a single transmission event, but Kenah pointed out that time-contraction appears when allowing multiple transmission events (see Champredon 2015).  A clearer definition up front will help readers.  Fortunately, the results don't depend on the specific definition.}
+
+Done.
+
+\revtext{The 'speed'-'strength' distinction from the previous paper is seductive, but perhaps leaning into general quantitative illiteracy.  When one pays attention to units -- "speed" L/T,  "Growth rate" 1/T while "strength" has dimensions of force, typically, but reproduction number is a dimensionless ratio of cases per case.  Beyond time-independent final-size relations (which are themselves not robust to effects like behavior change), several researchers have argued that growth rates generally more useful than reproduction numbers (giving equivalent threshold conditions, for example) and not as prone to mis-interpretation.  Other authors in evolutionary biology and economics have argued that the reproduction number's scientific value is best salvaged using the "discounted reproduction success" (McNamara, Houston, and Collins 2001), rather than fighting of an R-r straw-man.}
+
+No.
+
+\revtext{Equation 1 As Kermack and McKendrick introduced it, the compartmental model is a convenient *specialization* of the integral models-- see the nice re-analysis by Breda et al., 2012.}
+
+Thank you for pointing this out. We now cite Breda et al. We acknowledge that ``This framework ... generalizes compartmental model, such as the SEIR model''
+
+\revtext{Equation 4 assumes the wild-type and variant co-dominate the population.  This may not be the cases when multiple variants are co-circulating, particularly during replacement events.}
+
+Done.
+
+\revtext{p 4 l55.  Shape of the distribution matters -- heavy tails and failed central concentration.  This detail will escape the naive reader unless we poke them a little more with it.}
+
+Reworded:
+
+``For simplicity we neglect differences in the squared coefficient of variation and assume $\kappa_{\mathrm{wt}} = \kappa_{\mathrm{var}} = \kappa$.
+While the exact shape of the distribution matters, we choose to focus on differences in the mean generation intervals to provide a qualitative understanding of how differences in generation-interval distributions between the wild type and the variant affects the relationship between relative strength and speed.
+In general, we expect  differences in the squared coefficient of variation to have qualitatively similar effects as differences in the mean.
+For example, a wider distribution allows for more early transmission, which in turn reduces epidemic strength given speed---this effect is qualitatively similar to that of a distribution with a shorter mean.''
+
+\rev{Reviewer \#2}
+
+\revtext{This is a well-written paper about the role of the generation interval distribution in the estimation of the relative strength (reproduction number) and speed
+(epidemic growth rate) of a new variant of a disease. Using a renewal equation
+framework, they consider inferring relative strength from relative speed and vice
+versa as well as inferring relative strength from incidence data. While all of the
+analysis in the paper is sound, I am concerned that the strong assumptions made
+(mass-action epidemic, constant generation interval distribution, etc.) will limit
+the reliability of the results in a practical application. However, they clearly
+establish that assumptions about the generation interval distribution have important implications for the analysis of novel variants. While I am generally
+skeptical of population-level analyses of infectious disease transmission based
+on generation intervals, these are done frequently so this is a useful insight.
+More detailed comments are below.}
+
+Thank you. We have tried to make the limitation more clear.
+
+\revtext{1. (page 3, first paragraph) It is important to acknowledge that the renewal equation approach to the relationship between the generation interval
+distribution, R, and the growth rate r assumes a mass-action epidemic.
+When we assume a fixed generation interval distribution, we must add the
+assumption that the rate of depletion of susceptibles over time is negligible and the prevalence of infection is low. One of the most important
+findings of Ref 10 is that the mean generation interval contracts when the
+rate of depletion of susceptibles increases. While the renewal equation
+does allow for the generation interval to change over time, the analyses
+in Sections 3–5 assume fixed mean generation intervals. Because variants
+are likely to spread when susceptibles are being depleted by both variants
+(due to cross-protection) and when the prevalence of infection is not low, these implicit assumptions place significant limitations on the practical
+implications of the analysis.}
+
+This is a confusion between the intrinsic and realized. Also done.
+
+
+\revtext{ (page 2, lines 55–60) It would help to clarify what is meant by “strengthlike” and “speed-like” in interventions. From the examples, it appears that
+speed-like interventions work by identifying potential infections quickly
+(effectively ending the infectious period early while not necessarily altering
+the hazard of infectious contact) and strength-like interventions work by
+reducing the hazard of infectious contact (while not necessarily altering
+the duration of infectiousness). A good explanation of these ideas is on
+lines 228–231 on page 10.}
+
+Done.
+
+\revtext{(page 5, lines 126–128 and 137) It would help to point out that you assume
+rwt < rvar when you introduce the five scenarios.}
+
+Done.
+
+\revtext{(page 9, Figure 3) I would order the rows in order of the assumed mean
+generation interval of the variant: 4 days at the top, 5 days in the middle,
+and 6 days on the bottom.}
+
+Done.
+
+\revtext{(page 13, lines 282–285) While contact tracing and household studies are
+susceptible to a number of biases, they are likely to be a far more reliable
+source of information about the transmissibility and generation intervals
+of variants than population-level analyses of incidence data.}
+
+Thank you for pointing this out. We have re-written this part:
+
+``Although these estimates are more consistent with the attack rate analysis \citep{ukinvest},
+we do not claim that they are necessarily more accurate---while individual-level data from contact tracing can provide a more reliable source of information about the transmissibility and time scale of transmission in some cases, they can be also biased towards particular types of contacts that are easily identified such as household contacts, which could also affect the estimate of $\rho$.''
+
+\revtext{(page 15, References) Curly brackets might need to be added to some of
+the BibTeX entries to enforce correct capitalization (e.g., Ref. 9).}
+
+Thank you.
+
+\swp{Ref 9 is ``Infectious diseases of humans: dynamics and control.'' Do we capitalize this or no?}
+
+\rev{Reviewer \#3}
+
+\revtext{In this manuscript, Park and colleagues present a thoughtful analysis of how assumptions about the generation interval distribution for wild-type and variant SARS-CoV-2 can bias estimates of the relative growth rate ("speed") and relative reproduction number ("strength") of the variant. The analysis is mathematically sound and offers a thorough investigation of an important concept that has been the subject of much discussion in the epidemiological community but, to my knowledge, hasn't been given the formal treatment it deserves until now. My comments are mostly minor and intended to make the findings more accessible and transferable to epidemiological practice.}
+
+Thank you.
+
+\revtext{Abstract: 37: On first reading, the distinction between 'speed-like' and 'strength-like' interventions wasn't clear to me, nor why contact tracing should target r but not R, and why social distancing should target R but not r. Could you use more recognizable terms here to highlight how these interventions differ from one another? (is the key difference that contact tracing reduces the number of infectious individuals and thus the probability that a susceptible person comes into contact with an infectious person, while social distancing reduces the per-contact chance of transmission? Or something else?) This comes up again in line 57 of the Introduction.}
+
+Thank you for pointing this out. We have removed 'speed-like' and 'strength-like' interventions from the abstract as these ideas can be confusing without further explanation (which is difficult given word limit). Instead, we have tried to make these ideas clearer throughout text, including in the introduction. We have also revised the abstract according to reviewer 1's comments.
+
+\revtext{166: I think it would be worth stating the range of Rwt and/or Rvar that yields this range for delta (I think it's something like 0.49-1.27 for the wild type, 0.78-2.04 for the variant, based on Figure 2 - but would be helpful if the reader didn't have to derive). Is the varying R what you're referring to when you speak of "underlying epidemiological conditions" in 166-167?}
+
+Thank you for this suggestion.
+
+\revtext{184: I think that "inference data" should be "incidence data"}
+
+Done.
+
+\revtext{Figure 4: I found this figure quite difficult to parse and not especially informative. Are the vertical bars the means of these distributions? If so, they should be labeled and referenced as such in the caption. Also in the figure 4 caption: the term ``generation intervals'' (plural) struck me as a bit strange - I think the singular would make more sense and be more consistent with what's used in the literature. Also, it would be helpful to put theta and phi in the vertical axis labels for E and F (e.g., "Strength (theta)" and "Speed (phi; 1/days)"). Unless this is observed speed and strength, meaning Rvar and rvar? In E, I'm also confused why the strength of the "constant-strength" line is increasing - shouldn't it be flat? Or what have I missed? I think some more details to refer back to the variables in the text might be helpful - for example, I think that (F) is the "Pre-intervention (black) and post-intervention speed of variant transmission (rvar) conditional on the mean generation interval of the variant (Gvar, colored)."}
+
+
+
+\revtext{Really what I would like to see here (Figure 4) is some simulated epidemic curves and perhaps final epidemic sizes - I think this would go much further to communicate the intuition behind how the speed-based and strength-based interventions differ than what's currently presented. One of the main conclusions of the paper seems to be that speed-based interventions could be more effective than strength-based interventions when the mean generation interval is long; presenting such simulations would be a good way to drive this point home and to give intuition for just how different speed-based vs strength-based interventions actually are.}
+
+
+
+\revtext{264: "epidemiological dynamics" is used again here - what specifically do you mean?}
+
+
+
+\revtext{265: "can also lead to different conclusions about the effectiveness of interventions" - what sort of different conclusions? In which circumstances?}
+
+
+
+\revtext{271: "If new variants has a longer infectious period" (typo)}
+
+Done.
+
+\revtext{Missing equation reference in the Supplement.}
+
+\bibliography{newvariant_abbv.bib}
+
+\end{document}
