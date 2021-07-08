@@ -16,16 +16,16 @@ genfun_assumed <- function(x) dgamma(x, 5, 5/5)
 genfun_short <- function(x) dgamma(x, 5, 5/4)
 genfun_long <- function(x) dgamma(x, 5, 5/6)
 
-svec <- c("Variant GI = Wild type GI = Assumed GI",
-          "Variant GI $<$ Wild type GI = Assumed GI",
+svec <- c("Variant GI $<$ Wild type GI = Assumed GI",
+          "Variant GI = Wild type GI = Assumed GI",
           "Variant GI $>$ Wild type GI = Assumed GI")
 
 slist <- list(
   list(genfun1=genfun_assumed,
-       genfun2=genfun_assumed,
+       genfun2=genfun_short,
        genfun3=genfun_assumed),
   list(genfun1=genfun_assumed,
-       genfun2=genfun_short,
+       genfun2=genfun_assumed,
        genfun3=genfun_assumed),
   list(genfun1=genfun_assumed,
        genfun2=genfun_long,
@@ -45,7 +45,7 @@ for (i in 1:length(svec)) {
     })
   
   rr <- do.call(renewal_det, tmparg) %>%
-    filter(tvec > 15, tvec < 70)
+    filter(tvec < 70)
   
   g1 <- ggplot(rr) +
     geom_line(aes(tvec, Rt1, color="Wild type", lty="True"), lwd=2) +
@@ -61,21 +61,21 @@ for (i in 1:length(svec)) {
     coord_fixed() +
     theme(
       panel.grid = element_blank(),
-      legend.position = c(0.6, 0.81),
+      legend.position = c(0.7, 0.81),
       legend.title = element_blank()
     )
   
-  if (i != 1) {
+  if (i != 2) {
     g1 <- g1 + theme(legend.position="none")
   }
   
-  if (i!=1) {
+  if (i!=2) {
     g1 <- ggplot(rr) +
       geom_line(aes(tvec, Rt1, col="Wild Type", lty="Wild Type"), lwd=2) +
       geom_line(aes(tvec, Rt2, col="Variant", lty="Variant"), lwd=2) +
       geom_line(aes(tvec, Rtest1, lty="Estimated"), col="black", lwd=2) +
       geom_line(aes(tvec, Rtest2, col="Estimated", lty="Estimated"), lwd=2) +
-      scale_x_continuous("Time (days)", expand=c(0, 0), limits=c(15, 70)) +
+      scale_x_continuous("Time (days)", expand=c(0, 0), limits=c(0, 70)) +
       scale_y_log10("Reproduction number, $\\mathcal{R}(t)$", limits=c(0.4, 8),
                     breaks=c(0.25, 0.5, 1, 2, 4, 8)) +
       scale_color_manual("a", values=c("red", "red", "black")) +
@@ -84,7 +84,7 @@ for (i in 1:length(svec)) {
       coord_fixed() +
       theme(
         panel.grid = element_blank(),
-        legend.position = c(0.6, 0.81),
+        legend.position = c(0.7, 0.81),
         legend.title = element_blank(),
         legend.background = element_rect(fill=NA)
       )
@@ -93,7 +93,7 @@ for (i in 1:length(svec)) {
   g2 <- ggplot(rr) +
     geom_line(aes(tvec, Rt2/Rt1, col="True", lty="True"), lwd=2) +
     geom_line(aes(tvec, Rtest2/Rtest1, col="Estimated", lty="Estimated"), lwd=2) +
-    scale_x_continuous("Time (days)", expand=c(0, 0), limits=c(15, 70)) +
+    scale_x_continuous("Time (days)", expand=c(0, 0), limits=c(0, 70)) +
     scale_y_log10("Relative strength, $\\rho(t)$", limits=c(1, 2.5)) +
     scale_color_manual("a", values=c("orange", "purple")) +
     scale_linetype_manual("a", values=c(2, 1)) +
@@ -101,8 +101,9 @@ for (i in 1:length(svec)) {
     coord_fixed() +
     theme(
       panel.grid = element_blank(),
-      legend.position = c(0.3, 0.81),
-      legend.title = element_blank()
+      legend.position = c(0.7, 0.86),
+      legend.title = element_blank(),
+      legend.background = element_rect(fill=NA)
     )
   
   if (i != 1) {
@@ -140,7 +141,7 @@ for (i in 1:length(svec)) {
                angle=atan(theta)/pi*180, col="purple")
   }
   
-  if (i != 1) {
+  if (i != 2) {
     g3 <- g3 +
       geom_smooth(aes(Rtest1, Rtest2, col="Regression", lty="Regression"), method="lm", fullrange=TRUE, se=FALSE, lwd=2)
       
@@ -151,7 +152,7 @@ for (i in 1:length(svec)) {
   glist[[i]] <- annotate_figure(gtot, top=text_grob(svec[i], size=14))
 }
 
-tikz(file = "Rtbias_smooth.tex", width = 9.5, height = 10, standAlone = T)
+tikz(file = "Rtbias_smooth.tex", width = 10, height = 10, standAlone = T)
 do.call(grid.arrange, c(glist, ncol=1))
 dev.off()
 tools::texi2dvi('Rtbias_smooth.tex', pdf = T, clean = T)

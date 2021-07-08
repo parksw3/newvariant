@@ -179,7 +179,7 @@ g6 <- ggplot(intervention) +
   scale_x_log10("Generation interval ratio, $\\bar{G}_{\\mathrm{var}}/\\bar{G}_{\\mathrm{wt}}$",
                 breaks=c(2/3, 1, 3/2),
                 labels=c("2/3", 1, "3/2")) +
-  scale_y_continuous("Epidemic speed, $r_{\\mathrm{var}} (1/days)") +
+  scale_y_continuous("Epidemic speed, $r_{\\mathrm{var}}$ (1/days)") +
   scale_linetype_manual("", values=1:3) +
   scale_color_manual("", values=(colorblind_pal()(3))) +
   ggtitle("F") +

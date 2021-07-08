@@ -399,20 +399,21 @@ While both interventions are equally effective on the strength scale (that is, $
 The constant-strength intervention affects transmission equally throughout the course of infection, whereas the constant-speed intervention has greater impact on transmission that occurs later in infection;
 as a result, the constant-speed intervention reduces the post-intervention mean generation interval (\fref{strengthspeed}B) and leads to (slightly) faster exponential decay (therefore, lower $\ry{post}$).
 
-\begin{figure}[!th]
-\includegraphics[width=\textwidth]{control.pdf}
+\begin{figure}[!pth]
+\begin{center}
+\includegraphics[width=0.95\textwidth]{control.pdf}
 \caption{
 \textbf{Effects of constant-strength and constant-speed interventions on the spread of a new variant with known speed \rv.}
-(A--B) Pre-intervention (black) and post-intervention (colored) kernel of the new variant under constant-strength (A) and -speed (B) interventions assuming that the variant has equal mean generation interval as the wild type.
-(C--D) Pre-intervention (black) and post-intervention kernel of the new variant assuming that the variant has longer generation intervals than the wild type.
+(A--D) Pre-intervention (black) and post-intervention (colored) kernel of the new variant under constant-strength (A,C) and -speed (B,D) interventions when the variant has equal mean generation interval as the wild type (A--B) and when the variant has longer generation intervals than the wild type (C--D).
 Vertical lines represent the mean generation interval.
-(E) Pre-intervention $\Rv$ (black) and post-intervention epidemic strength $\Ry{post}$ conditional on the mean generation interval of the variant (colored).
-(F) Pre-intervention $\rv$ (black) and post-intervention epidemic speed $\ry{post}$ conditional on the mean generation interval of the variant (colored).
-Strength and speed are calculated assuming $\rw=0\pday$, $\delta=0.1\pday$, $\rv=0.1\pday$, $\Gy{wt}=5\,\textrm{days}$, and $\kappa=1/5$ for pre-intervention conditions.
+(E) Pre-intervention $\Rv$ (black) and post-intervention epidemic strength $\Ry{post}$ (colored) conditional on the mean generation interval of the variant.
+(F) Pre-intervention $\rv$ (black) and post-intervention epidemic speed $\ry{post}$ (colored) conditional on the mean generation interval of the variant.
+Epidemic strength and speed are calculated assuming $\rw=0\pday$, $\delta=0.1\pday$, $\rv=0.1\pday$, $\Gy{wt}=5\,\textrm{days}$, and $\kappa=1/5$ for pre-intervention conditions.
 The constant-strength intervention assumes that the ratio $\Rv/\Ry{post} = \theta$ remains constant.
 The constant-speed intervention assumes that the difference $\rv - \ry{post} = \phi$ remains constant.
 Intervention strength and speed are chosen so that post intervention strength of the new variant is 0.9 when its mean generation interval is 5 days.
 }
+\end{center}
 \label{fig:strengthspeed}
 \end{figure}
 
@@ -431,9 +432,10 @@ Therefore, if speed of intervention is faster than the observed speed of spread 
 We explored how the generation-interval distribution shapes the link between relative strength and speed of an invading disease variant.
 Longer generation intervals generally lead to higher relative strength for a given relative speed (and conversely, lower relative speed for a given relative strength); these relationships are reversed when incidence is decreasing.
 Neglecting potential differences in the mean generation intervals between the variant and the wild type can bias estimates of the relative strength from incidence data;
-these biases may be assessed by considering whether relative strength appears to vary systematically with underlying epidemiological dynamics.
+these biases may be assessed by considering whether estimates of relative strength appear to vary systematically with the direction of changes in the incidence of infections caused by the variant.
 Finally, differences in generation intervals can also lead to different conclusions about the effectiveness of interventions.
-% if the variant has longer generation intervals than the wild type, speed-like interventions, will be relatively more effective than naive estimates would suggest (and conversely, strength-like intervention will be relatively more effective if the variant has shorter generation intervals).
+If the variant has longer generation intervals than the wild type, speed-like interventions will be relatively more effective than naive estimates would suggest. 
+Conversely, strength-like intervention will be relatively more effective if the variant has shorter generation intervals.
 
 As new variants of SARS-CoV-2, such as B.1.1.7, are spreading and becoming dominant in many countries, it is clear that the variants are more transmissible (have higher strength) than the wild type \citep{switzerland2021variant, davies2021estimated, di2021impact, graham2021changes, leung2021early, volz2021transmission,zhao2021}.
 While our analysis supports estimates of a higher strength of the new variant across a wide range of assumptions, it also shows that uncertainty in generation-interval distributions must be taken into account to obtain accurate estimates of the relative strength of variants.

@@ -6,7 +6,7 @@ library(gridExtra)
 library(tikzDevice)
 source("renewal_det.R")
 
-## fix theta = 1.5
+## fix theta = 1.61
 ## fix kappa = 1/5
 ## fix assumed GI
 ## assume wild type = var but not necessarily the one we're assuming
@@ -50,14 +50,14 @@ for (i in 1:length(svec)) {
     })
   
   rr <- do.call(renewal_det, tmparg) %>%
-    filter(tvec > 15, tvec < 70)
+    filter(tvec < 70)
   
   g1 <- ggplot(rr) +
     geom_line(aes(tvec, Rt1, color="Wild type", lty="True"), lwd=2) +
     geom_line(aes(tvec, Rt2, color="Variant", lty="True"), lwd=2) +
     geom_line(aes(tvec, Rtest1, color="Wild type", lty="Estimated"), lwd=2) +
     geom_line(aes(tvec, Rtest2, color="Variant", lty="Estimated"), lwd=2) +
-    scale_x_continuous("Time (days)", expand=c(0, 0), limits=c(15, 70)) +
+    scale_x_continuous("Time (days)", expand=c(0, 0), limits=c(0, 70)) +
     scale_y_log10("Reproduction number, $\\mathcal{R}(t)$", limits=c(0.39, 8),
                   breaks=c(0.25, 0.5, 1, 2, 4, 8)) +
     scale_color_manual(values=c("red", "black")) +
@@ -66,7 +66,7 @@ for (i in 1:length(svec)) {
     coord_fixed() +
     theme(
       panel.grid = element_blank(),
-      legend.position = c(0.6, 0.81),
+      legend.position = c(0.7, 0.81),
       legend.title = element_blank()
     )
   
@@ -80,7 +80,7 @@ for (i in 1:length(svec)) {
       geom_line(aes(tvec, Rt2, col="Variant", lty="Variant"), lwd=2) +
       geom_line(aes(tvec, Rtest1, lty="Estimated"), col="black", lwd=2) +
       geom_line(aes(tvec, Rtest2, col="Estimated", lty="Estimated"), lwd=2) +
-      scale_x_continuous("Time (days)", expand=c(0, 0), limits=c(15, 70)) +
+      scale_x_continuous("Time (days)", expand=c(0, 0), limits=c(0, 70)) +
       scale_y_log10("Reproduction number, $\\mathcal{R}(t)$", limits=c(0.39, 8),
                     breaks=c(0.25, 0.5, 1, 2, 4, 8)) +
       scale_color_manual("a", values=c("red", "red", "black")) +
@@ -89,7 +89,7 @@ for (i in 1:length(svec)) {
       coord_fixed() +
       theme(
         panel.grid = element_blank(),
-        legend.position = c(0.6, 0.81),
+        legend.position = c(0.7, 0.81),
         legend.title = element_blank(),
         legend.background = element_rect(fill=NA)
       )
@@ -98,7 +98,7 @@ for (i in 1:length(svec)) {
   g2 <- ggplot(rr) +
     geom_line(aes(tvec, Rt2/Rt1, col="True", lty="True"), lwd=2) +
     geom_line(aes(tvec, Rtest2/Rtest1, col="Estimated", lty="Estimated"), lwd=2) +
-    scale_x_continuous("Time (days)", expand=c(0, 0), limits=c(15, 70)) +
+    scale_x_continuous("Time (days)", expand=c(0, 0), limits=c(0, 70)) +
     scale_y_log10("Relative strength, $\\rho(t)$", limits=c(1, 2.5)) +
     scale_color_manual("a", values=c("orange", "purple")) +
     scale_linetype_manual("a", values=c(2, 1)) +
@@ -106,7 +106,7 @@ for (i in 1:length(svec)) {
     coord_fixed() +
     theme(
       panel.grid = element_blank(),
-      legend.position = c(0.7, 0.81),
+      legend.position = c(0.7, 0.86),
       legend.title = element_blank()
     )
   
@@ -156,7 +156,7 @@ for (i in 1:length(svec)) {
   glist[[i]] <- annotate_figure(gtot, top=text_grob(svec[i], size=14))
 }
 
-tikz(file = "Rtbias.tex", width = 9.5, height = 10, standAlone = T)
+tikz(file = "Rtbias.tex", width = 10, height = 10, standAlone = T)
 do.call(grid.arrange, c(glist, ncol=1))
 dev.off()
 tools::texi2dvi('Rtbias.tex', pdf = T, clean = T)
