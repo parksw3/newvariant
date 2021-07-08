@@ -204,7 +204,12 @@ i_x(t) = \int_0^\infty i_x(t-\tau) K_x(t, \tau) \dtau.
 \end{equation}
 This framework provides a flexible way of modeling disease dynamics and generalizes compartmental model, such as the SEIR model \citep{heesterbeek1996concept, diekmann2000mathematical, roberts2004modelling, aldis2005integral,breda2012formulation, champredon2018equivalence}.
 
-The integral of the kernel $\RR_x(t) = \int K_x(t, \tau) \dtau$ is referred to as the instantaneous reproduction number, which is defined as secondary infections that would be caused by an individual infected at time $t$ if conditions were to remain the same \citep{fraser2007estimating}.
+The integral of the kernel is referred to as the instantaneous reproduction number:
+\begin{equation}
+\RR_x(t) = \int K_x(t, \tau) \dtau
+\label{eq:instR}
+\end{equation}
+which is defined as secondary infections that would be caused by an individual infected at time $t$ if conditions were to remain the same \citep{fraser2007estimating}.
 The instantaneous reproduction number is a particular kind of weighted average of infectiousness of previously infected individuals at time $t$---in particular, it is weighted by the total relative infectiousness at time $t$, rather than by the actual number of infected individuals present.
 The normalized kernel $g_x(t, \tau) = K_x(t, \tau)/\RR_x(t)$---which we refer to as the instantaneous generation-interval distribution---describes the relative contribution of previously infected individuals to current incidence $i_x(t)$ and provides information about the time scale of disease transmission.
 Like the instantaneous reproduction number, the instantaneous generation-interval distribution describes when an individual infected at time $t$ will transmit infections if conditions were to remain the same.
@@ -426,6 +431,28 @@ The speed-based paradigm gives the same results regarding control but provides i
 The observed speed of the variant $\rv$ at a given moment is independent of our estimates of its mean generation interval.
 Likewise, the post-intervention speed of the variant under the constant-speed intervention is also independent of the mean generation interval.
 Therefore, if speed of intervention is faster than the observed speed of spread (i.e., if $\phi > \rv$), we can control the epidemic (i.e., $\ry{post} < 0$) regardless of the underlying generation-interval distribution (see \cite{doi:10.1098/rspb.2020.1556} for mathematical details).
+
+\begin{figure}[!th]
+\begin{center}
+\includegraphics[width=0.95\textwidth]{control_sim.pdf}
+\caption{
+\textbf{Simulations of constant-strength and constant-speed interventions.}
+Constant-strength (A--C) and constant-speed (D--F) interventions are simulated using the renewal equation (see Supplementary Materials for details of simulations).
+(A,D) Daily incidence of infections caused by the wild type ($\iw(t)$, gray) and the variant ($\iv(t)$, colored).
+(B,E) Instantaneous reproduction number of the variant $\Rv(t)$ calculated using \eref{instR}.
+(C,F) Proportion of incidence of infections caused by the variant ($\iv(t)/(\iw(t)+\iv(t))$). 
+Epidemic trajectories are calculated assuming $\rw=0\pday$, $\delta=0.1\pday$, $\rv=0.1\pday$, $\Gy{wt}=5\,\textrm{days}$, and $\kappa=1/5$ for pre-intervention conditions, and then introducing constant-strength and constant-speed interventions on day 30.
+The pre-intervention ratio between the mean generation interval $\Gy{var}/\Gy{wt}$ is assumed to equal 1.5 (longer), 1 (equal), and 1/1.5 (shorter) for three different scenarios.
+The constant-strength and constant-speed interventions are identically modeled as illustrated in \fref{strengthspeed}.
+}
+\end{center}
+\label{fig:control_sim}
+\end{figure}
+
+Finally, we synthesize our findings and illustrate the differences between constant-strength and constant-speed interventions using epidemic simulations using the renewal equation (\fref{control_sim}).
+
+
+
 
 \section{Discussion}
 

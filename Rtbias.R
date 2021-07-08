@@ -107,7 +107,8 @@ for (i in 1:length(svec)) {
     theme(
       panel.grid = element_blank(),
       legend.position = c(0.7, 0.86),
-      legend.title = element_blank()
+      legend.title = element_blank(),
+      legend.background = element_rect(fill=NA)
     )
   
   if (i != 1) {
