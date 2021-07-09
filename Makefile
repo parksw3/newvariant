@@ -41,6 +41,11 @@ Rtbias.R: renewal_det.R; $(touch)
 Rtbias.Rout: Rtbias.R
 	$(wrapR)
 
+Ignore += control_sim.tex
+control_sim.tex: control_sim.Rout ;
+control_sim.Rout: control_sim.R
+	$(wrapR)
+
 Ignore += control.tex
 control.tex: control.Rout ;
 control.Rout: control.R
@@ -49,6 +54,10 @@ control.Rout: control.R
 %.pdf: %.Rout ;
 
 ## pmake dotdir.vdtest
+
+######################################################################
+
+response.pdf: response.tex
 
 ######################################################################
 
