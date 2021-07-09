@@ -440,7 +440,7 @@ Therefore, if speed of intervention is faster than the observed speed of spread 
 Constant-strength (A--C) and constant-speed (D--F) interventions are simulated using the renewal equation (see Supplementary Materials for details of simulations).
 (A,D) Daily incidence of infections caused by the wild type ($\iw(t)$, gray) and the variant ($\iv(t)$, colored).
 (B,E) Instantaneous reproduction number of the variant $\Rv(t)$ calculated using \eref{instR}.
-(C,F) Proportion of incidence of infections caused by the variant ($\iv(t)/(\iw(t)+\iv(t))$). 
+(C,F) Proportion of incidence of infections caused by the variant ($\iv(t)/(\iw(t)+\iv(t))$) on a logit scale. 
 Epidemic trajectories are calculated assuming $\rw=0\pday$, $\delta=0.1\pday$, $\rv=0.1\pday$, $\Gy{wt}=5\,\textrm{days}$, and $\kappa=1/5$ for pre-intervention conditions, and then introducing constant-strength and constant-speed interventions on day 30.
 The pre-intervention ratio between the mean generation interval $\Gy{var}/\Gy{wt}$ is assumed to equal 1.5 (longer), 1 (equal), and 1/1.5 (shorter) for three different scenarios.
 The constant-strength and constant-speed interventions are identically modeled as illustrated in \fref{strengthspeed}.
@@ -454,7 +454,11 @@ In particular, we consider a scenario in which a new variant is emerging ($\rv >
 The constant-strength intervention then reduces both $\Rw$ and $\Rv$ by a constant factor $\theta$ beginning day 30, 
 whereas the constnat-speed intervention isolates individuals infected with both the wild type and the variant at a constant hazard $\phi$ after day 30.
 If the variant has a longer mean generation interval, the consant-strength intervention fails to suppress the spread of the variant (\fref{control_sim}A) because a stronger intervention ($>\phi$) to reduce a higher pre-intervention reproduction number below 1 (\fref{control_sim}B). 
+The relative strength remains constnat under constant-strength intervention (\fref{control_sim}B), but the relative speed changes (\fref{control_sim}C) as discussed earlier in Section 4---in this case, the longer mean generation interval variant increases the relative speed when the intervention is introduced.
 
+In contrast, epidemic trajectories under the constant-speed intervention look identical regardless of the mean generation interval of the variant (\fref{control_sim}D). 
+As shown in \fref{strengthspeed}E, a constant-speed intervention leads to greater reduction in $\Rv(t)$ when the mean generation-interval of the variant is longer (\fref{control_sim}E).
+In this case, the relative speed of the variant also remains unaffected by the constant-speed intervention because the epidemic speed of the wild type $\rw$ and the variant $\rv$ are both reduced by equal amounts $\phi$, resulting in the post-intervention epidemic speed of $\rw-\phi$ and $\rv-\phi$, respectively. 
 
 \section{Discussion}
 
