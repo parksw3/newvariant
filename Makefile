@@ -14,6 +14,12 @@ vim_session:
 Sources += newvariant.tex
 newvariant.pdf: newvariant.tex
 
+Sources += response.tex
+response.pdf: response.tex
+
+Sources += supp.tex
+supp.pdf: supp.tex
+
 ######################################################################
 
 # tikz figures; come up with a pipeline

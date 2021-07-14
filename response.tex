@@ -12,7 +12,6 @@
 \usepackage{amssymb}
 \usepackage{amsfonts}
 
-
 \usepackage[pdfencoding=auto, psdextra]{hyperref}
 
 \usepackage{natbib}
@@ -85,15 +84,20 @@ Below please find our detailed responses to reviewers.
 
 \revtext{The manuscript is excellently written. The figures are clear.  All the mathematics seems satisfactory.  Unfortunately, the manuscript does not make its case for novel results.}
 
+\jd{If we said Thank you a little less, it might mean a little more.}
+
 Thank you for the review.
-We have tried to provide a more thorough review of previous works.
-As suggested by Reviewer 3, many of these concepts have been discussed within the epidemiology community with the recent emergence of new SARS-CoV-2 variants but have not been formally discussed.
+We have tried to frame our results better, and to clarify both the novelty and importance of this study.
+We agree with Reviewer 3 that, while many of these concepts have been raised in the context of the recent emergence of new SARS-CoV-2 variants, careful treatment has been lacking. 
 We believe that the addition of a new simulations (Figure 5) and the revised text better highlight the novelty of our work.
 
 \revtext{The title is overly-broad as it suggests consideration of general forms of generation interval distributions (along the lines of Miller 2010 10.1016/j.jtbi.2009.08.007), when infect the authors study variation around the time of peak infectivity using a (very standard) $\gamma$-chain trick.  The study of generation time and $\gamma$ chains has a long history from the cited-but-unreviewed Svensson 2007, Wallinga 2007, to uncited Kenah 2008, A.  Lloyd 2001, D. Anderson 1980, Bailey 1964 (see Park 2019 and Champredon 2015).  In light of these and other works, the title and abstract fail to identify novel contributions to our understanding of epidemic theory.}
 
-\swp{JD, we need a new title.}
-Thank you for the suggestions. We have changed the title and the abstract to highlight the novelty of our work.
+\swp{JD, we need a new title.} \jd{I think it helps a lot to just not say ``distributions'' since we're mostly focused on changes in the mean.}
+
+\jd{Have we looked at the Miller paper?}
+
+Thank you for the suggestions. We have changed the title and the abstract to highlight the novelty of our work. See also below.
 
 \revtext{Although the authors are aware of the history of research on this topic, they do little to review the relevant material, leaving this manuscript feeling like a superficial re-hashing of obvious material.  The introduction doesn't provide any serious review of the theory}
 
@@ -107,14 +111,13 @@ For example, when epidemic strength $\RR$ is fixed, assuming longer generation i
 However, since $\RR$ is fixed, the generation-interval distribution is expected to have negligible effects on the effectiveness of strength-like interventions (e.g., social distancing), which reduce the hazard of infectious contacts and therefore affect transmission by an equal amount regardless of age of infection.
 Conversely, when epidemic speed $r$ is fixed, assuming longer generation intervals lead to a stronger epidemic (higher $\RR$), making the epidemic look harder to control with strength-like interventions (but not necessarily with speed-like interventions).''
 
-We note that assuming a Gamma-distributed generation intervals is different from the standard Gamma-chain trick. We note this later in Secion 2:
+Assuming Gamma-distributed generation intervals is different from the standard Gamma-chain trick. We [now?] explain this later in Secion 2:
 
 ``Various Gamma assumptions have been widely used in epidemic modeling, including for models of SARS-CoV-2 \citep{doi:10.1098/rsif.2020.0144}.
 Although the Gamma assumption includes as a special case models that assume exponentially distributed generation intervals (when $\kappa=1$), corresponding to the SIR model \citep{anderson1991infectious}, it is different from the generation-interval distribution we get when infectious periods are Gamma distributed, another standard assumption in epidemic modeling (see \cite{roberts2007model} for discussion).''
 
 \revtext{Section 4 doesn't give references to prior work, and section 5 ignores almost all of the literature on the topic of estimating R from incidence data.}
 
-Thank you for the suggestions. 
 We have added references in Section 4.
 We have also added a new paragraph in the beginning of Section 5 reviewing previous work on estimating R from incidence data:
 
@@ -129,7 +132,7 @@ The estimation of the instantaneous reproduction number was popularized by \cite
 
 \revtext{Topic on which there is a considerable confusion in terminology in the literature.  In addition to "generation interval", terms "generation time", "transmission interval", "serial interval", and others have been used in the literature, all with related by different definitions.  This manuscripts definition "time between infection and transmission" implies a single transmission event, but Kenah pointed out that time-contraction appears when allowing multiple transmission events (see Champredon 2015).  A clearer definition up front will help readers.  Fortunately, the results don't depend on the specific definition.}
 
-Thank you for the suggestions. We have tried to clarify what we mean by the generation interval. In particular, often-menetioned time contractions of generation intervals apply to the forward realized generation interval, which measure time between actual infection events, rather than the intrinsic generation interval, which measure the intrinsic infectiousness of infected individuals. Under strength-like interventions, the intrinsic generation interval does not vary across time, even though the realized generation interval contracts. These distinctions are clearly made in Champredon 2015, and we have tried to clarify these ideas again here in Section 2:
+Thank you for the suggestions. We have tried to clarify what we mean by the generation interval. In particular, often-menetioned time contractions of generation intervals apply to the forward realized generation interval, which measure time between actual infection events, rather than the intrinsic generation interval, which measure the intrinsic infectiousness of infected individuals. Under strength-like interventions, the intrinsic generation interval does not vary across time, even though the realized generation interval contracts. These distinctions are explained in Champredon 2015, and we have tried to clarify these ideas again here in Section 2:
 
 ``Under strength-based changes that reduce the hazard of transmission (e.g., susceptible depletion and decreased transmission rates), the instantaneous generation-interval distribution does not across change time \citep{fraser2007estimating}.
 In this case, the instantaneous generation-interval distribution is also often referred to as the intrinsic generation-interval distribution \citep{champredon2015intrinsic,champredon2018two,gostic2020practical,park2020time}---
@@ -143,24 +146,18 @@ We revisit these ideas in Section 6 and compare the effects of speed-based inter
 
 \revtext{The 'speed'-'strength' distinction from the previous paper is seductive, but perhaps leaning into general quantitative illiteracy.  When one pays attention to units -- "speed" L/T,  "Growth rate" 1/T while "strength" has dimensions of force, typically, but reproduction number is a dimensionless ratio of cases per case.  Beyond time-independent final-size relations (which are themselves not robust to effects like behavior change), several researchers have argued that growth rates generally more useful than reproduction numbers (giving equivalent threshold conditions, for example) and not as prone to mis-interpretation.  Other authors in evolutionary biology and economics have argued that the reproduction number's scientific value is best salvaged using the "discounted reproduction success" (McNamara, Houston, and Collins 2001), rather than fighting of an R-r straw-man.}
 
-\swp{I think you would be able to answer this better.}
-Thank you for the suggestions. 
-We agree the strict definition of ``strength'' from physics has a unit of force, and the reproduction number is unitless.
-We now mention in the first paragraph that R is unitless: ``Epidemic ``strength'' is measured by the reproduction number $\RR$---a unitless quantity representing the average number of new infections caused by a typical infection.''
+We are certainly not trying to lean in to innumeracy. We agree that ``strength'' and ``speed'' are not used in the classical physics sense -- instead, we try to be clear how we define them (and have tried to clarify further).
 
-However, we respectfully disagree with the comment that the ``speed''-``strength'' distinction leans into general quantitative illiteracy.
-As we have argued recently (https://doi.org/10.1098/rspb.2020.1556), there is a clear over-emphasis on the strength-based (R-based) perspective in the epidemiology and modeling community. 
-Although the terms  ``speed'' and ``strength'' may be imprecise as noted, we believe that they can help the community move towards thinking about both r- and R-based perspectives.
-We do not claim that either one is necessarily better, but rather they should be viewed as complementary approaches (since both r and R give equivalent threshold conditions).
-In some cases, however, there are clear advantanges in relying on either strength- or speed-based perspectives.
+We have argued (https://doi.org/10.1098/rspb.2020.1556) that large segments of the epidemiology and modeling community have an over-emphasis on R, and have tried to use the terms speed and strength to underline our contention that these are better seen as complementary perspectives (and to link them to complementary perspectives on control).
+As we argue here and elsewhere, we believe that sometimes one perspective ro another gives a clearer picture.
 For example, in the beginning of an epidemic, it is more appropriate to fix epidemic speed $r$ when evaluating uncertainties in the generation-interval distribution.
-On the other hand, as we argue here, it is more appropriate to fix relative strength $\rho$, rather than relative speed $\delta$, when conditions are changing due to interventions.
-We believe that our revisions, including the addition of a new figure as suggested by reviewer 3, have made these points clearer and is important to address the value of considering both perspectives to a wider audience.
+On the other hand, it is more often appropriate to fix relative strength $\rho$, rather than relative speed $\delta$, when conditions are changing due to interventions.
+We hope that our revisions, including the addition of a new figure (see response to reviewer 3), have made these points clearer.
 We thus decided to keep the terms ``speed'' and ``strength'' in this manuscript.
 
 \revtext{Equation 1 As Kermack and McKendrick introduced it, the compartmental model is a convenient *specialization* of the integral models-- see the nice re-analysis by Breda et al., 2012.}
 
-Thank you for pointing this out. We now cite Breda et al. We acknowledge that ``This framework ... generalizes compartmental model, such as the SEIR model''
+Thank you for pointing this out. We now cite Breda et al., and acknowledge that ``This framework ... generalizes compartmental model, such as the SEIR model''
 
 \revtext{Equation 4 assumes the wild-type and variant co-dominate the population.  This may not be the cases when multiple variants are co-circulating, particularly during replacement events.}
 
@@ -173,6 +170,7 @@ instead, as shown in \citep{campbell2021increased}, a multinomial logistic regre
 
 Thank you for the suggestion. We have reworded this section:
 
+\jd{We should deal separately with $\kappa$ and with the gamma-generation assumption.
 ``For simplicity we neglect differences in the squared coefficient of variation and assume $\kappa_{\mathrm{wt}} = \kappa_{\mathrm{var}} = \kappa$.
 While the exact shape of the distribution matters, we choose to focus on differences in the mean generation intervals to provide a qualitative understanding of how differences in generation-interval distributions between the wild type and the variant affects the relationship between relative strength and speed.
 In general, we expect  differences in the squared coefficient of variation to have qualitatively similar effects as differences in the mean.
@@ -192,7 +190,7 @@ skeptical of population-level analyses of infectious disease transmission based
 on generation intervals, these are done frequently so this is a useful insight.
 More detailed comments are below.}
 
-Thank you for the review. We have tried to make the limitation and assumptions clearer throughout text.
+Thank you for the review. We have tried to make the limitation and assumptions clearer throughout the text. \jd{Anything about the generality? I don't feel we rely much on mass-action or constant distributions.}
 
 \revtext{1. (page 3, first paragraph) It is important to acknowledge that the renewal equation approach to the relationship between the generation interval
 distribution, R, and the growth rate r assumes a mass-action epidemic.
@@ -209,9 +207,10 @@ implications of the analysis.}
 Thank you for pointing this out.
 We acknowledge that we are assuming mass action.
 However, a fixed generation-interval distribution does not rely on the assumption that the rate of depletion of susceptibles over time is negligible.
+\jd{Can we say something about the rR link at any particular time? Doesn't that also work?}
 This is due to an ongoing confusion between the intrinsic and realized generation interval as we explained above.
 For example, as shown in Champredon et al 2015 and 2018, the standard SEIR model can be equivalently written in terms of the renewal equation using a fixed \emph{intrinsic} generation-interval distribution, and we can still observe the contraction of the \emph{realized} generation interval for this model.
-We have added a paragraph in Section 2 that makes this distiction clearly (please see response to reviewer 1 for the relevant text).
+We have added a paragraph in Section 2 to clarify this distinction (please see response to reviewer 1 for text).
 
 \revtext{(page 2, lines 55–60) It would help to clarify what is meant by “strengthlike” and “speed-like” in interventions. From the examples, it appears that
 speed-like interventions work by identifying potential infections quickly
@@ -221,7 +220,7 @@ reducing the hazard of infectious contact (while not necessarily altering
 the duration of infectiousness). A good explanation of these ideas is on
 lines 228–231 on page 10.}
 
-Thank you for the suggestion. We now define them more clearly throughout text.
+Thank you for the suggestion. We now define them more clearly throughout the text. \jd{Presumably there's a particular place where we lay out the definitions.}
 
 \revtext{(page 5, lines 126–128 and 137) It would help to point out that you assume
 rwt < rvar when you introduce the five scenarios.}
@@ -261,8 +260,9 @@ Thank you for pointing this out. We have tried to make these distinctions cleare
 
 \revtext{166: I think it would be worth stating the range of Rwt and/or Rvar that yields this range for delta (I think it's something like 0.49-1.27 for the wild type, 0.78-2.04 for the variant, based on Figure 2 - but would be helpful if the reader didn't have to derive). Is the varying R what you're referring to when you speak of "underlying epidemiological conditions" in 166-167?}
 
-Thank you for this suggestion. We clarify this when it is mentioned for the first time:
+Thank you for this suggestion. We now clarify this when it is mentioned for the first time:
 
+\jd{This is the sort of text I was hinting at above about mass action.}
 ``Over a short period of time, we can assume that epidemiological conditions remain roughly constant: $\RR_x(t) \approx \RR_x$ and $g_x(t, \tau) \approx g_x(\tau)$.
 Here, we use the term ``epidemiological conditions'' to broadly refer to all factors that affect transmission---mathematically, they are captured by the kernel $K(t, \tau)$.
 In the context of SARS-CoV-2 infections, we are essentially assuming that the changes in susceptible pool, behavior, and contact rates are negligible over a short period of time.''
