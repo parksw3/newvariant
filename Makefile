@@ -13,6 +13,8 @@ vim_session:
 
 Sources += newvariant.tex
 newvariant.pdf: newvariant.tex
+## newvariant.tex.2aae770a.oldfile
+## newvariant.ld.pdf: newvariant.tex
 
 Sources += response.tex
 response.pdf: response.tex
