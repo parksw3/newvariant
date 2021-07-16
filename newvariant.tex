@@ -176,7 +176,7 @@ In particular, several studies have noted, in many contexts, that mechanisms tha
 
 Analyses of new variants have typically characterized \emph{relative} strength (i.e., the ratio of reproduction numbers $\Rv/\Rw$, here called $\rho$) and speed (i.e., the difference between growth rates $\rv-\rw$, here called $\delta$) of the variants.
 Many studies have tried to estimate the relative strength of variants from the observed relative speed \citep{davies2021estimated, leung2021early, volz2021transmission,zhao2021,campbell2021increased}.
-Some studies have instead assumed a value of the relative strength and tried to predict its relative speed \citep{davies2021estimated,di2021impact}.
+Instead (or additionally), some studies have instead assumed a value of the relative strength and tried to predict its relative speed \citep{davies2021estimated,di2021impact}.
 \jd{``instead'' seems wrong here, since we cite davies2021estimated in both lists. What's going on?}
 While both approaches are reasonable, holding different quantities constant (i.e., strength or speed) can lead to different conclusions about the spread of the disease and its control because two quantities are linked by the generation-interval distribution \citep{doi:10.1098/rspb.2020.1556}.
 
@@ -201,7 +201,7 @@ We use the renewal equation framework to characterize the spread of two pathogen
 We focus on characterizing the incidence of infection, which is directly related to $r$ and $\RR$.
 In practice, observed case reports are subject to reporting delays, which must be taken into account in order to correctly infer $r$ and $\RR$ \citep{goldstein2009reconstructing,gostic2020practical}.
 
-Neglecting the (relatively slow) rate of new mutations and assuming a mass-action epidemic, the current incidence of infection $i_x(t)$ caused by each strain $x$---either the wild type (``wt'') or the variant (``var'')---can be expressed in terms of their previous incidence $i_x(t-\tau)$ and the rate at which secondary infections are generated at time $t$ by individuals infected $\tau$ time units ago $K_x(t, \tau)$:
+Neglecting the (relatively slow) rate of new mutations and assuming a homogeneous mixing, the current incidence of infection $i_x(t)$ caused by each strain $x$---either the wild type (``wt'') or the variant (``var'')---can be expressed in terms of their previous incidence $i_x(t-\tau)$ and the rate at which secondary infections are generated at time $t$ by individuals infected $\tau$ time units ago $K_x(t, \tau)$:
 \begin{equation}
 i_x(t) = \int_0^\infty i_x(t-\tau) K_x(t, \tau) \dtau.
 \end{equation}
