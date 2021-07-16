@@ -107,7 +107,7 @@
 \begin{flushleft}{
 	\Large
 	\textbf\newline{
-	  The importance of generation intervals in investigating dynamics and control of new SARS-CoV-2 variants }
+	  The importance of the generation interval in investigating dynamics and control of new SARS-CoV-2 variants }
 }
 \newline
 \\
@@ -182,7 +182,6 @@ While both approaches are reasonable, holding different quantities constant (i.e
 
 For example, when epidemic strength $\RR$ is fixed, assuming longer generation intervals leads to a slower epidemic growth (lower $r$), making the epidemic look easier to control with speed-like interventions (e.g., contact tracing), which depend on isolation of infected individuals and therefore affect late transmission disproportionately---as shown in \cite{doi:10.1098/rspb.2020.1556}, the effective hazard of isolation must be greater than the epidemic speed $r$ to reach the $r=0$ threshold.
 In this same case, however, the generation-interval distribution is expected to have negligible effects on the effectiveness of strength-like interventions (e.g., social distancing), which reduce the hazard of infectious contacts and therefore affect transmission by an equal amount regardless of age of infection.
-
 Conversely, when epidemic speed $r$ is fixed, assuming longer generation intervals leads to a higher estimate of epidemic strength ($\RR$), making the epidemic look harder to control with strength-like interventions (but not with speed-like interventions, whose effectiveness is fixed if speed is fixed).
 
 Most studies have assumed that the previous dominant strain (wild type) and variants have identical generation-interval distributions, but recent evidence suggests that the B.1.1.7 variant may have a longer duration of infection: 13.3 days (90\% CI: 10.1--16.5) for the new variant and 8.2 days (90\% CI: 6.5--9.7) for the wild type \citep{kissler2021densely}.
@@ -230,7 +229,7 @@ Indeed, most dynamical models of SARS-CoV-2 infections have solely relied on str
 Therefore, we neglect changes in the intrinsic generation-interval distribution over time for now and focus on the impact of strength-based changes on the inference of dynamics of new SARS-CoV-2 variants.
 We revisit these ideas in Section 6 and compare the effects of speed-based interventions with those of strength-based interventions.
 
-Over a short period of time, we can assume that epidemiological conditions remain roughly constant: $\RR_x(t) \approx \RR_x$ and $g_x(t, \tau) \approx g_x(\tau)$.
+Over a short period of time, we can assume that epidemiological conditions remain roughly constant: $\RR_x(t) \approx \RR_x$ and $g_x(t, \tau) \approx g_x(\tau)$, in which case the incidence of infections changes exponentially.
 Here, we use the term ``epidemiological conditions'' to broadly refer to all factors that affect transmission---mathematically, they are captured by the kernel $K(t, \tau)$.
 In the context of SARS-CoV-2 infections, we are essentially assuming that the changes in susceptible pool, behavior, and contact rates are usually small over a short period of time.
 Then, the incidence of each strain grows (or decays) exponentially at rate $r_x$, satisfying the Euler-Lotka equation \citep{wallinga2007generation}:
