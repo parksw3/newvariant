@@ -152,23 +152,6 @@ Jonathan Dushoff\textsuperscript{2,3,4}
 
 \section{Supplementary Text}
 
-\subsection{Measuring relative growth for multiple co-circulating strains}
-
-In order to model $N$ co-circulating strains, we write $i_x(t)$ to represent the incidence of strain $x$ (for $x = 1, \dots, N$).
-When incidence is changing exponentially ($i_x(t) = i_x(t_0) \exp(r_x t)$), the proportion of infections caused by strain $y$ can be written as:
-\begin{equation}
-p_y(t) = \frac{i_y(t_0) \exp(r_y t)}{\sum_{x=1}^N i_x(t_0) \exp(r_x t)}.
-\end{equation}
-Logit transforming $p_y(t)$ then gives:
-\begin{align}
-\mathrm{logit}(p_y(t)) &= \log\left(\frac{p_y(t)}{1-p_y(t)}\right)\\
-&= \log\left(\frac{i_y(t_0) \exp(r_y t)}{\sum_{x \neq y} i_x(t_0) \exp(r_x t)}\right)\\
-&= \log(i_y(t_0)) + r_y t - \log \left(\sum_{x \neq y} i_x(t_0) \exp(r_x t)\right)
-\end{align}
-which is a nonlinear function of time $t$.
-Therefore, the growth rate measured at the logit scale is expected to change over time when multiple strains are co-circulating. 
-Instead, a multinomial logistic regression model is required to infer relative speed (see Supplementary Materials in \citep{campbell2021increased} for derivation).
-
 \subsection{Two-strain renewal equation}
 
 We use a two-strain renewal equation to simulate the spread of the variant and the wild type in Sections 5--6.
