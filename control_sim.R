@@ -3,6 +3,7 @@ library(ggplot2); theme_set(theme_bw(base_size=14, base_family = "Times"))
 library(ggthemes)
 library(egg)
 library(tikzDevice)
+library(ggpubr)
 source("renewal_det.R")
 
 delta <- 0.1
@@ -152,13 +153,11 @@ g1 <- ggplot(simstrengthall) +
   scale_y_log10("Daily incidence", limits=c(1e-6, 0.11), expand=c(0, 0)) +
   scale_color_viridis_d("Variant GI", end=0.9) +
   scale_linetype_manual("Variant GI", values=1:3) +
-  ggtitle("A. Constant strength") +
+  ggtitle("A") +
   theme(
     panel.grid = element_blank(),
     legend.position = c(0.5, 0.3),
-    legend.background = element_rect(fill=NA),
-    axis.title.x = element_blank(),
-    axis.text.x = element_blank()
+    legend.background = element_rect(fill=NA)
   )
 
 g2 <- ggplot(simstrengthall) +
@@ -170,9 +169,7 @@ g2 <- ggplot(simstrengthall) +
   ggtitle("B") +
   theme(
     panel.grid = element_blank(),
-    legend.position = "none",
-    axis.title.x = element_blank(),
-    axis.text.x = element_blank()
+    legend.position = "none"
   )
 
 g3 <- ggplot(simstrengthall) +
@@ -186,9 +183,7 @@ g3 <- ggplot(simstrengthall) +
   ggtitle("C") +
   theme(
     panel.grid = element_blank(),
-    legend.position = "none",
-    axis.title.x = element_blank(),
-    axis.text.x = element_blank()
+    legend.position = "none"
   )
 
 g4 <- ggplot(simspeedall) +
@@ -200,7 +195,7 @@ g4 <- ggplot(simspeedall) +
   scale_y_log10("Daily incidence", limits=c(1e-6, 0.11), expand=c(0, 0)) +
   scale_color_viridis_d("Variant GI", end=0.9) +
   scale_linetype_manual("Variant GI", values=1:3) +
-  ggtitle("D. Constant speed") +
+  ggtitle("D") +
   theme(
     panel.grid = element_blank(),
     legend.position = "none"
@@ -232,12 +227,16 @@ g6 <- ggplot(simspeedall) +
     legend.position = "none"
   )
 
-gtot <- egg::ggarrange(g1, g2, g3, 
-                  g4, g5, g6,
-                  nrow=2,
+gtot1 <- egg::ggarrange(g1, g2, g3, nrow=1,
                   draw=FALSE)
 
+gtot2 <- egg::ggarrange(g4, g5, g6, nrow=1,
+                        draw=FALSE)
+
+gtot1a <- annotate_figure(gtot1, top=text_grob("Constant-strength intervention", size=14))
+gtot2a <- annotate_figure(gtot2, top=text_grob("Constant-speed intervention", size=14))
+
 tikz(file = "control_sim.tex", width = 10, height = 6, standAlone = T)
-gtot
+grid.arrange(gtot1a, gtot2a, nrow=2)
 dev.off()
 tools::texi2dvi('control_sim.tex', pdf = T, clean = T)
