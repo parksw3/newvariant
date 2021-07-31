@@ -111,8 +111,10 @@ In particular, several studies have noted, in many contexts, that mechanisms tha
 
 Assuming Gamma-distributed generation intervals is different from the standard Gamma-chain trick. We now explain this later in Section 2:
 
-``Various Gamma assumptions have been widely used in epidemic modeling, including for models of SARS-CoV-2 \citep{doi:10.1098/rsif.2020.0144}.
-Although the Gamma assumption includes as a special case models that assume exponentially distributed generation intervals (when $\kappa=1$), corresponding to the SIR model \citep{anderson1991infectious}, it is different from the generation-interval distribution we get when infectious periods are Gamma distributed, another standard assumption in epidemic modeling (see \cite{roberts2007model} for discussion).''
+``Various Gamma-generation-interval assumptions have been widely used in epidemic modeling, including for models of SARS-CoV-2 \citep{doi:10.1098/rsif.2020.0144}.
+The Gamma-generation-interval assumption includes as a special case models that assume exponentially distributed generation intervals (when $\kappa=1$), corresponding to the SIR model \citep{anderson1991infectious}.
+We note that when the infectious periods are Gamma distributed---another standard assumption in epidemic modeling---the resulting generation interval does not follow the Gamma distribution;
+in particular, the mean generation interval can be shorter than the mean infectious period because transmission occurs throughout the infectious period until recovery (see \cite{roberts2007model} for detailed discussion).''
 
 \revtext{Section 4 doesn't give references to prior work, and section 5 ignores almost all of the literature on the topic of estimating R from incidence data.}
 
@@ -132,7 +134,7 @@ The estimation of the instantaneous reproduction number was popularized by \cite
 
 Thank you for the suggestions. We have tried to clarify what we mean by the generation interval. In particular, often-mentioned time contractions of generation intervals apply to the forward realized generation interval, which measure time between actual infection events, rather than the intrinsic generation interval, which measure the intrinsic infectiousness of infected individuals. Under strength-like interventions, the intrinsic generation interval does not vary across time, even though the realized generation interval contracts. These distinctions are explained in Champredon 2015, and we have tried to clarify these ideas again here in Section 2:
 
-``Under constant-strength changes that reduce the transmission rate by a constant amount regardless of the age of infection, the instantaneous generation-interval distribution does not across change time \citep{fraser2007estimating}.
+``Under constant-strength changes that reduce the transmission rate by a constant amount regardless of the age of infection, the instantaneous generation-interval distribution does not change across time \citep{fraser2007estimating}.
 In this case, the instantaneous generation-interval distribution is also often referred to as the intrinsic generation-interval distribution \citep{champredon2015intrinsic,champredon2018two,gostic2020practical,park2020time}---
 for example, the standard SEIR model can be equivalently expressed as a renewal equation with time-invariant intrinsic generation-interval distribution $g(\tau)$ as shown in \citep{champredon2018equivalence}.
 The instantaneous generation-interval distribution is also different from the realized generation-interval distribution, which measures time between actual infection events (see \citep{champredon2015intrinsic}).
@@ -228,9 +230,10 @@ lines 228–231 on page 10.}
 
 We now define them more clearly throughout the text, including in the introduction:
 
-``For example, when epidemic strength $\RR$ is fixed, assuming longer generation intervals leads to a slower epidemic growth (lower $r$), making the epidemic look easier to control with a constant-speed intervention, which isolates infected individuals at a constant hazard and therefore affects late transmission disproportionately---as shown in \cite{doi:10.1098/rspb.2020.1556}, the hazard of isolation must be greater than the epidemic speed $r$ to reach the $r=0$ threshold.
+``For example, when epidemic strength $\RR$ is fixed, assuming longer generation intervals leads to a slower epidemic growth (lower $r$), making the epidemic look easier to control with a constant-speed intervention, which isolates infected individuals at a constant hazard and therefore affects late transmission disproportionately.
+As shown in \cite{doi:10.1098/rspb.2020.1556}, the hazard of isolation must be greater than the epidemic speed $r$ to reach the $r=0$ threshold.
 In this same case, however, the uncertainty in the generation-interval distribution is expected to have no effects on the effectiveness of a constant-strength intervention, which reduces the hazard of infectious contacts and therefore affects transmission by an equal amount regardless of age of infection.
-Conversely, when epidemic speed $r$ is fixed, assuming longer generation intervals leads to a higher estimate of epidemic strength ($\RR$), making the epidemic look harder to control with a constant-strength interventions (but not with a constant-speed interventions, whose effectiveness is fixed if speed is fixed).
+Conversely, when epidemic speed $r$ is fixed, assuming longer generation intervals leads to a higher estimate of epidemic strength ($\RR$), making the epidemic look harder to control with a constant-strength interventions.
 Constant strength and speed are idealized representations of real-life interventions, which can be either strength-like (e.g., vaccination and social distancing) or speed-like (e.g., contact tracing and isolation) depending on how their effectiveness varies across the generation interval (see \cite{doi:10.1098/rspb.2020.1556} and Discussion).''
 
 \revtext{(page 5, lines 126–128 and 137) It would help to point out that you assume
