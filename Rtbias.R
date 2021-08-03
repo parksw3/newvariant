@@ -57,12 +57,14 @@ for (i in 1:length(svec)) {
     geom_line(aes(tvec, Rt2, color="Variant", lty="True"), lwd=2) +
     geom_line(aes(tvec, Rtest1, color="Wild type", lty="Estimated"), lwd=2) +
     geom_line(aes(tvec, Rtest2, color="Variant", lty="Estimated"), lwd=2) +
+    annotate(geom="text",label=LETTERS[(i-1)*3+1],x=-Inf,y=Inf,
+             size=5,
+             vjust=1.5,hjust=-0.5) +
     scale_x_continuous("Time (days)", expand=c(0, 0), limits=c(0, 70)) +
     scale_y_log10("Reproduction number, $\\mathcal{R}(t)$", limits=c(0.39, 8),
                   breaks=c(0.25, 0.5, 1, 2, 4, 8)) +
     scale_color_manual(values=c("red", "black")) +
     scale_linetype_manual(values=c(2, 1), guide=FALSE) +
-    ggtitle(LETTERS[(i-1)*3+1]) +
     coord_fixed() +
     theme(
       panel.grid = element_blank(),
@@ -80,12 +82,14 @@ for (i in 1:length(svec)) {
       geom_line(aes(tvec, Rt2, col="Variant", lty="Variant"), lwd=2) +
       geom_line(aes(tvec, Rtest1, lty="Estimated"), col="black", lwd=2) +
       geom_line(aes(tvec, Rtest2, col="Estimated", lty="Estimated"), lwd=2) +
+      annotate(geom="text",label=LETTERS[(i-1)*3+1],x=-Inf,y=Inf,
+               size=5,
+               vjust=1.5,hjust=-0.5) +
       scale_x_continuous("Time (days)", expand=c(0, 0), limits=c(0, 70)) +
       scale_y_log10("Reproduction number, $\\mathcal{R}(t)$", limits=c(0.39, 8),
                     breaks=c(0.25, 0.5, 1, 2, 4, 8)) +
       scale_color_manual("a", values=c("red", "red", "black")) +
       scale_linetype_manual("a", values=c(2, 1, 1)) +
-      ggtitle(LETTERS[(i-1)*3+1]) +
       coord_fixed() +
       theme(
         panel.grid = element_blank(),
@@ -98,11 +102,13 @@ for (i in 1:length(svec)) {
   g2 <- ggplot(rr) +
     geom_line(aes(tvec, Rt2/Rt1, col="True", lty="True"), lwd=2) +
     geom_line(aes(tvec, Rtest2/Rtest1, col="Estimated", lty="Estimated"), lwd=2) +
+    annotate(geom="text",label=LETTERS[(i-1)*3+2],x=-Inf,y=Inf,
+             size=5,
+             vjust=1.5,hjust=-0.5) +
     scale_x_continuous("Time (days)", expand=c(0, 0), limits=c(0, 70)) +
     scale_y_log10("Relative strength, $\\rho(t)$", limits=c(1, 2.5)) +
     scale_color_manual("a", values=c("orange", "purple")) +
     scale_linetype_manual("a", values=c(2, 1)) +
-    ggtitle(LETTERS[(i-1)*3+2]) +
     coord_fixed() +
     theme(
       panel.grid = element_blank(),
@@ -121,9 +127,11 @@ for (i in 1:length(svec)) {
     geom_abline(intercept=0, col="gray", slope=1, lty=1, lwd=1) +
     annotate("text", x=3.6, y=3.2, label="$\\mathcal{R}_{\\textrm{var}}(t)=\\mathcal{R}_{\\textrm{wt}}(t)$",
              angle=45) +
+    annotate(geom="text",label=LETTERS[(i-1)*3+3],x=-Inf,y=Inf,
+             size=5,
+             vjust=1.5,hjust=-0.5) +
     scale_x_continuous("Wild type strength, $\\mathcal{R}_{\\textrm{wt}}(t)$", limits=c(0, 3*theta), expand=c(0, 0)) +
     scale_y_continuous("Variant strength, $\\mathcal{R}_{\\textrm{var}}(t)$", limits=c(0, 3*theta), expand=c(0, 0)) +
-    ggtitle(LETTERS[(i-1)*3+3]) +
     coord_fixed() +
     scale_color_manual("", values=c("orange", "blue")) + 
     scale_linetype_manual("", values=2:3) +

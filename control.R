@@ -1,5 +1,5 @@
 library(dplyr)
-library(ggplot2); theme_set(theme_bw(base_size=18, base_family = "Times"))
+library(ggplot2); theme_set(theme_bw(base_size=16, base_family = "Times"))
 library(ggthemes)
 library(egg)
 library(tikzDevice)
@@ -102,16 +102,16 @@ Gpost_short <- integrate(function(x) x*filter(intervention, Gratio==head(Gratio,
 
 g1 <- ggplot(gendata_short) +
   geom_line(aes(tvec, density, col="Pre-intervention", lty="Pre-intervention"), lwd=3) +
-  geom_line(aes(tvec, strength, col="Post-intervention (constant-strength)", lty="Post-intervention (constant-strength)"), lwd=3) +
+  geom_line(aes(tvec, strength, col="Post-intervention", lty="Post-intervention"), lwd=3) +
   geom_vline(xintercept = (Gw*head(Gratio,1)), lwd=2) +
   geom_vline(xintercept = (Gw*head(Gratio,1)), lwd=2, col=colorblind_pal()(3)[3], lty=3) +
   scale_x_continuous("Generation intervals (days)") +
   scale_y_continuous("Kernel density", limits=c(0, 0.45)) +
   scale_color_manual("", values=(colorblind_pal()(3)[c(1, 3)]),
-                     breaks=c("Pre-intervention", "Post-intervention (constant-strength)")) +
+                     breaks=c("Pre-intervention", "Post-intervention")) +
   scale_linetype_manual("", values=c(1, 3),
-                        breaks=c("Pre-intervention", "Post-intervention (constant-strength)")) +
-  ggtitle("A. Shorter generation interval") +
+                        breaks=c("Pre-intervention", "Post-intervention")) +
+  ggtitle("A. Shorter GI, Constant-strength intervention") +
   theme(
     panel.grid = element_blank(),
     legend.position = c(0.6, 0.95),
@@ -121,16 +121,16 @@ g1 <- ggplot(gendata_short) +
 
 g2 <- ggplot(gendata_short) +
   geom_line(aes(tvec, density, col="Pre-intervention", lty="Pre-intervention"), lwd=3) +
-  geom_line(aes(tvec, speed, col="Post-intervention (constant-speed)", lty="Post-intervention (constant-speed)"), lwd=3) +
+  geom_line(aes(tvec, speed, col="Post-intervention", lty="Post-intervention"), lwd=3) +
   geom_vline(xintercept = (Gw*head(Gratio,1)), lwd=2) +
   geom_vline(xintercept = Gpost_short, lwd=2, col=colorblind_pal()(3)[2], lty=2) +
   scale_x_continuous("Generation intervals (days)") +
   scale_y_continuous("Kernel density", limits=c(0, 0.45)) +
   scale_color_manual("", values=(colorblind_pal()(3)[c(1, 2)]),
-                     breaks=c("Pre-intervention", "Post-intervention (constant-speed)")) +
+                     breaks=c("Pre-intervention", "Post-intervention")) +
   scale_linetype_manual("", values=c(1, 2),
-                        breaks=c("Pre-intervention", "Post-intervention (constant-speed)")) +
-  ggtitle("B. Shorter generation interval") +
+                        breaks=c("Pre-intervention", "Post-intervention")) +
+  ggtitle("B. Shorter GI, Constant-speed intervention") +
   theme(
     panel.grid = element_blank(),
     legend.position = c(0.6, 0.95),
@@ -149,7 +149,7 @@ g3 <- ggplot(gendata_base) +
                      breaks=c("Pre-intervention", "Post-intervention (constant-strength)")) +
   scale_linetype_manual("", values=c(1, 3),
                         breaks=c("Pre-intervention", "Post-intervention (constant-strength)")) +
-  ggtitle("C. Equal generation interval") +
+  ggtitle("C. Equal GI, Constant-strength intervention") +
   theme(
     panel.grid = element_blank(),
     legend.position = "none",
@@ -168,7 +168,7 @@ g4 <- ggplot(gendata_base) +
                      breaks=c("Pre-intervention", "Post-intervention (constant-speed)")) +
   scale_linetype_manual("", values=c(1, 2),
                         breaks=c("Pre-intervention", "Post-intervention (constant-speed)")) +
-  ggtitle("D. Equal generation interval") +
+  ggtitle("D. Equal GI, Constant-speed intervention") +
   theme(
     panel.grid = element_blank(),
     legend.position = "none",
@@ -183,7 +183,7 @@ g5 <- ggplot(gendata_long) +
   geom_vline(xintercept = (Gw*tail(Gratio,1)), lwd=2, col=colorblind_pal()(3)[3], lty=3) +
   scale_x_continuous("Generation intervals (days)") +
   scale_y_continuous("Kernel density", limits=c(0, 0.4)) +
-  ggtitle("E. Longer generation interval") +
+  ggtitle("E. Longer GI, Constant-strength intervention") +
   theme(
     panel.grid = element_blank(),
     axis.title = element_blank()
@@ -196,7 +196,7 @@ g6 <- ggplot(gendata_long) +
   geom_vline(xintercept = Gpost_long, lwd=2, col=colorblind_pal()(3)[2], lty=2) +
   scale_x_continuous("Generation intervals (days)") +
   scale_y_continuous("Kernel density", limits=c(0, 0.4)) +
-  ggtitle("F. Longer generation interval") +
+  ggtitle("F. Longer GI, Constant-speed intervention") +
   theme(
     panel.grid = element_blank(),
     axis.title = element_blank()
@@ -219,7 +219,7 @@ g7 <- ggplot(intervention) +
   theme(
     panel.grid = element_blank(),
     legend.title = element_blank(),
-    legend.position = c(0.35, 0.84),
+    legend.position = c(0.35, 0.83),
     legend.background = element_rect(fill=NA)
   )
 
