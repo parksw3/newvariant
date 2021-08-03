@@ -100,10 +100,10 @@ See also below.
 
 We now provide a review of this topic in the introduction along with a more detailed justification of the assumptions of our work:
 
-``Epidemic speed can be typically estimated from incidence of infection during the exponential growth period \citep{mills2004transmissibility,nishiura2009transmission,ma2014estimating}, but epidemic strength is difficult to measure directly.
+``Epidemic speed can be typically estimated from time series of incidence of infection during the exponential growth period \citep{mills2004transmissibility,nishiura2009transmission,ma2014estimating}, but epidemic strength is difficult to measure directly.
 Instead, epidemic strength is often inferred from the observed epidemic speed using the generation-interval distribution, an approach popularized by \citep{wallinga2007generation}.
-The generation interval is defined as the time between infection and transmission and provides information about the time scale of individual-level transmission \citep{svensson2007note}.
-The generation interval is also distinctly different from other so-called ``transmission intervals'' that measure time between successive infections---this includes the serial interval, which is defined as the time between symptom onsets in an infector-infectee pair \citep{fine2003interval,grassly2008mathematical,britton2019estimation,ali2020serial,park2021forward}.
+The generation interval, defined as the time between infection and transmission, provides information about the time scale of individual-level transmission \citep{svensson2007note}.
+The generation interval is also distinctly different from other so-called ``transmission intervals'' that measure time between successive infections---including the serial interval, which is defined as the time between symptom onsets in an infector-infectee pair \citep{fine2003interval,grassly2008mathematical,britton2019estimation,ali2020serial,park2021forward}.
 
 The exact shape of the distribution depends on several factors---including the shape of latent and infectious periods \citep{lloyd2001realistic,wearing2005appropriate,roberts2007model} as well as more detailed life history of a disease \citep{huber2016quantitative}---and thus can be difficult to estimate.
 While it is possible to consider general forms of generation-interval distributions \citep{miller2010epidemics,svensson2015influence}, summarizing the distribution in terms of its mean and variability---for example, by using the Gamma distribution---can still provide a robust link between epidemic speed and strength for real diseases and yield important biological insights \citep{park2019practical}.
@@ -113,7 +113,7 @@ Assuming Gamma-distributed generation intervals is different from the standard G
 
 ``Various Gamma-generation-interval assumptions have been widely used in epidemic modeling, including for models of SARS-CoV-2 \citep{doi:10.1098/rsif.2020.0144}.
 The Gamma-generation-interval assumption includes as a special case models that assume exponentially distributed generation intervals (when $\kappa=1$), corresponding to the SIR model \citep{anderson1991infectious}.
-We note that when the infectious periods are Gamma distributed---another standard assumption in epidemic modeling---the resulting generation interval does not follow the Gamma distribution;
+We note that when the infectious periods are Gamma distributed---another standard assumption in epidemic modeling---the resulting generation interval does not necessarily follow the Gamma distribution;
 in particular, the mean generation interval can be shorter than the mean infectious period because transmission occurs throughout the infectious period until recovery (see \cite{roberts2007model} for detailed discussion).''
 
 \revtext{Section 4 doesn't give references to prior work, and section 5 ignores almost all of the literature on the topic of estimating R from incidence data.}
@@ -121,7 +121,7 @@ in particular, the mean generation interval can be shorter than the mean infecti
 We have added references in Section 4.
 We have also added a new paragraph in the beginning of Section 5 reviewing previous work on estimating R from incidence data:
 
-``Instead of inferring relative strength from speed, one can directly estimate time-varying reproduction numbers $\RR(t)$ of the variant and the wild type from incidence data and directly compare their ratios when the incidence of infection and the generation-interval distributions are known---such methods have been used in previous analyses of the alpha variant by \cite{volz2021transmission}.
+``Instead of inferring relative strength from speed, one can directly estimate time-varying reproduction numbers $\RR(t)$ of the variant and the wild type from incidence data and directly compare their ratios when the incidence of infection and the generation-interval distributions are known---such methods have been used in previous analyses of the Alpha variant by \cite{volz2021transmission}.
 Broadly, there are two types of time-varying reproduction numbers: case reproduction number and instantaneous reproduction number.
 The case reproduction number is defined as the average number of secondary infections caused by an individual infected at time $t$ and therefore depends on transmission after time $t$ \citep{wallinga2004different}.
 The instantaneous reproduction number is defined as the average number of secondary infections that would be caused by an individual infected at time $t$ if conditions were to remain the same \citep{fraser2007estimating}; 
@@ -134,12 +134,12 @@ The estimation of the instantaneous reproduction number was popularized by \cite
 
 Thank you for the suggestions. We have tried to clarify what we mean by the generation interval. In particular, often-mentioned time contractions of generation intervals apply to the forward realized generation interval, which measure time between actual infection events, rather than the intrinsic generation interval, which measure the intrinsic infectiousness of infected individuals. Under strength-like interventions, the intrinsic generation interval does not vary across time, even though the realized generation interval contracts. These distinctions are explained in Champredon 2015, and we have tried to clarify these ideas again here in Section 2:
 
-``Under constant-strength changes that reduce the transmission rate by a constant amount regardless of the age of infection, the instantaneous generation-interval distribution does not change across time \citep{fraser2007estimating}.
+``Under constant-strength changes that reduce the transmission rate by a constant amount regardless of the age of infection, the instantaneous generation-interval distribution does not change through time \citep{fraser2007estimating}.
 In this case, the instantaneous generation-interval distribution is also often referred to as the intrinsic generation-interval distribution \citep{champredon2015intrinsic,champredon2018two,gostic2020practical,park2020time}---
 for example, the standard SEIR model can be equivalently expressed as a renewal equation with time-invariant intrinsic generation-interval distribution $g(\tau)$ as shown in \citep{champredon2018equivalence}.
-The instantaneous generation-interval distribution is also different from the realized generation-interval distribution, which measures time between actual infection events (see \citep{champredon2015intrinsic}).
+The instantaneous generation-interval distribution is also different from the realized generation-interval distribution, which measures time between actual infection events \citep{champredon2015intrinsic}.
 Previous studies have noted, in many contexts, that the realized generation intervals can contract due to susceptible depletion---a special case of constant-strength changes \citep{kenah2008generation,nishiura2010time,champredon2015intrinsic}---even though the instantaneous generation-interval distribution remains unchanged in this scenario.
-While the instantaneous generation-interval distribution can change under speed-like changes (see \cite{fraser2007estimating} and Section 6--7 for detailed discussions), assuming a time-invariant instantaneous generation-interval distribution is often appropriate in the context of SARS-CoV-2, given that the dynamics of its spread have been primarily driven by strength-like intervention, such as social distancing measures \citep{flaxman2020Rt} and vaccination \citep{moore2021vaccination}.
+While the instantaneous generation-interval distribution can change under speed-like changes (see \cite{fraser2007estimating} and Section 6--7 for detailed discussions), assuming a time-invariant instantaneous generation-interval distribution is often appropriate in the context of SARS-CoV-2, given that control strategies against its spread have been primarily strength-like, including social distancing measures \citep{flaxman2020Rt} and vaccination \citep{moore2021vaccination}.
 Indeed, many dynamical models of SARS-CoV-2 infections have solely relied on constant-strength changes, either implicitly or explicitly assuming a time-invariant intrinsic generation-interval distribution (e.g., \citep{flaxman2020Rt,gostic2020practical,brauner2021inferring}).
 Therefore, we neglect changes in the intrinsic generation-interval distribution over time for now and focus on the impact of constant-strength changes on the inference of dynamics of new SARS-CoV-2 variants.
 We revisit these ideas in Section 6 and compare the effects of constant-speed interventions with those of constant-strength interventions.''
@@ -170,8 +170,8 @@ We now acknowledge this point and provide a citation for a study that discusses 
 We have reworded this section:
 
 ``Here, we focus on differences in mean generation intervals, assuming that both the squared coefficient of variation and distribution shape of the variant are otherwise the same as for the wild type: $\kappa_{\mathrm{wt}} = \kappa_{\mathrm{var}} = \kappa$.
-Changes in shape can be important \citep{miller2010epidemics,svensson2015influence}, and we do not investigate them here. 
-We do note that, loosely, we expect a distribution with higher coefficient of variation to allow for more early transmission, and thus to have qualitatively similar effects to a distribution with a shorter mean in many cases \citep{park2019practical}.''
+Changes in shape can be important \citep{miller2010epidemics,svensson2015influence}, but we do not investigate them here. 
+We do note that we expect a distribution with higher coefficient of variation to allow for more early transmission, and thus to have qualitatively similar effects to a distribution with a shorter mean \citep{park2019practical}.''
 
 \rev{Reviewer \#2}
 
@@ -230,9 +230,9 @@ lines 228–231 on page 10.}
 
 We now define them more clearly throughout the text, including in the introduction:
 
-``For example, when epidemic strength $\RR$ is fixed, assuming longer generation intervals leads to a slower epidemic growth (lower $r$), making the epidemic look easier to control with a constant-speed intervention, which isolates infected individuals at a constant hazard and therefore affects late transmission disproportionately.
+``For example, when epidemic strength $\RR$ is fixed, assuming longer generation intervals leads to a slower estimated epidemic growth rate (lower $r$), making the epidemic look easier to control with a constant-speed intervention, which isolates infected individuals at a constant hazard and therefore affects late transmission disproportionately.
 As shown in \cite{doi:10.1098/rspb.2020.1556}, the hazard of isolation must be greater than the epidemic speed $r$ to reach the $r=0$ threshold.
-In this same case, however, the uncertainty in the generation-interval distribution is expected to have no effects on the effectiveness of a constant-strength intervention, which reduces the hazard of infectious contacts and therefore affects transmission by an equal amount regardless of age of infection.
+In this same case, however, variation in the generation-interval distribution has no effects on the effectiveness of a constant-strength intervention, which reduces the hazard of infectious contacts and therefore affects transmission by an equal amount regardless of age of infection.
 Conversely, when epidemic speed $r$ is fixed, assuming longer generation intervals leads to a higher estimate of epidemic strength ($\RR$), making the epidemic look harder to control with a constant-strength interventions.
 Constant strength and speed are idealized representations of real-life interventions, which can be either strength-like (e.g., vaccination and social distancing) or speed-like (e.g., contact tracing and isolation) depending on how their effectiveness varies across the generation interval (see \cite{doi:10.1098/rspb.2020.1556} and Discussion).''
 
@@ -255,8 +255,9 @@ of variants than population-level analyses of incidence data.}
 We have now re-written this part:
 
 ``Although these estimates are more consistent with the attack rate analysis \citep{ukinvest},
-we do not claim that they are necessarily more accurate---
-while individual-level data from contact tracing can provide a more reliable source of information about the transmissibility and time scale of transmission in some cases, they can also be biased towards particular types of contacts---for example, household contacts are probably more likely to be identified---which could also affect the estimate of $\rho$.''
+we do not claim that they are necessarily more accurate.
+While individual-level data from contact tracing can provide a more reliable source of information about the transmissibility and time scale of transmission in some cases, they can also be biased towards particular types of contacts---for example, household contacts are probably more likely to be identified---which could also affect the estimate of $\rho$.
+Instead, this calculation simply highlights the importance of carefully considering generation-interval distributions in assessing the relative strength and speed of SARS-CoV-2 variants.''
 
 \revtext{(page 15, References) Curly brackets might need to be added to some of
 the BibTeX entries to enforce correct capitalization (e.g., Ref. 9).}
