@@ -202,7 +202,7 @@ are likely to spread when susceptibles are being depleted by both variants
 (due to cross-protection) and when the prevalence of infection is not low, these implicit assumptions place significant limitations on the practical
 implications of the analysis.}
 
-We acknowledge that we are assuming homogeneous mixing---we feel that this is a clearer explanation because mass-action is often used to refer to how the transmission rate, beta, scales with the population size.
+We now acknowledge that we are assuming homogeneous mixing---we feel that this is a clearer explanation because mass-action is often used to refer to how the transmission rate, beta, scales with the population size.
 
 We note that we primarily focus on short-term dynamics until Section 4.
 In this case, we can approximate the dynamics using exponential growth/decay, and therefore the generation-interval distribution is expected to remain fixed:
@@ -215,9 +215,9 @@ Then, the incidence of each strain grows (or decays) exponentially at rate $r_x$
 \frac{1}{\RR_x} = \int_0^\infty \exp(- r_x \tau) g_x(\tau) \dtau.
 \end{equation}''
 
-We further note that a fixed generation-interval distribution does not rely on the assumption that the rate of depletion of susceptibles over time is negligible.
-This is due to an ongoing confusion between the intrinsic and realized generation interval as we explained above.
-For example, as shown in Champredon et al 2015 and 2018, the standard SEIR model can be equivalently written in terms of the renewal equation using a fixed \emph{intrinsic} generation-interval distribution, and we can still observe the contraction of the \emph{realized} generation interval for this model.
+We further note that our fixed generation-interval distribution does not rely on the assumption that the rate of depletion of susceptibles over time is negligible.
+This is because we are assuming that intrinsic, not realized, generation intervals are fixed.
+As shown in Champredon et al 2015 and 2018, the standard SEIR model can be written as a renewal equation using a fixed \emph{intrinsic} generation-interval distribution, and we can still observe the contraction of the \emph{realized} generation interval for this model.
 We have added a paragraph in Section 2 to clarify this distinction (please see response to reviewer 1 for text).
 
 \revtext{(page 2, lines 55–60) It would help to clarify what is meant by “strengthlike” and “speed-like” in interventions. From the examples, it appears that
