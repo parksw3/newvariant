@@ -14,14 +14,14 @@ vim_session:
 Sources += newvariant.tex
 
 ## newvariant.pdf: newvariant.tex
-## newvariant.tex.2aae770a.oldfile
-## newvariant.ld.pdf: newvariant.tex
+## newvariant.tex.50f4bfe.oldfile:
+## newvariant.ld.pdf: newvariant.ld.tex
 
 Sources += response.tex
-response.pdf: response.tex
+## response.pdf: response.tex
 
 Sources += supp.tex
-supp.pdf: supp.tex
+## supp.pdf: supp.tex
 
 ######################################################################
 
