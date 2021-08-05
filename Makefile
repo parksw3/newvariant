@@ -15,7 +15,7 @@ Sources += newvariant.tex
 
 ## newvariant.pdf: newvariant.tex
 ## newvariant.tex.50f4bfe.oldfile:
-## newvariant.ld.pdf: newvariant.ld.tex
+## newvariant.ld.pdf: newvariant.tex
 
 Sources += response.tex
 ## response.pdf: response.tex
