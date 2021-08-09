@@ -162,18 +162,18 @@ Changes in the generation-interval distribution can alter the effectiveness of t
 
 Estimating variant epidemic strength and speed remains a key question in understanding the threat of SARS-CoV-2 variants of concern (VoCs) \cite{switzerland2021variant,davies2021estimated,di2021impact,graham2021changes,leung2021early,volz2021transmission,zhao2021,campbell2021increased}.
 Epidemic ``strength'' is measured by the reproduction number $\RR$---a unitless quantity representing the average number of new infections caused by a typical infection. 
-Disease can spread in a population if $\RR>1$ \citep{diekmann1990definition}.
+A pathogen can spread in a population if $\RR>1$ \citep{diekmann1990definition}.
 The epidemic strength also determines the final size of an epidemic in a homogeneous population \citep{anderson1991infectious}.
 Epidemic ``speed'' is characterized by the growth rate $r$, which has units of $1/\mathrm{time}$ and describes the exponential rate of pathogen spread at the population level.
-Like epidemic strength, epidemic speed also determines conditions for disease elimination: $r=0$ is a threshold equivalent to $\RR=1$ under constant conditions.
+Like epidemic strength, epidemic speed also determines conditions for pathogen elimination: $r=0$ is a threshold equivalent to $\RR=1$ under constant conditions.
 
 Epidemic speed can be typically estimated from time series of incidence of infection during the exponential growth period \citep{mills2004transmissibility,nishiura2009transmission,ma2014estimating}, but epidemic strength is difficult to measure from incidence time series.
 Instead, epidemic strength is often inferred from the observed epidemic speed using the generation-interval distribution, an approach popularized by \citep{wallinga2007generation}.
 The generation interval, defined as the time between infection and transmission, provides information about the time scale of individual-level transmission \citep{svensson2007note}.
 The generation interval is also distinctly different from other ``transmission intervals'' that measure time between successive infections---including the serial interval, which is defined as the time between symptom onsets in an infector-infectee pair \citep{fine2003interval,grassly2008mathematical,britton2019estimation,ali2020serial,park2021forward}.
 
-The exact shape of the distribution depends on several factors---including the shape of latent and infectious period distributions \citep{lloyd2001realistic,wearing2005appropriate,roberts2007model} as well as more detailed life history of a disease \citep{huber2016quantitative}---and thus can be difficult to estimate.
-While it is possible to consider general forms of generation-interval distributions \citep{miller2010epidemics,svensson2015influence}, summarizing the distribution in terms of its mean and variability---for example, by assuming they are Gamma distributed---can still provide a robust link between epidemic speed and strength for real diseases and yield important biological insights \citep{park2019practical}.
+The exact shape of the distribution depends on several factors---including the shape of latent and infectious period distributions \citep{lloyd2001realistic,wearing2005appropriate,roberts2007model} as well as more detailed life history of a pathogen \citep{huber2016quantitative}---and thus can be difficult to estimate.
+While it is possible to consider general forms of generation-interval distributions \citep{miller2010epidemics,svensson2015influence}, summarizing the distribution in terms of its mean and variability---for example, by assuming they are Gamma distributed---can still provide a robust link between epidemic speed and strength for real pathogens and yield important biological insights \citep{park2019practical}.
 In particular, several studies have noted, in many contexts, that mechanisms that increase the mean generation interval increase the epidemic strength $\RR$ that corresponds to an observed epidemic speed $r$ \citep{eaton2014proportion,powers2014impact,weitz2015modeling,park2020time}.
 
 Analyses of new variants have typically characterized \emph{relative} strength (i.e., the ratio of reproduction numbers $\Rv/\Rw$, here called $\rho$) and speed (i.e., the difference between growth rates $\rv-\rw$, here called $\delta$) of the variants.
@@ -208,7 +208,7 @@ Neglecting the (relatively slow) rate of new mutations and assuming homogeneous 
 \begin{equation}
 i_x(t) = \int_0^\infty i_x(t-\tau) K_x(t, \tau) \dtau.
 \end{equation}
-This framework provides a flexible way of modeling disease dynamics and generalizes a wide range of compartmental models, including the SEIR model \citep{heesterbeek1996concept, diekmann2000mathematical, roberts2004modelling, aldis2005integral,breda2012formulation, champredon2018equivalence}.
+This framework provides a flexible way of modeling pathogen dynamics and generalizes a wide range of compartmental models, including the SEIR model \citep{heesterbeek1996concept, diekmann2000mathematical, roberts2004modelling, aldis2005integral,breda2012formulation, champredon2018equivalence}.
 
 The integral of the kernel is referred to as the instantaneous reproduction number:
 \begin{equation}
@@ -217,7 +217,7 @@ The integral of the kernel is referred to as the instantaneous reproduction numb
 \end{equation}
 which is defined as the expected number of secondary infections that would be caused by an individual infected at time $t$ if conditions were to remain the same \citep{fraser2007estimating}.
 The instantaneous reproduction number is a particular kind of weighted average of infectiousness of previously infected individuals at time $t$---in particular, it is weighted by the total relative infectiousness at time $t$, rather than by the actual number of infected individuals present.
-The normalized kernel $g_x(t, \tau) = K_x(t, \tau)/\RR_x(t)$---which we refer to as the instantaneous generation-interval distribution---describes the relative contribution of previously infected individuals to current incidence $i_x(t)$ and provides information about the time scale of disease transmission.
+The normalized kernel $g_x(t, \tau) = K_x(t, \tau)/\RR_x(t)$---which we refer to as the instantaneous generation-interval distribution---describes the relative contribution of previously infected individuals to current incidence $i_x(t)$ and provides information about the time scale of pathogen transmission.
 Like the instantaneous reproduction number, the instantaneous generation-interval distribution describes when an individual infected at time $t$ will transmit infections if conditions were to remain the same.
 Both the instantaneous reproduction number and the generation-interval distribution depend on many factors, including intrinsic infectiousness of an infected individual, non-pharmaceutical interventions, awareness-driven behavior, and population-level susceptibility \citep{fraser2007estimating}.
 
@@ -469,7 +469,7 @@ In this case, the relative speed of the variant remains unaffected by the consta
 
 \section{Discussion}
 
-We explored how the generation-interval distribution shapes the link between relative strength and speed of an invading disease variant.
+We explored how the generation-interval distribution shapes the link between relative strength and speed of an invading pathogen variant.
 Longer generation intervals generally lead to higher relative strength for a given relative speed (and conversely, lower relative speed for a given relative strength); these relationships are reversed when incidence is decreasing.
 Neglecting potential differences in the mean generation intervals between the variant and the wild type can bias estimates of the relative strength from incidence data;
 these biases may be assessed by considering whether estimates of relative strength appear to vary systematically with the direction of changes in the incidence of infections caused by the variant.
