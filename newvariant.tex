@@ -151,11 +151,11 @@ Jonathan Dushoff\textsuperscript{2,3,4}
 \section*{Abstract}
 
 Inferring the relative strength (i.e., the ratio of reproduction numbers) and relative speed (i.e., the difference between growth rates) of new SARS-CoV-2 variants compared to earlier strains is critical to predicting and controlling the course of the current pandemic.
-Here, we challenge a commonly-made assumption (i.e., a constant relative speed) in estimating the transmission advantage of SARS-CoV-2 variants.
-We argue that holding relative strength constant is generally more appropriate by comparing how relative strength and speed change over time under two idealized interventions:
-a constant-strength intervention like idealized vaccination and social distancing, which reduces transmission rates by a constant amount, and a constant-speed intervention like idealized contact tracing, which isolate infected individuals at a constant rate.
-The impact of these interventions on the spread of new variants is evaluated using a generation-interval-based framework in light of recent evidence that the Alpha and Delta variants may have different generation intervals from prior dominant lineages.
-Differences in the generation-interval distributions affect not only the effectiveness of these interventions but also the realized transmission advantages of new variants.
+Here, we challenge a commonly-made assumption in estimating the transmission advantage of SARS-CoV-2 variants and argue that holding relative strength (rather than relative speed) constant is generally more appropriate.
+In doing so, we use the generation-interval-based framework to compare how relative strength and speed change over time under two idealized interventions:
+a constant-strength intervention like idealized vaccination and social distancing, which reduces transmission rates by a constant amount, and a constant-speed intervention like idealized contact tracing, which isolates infected individuals at a constant rate.
+Using the generation-interval-based framework further allows us to account for the possibility that new SARS-CoV-2 variants, such as the Alpha and Delta variants, may have different generation intervals from prior dominant lineages. 
+Differences in the generation-interval distributions can affect the effectiveness of these interventions as well as the realized transmission advantages of new variants.
 Neglecting these differences gives biased estimates of relative strength, which can vary systematically with changes in the incidence of infections caused by the variant.
 
 \section{Introduction}
@@ -166,7 +166,7 @@ A pathogen can spread in a population if $\RR>1$ \citep{diekmann1990definition}.
 The epidemic strength also determines the final size of an epidemic in a homogeneous population \citep{anderson1991infectious}.
 Epidemic ``speed'' is characterized by the growth rate $r$, which has units of $1/\mathrm{time}$ and describes the exponential rate of pathogen spread at the population level.
 Like epidemic strength, epidemic speed also determines conditions for pathogen elimination: $r=0$ is a threshold equivalent to $\RR=1$ under constant conditions.
-Dushoff and Park \citep{doi:10.1098/rspb.2020.1556} argued previously that large segments of the epidemiology and modeling community have over-emphasized $\RR$ at the expense of $r$; 
+However, large segments of the epidemiology and modeling community have over-emphasized $\RR$ at the expense of $r$ \citep{doi:10.1098/rspb.2020.1556};
 we thus use the terms ``strength'' and ``speed''  here to underline our contention that these are better seen as complementary perspectives (and to link them to complementary perspectives on measuring the transmission advantage of new variants).
 
 Epidemic speed can be typically estimated from time series of incidence of infection during the exponential growth period \citep{mills2004transmissibility,nishiura2009transmission,ma2014estimating}, but epidemic strength is difficult to measure from incidence time series.
