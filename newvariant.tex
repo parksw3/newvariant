@@ -499,15 +499,24 @@ Although these estimates are more consistent with the attack rate analysis \cite
 we do not claim that they are necessarily more accurate.
 While individual-level data from contact tracing can provide a more reliable source of information about the transmissibility and time scale of transmission in some cases, they can also be biased towards particular types of contacts---for example, household contacts are probably more likely to be identified---which could also affect the estimate of $\rho$.
 Instead, this calculation simply highlights the importance of carefully considering generation-interval distributions in assessing the relative strength and speed of SARS-CoV-2 variants.
-While we relied on parameter estimates for the Alpha variant throughout our analysis, our qualitative conclusions can be applied to studying other SARS-CoV-2 variants, including the Delta variant.
+We relied on parameter estimates for the Alpha variant throughout our analysis, but our qualitative conclusions can be applied to studying other SARS-CoV-2 variants, including the Delta variant.
 
 We further used simulations to show how mis-specification of generation-interval distributions can bias the inference of relative strength from incidence data.
 In doing so, we assumed that the intervention would reduce transmission caused by the variant and the wild type by equal amounts, thereby preserving the relative strength over time;
 however, this assumption only holds under strength-like interventions, which are insensitive to time since infection, but not under speed-like interventions. 
 As we demonstrated, if the variant and the wild type have different generation intervals, speed-like interventions such as contact tracing can affect them differently, causing their relative strength to change over time (but not necessarily their relative speed).
 
-We mostly considered idealized interventions of constant strength  or constant speed. Real interventions are likely more complex.
-Interventions that reduce contact rates, such as social distancing measures and vaccination, are generally strength-like, but they can also elicit awareness-based behavioral responses that are speed-like---for example, infected individuals may self-isolate faster after symptom onset.
+Other studies have also tried to explain apparent changes in their estimates of relative strength using generation-interval-based arguemtns but sometimes gave inaccurate explanations. 
+For example, Volz \textit{et al.} estimated that the relative strength of the Alpha variant declined in England between December 2020 and January 2021 \cite{volz2021transmission};
+they hypothesized that a shorter generation interval of the Alpha variant could explain this phenomenon by reducing the relative speed (and therefore, the relative strength) under intervention measures.
+However, our analysis suggests that a shorter generation interval of a new variant cannot explain the decline in relative strength.
+Under a constant-strength intervention, the relative speed decreases (as predicted by  \cite{volz2021transmission}) but the relative strength remains constant (\fref{control_sim}B). 
+Under a constant-speed intervention, the relative speed remains constant (\fref{control_sim}F), but the relative strength increases because the intervention will have a smaller effect on the variant with a shorter generation interval (\fref{control_sim}E).
+
+We mostly considered idealized interventions of constant strength or constant speed.
+Real interventions are likely more complex.
+Interventions that reduce contact rates, such as social distancing measures, are generally strength-like, but they can also elicit awareness-based behavioral responses that are speed-like---for example, infected individuals may self-isolate faster after symptom onset.
+Other strength-like interventions, such as vaccination, can also have disproportionately smaller effects on new variants depending on their antigenic variability.
 On the other hand, the hazard of isolation-based interventions (and thus, speed-like), such as contact tracing, can vary over the course of infection depending on delays in tracing infected individuals \citep{fraser2004factors,ferretti2020quantifying,scarabel2021renewal}.
 Their effectiveness can further depend on the ``coverage'' of isolation, which is strength-like---for example, there may be a group of individuals that cannot be isolated by certain interventions due to asymptomaticity or the lack of participation in the contact tracing program.
 Analyses of SARS-CoV-2 dynamics have primarily relied on the constant-strength framework \citep{gostic2020practical,unwin2020state,brauner2021inferring}, even when modeling speed-like interventions such as self-isolation \citep{flaxman2020Rt,brett2020transmission}.
