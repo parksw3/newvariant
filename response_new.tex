@@ -1,0 +1,145 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage{color}
+
+\usepackage{xspace}
+
+\usepackage{lmodern}
+
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+
+\usepackage[pdfencoding=auto, psdextra]{hyperref}
+
+\usepackage{natbib}
+\bibliographystyle{chicago}
+
+\newcommand{\eref}[1]{Eq.~(\ref{eq:#1})}
+\newcommand{\fref}[1]{Fig.~\ref{fig:#1}}
+
+%% Consistent, changeable style for subscripts
+\newcommand{\vvvar}{\mathrm{var}}
+\newcommand{\wwwt}{\mathrm{wt}}
+
+\newcommand{\rx}[1]{\ensuremath{{r}_{#1}}\xspace} 
+\newcommand{\ry}[1]{\rx{\mathrm{#1}}} 
+\newcommand{\rw}{\rx{\wwwt}}
+\newcommand{\rv}{\rx{\vvvar}}
+
+\newcommand{\Rx}[1]{\ensuremath{{\mathcal R}_{#1}}\xspace} 
+\newcommand{\Ry}[1]{\Rx{\mathrm{#1}}}
+\newcommand{\Ro}{\Rx{0}}
+\newcommand{\RR}{\ensuremath{{\mathcal R}}\xspace}
+\newcommand{\Rw}{\Rx{\wwwt}}
+\newcommand{\Rv}{\Rx{\vvvar}}
+
+\newcommand{\dd}[1]{\ensuremath{\, \mathrm{d}#1}}
+\newcommand{\dtau}{\dd{\tau}}
+\newcommand{\dx}{\dd{x}}
+\newcommand{\dsigma}{\dd{\sigma}}
+
+\newcommand{\rev}{\subsection*}
+\newcommand{\revtext}{\textsf}
+\setlength{\parskip}{\baselineskip}
+\setlength{\parindent}{0em}
+
+\newcommand{\comment}[3]{\textcolor{#1}{\textbf{[#2: }\textsl{#3}\textbf{]}}}
+\newcommand{\jd}[1]{\comment{cyan}{JD}{#1}}
+\newcommand{\swp}[1]{\comment{magenta}{SWP}{#1}}
+\newcommand{\dc}[1]{\comment{blue}{DC}{#1}}
+\newcommand{\jsw}[1]{\comment{green}{JSW}{#1}}
+\newcommand{\hotcomment}[1]{\comment{red}{HOT}{#1}}
+
+\newcommand{\psymp}{\ensuremath{p}} %% primary symptom time
+\newcommand{\ssymp}{\ensuremath{s}} %% secondary symptom time
+\newcommand{\pinf}{\ensuremath{\alpha_1}} %% primary infection time
+\newcommand{\sinf}{\ensuremath{\alpha_2}} %% secondary infection time
+
+\newcommand{\psize}{{\mathcal P}} %% primary cohort size
+\newcommand{\ssize}{{\mathcal S}} %% secondary cohort size
+
+\newcommand{\gtime}{\tau_{\rm g}} %% generation interval
+\newcommand{\gdist}{g} %% generation-interval distribution
+\newcommand{\idist}{\ell} %% incubation period distribution
+
+\newcommand{\total}{{\mathcal T}} %% total number of serial intervals
+
+
+\begin{document}
+
+\noindent Dear Editor:
+
+We are re-submitting our manuscript, “The importance of the generation interval in investigating dynamics and control of new SARS-CoV-2 variants”, for consideration for publication in JRSI. This material has not previously been published elsewhere.
+
+We had previously submitted the manuscript to JRSI (rsif-2021-0438) and were asked to revise with positive comments---for example, reviewer 3 said “The analysis is mathematically sound and offers a thorough investigation of an important concept that has been the subject of much discussion in the epidemiological community but, to my knowledge, hasn't been given the formal treatment it deserves until now.” We had submitted the revised version of the manuscript but the paper was rejected despite having addressed all comments due to reviewer 2's comment that “On a second reading of this manuscript, I am much less optimistic about its value to infectious disease epidemiology.” We emailed the editor since then and were provided the opportunity to resubmit.  
+We have made revisions to our manuscript to address the reviewer's comments and to better highlight the novelty of our work.
+
+The ongoing COVID-19 pandemic underlines the importance of characterizing the spread of new variants. Previous studies have particularly prioritized estimating the relative strength (i.e., the ratio of reproduction numbers) from relative speed (i.e., the differences between growth rates). 
+
+In this study, we challenge a commonly made assumption (i.e., a constant relative speed) in estimating transmission advantage of new variants and argue that holding relative strength is generally more appropriate.
+In doing so, we consider the possibility that new variants can have different generation intervals from the original variant and explore how such differences affect the dynamics and control of new variants. 
+We also show that neglecting these differences can lead to biased inference and provide a practical guidance for how such biases can be assessed in practice.
+Below please find our detailed responses to reviewers.
+
+The manuscript and its findings should be of interest to a broad range of readers, particularly given its theoretical and practical implications for characterizing the spread of new variants. All code is available as open-source for use, re-use, and adaptation by the community. Please do not hesitate to contact us if you have any questions.
+
+Thank you for your consideration of our submission.
+
+Sincerely,
+
+Sang Woo Park
+
+\rev{Reviewer \#2}
+
+\revtext{On a second reading of this manuscript, I am much less optimistic about its value to infectious disease epidemiology. The analysis is sound, and the revision does a better job of articulating the assumptions that are made along the way---addressing one of the main concerns in my previous review. However, the paper does not seem to make any particularly useful novel contribution to the field. The importance of assumptions about the generation interval distribution for estimates of reproduction numbers (based on growth rates) and growth rates (based on reproduction numbers) is well-established. The authors are right that this is often neglected in practice, and it is interesting to see how this plays out in their simulation studies.}
+
+Thank you for your review.
+We agree that the role of generation-interval distribution for estimates of reproduction numbers is well-established. We also agree that this is often neglected in practice. 
+While we emphasize the role of generation-interval distribution in estimating transmission advantage of new variants, this conclusion is secondary to the main point of our paper. 
+The goal is to challenge the idea of holding relative speed (differences in growth rates) constant.
+In particular, we show that the relative speed changes under a constant-strength intervention, which reduces transmission rate by a constant amount and therefore keeps the relative strength constant---this effect is present even when the generation-interval distributions are identical and is exaggerated in the presence of differences in the generation-interval distributions.
+We believe that using the generation-interval-based framework allows us to make this argument clearly.
+We have re-written large segments of the abstract, introduction, and discussion to make the contribution of our work clear.
+
+\revtext{It is also well-established that the generation interval distribution is an important determinant of the effectiveness of interventions like contact tracing and isolation, which is also borne out in these simulations.}
+
+We also agree that the role of generation-interval distribution in determining the effectiveness of interventions has been well established.
+However, we believe that there is still confusion in the literature that need to be clarified---in particular, the effects of different interventions (speed- vs strength-like interventions) as well as differences in the generation-interval distributions on the transmission advantage of new variants has not yet been formally investigated.
+We have tried to highlight this throughout the text.
+We have also added a paragraph in the Discussion section to illustrate the confusion in the literature and how our framework provides the correct explanation: 
+
+``
+Other studies have also tried to explain apparent changes in their estimates of relative strength using generation-interval-based arguments but sometimes gave inaccurate explanations. 
+For example, Volz \textit{et al.} estimated that the relative strength of the Alpha variant declined in England between December 2020 and January 2021 \cite{volz2021transmission};
+they hypothesized that a shorter generation interval of the Alpha variant could explain this phenomenon by reducing the relative speed (and therefore, the relative strength) under intervention measures.
+However, our analysis suggests that a shorter generation interval of a new variant cannot explain the decline in relative strength.
+Under a constant-strength intervention, the relative speed decreases (as predicted by  \cite{volz2021transmission}) but the relative strength remains constant (Figure 5B). 
+Under a constant-speed intervention, the relative speed remains constant (Figure 5F), but the relative strength increases because the intervention will have a smaller effect on the variant with a shorter generation interval (Figure 5E).''
+
+\revtext{The use of ``strength'' to refer to reproduction numbers and ``speed'' to refer to growth rates is more confusing than helpful, and the related concepts of ``strength-like''/``constant-strength'' and ``speed-like''/``constant-speed'' interventions are not defined clearly until late in the manuscript. In my opinion, the manuscript does not make a compelling case that these are useful novel concepts for the theory or practice of infectious disease epidemiology.}
+
+This concern was brought up during the first round of reviews: ``From the examples, it appears that
+speed-like interventions work by identifying potential infections quickly
+(effectively ending the infectious period early while not necessarily altering
+the hazard of infectious contact) and strength-like interventions work by
+reducing the hazard of infectious contact (while not necessarily altering
+the duration of infectiousness). A good explanation of these ideas is on
+lines 228–231 on page 10.''
+
+We had included these exact verbal definitions to the introduction, but these revisions seem to have been neglected. Instead, we now provide a clear mathematical definitions of constant-strength and constant-speed interventions in the introduction. We have also added the following two sentences in the first paragraph of the introduction to justify our uses of ``strength'' and ``speed'':
+
+``However, large segments of the epidemiology and modeling community have over-emphasized $\RR$ at the expense of $r$ \citep{doi:10.1098/rspb.2020.1556};
+we thus use the terms ``strength'' and ``speed''  here to underline our contention that these are better seen as complementary perspectives (and to link them to complementary perspectives on measuring the transmission advantage of new variants).''
+
+\rev{Reviewer \#3}
+
+\revtext{The authors have sufficiently addressed my concerns; I have no further comments.}
+
+Thank you for your review.
+
+\bibliography{newvariant_abbv.bib}
+
+\end{document}
