@@ -36,6 +36,7 @@ relstrength.tex: relstrength.Rout ;
 relstrength.Rout: relstrength.R
 	$(wrapR)
 
+Ignore += Rtbias_smooth.pdf control_sim.pdf
 Ignore += Rtbias_smooth.tex
 Rtbias_smooth.pdf Rtbias_smooth.tex: Rtbias_smooth.Rout ;
 
