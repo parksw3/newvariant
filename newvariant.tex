@@ -216,6 +216,7 @@ Finally, we discuss how information on differences in generation interval distri
 We use the renewal equation framework to characterize the spread of two pathogen strains---in this case, the wild type SARS-CoV-2 virus and a focal variant of concern.
 \jd{We should probably change wild type to resident (res) by now.}
 \jd{And then do we need to also say invader (inv)?. Bleah.}
+\jd{Maybe just say resident and invader once or twice in the beginning, but tell the metaphorical story with $v$ and $w$ -- it's good notation, and easier.}
 We focus on characterizing the incidence of infection, which is directly related to $r$ and $\RR$.
 In practice, observed case reports are subject to reporting delays as well as changes in testing behaviors or capacity, which must be taken into account in order to correctly infer $r$ and $\RR$ \citep{goldstein2009reconstructing,gostic2020practical}.
 
@@ -318,17 +319,16 @@ When $\rw < 0 < \rv$, inference of $\rho$ is relatively insensitive to values of
 
 \section{Inferring relative speed from relative strength}
 
-We do not generally expect the relative speed $\delta$ to remain fixed if other factors governing epidemic spread are changing on the time scale of the invasion of a new variant relative to that of a wild type.
+We do not generally expect the relative speed $\delta$ to remain fixed if other factors governing epidemic spread are changing \jd{Drop? \old on the time scale of the invasion of a new variant relative to that of a wild type}.
 Instead, many biological mechanisms appear compatible with assuming a fixed value of relative strength $\rho$ over changing conditions.
-For example, if the proportion of the population susceptible declines, or the average contact rate changes, while other factors remain unchanging, the relative strength $\rho$ is expected to remain fixed \citep{leung2017monitoring,leung2020empirical,di2021impact,leung2021early}; 
-as we show in this section, these changes will imply a change in relative speed $\delta$.
+For example, if the proportion of the population susceptible declines, or the average contact rate changes, while other factors remain unchanging, the relative strength $\rho$ is expected to remain fixed \citep{leung2017monitoring,leung2020empirical,di2021impact,leung2021early}; \jd{Drop? \old as we show in this section, these changes will imply a change in relative speed $\delta$}.
 
 We thus investigate how $\delta$ is expected to change with \Rw when $\rho$ remains fixed, and how this expectation changes with the ratio of the generation intervals. 
 Once again, we rely on the Gamma assumption \citep{park2019practical} to find the relative speed $\delta$ given the mean generation interval of the variant $\Gv$ and the wild type $\Gw$:
 \begin{equation}
 \delta = \frac{(\rho \Rw)^{\kappa} - 1}{\kappa \Gv} - \frac{\Rw^{\kappa} - 1}{\kappa \Gw}.
 \end{equation}
-As our baseline scenario we assume $\rho = 1.61$ (and therefore, we always have $\Rw < \Rv$), which is the value we obtain for $\delta=0.1\pday$ \citep{davies2021estimated}, $\rw=0\pday$, $\Gw = \Gv = 5\,\textrm{days}$, and $\kappa = 1/5$ \citep{ferretti2020quantifying}.
+As our baseline scenario we assume $\rho = 1.61$ (i.e., $\Rv = 1.61 \Rw$), which is the value we obtain for $\delta=0.1\pday$ \citep{davies2021estimated}, $\rw=0\pday$, $\Gw = \Gv = 5\,\textrm{days}$, and $\kappa = 1/5$ \citep{ferretti2020quantifying}.
 We evaluate $\delta$ across five scenarios as before: (1) $\Rw < \Rv < 1$, (2) $\Rw < \Rv = 1$, (3) $\Rw < 1 < \Rv$, (4) $1 = \Rw < \Rv$, and (5) $1 < \Rw < \Rv$.
 
 \begin{figure}[!th]
