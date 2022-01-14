@@ -304,8 +304,7 @@ some analyses have implicitly or explicitly neglected this factor by either assu
 We start by taking the mean generation interval of the wild type to be $\Gw = 5\days$ \citep{ferretti2020quantifying} and the squared coefficient of variation of generation intervals to be $\kappa=0.2$ \citep{ferretti2020quantifying} for both the variant and the wild type.
 As noted above, we assume throughout that the variant and the wild type can be approximated with Gamma distributions with equal $\kappa$, and only consider differences in the mean.
 We evaluate the estimates of relative strength $\rho$ across a wide range of $\kappa$ from 0 (fixed-length generation intervals) to 1 (exponential distributions).
-To further explore how inference depends on underlying epidemiological conditions, we consider five scenarios: (1) $\rw < \rv < 0$, (2) $\rw < \rv = 0$, (3) $\rw < 0 < \rv$, (4) $0 = \rw < \rv$, and (5) $0 < \rw < \rv$.
-In all of these cases, we assume $\delta = \rv - \rw = 0.1\pday$ based on the observed relative growth rate of the Alpha variant in the UK \citep{davies2021estimated}.
+To further explore how inference depends on underlying epidemiological conditions, we consider five scenarios, all with $\delta = \rv - \rw = 0.1\pday$ (based on observations of the Alpha variant in the UK \citep{davies2021estimated}), and with increasing underlying $r$: (1) $\rw < \rv < 0$, (2) $\rw < \rv = 0$, (3) $\rw < 0 < \rv$, (4) $0 = \rw < \rv$, and (5) $0 < \rw < \rv$.
 
 Unsurprisingly, we find that an increased speed of $\delta=0.1\pday$ for the variant is consistent with higher strength than the wild type across the range of epidemiological conditions considered (\fref{relstrength}).
 However, the magnitude of relative strength $\rho$ is sensitive to assumptions about generation intervals:
