@@ -355,7 +355,9 @@ Therefore, characterizing changes in the proportion of variants by assuming a fi
 
 \section{Inferring relative strength from incidence data}
 
-Instead of inferring relative strength from speed, one can directly estimate time-varying reproduction numbers $\RR(t)$ of the variant and the wild type from incidence data and directly compare their ratios when the incidence of infection and the generation-interval distributions are known---such methods have been used in previous analyses of the Alpha \citep{volz2021transmission} and Delta variants \citep{abbott2021estimating}.
+\jd{Instead here doesn't quite work -- it's still about strength from speed because you're still observing $r(t)$ more directly and making assumptions about GI. \old
+Instead of inferring relative strength from speed, one can directly estimate time-varying reproduction numbers $\RR(t)$ of the variant and the wild type from incidence data and directly compare their ratios when the incidence of infection and the generation-interval distributions are known}
+Instead of inferring relative strength from relative speed, one can separately estimate time-varying reproduction numbers $\RR(t)$ of the variant and the wild type from observed incidence and assumptions about the generation intervals, and then calculate the ratio---such methods have been used in previous analyses of the Alpha \citep{volz2021transmission} and Delta variants \citep{abbott2021estimating}.
 Broadly, there are two types of time-varying reproduction numbers: case reproduction number and instantaneous reproduction number.
 The case reproduction number is defined as the average number of secondary infections caused by an individual infected at time $t$ and therefore depends on transmission after time $t$ \citep{wallinga2004different}.
 The instantaneous reproduction number is defined as the average number of secondary infections that would be caused by an individual infected at time $t$ if conditions were to remain the same \citep{fraser2007estimating}; 
@@ -409,12 +411,12 @@ instead, we might want to estimate a single value of relative strength $\rho$.
 For example, we can estimate $\rho$ by plotting the estimated strength of the variant $\hat{\RR}_{\textrm{var}}(t)$ against the estimated strength of the wild type $\hat{\RR}_{\textrm{wt}}(t)$---as presented in Figure 2 of \cite{volz2021transmission}---and performing a linear regression (\fref{Rtbias}C,F,I).
 If $\rho$ is constant, and generation-interval distributions are correctly specified, we obtain a straight line with a slope of $\rho$ and intercept at zero (\fref{Rtbias}F).
 However, when the assumed mean generation interval is longer than the that of the variant, we over-estimate the slope (and conversely, \fref{Rtbias}C,I).
-Biases in slopes further translate to biases in intercepts; in theory, the regression line should go through the origin (because $\Rv = 0$ when $\Rw = 0$).
+Biases in slopes further translate to biases in intercepts; in theory, the regression line should go through the origin (because $\Rv = 0$ when $\Rw = 0$). \jd{Did you fit lines constrained through the origin or not? Need to be clear; what would a bias in intercept even mean?}
 
 \section{Implications for intervention strategies}
 
 While relative speed $\delta$ and strength $\rho$ are useful for characterizing the spread of the variant in an epidemiological context with a previously dominant wild type, the \emph{absolute} speed $\rv$ and strength $\Rv$ of the variant determine the spread and conditions for control of the variant over the long term.
-In particular, at any given point in the epidemic, we can measure the speed of the variant $\rv$ (or infer $\rv$ from $\rw$ and $\delta$) and ask how much more intervention is required to control the spread of both strains (since $\Rv < 1$ implies $\Rw < 1$).
+In particular, at any given point in the epidemic, we can measure the speed of the variant $\rv$ (or infer $\rv$ from $\rw$ and $\delta$) and ask how much more intervention is required to control the spread of the variant (and thus also the wild-type, which is assumed to be easier to control). 
 As a baseline scenario, we assume $\rw=0$ and $\delta=0.1\pday$ (and therefore $\rv=0.1\pday$), in which case additional intervention is required to reduce $\rv$ below 0 (or, equivalently, $\Rv$ below 1).
 
 We consider two types of intervention:
