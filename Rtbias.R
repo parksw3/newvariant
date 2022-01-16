@@ -156,7 +156,7 @@ for (i in 1:length(svec)) {
   
   if (i != 2) {
     g3 <- g3 +
-      geom_smooth(aes(Rtest1, Rtest2, col="Regression", lty="Regression"), method="lm", fullrange=TRUE, se=FALSE, lwd=2)
+      geom_smooth(aes(Rtest1, Rtest2, col="Regression", lty="Regression"), method="lm", formula=y~-1+x, fullrange=TRUE, se=FALSE, lwd=2)
     
   }
   
