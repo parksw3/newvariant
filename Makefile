@@ -11,7 +11,7 @@ vim_session:
 
 ######################################################################
 
-Sources += newvariant.tex
+Sources += newvariant.tex $(wildcard *.md)
 
 ## newvariant.pdf: newvariant.tex
 ## newvariant.tex.50f4bfe.oldfile:
