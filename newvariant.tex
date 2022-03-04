@@ -181,7 +181,7 @@ While it is possible to consider general forms of generation-interval distributi
 In particular, several studies have noted, in various contexts, that mechanisms that increase the mean generation interval increase the epidemic strength $\RR$ that would be estimated for a given epidemic speed $r$ \citep{eaton2014proportion,powers2014impact,weitz2015modeling,park2020time}.
 
 Analyses of new variants have characterized \emph{relative} strength (i.e., the ratio of reproduction numbers of the invading and resident strains, here called $\rho$) and speed (i.e., the difference between growth rates of the invading and resident strains, here called $\delta$).
-As an example, we consider a new variant invading a wild type strain in this paper and use $\Rv$ and $\Rw$ to denote their reproduction numbers and $\rv$ and $\rw$ to denote their growth rates at a given time (and therefore $\rho = \Rv/\Rw$ and $\delta = \rv-\rw$).
+As an example, we consider a new variant invading a wild type strain in this paper and use $\Rv$ and $\Rw$ to denote their respective reproduction numbers and $\rv$ and $\rw$ to denote their respective growth rates at a given time (and therefore $\rho = \Rv/\Rw$ and $\delta = \rv-\rw$).
 Many analyses have focused on changes in the \emph{proportion} of a new variant to estimate its relative speed \citep{switzerland2021variant, davies2021estimated, di2021impact, graham2021changes, leung2021early, volz2021transmission,zhao2021}.
 Focusing on proportions can be advantageous, because changes in proportions are less sensitive to changes in testing and to other transient phenomena that would affect variants and wild type viruses
 similarly;
@@ -193,7 +193,7 @@ To illustrate the differences in conclusions when holding $\RR$ or $r$ fixed, we
 Given a pre-intervention kernel $K_{\mathrm{pre}}(\tau) = \RR g(\tau)$, which represents the rate at which an infected individual generates secondary infections $\tau$ time units after infection, a constant-strength intervention reduces transmission by a constant factor $\theta$ across generation intervals such that the post-intervention kernel is $K_{\mathrm{post}} = K_{\mathrm{pre}}(\tau)/\theta$.
 In this case, the intervention strength $\theta$ must be greater than the epidemic strength $\RR$ to control the epidemic.
 In contrast, a constant-speed intervention reduces transmission after infection by a constant rate $\phi$ across generation intervals: $K_{\mathrm{post}} = K_{\mathrm{pre}}(\tau) \exp(-\phi \tau)$.
-In this case, the intervention speed $\phi$ must be greater than the epidemic speed $r$ to control the epidemic \citep{doi:10.1098/rspb.2020.1556}.
+In this case, the intervention speed $\phi$ must be greater than the epidemic speed $r$ to control the epidemic.
 
 For example, if we assume epidemic strength $\RR$ is known, then variation in the generation-interval distribution does not change the estimated effectiveness of a constant-strength intervention.
 In this same case, however, assuming longer generation intervals decreases the estimated epidemic growth rate (lower $r$), making an epidemic look easier to control with a constant-speed intervention.
@@ -543,6 +543,7 @@ A recent study has further suggested that the generation intervals of the origin
 A few studies have tried to compare generation- and serial-interval distributions of new SARS-CoV-2 variants with those of the original wild type strain \citep{pung2021serial, hart2021generation};
 these comparisons are inherently difficult due to temporal changes in generation- and serial-interval distributions caused by dynamical and intervention effects \citep{ali2020serial,park2021forward}.
 Future studies should prioritize detailed assessment of the generation intervals of SARS-CoV-2 and widespread variants, as well as consider how uncertainty in generational intervals might bias conclusions \citep{doi:10.1098/rsif.2020.0144,ali2020serial,gostic2020practical}.
+Combining sequencing or viral load trajectory data can also help narrow estimates of generation- and serial-interval distributions as well as time-varying reproduction numbers even when contact tracing data are limited \citep{lin2020viral,Stockdale2022.02.23.22271355}.
 
 The spread of new SARS-CoV-2 variants and the replacement of previously dominant lineages represent ongoing challenges for controlling the SARS-CoV-2 pandemic \citep{abdool2021new,fontanet2021sars,walensky2021sars,pulliam2021increased}.  
 By explicitly considering epidemiological context and generation interval differences together, we have shown that improving estimates of the the relative duration of infectiousness at the individual scale may help guide more effective interventions. 
