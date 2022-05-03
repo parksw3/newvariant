@@ -257,11 +257,10 @@ Then, the incidence of each strain grows (or decays) exponentially at rate $r_x$
 \begin{equation}
 \frac{1}{\RR_x} = \int_0^\infty \exp(- r_x \tau) g_x(\tau) \dtau.
 \end{equation}
-We can approximate this $r$--$\RR$ relationship by assuming that the generation-interval distribution is Gamma-distributed, and summarizing it using the mean generation interval $\bar{G}_x$ and the squared coefficient of variation $\kappa_x$ \citep{park2019practical}:
+We can approximate this $r$--$\RR$ relationship by assuming that the generation-interval distribution is Gamma-distributed, and summarizing it using the mean generation interval $\bar{G}_x$ and the squared coefficient of variation $\kappa_x$ (equal to the reciprocal of the Gamma shape parameter) \citep{park2019practical}:
 \begin{equation}
 \RR_x \approx (1 + \kappa_x r_x \bar{G}_x)^{1/\kappa_x}.
 \end{equation}
-We note that $\kappa_x^{-1}$ also corresponds to the shape parameter of a Gamma distribution.
 Various Gamma-generation-interval assumptions have been widely used in epidemic modeling, including for models of SARS-CoV-2 \citep{doi:10.1098/rsif.2020.0144}.
 The Gamma-generation-interval assumption includes as a special case models that assume exponentially distributed generation intervals (when $\kappa=1$), corresponding to the SIR model \citep{anderson1991infectious}.
 We note that when the infectious periods are Gamma distributed---another standard assumption in epidemic modeling---the resulting generation interval does not necessarily follow the Gamma distribution (see \cite{roberts2007model} for detailed discussion).
@@ -293,7 +292,7 @@ Assumed values of $\rw$ and $\rv$ are shown in the top right corners of each pan
 \end{figure}
 
 We thus ask: what factors affect the relative strength $\rho = \Rv/\Rw$ of a new variant, conditional on an observed relative speed $\delta$?
-Inference of the relative strength $\rho = \Rv/\Rw$ from the relative speed $\delta$ depends on assumptions about the generation-interval distributions of both strains.
+This inference depends on assumptions about the generation-interval distributions of both strains.
 Given the mean generation interval of the variant $\Gv$ and the wild type $\Gw$, the relative strength $\rho = \Rv/\Rw$ under the Gamma assumption \citep{park2019practical} is given by:
 \begin{equation}
 \rho = \left(\frac{1 + \kappa (\rw + \delta) \Gv}{1 + \kappa \rw \Gw}\right)^{1/\kappa}.
@@ -548,7 +547,7 @@ The generation intervals can be measured in two different ways: backward and for
 The backward distribution starts from the cohort of infectees who were infected at the same time and looks at when their infectors were infected. 
 The backward distribution is subject to dynamical biases because we are more likely to observe recent infections (and therefore shorter generation intervals) when the epidemic is growing.
 On the other hand, the forward distribution starts from the cohort of infectors who were infected at the same time and looks at when they transmitted infections.
-While the forward distribution is more reliable, changes in epidemic dynamics due to intervention measures and susceptible depletions can affect the shape of the distribution \citep{ali2020serial, nishiura2010time}.
+While the forward distribution is more stable, changes in epidemic dynamics due to intervention measures and susceptible depletions can affect the shape of either distribution \citep{ali2020serial, nishiura2010time}.
 For example, comparing generation-interval estimates from different intervention periods will necessarily bias the true differences in the generation-interval distributions of different variants.
 
 Even though SARS-CoV-2 has been spreading for more than a year, there is still considerable uncertainty about its generation intervals.
