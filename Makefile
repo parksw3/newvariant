@@ -14,10 +14,10 @@ vim_session:
 Sources += newvariant.tex $(wildcard *.md)
 
 ## newvariant.pdf: newvariant.tex
-## newvariant.tex.HEAD~2.oldfile:
+## newvariant.tex.d71760.oldfile:
 ## newvariant.ld.pdf: newvariant.tex
 
-Sources += response.tex
+Sources += response*.tex
 ## response.pdf: response.tex
 
 Sources += supp.tex
