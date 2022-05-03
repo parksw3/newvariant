@@ -1,0 +1,158 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage{color}
+
+\usepackage{xspace}
+
+\usepackage{lmodern}
+
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+
+\usepackage[pdfencoding=auto, psdextra]{hyperref}
+
+\usepackage{natbib}
+\bibliographystyle{chicago}
+
+\newcommand{\eref}[1]{Eq.~(\ref{eq:#1})}
+\newcommand{\fref}[1]{Fig.~\ref{fig:#1}}
+
+%% Consistent, changeable style for subscripts
+\newcommand{\vvvar}{\mathrm{var}}
+\newcommand{\wwwt}{\mathrm{wt}}
+
+\newcommand{\rx}[1]{\ensuremath{{r}_{#1}}\xspace} 
+\newcommand{\ry}[1]{\rx{\mathrm{#1}}} 
+\newcommand{\rw}{\rx{\wwwt}}
+\newcommand{\rv}{\rx{\vvvar}}
+
+\newcommand{\Rx}[1]{\ensuremath{{\mathcal R}_{#1}}\xspace} 
+\newcommand{\Ry}[1]{\Rx{\mathrm{#1}}}
+\newcommand{\Ro}{\Rx{0}}
+\newcommand{\RR}{\ensuremath{{\mathcal R}}\xspace}
+\newcommand{\Rw}{\Rx{\wwwt}}
+\newcommand{\Rv}{\Rx{\vvvar}}
+
+\newcommand{\dd}[1]{\ensuremath{\, \mathrm{d}#1}}
+\newcommand{\dtau}{\dd{\tau}}
+\newcommand{\dx}{\dd{x}}
+\newcommand{\dsigma}{\dd{\sigma}}
+
+\newcommand{\rev}{\subsection*}
+\newcommand{\revtext}{\textsf}
+\setlength{\parskip}{\baselineskip}
+\setlength{\parindent}{0em}
+
+\newcommand{\comment}[3]{\textcolor{#1}{\textbf{[#2: }\textsl{#3}\textbf{]}}}
+\newcommand{\jd}[1]{\comment{cyan}{JD}{#1}}
+\newcommand{\swp}[1]{\comment{magenta}{SWP}{#1}}
+\newcommand{\dc}[1]{\comment{blue}{DC}{#1}}
+\newcommand{\jsw}[1]{\comment{green}{JSW}{#1}}
+\newcommand{\hotcomment}[1]{\comment{red}{HOT}{#1}}
+
+\newcommand{\psymp}{\ensuremath{p}} %% primary symptom time
+\newcommand{\ssymp}{\ensuremath{s}} %% secondary symptom time
+\newcommand{\pinf}{\ensuremath{\alpha_1}} %% primary infection time
+\newcommand{\sinf}{\ensuremath{\alpha_2}} %% secondary infection time
+
+\newcommand{\psize}{{\mathcal P}} %% primary cohort size
+\newcommand{\ssize}{{\mathcal S}} %% secondary cohort size
+
+\newcommand{\gtime}{\tau_{\rm g}} %% generation interval
+\newcommand{\gdist}{g} %% generation-interval distribution
+\newcommand{\idist}{\ell} %% incubation period distribution
+
+\newcommand{\total}{{\mathcal T}} %% total number of serial intervals
+
+
+\begin{document}
+
+\noindent Dear Editors:
+
+We are submitting the final version our manuscript, “The importance of the generation interval in investigating dynamics and control of new SARS-CoV-2 variants”.
+
+Thank you for your consideration of our submission.
+
+Sincerely,
+
+Sang Woo Park
+
+\rev{Reviewer \#1}
+
+\revtext{When I started reviewing this paper, I was highly skeptical of the notions of strength and speed for epidemics and interventions. This paper has convinced me that these are actually very useful concepts, certainly in theory if not necessarily in practice. The assumptions are mostly clearly explained, but the assumption of homogeous mass-action should be made explicit early in the paper (though many of the qualitative insights probably transfer beyond this class of models). While the results are shown in only a special case (homogeneous massaction with a transmission kernal that is constant in t and a gamma-distributed generation interval), it is an important special case because it is similar to many models used in practice. The discussion clearly addresses situations where the strength/speed dichotomy and several assumptions might break down, but it makes a good case that the qualitative insights are still useful. I have reviewed very few papers that changed my mind about something so important, and I expect this will be equally useful to many other readers. My only general comment is that the presentation of the basic insights and the figures sometimes seem scattered; I found myself jumping around quite a bit while reviewing the paper. I have a few more specific comments below.}
+
+Thank you for your review. We believe that a part of the scattered-ness is caused by pdf conversion process from a latex document---for example, figure 3 is described in section 5 (pages 10--11) but appears in page 12 due to its size. Likewise, figures 4 and 5 have been pushed back to the end of section 6. We think that these issues will be less problematic when the paper is properly formatted according to the journal guideline. Otherwise, we have made minor changes throughout the manuscript to try to tie the results closer to the figures whenever appropriate and re-ordered some text for clearer presentation. 
+
+\revtext{(page 3, lines 43–44) It is not true that R determines the final size of an epidemic in a homogeneous population. For example, the final size of an epidemic in a homogeneous population on a configuration model network depends on the degree distribution as well as $\RR$, and this final size corresponds to the mass-action final size with the same R only when the degree distribution is Poisson. It would be accurate to say that $\RR$ determines the final size of an epidemic in a homogeneous mass-action model. The entire paper is based on homogeneous mass-action models, so it help to make this explicit.}
+
+We have reworded this sentence as follows:
+
+``The epidemic strength also determines the final size of an epidemic in a homogeneously mixing population under the mass-action assumption''
+
+\revtext{(page 4, lines 90 and 92) ``$K_{\mathrm{post}}$'' should be ``$K_{\mathrm{post}}(\tau)$''}
+
+Done.
+
+\revtext{(page 4, lines 93–94) The ``kernel'' needs to be explained more clearly before the statement that intervention speed ($\phi$) must be greater than epidemic speed ($r$) in order to control the epidemic. The explanation given could be interpreted to mean that the pre-intervention generation interval distribution $g_x(\tau)$ should be replaced by something proportional
+to $g_x(\tau) \exp(-\phi \tau)$. If you then imitate the derivation from Wallinga and Lipsitch (American Journal of Epidemiology, 2007) using the pre- and post-intervention kernels, you get $\RR_{\textrm{pre}} = M_g(-r)^{-1}$ and $$\RR_{\textrm{post}} = \frac{M_g(-\phi)}{M_g(-r-\phi)}$$
+where $M_g()$ is the moment generating function for the PDF $g(\tau)$. This
+does not lead to $\RR_{\textrm{post}} < 1$ if $\phi > r$. However, we do get $\RR_{\textrm{post}} < 1$ if $\phi < -r$, which would seem to correspond to an intervention that makes people more infectious over time. 
+This counterintuitive result comes from the need to re-normalize $g(\tau) e^{-\phi \tau}$.
+In order to get a PDF that integrates to one, and it shows the importance of clearly maintaining the distinction between the generation interval distribution and the transmission kernel.}
+
+Thank you for pointing this out. We agree that making the distinction between the generation-interval distribution and the transmission kernel is important. We have rephrased this paragraph to try to make the distinction clearer.
+
+``While both approaches are reasonable, holding different quantities constant (i.e., strength or speed) can lead to different conclusions about the spread of the pathogen and its control \citep{doi:10.1098/rspb.2020.1556}.
+To illustrate the differences in conclusions when holding $\RR$ or $r$ fixed, we consider two idealized interventions of constant strength and constant speed.
+Before these interventions are introduced, the dynamics of pathogen spread can be characterized in terms of the pre-intervention kernel $K_{\mathrm{pre}}(\tau)$, which represents the rate at which an infected individual generates secondary infections $\tau$ time units after infection.
+The pre-intervention kernel can be further decomposed in terms of the epidemic strength $\RR$ and the generation-interval distribution $g(\tau)$: $K_{\mathrm{pre}}(\tau) = \RR g(\tau)$;
+therefore, the infection knerel integrates to $\RR$ while the generation-interval distribution integrates to 1.
+Then, a constant-strength intervention reduces transmission by a constant factor $\theta$ throughout infection such that the post-intervention kernel is $K_{\mathrm{post}}(\tau) = K_{\mathrm{pre}}(\tau)/\theta$.
+In this case, the intervention strength $\theta$ must be greater than the epidemic strength $\RR$ to control the epidemic.
+In contrast, a constant-speed intervention reduces transmission after infection by a constant rate $\phi$ throughout infection: $K_{\mathrm{post}}(\tau) = K_{\mathrm{pre}}(\tau) \exp(-\phi \tau)$.
+In this case, the intervention speed $\phi$ must be greater than the pre-intervention epidemic speed $r$ to control the epidemic.
+We note that the resulting post-intervention generation-interval distribution under a constant-speed intervention is \emph{not} equal to $g(\tau) \exp(-\phi \tau)$; instead $g(\tau) \exp(-\phi \tau)$ needs to be renormalized to integrate to 1 because the generation-interval distribution is a probability distribution.''
+
+\revtext{(page 6, line 192) It would be helpful to point out that $\kappa^{-1}$ is the gamma shape parameter.}
+
+Done.
+
+\revtext{(page 9, lines 270–277) It would help to explain that Rwt = 0.49 corresponds to the top left of Figure 2 and Rwt = 1.27 corresponds to the bottom right.}
+
+Done.
+
+\revtext{(page 10, lines 282–290) I appreciate the careful distinction made between
+the case reproduction number and the instantaneous reproduction number
+as well as the explanation of why the instantaneous reproduction is the
+more relevant here}
+
+Thank you.
+
+\revtext{(page 14, Figure 4) Subfigures A, C, E and B, D, F should have a label
+for the x-axis. To make room, the y-axis labels in G and H could be just
+Rvar and rvar, respectively.}
+
+We have added axis titles for the subfigures.
+
+\revtext{(page 19, lines 513–529) In practice, generation intervals can be observed
+``forwards'' and ``backwards'' but both are subject to bias (as explained in
+Ref. 19). Do the authors have an opinion about which of these would allow
+a more reliable estimate of the relative length of the generation intervals
+of a variant compared to wild type?}
+
+We have added a new paragraph:
+
+``While detailed contact tracing data can help narrow down uncertainties in the generation-interval distributions, there are additional complexities to comparing generation-interval estimates of different variants.
+The generation intervals can be measured in two different ways: backward and forward \citep{champredon2015intrinsic}.
+The backward distribution starts from the cohort of infectees who were infected at the same time and looks at when their infectors were infected. 
+The backward distribution is subject to dynamical biases because we are more likely to observe recent infections (and therefore shorter generation intervals) when the epidemic is growing.
+On the other hand, the forward distribution starts from the cohort of infectors who were infected at the same time and looks at when they transmitted infections.
+While the forward distribution is more reliable, changes in epidemic dynamics due to intervention measures and susceptible depletions can affect the shape of the distribution \citep{ali2020serial, nishiura2010time}.
+For example, comparing generation-interval estimates from different intervention periods will necessarily bias the true differences in the generation-interval distributions of different variants.''
+
+\bibliography{newvariant_abbv.bib}
+
+\end{document}

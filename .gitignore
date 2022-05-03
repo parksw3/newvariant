@@ -514,3 +514,4 @@ cpdir/
 *.oldfile
 *.olddiff
 *.blame
+.Rproj.user

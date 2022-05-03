@@ -115,8 +115,7 @@ g1 <- ggplot(gendata_short) +
   theme(
     panel.grid = element_blank(),
     legend.position = c(0.6, 0.95),
-    legend.background = element_rect(fill=NA),
-    axis.title = element_blank()
+    legend.background = element_rect(fill=NA)
   )
 
 g2 <- ggplot(gendata_short) +
@@ -134,8 +133,7 @@ g2 <- ggplot(gendata_short) +
   theme(
     panel.grid = element_blank(),
     legend.position = c(0.6, 0.95),
-    legend.background = element_rect(fill=NA),
-    axis.title = element_blank()
+    legend.background = element_rect(fill=NA)
   )
 
 g3 <- ggplot(gendata_base) +
@@ -153,8 +151,7 @@ g3 <- ggplot(gendata_base) +
   theme(
     panel.grid = element_blank(),
     legend.position = "none",
-    legend.background = element_rect(fill=NA),
-    axis.title = element_blank()
+    legend.background = element_rect(fill=NA)
   )
 
 g4 <- ggplot(gendata_base) +
@@ -172,8 +169,7 @@ g4 <- ggplot(gendata_base) +
   theme(
     panel.grid = element_blank(),
     legend.position = "none",
-    legend.background = element_rect(fill=NA),
-    axis.title = element_blank()
+    legend.background = element_rect(fill=NA)
   )
 
 g5 <- ggplot(gendata_long) +
@@ -185,8 +181,7 @@ g5 <- ggplot(gendata_long) +
   scale_y_continuous("Kernel density", limits=c(0, 0.4)) +
   ggtitle("E. Longer GI, Constant-strength intervention") +
   theme(
-    panel.grid = element_blank(),
-    axis.title = element_blank()
+    panel.grid = element_blank()
   )
 
 g6 <- ggplot(gendata_long) +
@@ -198,8 +193,7 @@ g6 <- ggplot(gendata_long) +
   scale_y_continuous("Kernel density", limits=c(0, 0.4)) +
   ggtitle("F. Longer GI, Constant-speed intervention") +
   theme(
-    panel.grid = element_blank(),
-    axis.title = element_blank()
+    panel.grid = element_blank()
   )
 
 g7 <- ggplot(intervention) +
