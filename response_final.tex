@@ -109,7 +109,7 @@ Thank you for pointing this out. We agree that making the distinction between th
 To illustrate the differences in conclusions when holding $\RR$ or $r$ fixed, we consider two idealized interventions of constant strength and constant speed.
 Before these interventions are introduced, the dynamics of pathogen spread can be characterized in terms of the pre-intervention kernel $K_{\mathrm{pre}}(\tau)$, which represents the rate at which an infected individual generates secondary infections $\tau$ time units after infection.
 The pre-intervention kernel can be further decomposed in terms of the epidemic strength $\RR$ and the generation-interval distribution $g(\tau)$: $K_{\mathrm{pre}}(\tau) = \RR g(\tau)$;
-therefore, the infection knerel integrates to $\RR$ while the generation-interval distribution integrates to 1.
+therefore, the infection kernel integrates to $\RR$ while the generation-interval distribution integrates to 1.
 Then, a constant-strength intervention reduces transmission by a constant factor $\theta$ throughout infection such that the post-intervention kernel is $K_{\mathrm{post}}(\tau) = K_{\mathrm{pre}}(\tau)/\theta$.
 In this case, the intervention strength $\theta$ must be greater than the epidemic strength $\RR$ to control the epidemic.
 In contrast, a constant-speed intervention reduces transmission after infection by a constant rate $\phi$ throughout infection: $K_{\mathrm{post}}(\tau) = K_{\mathrm{pre}}(\tau) \exp(-\phi \tau)$.
@@ -150,7 +150,7 @@ The generation intervals can be measured in two different ways: backward and for
 The backward distribution starts from the cohort of infectees who were infected at the same time and looks at when their infectors were infected. 
 The backward distribution is subject to dynamical biases because we are more likely to observe recent infections (and therefore shorter generation intervals) when the epidemic is growing.
 On the other hand, the forward distribution starts from the cohort of infectors who were infected at the same time and looks at when they transmitted infections.
-While the forward distribution is more reliable, changes in epidemic dynamics due to intervention measures and susceptible depletions can affect the shape of the distribution \citep{ali2020serial, nishiura2010time}.
+While the forward distribution is more stable, changes in epidemic dynamics due to intervention measures and susceptible depletions can affect the shape of either distribution \citep{ali2020serial, nishiura2010time}.
 For example, comparing generation-interval estimates from different intervention periods will necessarily bias the true differences in the generation-interval distributions of different variants.''
 
 \bibliography{newvariant_abbv.bib}
